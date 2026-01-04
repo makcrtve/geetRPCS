@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/geetrpcs-logo-512.png" width="128" alt="geetRPCS logo" />
+  <img src="https://private-user-images.githubusercontent.com/236783603/531699110-b002871a-22a1-4ac2-ab5e-191c60726734.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Njc1MDYzOTYsIm5iZiI6MTc2NzUwNjA5NiwicGF0aCI6Ii8yMzY3ODM2MDMvNTMxNjk5MTEwLWIwMDI4NzFhLTIyYTEtNGFjMi1hYjVlLTE5MWM2MDcyNjczNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMTA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDEwNFQwNTU0NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mZTExYjE4MTUzYjljZjY5NGU2ZGRmN2M2MDAxMjQ0MzcyNTVmMGUwZTdhY2ZjOTI3MzI0ZWZlNDlmZmU4ZTUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.FxEoeKFC-eZvWAztfUXdJoSKSQJ_Pqqvrxo4z0oVm5g" width="128" alt="geetRPCS logo" />
+  
 </p>
 
 <h1 align="center">geetRPCS</h1>
