@@ -1,97 +1,356 @@
 <p align="center">
-  <img src="https://private-user-images.githubusercontent.com/236783603/531699110-b002871a-22a1-4ac2-ab5e-191c60726734.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Njc1MDYzOTYsIm5iZiI6MTc2NzUwNjA5NiwicGF0aCI6Ii8yMzY3ODM2MDMvNTMxNjk5MTEwLWIwMDI4NzFhLTIyYTEtNGFjMi1hYjVlLTE5MWM2MDcyNjczNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwMTA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDEwNFQwNTU0NTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mZTExYjE4MTUzYjljZjY5NGU2ZGRmN2M2MDAxMjQ0MzcyNTVmMGUwZTdhY2ZjOTI3MzI0ZWZlNDlmZmU4ZTUzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.FxEoeKFC-eZvWAztfUXdJoSKSQJ_Pqqvrxo4z0oVm5g" width="128" alt="geetRPCS logo" />
-  
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/geetrpcs-banner.png" width="600" alt="geetRPCS Banner" />
 </p>
 
 <h1 align="center">geetRPCS</h1>
+
 <p align="center">
-  <i>Tiny tray-app that pushes your coding vibe straight to Discord 🎧</i><br/>
-  <sub>Windows • .NET 8 • No console window • Live reload • Open-source</sub>
+  <b>Discord Rich Presence otomatis untuk aplikasi favoritmu!</b><br/>
+  <sub>Tampilkan aktivitasmu di Discord secara real-time tanpa ribet 🚀</sub>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
+  <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8"/>
+  <img src="https://img.shields.io/badge/Discord-RPC-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
+  <img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License"/>
 </p>
 
 <p align="center">
   <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
-    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square">
+    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Download&color=success" alt="Download"/>
   </a>
-  <a href="https://github.com/makcrtve/geetRPCS/actions">
-    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/makcrtve/geetRPCS/build.yml?style=flat-square">
-  </a>
-  <img alt="License" src="https://img.shields.io/github/license/makcrtve/geetRPCS?style=flat-square">
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Total%20Downloads&color=blue" alt="Downloads"/>
 </p>
 
 ---
 
-## ✨ Fitur utama
-- 🚀 Mulai bersama Windows (opsional) – tidak muncul di taskbar, cukup di tray
-- 📝 Rich presence lengkap: details, state, 2 tombol, large & small image
-- 🔄 Reload config tanpa restart; edit `config.json` → klik “Reload Config” di tray
-- 🎯 Single executable (self-contained publish support)
-- 🪶 C# murni + Windows Forms, tidak perlu runtime tambahan
+## 📖 Tentang geetRPCS
 
-## 🪟 Cara pakai
-1. Download `geetRPCS.zip` dari [rilis terbaru](https://github.com/makcrtve/geetRPCS/releases/latest)
-2. Ekstrak ke folder mana pun
-3. Edit `config.json` (lihat bagian [Konfigurasi](#konfigurasi))
-4. Jalankan `geetRPCS.exe` – ikon tray akan muncul
-5. Buka Discord → lihat statusmu berubah!
+**geetRPCS** adalah aplikasi Windows yang secara otomatis mendeteksi aplikasi yang sedang kamu gunakan dan menampilkannya sebagai Discord Rich Presence. Cocok untuk content creator, musisi, desainer, dan siapa saja yang ingin memamerkan aktivitas mereka di Discord!
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/preview.gif" width="350" alt="Preview"/>
+</p>
+
+---
+
+## ✨ Fitur Utama
+
+| Fitur | Deskripsi |
+|:-----:|-----------|
+| 🔍 | **Auto-Detect** — Otomatis mendeteksi 20+ aplikasi populer |
+| ⏱️ | **Elapsed Timer** — Menampilkan berapa lama kamu menggunakan aplikasi |
+| 🔒 | **Private Mode** — Sembunyikan judul window dengan satu klik |
+| 🔄 | **Hot Reload** — Ubah konfigurasi tanpa restart aplikasi |
+| 🚀 | **Auto Startup** — Opsi untuk berjalan otomatis saat Windows nyala |
+| 🎨 | **Kustomisasi Penuh** — Atur teks, gambar, dan tombol sesukamu |
+| 💾 | **Ringan** — Berjalan di system tray, tidak mengganggu aktivitas |
+
+---
+
+## 🎯 Aplikasi yang Didukung
+
+<table>
+<tr>
+<td align="center" width="20%">
+
+### 🎵 Musik
+- FL Studio
+- Ableton Live
+- Adobe Audition
+
+</td>
+<td align="center" width="20%">
+
+### 🎬 Video
+- Adobe Premiere Pro
+- Adobe After Effects
+- CapCut
+
+</td>
+<td align="center" width="20%">
+
+### 🎨 Desain
+- Adobe Photoshop
+- Adobe Illustrator
+- Adobe Lightroom
+- Affinity
+
+</td>
+<td align="center" width="20%">
+
+### 🌐 Browser
+- Brave
+- Chrome
+- Firefox
+- Zen Browser
+- Microsoft Edge
+
+</td>
+<td align="center" width="20%">
+
+### 📝 Office
+- Microsoft Word
+- Microsoft Excel
+- Microsoft PowerPoint
+
+</td>
+</tr>
+</table>
+
+<p align="center">
+  <i>...dan masih banyak lagi! Kamu juga bisa menambahkan aplikasi sendiri.</i>
+</p>
+
+---
+
+## 📥 Instalasi
+
+### Persyaratan Sistem
+- Windows 10/11 (64-bit)
+- Discord Desktop terinstall
+- .NET 8.0 Runtime (sudah termasuk dalam paket)
+
+### Langkah Instalasi
+
+1. **Download** rilis terbaru dari [halaman Releases](https://github.com/makcrtve/geetRPCS/releases/latest)
+
+2. **Ekstrak** file ZIP ke folder pilihan kamu
+
+3. **Jalankan** `geetRPCS.exe`
+
+4. **Selesai!** Ikon geetRPCS akan muncul di system tray
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/tray-icon.png" width="300" alt="Tray Icon"/>
+</p>
+
+---
+
+## 🖥️ Cara Penggunaan
+
+### Menu System Tray
+
+Klik kanan pada ikon geetRPCS di system tray untuk mengakses menu:
+
+| Menu | Fungsi |
+|------|--------|
+| 🔒 **Private Mode** | Aktifkan/nonaktifkan mode privat (sensor judul window) |
+| 🔄 **Reload Config** | Muat ulang konfigurasi tanpa restart |
+| ⏱️ **Reset All Timers** | Reset semua timer elapsed time |
+| 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto-start |
+| ❌ **Exit** | Keluar dari aplikasi |
+
+### Private Mode
+
+Double-click ikon tray untuk toggle Private Mode dengan cepat!
+
+Saat **Private Mode aktif**:
+- Judul window akan ditampilkan sebagai `********`
+- Cocok untuk menyembunyikan project rahasia atau aktivitas pribadi
+
+---
 
 ## ⚙️ Konfigurasi
-File `config.json` wajib ada di folder yang sama dengan exe. Contoh minimal:
+
+### config.json
+
+File konfigurasi utama untuk mengatur tampilan default presence:
 
 ```json
 {
   "Discord": {
-    "ApplicationId": "1433700335863726183",
-    "Details": "Coding pakai geetRPCS",
-    "State": "Visual Studio Code",
+    "ApplicationId": "ID_APLIKASI_DISCORD_KAMU",
+    "Details": "Idling...",
+    "State": "Ready to work",
+    "ActiveDetails": "Working on {app_name}",
+    "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
       "LargeImageText": "geetRPCS v1.0.0",
       "SmallImageKey": "verified",
-      "SmallImageText": "Coding Time!"
+      "SmallImageText": "geetRPCS Standby"
     },
     "Buttons": [
       {
-        "Label": "YouTube",
-        "Url": "https://youtu.be/dQw4w9WgXcQ"
+        "Label": "GitHub",
+        "Url": "https://github.com/makcrtve/geetRPCS"
       }
     ]
   }
 }
 ```
 
-| Kunci | Keterangan |
-|-------|------------|
-| `ApplicationId` | ID aplikasi Discord mu (buat di [discord.com/developers/applications](https://discord.com/developers/applications)) |
-| `Details` | Baris pertama presence |
-| `State` | Baris kedua presence |
-| `Assets` | Gambar large/small beserta tooltip-nya |
-| `Buttons` | Maks. 2 tombol (opsional) |
+### Placeholder yang Tersedia
 
-Setelah mengubah file, klik kanan ikon tray → **Reload Config**.
-
-## 🛠️ Build dari source
-```bash
-git clone https://github.com/makcrtve/geetRPCS.git
-cd geetRPCS
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
-```
-Executable siap pakai ada di `bin/Release/net8.0-windows/win-x64/publish/`
-
-## 🧩 Dependensi
-- .NET 8 (target `net8.0-windows`)
-- [DiscordRichPresence](https://www.nuget.org/packages/DiscordRichPresence) 1.6.1.70
-- System.Text.Json 8.0.5
-
-## 📄 Lisensi
-[MIT](LICENSE) – bebas dipakai, diperjualbelikan, ataupun di-embed ke project lain.
-
-## 🙋‍♂️ Kontribusi
-Pull-request & issue sangat welcome!  
-Baca [CONTRIBUTING.md](CONTRIBUTING.md) sebelum memulai.
+| Placeholder | Deskripsi |
+|-------------|-----------|
+| `{app_name}` | Nama aplikasi (dari apps.json) |
+| `{process_name}` | Nama process Windows |
+| `{window_title}` | Judul window aktif |
 
 ---
 
-<div align="center">
-  <b>Made with ☕ by makcrtve</b>
-</div>
+### apps.json
+
+File untuk mengatur konfigurasi per-aplikasi:
+
+```json
+[
+  {
+    "process": "FL64",
+    "appName": "FL Studio 2025",
+    "largeKey": "flstudio",
+    "largeText": "FL Studio 2025",
+    "smallKey": "geetrpcs-logo",
+    "smallText": "geetRPCS",
+    "customDetails": "Producing on {app_name}",
+    "buttons": [
+      {
+        "label": "My Portfolio",
+        "url": "https://example.com"
+      }
+    ]
+  }
+]
+```
+
+### Menambah Aplikasi Baru
+
+1. Buka **Task Manager** dan catat nama process aplikasi yang ingin ditambahkan
+2. Tambahkan entry baru di `apps.json`
+3. Upload gambar ke Discord Developer Portal (Art Assets)
+4. Klik **Reload Config** di menu tray
+
+---
+
+## 🎨 Mengatur Gambar (Assets)
+
+1. Buka [Discord Developer Portal](https://discord.com/developers/applications)
+2. Pilih aplikasi kamu
+3. Pergi ke **Rich Presence** → **Art Assets**
+4. Upload gambar dengan nama yang sesuai dengan `largeKey` dan `smallKey`
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/discord-assets.png" width="500" alt="Discord Assets"/>
+</p>
+
+---
+
+## 📸 Screenshot
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-1.png" width="280" alt="Screenshot 1"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-2.png" width="280" alt="Screenshot 2"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-3.png" width="280" alt="Screenshot 3"/>
+</p>
+
+---
+
+## ❓ FAQ
+
+<details>
+<summary><b>Presence tidak muncul di Discord?</b></summary>
+
+1. Pastikan Discord Desktop terinstall (bukan versi web)
+2. Buka Discord Settings → Activity Privacy → Aktifkan "Display current activity"
+3. Restart geetRPCS dan Discord
+
+</details>
+
+<details>
+<summary><b>Aplikasi tidak terdeteksi?</b></summary>
+
+1. Buka Task Manager dan catat nama process yang benar
+2. Tambahkan ke `apps.json` dengan nama process yang tepat
+3. Klik Reload Config
+
+</details>
+
+<details>
+<summary><b>Gambar tidak muncul?</b></summary>
+
+1. Pastikan gambar sudah diupload di Discord Developer Portal
+2. Tunggu beberapa menit (Discord membutuhkan waktu untuk sync)
+3. Nama key harus sama persis (case-sensitive)
+
+</details>
+
+<details>
+<summary><b>Bagaimana cara menghapus dari startup?</b></summary>
+
+Klik kanan ikon tray → Hilangkan centang pada "Run on Windows startup"
+
+</details>
+
+---
+
+## 🔧 Troubleshooting
+
+Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan exe untuk melihat error log.
+
+### Error Umum
+
+| Error | Solusi |
+|-------|--------|
+| `config.json tidak ditemukan` | Pastikan file config.json ada di folder yang sama |
+| `apps.json tidak ditemukan` | Pastikan file apps.json ada di folder yang sama |
+| Discord tidak terhubung | Pastikan Discord Desktop sedang berjalan |
+
+---
+
+## 📜 Lisensi
+
+**geetRPCS** adalah perangkat lunak **closed-source** dan proprietary.
+
+```
+Copyright © 2025 makcrtve
+All Rights Reserved.
+
+Dilarang:
+- Mendistribusikan ulang source code
+- Memodifikasi dan mendistribusikan
+- Menggunakan untuk tujuan komersial tanpa izin
+
+Diperbolehkan:
+- Menggunakan untuk keperluan pribadi
+- Berbagi link download resmi
+```
+
+---
+
+## 👨‍💻 Developer
+
+<p align="center">
+  <img src="https://github.com/makcrtve.png" width="100" style="border-radius: 50%"/>
+  <br/>
+  <b>makcrtve</b>
+  <br/>
+  <a href="https://github.com/makcrtve">GitHub</a> •
+  <a href="https://linktr.ee/taugeemusic">Linktree</a>
+</p>
+
+---
+
+## 🙏 Credits
+
+- [DiscordRichPresence](https://github.com/Lachee/discord-rpc-csharp) by Lachee
+- Ikon dan aset oleh makcrtve
+
+---
+
+## 📞 Dukungan
+
+Butuh bantuan atau ingin melaporkan bug?
+
+- 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
+- 💬 Hubungi via [Linktree](https://linktr.ee/taugeemusic)
+
+---
+
+<p align="center">
+  <b>Made with ❤️ and ☕ by makcrtve</b>
+  <br/>
+  <sub>geetRPCS v1.0.0 • 2025</sub>
+</p>
