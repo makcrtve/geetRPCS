@@ -1,19 +1,19 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/geetrpcs-banner.png" width="600" alt="geetRPCS Banner" />
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/geetrpcs-banner.png" width="600" alt="geetRPCS Banner"/>
 </p>
 
 <h1 align="center">geetRPCS</h1>
 
 <p align="center">
   <b>Discord Rich Presence otomatis untuk aplikasi favoritmu!</b><br/>
-  <sub>Tampilkan aktivitasmu di Discord secara real-time tanpa ribet 🚀</sub>
+  <sub>Tampilkan aktivitasmu di Discord secara real time tanpa ribet 🚀</sub>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord-RPC-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
-  <img src="https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge" alt="License"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
 </p>
 
 <p align="center">
@@ -39,13 +39,13 @@
 
 | Fitur | Deskripsi |
 |:-----:|-----------|
-| 🔍 | **Auto-Detect** — Otomatis mendeteksi 20+ aplikasi populer |
-| ⏱️ | **Elapsed Timer** — Menampilkan berapa lama kamu menggunakan aplikasi |
-| 🔒 | **Private Mode** — Sembunyikan judul window dengan satu klik |
-| 🔄 | **Hot Reload** — Ubah konfigurasi tanpa restart aplikasi |
-| 🚀 | **Auto Startup** — Opsi untuk berjalan otomatis saat Windows nyala |
-| 🎨 | **Kustomisasi Penuh** — Atur teks, gambar, dan tombol sesukamu |
-| 💾 | **Ringan** — Berjalan di system tray, tidak mengganggu aktivitas |
+| 🔍 | **Auto Detect** Otomatis mendeteksi 20+ aplikasi populer |
+| ⏱️ | **Elapsed Timer** Menampilkan berapa lama kamu menggunakan aplikasi |
+| 🔒 | **Private Mode** Sembunyikan judul window dengan satu klik |
+| 🔄 | **Hot Reload** Ubah konfigurasi tanpa restart aplikasi |
+| 🚀 | **Auto Startup** Opsi untuk berjalan otomatis saat Windows nyala |
+| 🎨 | **Kustomisasi Penuh** Atur teks, gambar, dan tombol sesukamu |
+| 💾 | **Ringan** Berjalan di system tray, tidak mengganggu aktivitas |
 
 ---
 
@@ -56,44 +56,44 @@
 <td align="center" width="20%">
 
 ### 🎵 Musik
-- FL Studio
-- Ableton Live
-- Adobe Audition
+FL Studio<br/>
+Ableton Live<br/>
+Adobe Audition
 
 </td>
 <td align="center" width="20%">
 
 ### 🎬 Video
-- Adobe Premiere Pro
-- Adobe After Effects
-- CapCut
+Adobe Premiere Pro<br/>
+Adobe After Effects<br/>
+CapCut
 
 </td>
 <td align="center" width="20%">
 
 ### 🎨 Desain
-- Adobe Photoshop
-- Adobe Illustrator
-- Adobe Lightroom
-- Affinity
+Adobe Photoshop<br/>
+Adobe Illustrator<br/>
+Adobe Lightroom<br/>
+Affinity
 
 </td>
 <td align="center" width="20%">
 
 ### 🌐 Browser
-- Brave
-- Chrome
-- Firefox
-- Zen Browser
-- Microsoft Edge
+Brave<br/>
+Chrome<br/>
+Firefox<br/>
+Zen Browser<br/>
+Microsoft Edge
 
 </td>
 <td align="center" width="20%">
 
 ### 📝 Office
-- Microsoft Word
-- Microsoft Excel
-- Microsoft PowerPoint
+Microsoft Word<br/>
+Microsoft Excel<br/>
+Microsoft PowerPoint
 
 </td>
 </tr>
@@ -108,9 +108,9 @@
 ## 📥 Instalasi
 
 ### Persyaratan Sistem
-- Windows 10/11 (64-bit)
-- Discord Desktop terinstall
-- .NET 8.0 Runtime (sudah termasuk dalam paket)
+* Windows 10/11 (64 bit)
+* Discord Desktop terinstall
+* .NET 8.0 Runtime (sudah termasuk dalam paket)
 
 ### Langkah Instalasi
 
@@ -139,16 +139,16 @@ Klik kanan pada ikon geetRPCS di system tray untuk mengakses menu:
 | 🔒 **Private Mode** | Aktifkan/nonaktifkan mode privat (sensor judul window) |
 | 🔄 **Reload Config** | Muat ulang konfigurasi tanpa restart |
 | ⏱️ **Reset All Timers** | Reset semua timer elapsed time |
-| 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto-start |
+| 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto start |
 | ❌ **Exit** | Keluar dari aplikasi |
 
 ### Private Mode
 
-Double-click ikon tray untuk toggle Private Mode dengan cepat!
+Double click ikon tray untuk toggle Private Mode dengan cepat!
 
 Saat **Private Mode aktif**:
-- Judul window akan ditampilkan sebagai `********`
-- Cocok untuk menyembunyikan project rahasia atau aktivitas pribadi
+* Judul window akan ditampilkan sebagai `********`
+* Cocok untuk menyembunyikan project rahasia atau aktivitas pribadi
 
 ---
 
@@ -194,7 +194,7 @@ File konfigurasi utama untuk mengatur tampilan default presence:
 
 ### apps.json
 
-File untuk mengatur konfigurasi per-aplikasi:
+File untuk mengatur konfigurasi per aplikasi:
 
 ```json
 [
@@ -273,7 +273,7 @@ File untuk mengatur konfigurasi per-aplikasi:
 
 1. Pastikan gambar sudah diupload di Discord Developer Portal
 2. Tunggu beberapa menit (Discord membutuhkan waktu untuk sync)
-3. Nama key harus sama persis (case-sensitive)
+3. Nama key harus sama persis (case sensitive)
 
 </details>
 
@@ -302,14 +302,14 @@ Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan e
 
 ## 📜 Lisensi
 
-* [MIT License](https://github.com/makcrtve/geetRPCS/blob/main/LICENSE)
+[MIT License](https://github.com/makcrtve/geetRPCS/blob/main/LICENSE)
 
 ---
 
 ## 🙏 Credits
 
-- [DiscordRichPresence](https://github.com/Lachee/discord-rpc-csharp) by Lachee
-- Ikon dan aset oleh makcrtve
+* [DiscordRichPresence](https://github.com/Lachee/discord-rpc-csharp) by Lachee
+* Ikon dan aset oleh makcrtve
 
 ---
 
@@ -317,12 +317,12 @@ Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan e
 
 Butuh bantuan atau ingin melaporkan bug?
 
-- 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
+* 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
 
 ---
 
 <p align="center">
   <b>Made with ❤️ and ☕ by makcrtve</b>
   <br/>
-  <sub>geetRPCS v1.0.0 • 2025</sub>
+  <sub>geetRPCS v1.1.0 • 2026</sub>
 </p>
