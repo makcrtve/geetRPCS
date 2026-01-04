@@ -5,7 +5,7 @@
 <h1 align="center">🔒 Kebijakan Privasi</h1>
 <p align="center">
   <b>geetRPCS - Discord Rich Presence Client</b><br/>
-  <sub>Terakhir diperbarui: Januari 2025</sub>
+  <sub>Terakhir diperbarui: 4 Januari 2026</sub>
 </p>
 
 ---
