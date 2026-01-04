@@ -167,7 +167,6 @@ Tanggal "Terakhir diperbarui" di bagian atas dokumen menunjukkan revisi terbaru.
 Jika kamu memiliki pertanyaan tentang kebijakan privasi ini:
 
 - 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
-- 💬 Hubungi via [Linktree](https://linktr.ee/taugeemusic)
 
 ---
 
