@@ -302,21 +302,7 @@ Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan e
 
 ## 📜 Lisensi
 
-**geetRPCS** adalah perangkat lunak **closed-source** dan proprietary.
-
-```
-Copyright © 2025 makcrtve
-All Rights Reserved.
-
-Dilarang:
-- Mendistribusikan ulang source code
-- Memodifikasi dan mendistribusikan
-- Menggunakan untuk tujuan komersial tanpa izin
-
-Diperbolehkan:
-- Menggunakan untuk keperluan pribadi
-- Berbagi link download resmi
-```
+* [MIT License](https://github.com/makcrtve/geetRPCS/blob/main/LICENSE)
 
 ---
 
@@ -327,8 +313,7 @@ Diperbolehkan:
   <br/>
   <b>makcrtve</b>
   <br/>
-  <a href="https://github.com/makcrtve">GitHub</a> •
-  <a href="https://linktr.ee/taugeemusic">Linktree</a>
+  <a href="https://github.com/makcrtve">GitHub</a>
 </p>
 
 ---
@@ -345,7 +330,6 @@ Diperbolehkan:
 Butuh bantuan atau ingin melaporkan bug?
 
 - 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
-- 💬 Hubungi via [Linktree](https://linktr.ee/taugeemusic)
 
 ---
 
