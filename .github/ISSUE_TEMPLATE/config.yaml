@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Baca README dulu
+    url: https://github.com/makcrtve/geetRPCS#readme
+    about: Pastikan kamu sudah baca dokumentasi sebelum membuat issue
+  - name: 💬 Diskusi
+    url: https://github.com/makcrtve/geetRPCS/discussions
+    about: Mau ngobrol atau tanya sesuatu? Gunakan Discussions
