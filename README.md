@@ -306,18 +306,6 @@ Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan e
 
 ---
 
-## 👨‍💻 Developer
-
-<p align="center">
-  <img src="https://github.com/makcrtve.png" width="100" style="border-radius: 50%"/>
-  <br/>
-  <b>makcrtve</b>
-  <br/>
-  <a href="https://github.com/makcrtve">GitHub</a>
-</p>
-
----
-
 ## 🙏 Credits
 
 - [DiscordRichPresence](https://github.com/Lachee/discord-rpc-csharp) by Lachee
