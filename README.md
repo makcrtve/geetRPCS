@@ -39,8 +39,9 @@
 
 | Fitur | Deskripsi |
 |:-----:|-----------|
-| 🔍 | **Auto Detect** Otomatis mendeteksi 20+ aplikasi populer |
+| 🔍 | **Auto Detect** Otomatis mendeteksi 40+ aplikasi populer |
 | ⏱️ | **Elapsed Timer** Menampilkan berapa lama kamu menggunakan aplikasi |
+| ⏸️ | **Pause Mode** Hentikan presence sementara tanpa menutup aplikasi |
 | 🔒 | **Private Mode** Sembunyikan judul window dengan satu klik |
 | 🔄 | **Hot Reload** Ubah konfigurasi tanpa restart aplikasi |
 | 🚀 | **Auto Startup** Opsi untuk berjalan otomatis saat Windows nyala |
@@ -53,54 +54,85 @@
 
 <table>
 <tr>
-<td align="center" width="20%">
+<td align="center" width="14%">
 
-### 🎵 Musik
+### 🎵 DAW
 FL Studio<br/>
 Ableton Live<br/>
+Cubase<br/>
+REAPER<br/>
+Pro Tools<br/>
+Studio One<br/>
+Reason<br/>
+Cakewalk
+
+</td>
+<td align="center" width="14%">
+
+### 🎧 Audio
 Adobe Audition
 
 </td>
-<td align="center" width="20%">
+<td align="center" width="14%">
 
 ### 🎬 Video
-Adobe Premiere Pro<br/>
-Adobe After Effects<br/>
+Premiere Pro<br/>
+After Effects<br/>
+DaVinci Resolve<br/>
+Filmora<br/>
+Vegas Pro<br/>
 CapCut
 
 </td>
-<td align="center" width="20%">
+<td align="center" width="14%">
+
+### 📡 Streaming
+OBS Studio<br/>
+Streamlabs
+
+</td>
+<td align="center" width="14%">
 
 ### 🎨 Desain
-Adobe Photoshop<br/>
-Adobe Illustrator<br/>
-Adobe Lightroom<br/>
-Affinity
+Photoshop<br/>
+Illustrator<br/>
+Lightroom<br/>
+Affinity<br/>
+Figma<br/>
+Canva<br/>
+CorelDRAW<br/>
+GIMP<br/>
+Inkscape
 
 </td>
-<td align="center" width="20%">
+<td align="center" width="14%">
 
-### 🌐 Browser
-Brave<br/>
+### 🧊 3D & CAD
+Blender<br/>
+Maya<br/>
+SketchUp<br/>
+AutoCAD
+
+</td>
+<td align="center" width="14%">
+
+### 🌐 Lainnya
 Chrome<br/>
+Brave<br/>
 Firefox<br/>
-Zen Browser<br/>
-Microsoft Edge
-
-</td>
-<td align="center" width="20%">
-
-### 📝 Office
-Microsoft Word<br/>
-Microsoft Excel<br/>
-Microsoft PowerPoint
+Edge<br/>
+Zen<br/>
+VLC<br/>
+MS Office<br/>
+Telegram<br/>
+HandBrake
 
 </td>
 </tr>
 </table>
 
 <p align="center">
-  <i>...dan masih banyak lagi! Kamu juga bisa menambahkan aplikasi sendiri.</i>
+  <i>Total 41 software dengan 64+ process names! Kamu juga bisa menambahkan aplikasi sendiri.</i>
 </p>
 
 ---
@@ -136,19 +168,34 @@ Klik kanan pada ikon geetRPCS di system tray untuk mengakses menu:
 
 | Menu | Fungsi |
 |------|--------|
+| ⏸️ **Pause** | Pause/Resume Rich Presence sementara |
 | 🔒 **Private Mode** | Aktifkan/nonaktifkan mode privat (sensor judul window) |
 | 🔄 **Reload Config** | Muat ulang konfigurasi tanpa restart |
 | ⏱️ **Reset All Timers** | Reset semua timer elapsed time |
 | 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto start |
+| 📄 **Open Log File** | Buka file log untuk debugging |
 | ❌ **Exit** | Keluar dari aplikasi |
 
-### Private Mode
+---
 
-Double click ikon tray untuk toggle Private Mode dengan cepat!
+### ⏸️ Pause Mode
+
+Double click ikon tray untuk toggle Pause dengan cepat!
+
+Saat **Pause aktif**:
+* Discord tidak menampilkan Rich Presence
+* Timer tetap berjalan di background
+* Berguna saat meeting atau tidak ingin terlihat aktif
+* Tray tooltip menampilkan "geetRPCS (Paused)"
+
+---
+
+### 🔒 Private Mode
 
 Saat **Private Mode aktif**:
 * Judul window akan ditampilkan sebagai `********`
 * Cocok untuk menyembunyikan project rahasia atau aktivitas pribadi
+* Tray tooltip menampilkan "geetRPCS (Private)"
 
 ---
 
@@ -168,7 +215,7 @@ File konfigurasi utama untuk mengatur tampilan default presence:
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.0.0",
+      "LargeImageText": "geetRPCS v1.2.0",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -256,6 +303,7 @@ File untuk mengatur konfigurasi per aplikasi:
 1. Pastikan Discord Desktop terinstall (bukan versi web)
 2. Buka Discord Settings → Activity Privacy → Aktifkan "Display current activity"
 3. Restart geetRPCS dan Discord
+4. Pastikan geetRPCS tidak dalam mode Pause
 
 </details>
 
@@ -278,6 +326,15 @@ File untuk mengatur konfigurasi per aplikasi:
 </details>
 
 <details>
+<summary><b>Bagaimana cara pause presence sementara?</b></summary>
+
+1. Double click ikon tray, atau
+2. Klik kanan → pilih "⏸️ Pause"
+3. Untuk resume, lakukan hal yang sama
+
+</details>
+
+<details>
 <summary><b>Bagaimana cara menghapus dari startup?</b></summary>
 
 Klik kanan ikon tray → Hilangkan centang pada "Run on Windows startup"
@@ -290,6 +347,8 @@ Klik kanan ikon tray → Hilangkan centang pada "Run on Windows startup"
 
 Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan exe untuk melihat error log.
 
+Atau klik kanan tray icon → **Open Log File** untuk membuka log langsung.
+
 ### Error Umum
 
 | Error | Solusi |
@@ -297,6 +356,7 @@ Jika mengalami masalah, periksa file `geetRPCS.log` di folder yang sama dengan e
 | `config.json tidak ditemukan` | Pastikan file config.json ada di folder yang sama |
 | `apps.json tidak ditemukan` | Pastikan file apps.json ada di folder yang sama |
 | Discord tidak terhubung | Pastikan Discord Desktop sedang berjalan |
+| Presence tidak muncul | Pastikan tidak dalam mode Pause |
 
 ---
 
@@ -324,5 +384,5 @@ Butuh bantuan atau ingin melaporkan bug?
 <p align="center">
   <b>Made with ❤️ and ☕ by makcrtve</b>
   <br/>
-  <sub>geetRPCS v1.1.0 • 2026</sub>
+  <sub>geetRPCS v1.2.0 • 2026</sub>
 </p>
