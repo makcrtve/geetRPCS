@@ -43,7 +43,9 @@
 | ⏱️ | **Elapsed Timer** Menampilkan berapa lama kamu menggunakan aplikasi |
 | ⏸️ | **Pause Mode** Hentikan presence sementara tanpa menutup aplikasi |
 | 🔒 | **Private Mode** Sembunyikan judul window dengan satu klik |
-| 🔄 | **Hot Reload** Ubah konfigurasi tanpa restart aplikasi |
+| 📊 | **Statistics Tracker** Tracking waktu penggunaan per aplikasi dengan export CSV/JSON |
+| 🔄 | **Auto Update Checker** Notifikasi otomatis saat ada versi baru |
+| ⚡ | **Quick Actions** Akses cepat ke folder, config, dan reload |
 | 🚀 | **Auto Startup** Opsi untuk berjalan otomatis saat Windows nyala |
 | 🎨 | **Kustomisasi Penuh** Atur teks, gambar, dan tombol sesukamu |
 | 💾 | **Ringan** Berjalan di system tray, tidak mengganggu aktivitas |
@@ -173,6 +175,9 @@ Klik kanan pada ikon geetRPCS di system tray untuk mengakses menu:
 | 🔄 **Reload Config** | Muat ulang konfigurasi tanpa restart |
 | ⏱️ **Reset All Timers** | Reset semua timer elapsed time |
 | 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto start |
+| ⚡ **Quick Actions** | Akses cepat ke folder, edit config, reload |
+| 📊 **Statistics** | Lihat statistik penggunaan aplikasi |
+| 🔄 **Check for Updates** | Cek update manual |
 | 📄 **Open Log File** | Buka file log untuk debugging |
 | ❌ **Exit** | Keluar dari aplikasi |
 
@@ -199,6 +204,53 @@ Saat **Private Mode aktif**:
 
 ---
 
+### ⚡ Quick Actions
+
+Menu shortcut untuk akses cepat:
+
+| Action | Fungsi |
+|--------|--------|
+| 📁 **Open App Folder** | Buka folder aplikasi di Explorer |
+| ⚙️ **Edit config.json** | Edit konfigurasi dengan editor default |
+| 📝 **Edit apps.json** | Edit daftar aplikasi dengan editor default |
+| 🔄 **Reload All** | Reload semua konfigurasi dan reconnect Discord RPC |
+| 🗑️ **Clear All Timers** | Reset semua timer dengan konfirmasi |
+
+---
+
+### 📊 Statistics Tracker
+
+Tracking otomatis waktu penggunaan setiap aplikasi!
+
+**Fitur:**
+* 📅 **Today's Usage** - Statistik hari ini
+* 📆 **This Week** - Statistik minggu ini
+* 📊 **This Month** - Statistik bulan ini
+* 🏆 **All Time Stats** - Total sepanjang masa
+* 💾 **Export to CSV** - Export data ke Excel
+* 📄 **Export to JSON** - Export raw data
+* 🗑️ **Reset All Stats** - Hapus semua data tracking
+
+**Data yang Ditrack:**
+* Total waktu per aplikasi
+* Jumlah session
+* Waktu pertama dan terakhir digunakan
+* Breakdown harian/mingguan/bulanan
+
+**Auto-save:** Data disimpan otomatis setiap 5 menit dan saat exit.
+
+---
+
+### 🔄 Auto Update Checker
+
+* Cek update otomatis **3 detik setelah startup**
+* Notifikasi popup jika ada versi baru
+* Tampilkan changelog dari GitHub release
+* Direct link ke halaman download
+* Manual check via menu tray
+
+---
+
 ## ⚙️ Konfigurasi
 
 ### config.json
@@ -215,7 +267,7 @@ File konfigurasi utama untuk mengatur tampilan default presence:
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.0",
+      "LargeImageText": "geetRPCS v1.2.1",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -268,7 +320,7 @@ File untuk mengatur konfigurasi per aplikasi:
 1. Buka **Task Manager** dan catat nama process aplikasi yang ingin ditambahkan
 2. Tambahkan entry baru di `apps.json`
 3. Upload gambar ke Discord Developer Portal (Art Assets)
-4. Klik **Reload Config** di menu tray
+4. Klik **Quick Actions** → **Reload All**
 
 ---
 
@@ -312,7 +364,7 @@ File untuk mengatur konfigurasi per aplikasi:
 
 1. Buka Task Manager dan catat nama process yang benar
 2. Tambahkan ke `apps.json` dengan nama process yang tepat
-3. Klik Reload Config
+3. Klik Quick Actions → Reload All
 
 </details>
 
@@ -329,8 +381,29 @@ File untuk mengatur konfigurasi per aplikasi:
 <summary><b>Bagaimana cara pause presence sementara?</b></summary>
 
 1. Double click ikon tray, atau
-2. Klik kanan → pilih "⏸️ Pause"
+2. Klik kanan → pilih "Pause"
 3. Untuk resume, lakukan hal yang sama
+
+</details>
+
+<details>
+<summary><b>Bagaimana cara melihat statistik penggunaan?</b></summary>
+
+Klik kanan ikon tray → Statistics → pilih periode yang ingin dilihat (Today/Week/Month/All Time)
+
+</details>
+
+<details>
+<summary><b>Dimana data statistik disimpan?</b></summary>
+
+File `statistics.json` di folder yang sama dengan `geetRPCS.exe`. Data auto-save setiap 5 menit dan saat exit.
+
+</details>
+
+<details>
+<summary><b>Bagaimana cara export statistik?</b></summary>
+
+Klik kanan ikon tray → Statistics → Export to CSV (Excel) atau Export to JSON
 
 </details>
 
@@ -357,6 +430,31 @@ Atau klik kanan tray icon → **Open Log File** untuk membuka log langsung.
 | `apps.json tidak ditemukan` | Pastikan file apps.json ada di folder yang sama |
 | Discord tidak terhubung | Pastikan Discord Desktop sedang berjalan |
 | Presence tidak muncul | Pastikan tidak dalam mode Pause |
+| Update checker gagal | Cek koneksi internet dan pastikan repo GitHub public |
+
+---
+
+## 📁 File Structure
+
+```
+geetRPCS/
+├── geetRPCS.exe          # Aplikasi utama
+├── config.json           # Konfigurasi Discord RPC
+├── apps.json             # Daftar aplikasi yang didukung
+├── geetrpcs.ico          # Icon aplikasi
+├── statistics.json       # Data tracking (auto-generated)
+└── geetRPCS.log          # Log file (auto-generated)
+```
+
+---
+
+## 🔮 Roadmap
+
+- [x] Auto-update checker
+- [x] Statistics tracker dengan export
+- [x] Quick actions menu
+- [ ] Multi-language support (EN/ID)
+- [ ] Lebih banyak software support
 
 ---
 
@@ -378,11 +476,12 @@ Atau klik kanan tray icon → **Open Log File** untuk membuka log langsung.
 Butuh bantuan atau ingin melaporkan bug?
 
 * 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
+* 💬 Diskusi di [GitHub Discussions](https://github.com/makcrtve/geetRPCS/discussions)
 
 ---
 
 <p align="center">
   <b>Made with ❤️ and ☕ by makcrtve</b>
   <br/>
-  <sub>geetRPCS v1.2.0 • 2026</sub>
+  <sub>geetRPCS v1.2.1 • 2026</sub>
 </p>
