@@ -139,6 +139,56 @@ HandBrake
 
 ---
 
+## 🛡️ Keamanan & Verifikasi
+
+### VirusTotal Scan Results
+
+geetRPCS telah di-scan dan diverifikasi **AMAN** oleh VirusTotal:
+
+<p align="center">
+  <a href="https://www.virustotal.com/gui/file/bd7d7e49e9a11b9720f5fbded39d840ed5de4314d0c33e055878a0284824f860/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F73%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  </a>
+</p>
+
+**Hasil Scan Terbaru (v1.2.1):**
+- ✅ **0/73** antivirus mendeteksi sebagai malware
+- ✅ Tidak ada **behavior suspicious**
+- ✅ File signature **valid**
+- ✅ SHA-256: `bd7d7e49e9a11b9720f5fbded39d840ed5de4314d0c33e055878a0284824f860`
+
+> 📌 **Catatan:** Beberapa antivirus mungkin menampilkan false positive untuk aplikasi .NET yang belum tersebar luas. Ini normal dan aman untuk diabaikan.
+
+<details>
+<summary><b>🔍 Cara Verifikasi Manual</b></summary>
+
+1. Download `geetRPCS.exe`
+2. Buka [VirusTotal.com](https://www.virustotal.com)
+3. Upload file atau submit hash SHA-256
+4. Tunggu hasil scan (biasanya 1-2 menit)
+5. Bandingkan dengan hash yang tercantum di atas
+
+</details>
+
+<details>
+<summary><b>⚠️ False Positive Alert</b></summary>
+
+Jika antivirus kamu mendeteksi geetRPCS sebagai **malware**, ini kemungkinan besar **false positive** karena:
+
+1. **Executable baru** - Belum banyak user yang download
+2. **Custom build** - Tidak di-sign dengan code signing certificate
+3. **RPC Activity** - Discord RPC API dianggap "suspicious" oleh beberapa AV
+4. **Registry Access** - Fitur auto-startup mengakses registry
+
+**Solusi:**
+- Tambahkan ke **whitelist/exclusion** antivirus
+- Verifikasi dengan **VirusTotal** (link di atas)
+- Build sendiri dari **source code** jika masih ragu
+
+</details>
+
+---
+
 ## 📥 Instalasi
 
 ### Persyaratan Sistem
