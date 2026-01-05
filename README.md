@@ -393,6 +393,8 @@ File untuk mengatur konfigurasi per aplikasi:
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-1.png" width="280" alt="Screenshot 1"/>
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-2.png" width="280" alt="Screenshot 2"/>
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-3.png" width="280" alt="Screenshot 3"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-4.png" width="280" alt="Screenshot 3"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-5.png" width="280" alt="Screenshot 3"/>
 </p>
 
 ---
