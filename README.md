@@ -163,10 +163,12 @@ HandBrake
 geetRPCS telah di-scan dan diverifikasi **AMAN** oleh VirusTotal:
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/YOUR_HASH_HERE/detection">
+  <a href="https://www.virustotal.com/gui/file/13e0f5bd2046e5c0ba3cc3063f2d2ca677c63d47b8e64a9b3a3108e2ee1fef36/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F73%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
+
+**SHA-256:** `13e0f5bd2046e5c0ba3cc3063f2d2ca677c63d47b8e64a9b3a3108e2ee1fef36`
 
 > 📌 **Catatan:** Beberapa antivirus mungkin menampilkan false positive untuk aplikasi .NET yang belum tersebar luas. Ini normal dan aman untuk diabaikan.
 
