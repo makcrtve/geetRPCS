@@ -13,7 +13,10 @@
   <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord-RPC-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/🌐_Languages-EN_|_ID-blue?style=for-the-badge" alt="Languages"/>
 </p>
 
 <p align="center">
@@ -39,16 +42,30 @@
 
 | Fitur | Deskripsi |
 |:-----:|-----------|
-| 🔍 | **Auto Detect** Otomatis mendeteksi 40+ aplikasi populer |
-| ⏱️ | **Elapsed Timer** Menampilkan berapa lama kamu menggunakan aplikasi |
-| ⏸️ | **Pause Mode** Hentikan presence sementara tanpa menutup aplikasi |
-| 🔒 | **Private Mode** Sembunyikan judul window dengan satu klik |
-| 📊 | **Statistics Tracker** Tracking waktu penggunaan per aplikasi dengan export CSV/JSON |
-| 🔄 | **Auto Update Checker** Notifikasi otomatis saat ada versi baru |
-| ⚡ | **Quick Actions** Akses cepat ke folder, config, dan reload |
-| 🚀 | **Auto Startup** Opsi untuk berjalan otomatis saat Windows nyala |
-| 🎨 | **Kustomisasi Penuh** Atur teks, gambar, dan tombol sesukamu |
-| 💾 | **Ringan** Berjalan di system tray, tidak mengganggu aktivitas |
+| 🔍 | **Auto Detect** - Otomatis mendeteksi 40+ aplikasi populer |
+| ⏱️ | **Elapsed Timer** - Menampilkan berapa lama kamu menggunakan aplikasi |
+| ⏸️ | **Pause Mode** - Hentikan presence sementara tanpa menutup aplikasi |
+| 🔒 | **Private Mode** - Sembunyikan judul window dengan satu klik |
+| 🌐 | **Multi-Language** - Tersedia dalam English & Bahasa Indonesia |
+| 📊 | **Statistics Tracker** - Tracking waktu penggunaan dengan export CSV/JSON |
+| 🔄 | **Auto Update Checker** - Notifikasi otomatis saat ada versi baru |
+| ⚡ | **Quick Actions** - Akses cepat ke folder, config, dan reload |
+| 🚀 | **Auto Startup** - Opsi untuk berjalan otomatis saat Windows nyala |
+| 🎨 | **Kustomisasi Penuh** - Atur teks, gambar, dan tombol sesukamu |
+| 💾 | **Ringan** - Berjalan di system tray, tidak mengganggu aktivitas |
+
+---
+
+## 🌐 Bahasa yang Didukung
+
+<p align="center">
+  <img src="https://img.shields.io/badge/English-Supported-success?style=flat-square" alt="English"/>
+  <img src="https://img.shields.io/badge/Bahasa_Indonesia-Supported-success?style=flat-square" alt="Indonesian"/>
+</p>
+
+Ganti bahasa kapan saja via menu **🌐 Language** di tray icon!
+
+> 💡 Kamu juga bisa membuat file bahasa custom sendiri!
 
 ---
 
@@ -146,16 +163,10 @@ HandBrake
 geetRPCS telah di-scan dan diverifikasi **AMAN** oleh VirusTotal:
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/bd7d7e49e9a11b9720f5fbded39d840ed5de4314d0c33e055878a0284824f860/detection">
+  <a href="https://www.virustotal.com/gui/file/YOUR_HASH_HERE/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F73%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
-
-**Hasil Scan Terbaru (v1.2.1):**
-- ✅ **0/73** antivirus mendeteksi sebagai malware
-- ✅ Tidak ada **behavior suspicious**
-- ✅ File signature **valid**
-- ✅ SHA-256: `bd7d7e49e9a11b9720f5fbded39d840ed5de4314d0c33e055878a0284824f860`
 
 > 📌 **Catatan:** Beberapa antivirus mungkin menampilkan false positive untuk aplikasi .NET yang belum tersebar luas. Ini normal dan aman untuk diabaikan.
 
@@ -166,7 +177,7 @@ geetRPCS telah di-scan dan diverifikasi **AMAN** oleh VirusTotal:
 2. Buka [VirusTotal.com](https://www.virustotal.com)
 3. Upload file atau submit hash SHA-256
 4. Tunggu hasil scan (biasanya 1-2 menit)
-5. Bandingkan dengan hash yang tercantum di atas
+5. Bandingkan dengan hash yang tercantum di releases
 
 </details>
 
@@ -183,7 +194,6 @@ Jika antivirus kamu mendeteksi geetRPCS sebagai **malware**, ini kemungkinan bes
 **Solusi:**
 - Tambahkan ke **whitelist/exclusion** antivirus
 - Verifikasi dengan **VirusTotal** (link di atas)
-- Build sendiri dari **source code** jika masih ragu
 
 </details>
 
@@ -194,17 +204,19 @@ Jika antivirus kamu mendeteksi geetRPCS sebagai **malware**, ini kemungkinan bes
 ### Persyaratan Sistem
 * Windows 10/11 (64 bit)
 * Discord Desktop terinstall
-* .NET 8.0 Runtime (sudah termasuk dalam paket)
+* [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
 ### Langkah Instalasi
 
 1. **Download** rilis terbaru dari [halaman Releases](https://github.com/makcrtve/geetRPCS/releases/latest)
 
-2. **Ekstrak** file ZIP ke folder pilihan kamu
+2. **Ekstrak** file 7z ke folder pilihan kamu
 
 3. **Jalankan** `geetRPCS.exe`
 
-4. **Selesai!** Ikon geetRPCS akan muncul di system tray
+4. **Pilih bahasa** preferensi kamu (English/Indonesia)
+
+5. **Selesai!** Ikon geetRPCS akan muncul di system tray
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/tray-icon.png" width="300" alt="Tray Icon"/>
@@ -220,13 +232,14 @@ Klik kanan pada ikon geetRPCS di system tray untuk mengakses menu:
 
 | Menu | Fungsi |
 |------|--------|
-| ⏸️ **Pause** | Pause/Resume Rich Presence sementara |
+| ⏸️ **Pause/Resume** | Pause/Resume Rich Presence sementara |
 | 🔒 **Private Mode** | Aktifkan/nonaktifkan mode privat (sensor judul window) |
 | 🔄 **Reload Config** | Muat ulang konfigurasi tanpa restart |
 | ⏱️ **Reset All Timers** | Reset semua timer elapsed time |
 | 🚀 **Run on Windows startup** | Aktifkan/nonaktifkan auto start |
 | ⚡ **Quick Actions** | Akses cepat ke folder, edit config, reload |
 | 📊 **Statistics** | Lihat statistik penggunaan aplikasi |
+| 🌐 **Language** | Ganti bahasa aplikasi |
 | 🔄 **Check for Updates** | Cek update manual |
 | 📄 **Open Log File** | Buka file log untuk debugging |
 | ❌ **Exit** | Keluar dari aplikasi |
@@ -241,7 +254,7 @@ Saat **Pause aktif**:
 * Discord tidak menampilkan Rich Presence
 * Timer tetap berjalan di background
 * Berguna saat meeting atau tidak ingin terlihat aktif
-* Tray tooltip menampilkan "geetRPCS (Paused)"
+* Tray tooltip menampilkan "(Paused)"
 
 ---
 
@@ -250,7 +263,30 @@ Saat **Pause aktif**:
 Saat **Private Mode aktif**:
 * Judul window akan ditampilkan sebagai `********`
 * Cocok untuk menyembunyikan project rahasia atau aktivitas pribadi
-* Tray tooltip menampilkan "geetRPCS (Private)"
+* Tray tooltip menampilkan "(Private)"
+
+---
+
+### 🌐 Multi-Language
+
+**Ganti Bahasa:**
+1. Klik kanan tray icon
+2. Pilih **🌐 Language**
+3. Pilih bahasa yang diinginkan (✓ menandakan bahasa aktif)
+4. Menu langsung ter-update!
+
+**Bahasa Tersedia:**
+* English
+* Bahasa Indonesia
+
+> 💡 Pilihan bahasa tersimpan otomatis di `settings.json`
+
+**Membuat Bahasa Custom:**
+1. Buka folder `Languages/`
+2. Copy `en.json` → rename (contoh: `de.json`)
+3. Terjemahkan semua value
+4. Restart geetRPCS
+5. Bahasa baru muncul di menu!
 
 ---
 
@@ -280,12 +316,6 @@ Tracking otomatis waktu penggunaan setiap aplikasi!
 * 💾 **Export to CSV** - Export data ke Excel
 * 📄 **Export to JSON** - Export raw data
 * 🗑️ **Reset All Stats** - Hapus semua data tracking
-
-**Data yang Ditrack:**
-* Total waktu per aplikasi
-* Jumlah session
-* Waktu pertama dan terakhir digunakan
-* Breakdown harian/mingguan/bulanan
 
 **Auto-save:** Data disimpan otomatis setiap 5 menit dan saat exit.
 
@@ -317,7 +347,7 @@ File konfigurasi utama untuk mengatur tampilan default presence:
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.1",
+      "LargeImageText": "geetRPCS v1.2.2",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -374,6 +404,18 @@ File untuk mengatur konfigurasi per aplikasi:
 
 ---
 
+### settings.json
+
+File preferensi user (auto-generated):
+
+```json
+{
+  "language": "en"
+}
+```
+
+---
+
 ## 🎨 Mengatur Gambar (Assets)
 
 1. Buka [Discord Developer Portal](https://discord.com/developers/applications)
@@ -393,8 +435,8 @@ File untuk mengatur konfigurasi per aplikasi:
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-1.png" width="280" alt="Screenshot 1"/>
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-2.png" width="280" alt="Screenshot 2"/>
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-3.png" width="280" alt="Screenshot 3"/>
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-4.png" width="280" alt="Screenshot 3"/>
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-5.png" width="280" alt="Screenshot 3"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-4.png" width="280" alt="Screenshot 4"/>
+  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/screenshot-5.png" width="280" alt="Screenshot 5"/>
 </p>
 
 ---
@@ -430,6 +472,24 @@ File untuk mengatur konfigurasi per aplikasi:
 </details>
 
 <details>
+<summary><b>Bagaimana cara ganti bahasa?</b></summary>
+
+Klik kanan ikon tray → Language → pilih bahasa yang diinginkan. Menu akan langsung ter-update!
+
+</details>
+
+<details>
+<summary><b>Bagaimana cara membuat bahasa custom?</b></summary>
+
+1. Buka folder `Languages/`
+2. Copy `en.json` ke file baru (contoh: `de.json`)
+3. Terjemahkan semua value (jangan ubah key!)
+4. Restart geetRPCS
+5. Bahasa baru akan muncul di menu
+
+</details>
+
+<details>
 <summary><b>Bagaimana cara pause presence sementara?</b></summary>
 
 1. Double click ikon tray, atau
@@ -449,13 +509,6 @@ Klik kanan ikon tray → Statistics → pilih periode yang ingin dilihat (Today/
 <summary><b>Dimana data statistik disimpan?</b></summary>
 
 File `statistics.json` di folder yang sama dengan `geetRPCS.exe`. Data auto-save setiap 5 menit dan saat exit.
-
-</details>
-
-<details>
-<summary><b>Bagaimana cara export statistik?</b></summary>
-
-Klik kanan ikon tray → Statistics → Export to CSV (Excel) atau Export to JSON
 
 </details>
 
@@ -482,7 +535,8 @@ Atau klik kanan tray icon → **Open Log File** untuk membuka log langsung.
 | `apps.json tidak ditemukan` | Pastikan file apps.json ada di folder yang sama |
 | Discord tidak terhubung | Pastikan Discord Desktop sedang berjalan |
 | Presence tidak muncul | Pastikan tidak dalam mode Pause |
-| Update checker gagal | Cek koneksi internet dan pastikan repo GitHub public |
+| Update checker gagal | Cek koneksi internet |
+| Bahasa tidak berubah | Restart aplikasi untuk perubahan penuh |
 
 ---
 
@@ -493,7 +547,11 @@ geetRPCS/
 ├── geetRPCS.exe          # Aplikasi utama
 ├── config.json           # Konfigurasi Discord RPC
 ├── apps.json             # Daftar aplikasi yang didukung
+├── settings.json         # Preferensi user (bahasa)
 ├── geetrpcs.ico          # Icon aplikasi
+├── Languages/            # Folder file bahasa
+│   ├── en.json           # English
+│   └── id.json           # Bahasa Indonesia
 ├── statistics.json       # Data tracking (auto-generated)
 └── geetRPCS.log          # Log file (auto-generated)
 ```
@@ -505,14 +563,10 @@ geetRPCS/
 - [x] Auto-update checker
 - [x] Statistics tracker dengan export
 - [x] Quick actions menu
-- [ ] Multi-language support (EN/ID)
-- [ ] Lebih banyak software support
-
----
-
-## 📜 Lisensi
-
-[MIT License](https://github.com/makcrtve/geetRPCS/blob/main/LICENSE)
+- [x] Multi-language support (EN/ID)
+- [ ] Lebih banyak bahasa official
+- [ ] App blacklist/whitelist
+- [ ] More software support
 
 ---
 
@@ -527,13 +581,14 @@ geetRPCS/
 
 Butuh bantuan atau ingin melaporkan bug?
 
-* 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
+* 🐛 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
 * 💬 Diskusi di [GitHub Discussions](https://github.com/makcrtve/geetRPCS/discussions)
+* ⭐ **Star** repository ini jika kamu suka!
 
 ---
 
 <p align="center">
   <b>Made with ❤️ and ☕ by makcrtve</b>
   <br/>
-  <sub>geetRPCS v1.2.1 • 2026</sub>
+  <sub>geetRPCS v1.2.2 • 2025</sub>
 </p>
