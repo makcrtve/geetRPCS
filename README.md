@@ -19,9 +19,9 @@
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
-    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Download&color=success" alt="Download"/>
+    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
   </a>
-  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&color=blue" alt="Downloads"/>
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
 </p>
 
 <p align="center">
