@@ -36,11 +36,11 @@
 
 ## 🚀 Quick Start
 
-```bash
+```md
 1. Download  →  github.com/makcrtve/geetRPCS/releases/latest
 2. Extract   →  to your preferred folder
 3. Run       →  geetRPCS.exe
-4. Done!     →  Icon appears in the system tray 🎉
+4. Done      →  Icon appears in the system tray
 ```
 
 > **Requirements:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
