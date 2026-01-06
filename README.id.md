@@ -36,11 +36,11 @@
 
 ## 🚀 Quick Start
 
-```bash
+```md
 1. Download  →  github.com/makcrtve/geetRPCS/releases/latest
 2. Ekstrak   →  ke folder pilihan kamu
 3. Jalankan  →  geetRPCS.exe
-4. Selesai!  →  Ikon muncul di system tray 🎉
+4. Selesai   →  Ikon muncul di system tray
 ```
 
 > **Persyaratan:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0 )
@@ -353,3 +353,4 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve ">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.2.4 • MIT License • 2026</sub>
 </p>
+
