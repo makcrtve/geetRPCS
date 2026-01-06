@@ -15,13 +15,13 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white " alt="Windows"/>
-  <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white " alt=".NET 8"/>
-  <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white " alt="Discord"/>
-  <a href="https://github.com/makcrtve/geetRPCS/releases/latest ">
-    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Download&color=success " alt="Download"/>
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
+  <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
+  <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
+  <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
+    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
   </a>
-  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&color=blue " alt="Downloads"/>
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
 </p>
 
 <p align="center">
@@ -353,4 +353,5 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve ">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.2.4 • MIT License • 2026</sub>
 </p>
+
 
