@@ -27,10 +27,6 @@
   <a href="#-faq">FAQ</a>
 </p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/preview.gif" width="350" alt="Preview"/>
-</p>
-
 ---
 
 ## 🚀 Quick Start
@@ -54,7 +50,7 @@
 
 ### 🎯 Core
 - 🔍 **Auto Detect** - 40+ aplikasi populer
-- ⏱️ **Elapsed Timer** - Durasi penggunaan
+- ⌨️ **Global Hotkeys** - Shortcut keyboard [NEW]
 - 👀 **Preview Window** - Live preview presence
 - 🛠️ **App Manager** - Blacklist aplikasi
 
@@ -114,17 +110,29 @@
 
 ## 🖥️ Cara Penggunaan
 
-**Klik kanan** ikon tray untuk akses menu:
+### ⌨️ Global Hotkeys (Shortcut)
+Kontrol geetRPCS langsung dari keyboard, bahkan saat aplikasi di minimize:
 
-| Menu | Shortcut | Fungsi |
-|------|:--------:|--------|
-| ⏸️ Pause | `Double-click tray` | Toggle presence on/off |
-| 🔒 Private Mode | - | Sensor judul window |
-| 👀 Preview Window | - | Live preview Discord presence |
-| 🛠️ Manage Apps | - | Enable/disable aplikasi |
-| 📊 Statistics | - | Lihat & export statistik |
-| ⚡ Quick Actions | - | Akses folder, edit config |
-| 🌐 Language | - | Ganti bahasa (EN/ID) |
+| Shortcut | Fungsi |
+|----------|--------|
+| `CTRL` + `ALT` + `P` | ⏸️ Pause / Resume Presence |
+| `CTRL` + `ALT` + `V` | 👀 Toggle Preview Window |
+| `CTRL` + `ALT` + `H` | 🔒 Toggle Private Mode |
+| `CTRL` + `ALT` + `R` | 🔄 Reload Config |
+| `CTRL` + `ALT` + `S` | 📊 Show Today's Stats |
+
+### 🖱️ System Tray Menu
+**Klik kanan** ikon tray untuk akses menu manual:
+
+| Menu | Fungsi |
+|------|--------|
+| ⏸️ Pause | Toggle presence on/off |
+| 🔒 Private Mode | Sensor judul window |
+| 👀 Preview Window | Live preview Discord presence |
+| 🛠️ Manage Apps | Enable/disable aplikasi |
+| 📊 Statistics | Lihat & export statistik |
+| ⚡ Quick Actions | Akses folder, edit config |
+| 🌐 Language | Ganti bahasa (EN/ID) |
 
 <details>
 <summary><b>📸 Screenshot</b></summary>
@@ -159,7 +167,7 @@
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.3",
+      "LargeImageText": "geetRPCS v1.2.4",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -216,7 +224,7 @@
 
 ```
 geetRPCS/
-├── geetRPCS.exe          # Aplikasi utama
+├── geetRPCS.exe          # Aplikasi utama (v1.2.4)
 ├── config.json           # Konfigurasi Discord RPC
 ├── apps.json             # Daftar aplikasi
 ├── geetrpcs.ico          # Icon
@@ -244,11 +252,18 @@ geetRPCS/
 </details>
 
 <details>
+<summary><b>Hotkey tidak berfungsi?</b></summary>
+
+Pastikan tidak ada aplikasi lain yang menggunakan shortcut yang sama. Beberapa game fullscreen yang berjalan "As Administrator" mungkin memblokir hotkey jika geetRPCS tidak dijalankan sebagai Admin.
+
+</details>
+
+<details>
 <summary><b>Aplikasi tidak terdeteksi?</b></summary>
 
 1. Buka Task Manager → catat nama process yang benar
 2. Tambahkan ke `apps.json`
-3. Quick Actions → Reload All
+3. Quick Actions → Reload All (CTRL+ALT+R)
 4. Pastikan tidak di-disable di **Manage Apps**
 
 </details>
@@ -260,27 +275,6 @@ geetRPCS/
 2. Tunggu beberapa menit (Discord sync)
 3. Nama key harus **sama persis** (case sensitive)
 4. Preview Window → 🔄 Refresh
-
-</details>
-
-<details>
-<summary><b>Cara pause presence?</b></summary>
-
-**Double-click** ikon tray, atau klik kanan → Pause
-
-</details>
-
-<details>
-<summary><b>Cara sembunyikan browser?</b></summary>
-
-Manage Apps → klik browser → checkmark hilang = disabled
-
-</details>
-
-<details>
-<summary><b>Cara export statistik?</b></summary>
-
-Statistics → Export to CSV (Excel) atau Export to JSON
 
 </details>
 
@@ -303,7 +297,7 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 ## 🛡️ Keamanan
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/9680f52fd244d79669100f397aeb431d11c954cd01135d44296af5dcc89f067c">
+  <a href="https://www.virustotal.com/gui/file/726971ceebe6af4d14aa069852ad76ea31d58b52878104283513b0974a354a76">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F73%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -311,14 +305,15 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 <details>
 <summary><b>Detail Scan & False Positive Info</b></summary>
 
-**Hasil Scan v1.2.3:**
-- ✅ **0/73** deteksi malware
-- ✅ SHA-256: `9680f52fd244d79669100f397aeb431d11c954cd01135d44296af5dcc89f067c`
+**Hasil Scan v1.2.4:**
+- ✅ **0/73** deteksi malware (Clean)
+- ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Beberapa AV mungkin flag karena:
 - Executable baru / belum tersebar luas
 - Discord RPC API access
 - Registry access (auto-startup)
+- **Global Hotkey hooks** (fitur baru v1.2.4)
 
 **Solusi:** Whitelist di antivirus atau verifikasi di [VirusTotal](https://www.virustotal.com)
 
@@ -333,8 +328,9 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 - [x] Multi-language (EN/ID)
 - [x] Preview Window
 - [x] App Manager
-- [ ] Hotkey support
+- [x] Global Hotkeys support
 - [ ] More software support
+- [ ] UI Dashboard (WPF/WinUI)
 
 ---
 
@@ -350,5 +346,5 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.3 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.4 • MIT License • 2026</sub>
 </p>
