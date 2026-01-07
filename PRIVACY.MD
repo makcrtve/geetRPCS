@@ -1,7 +1,7 @@
 <h1 align="center">🔒 Privacy Policy</h1>
 <p align="center">
   <b>geetRPCS - Discord Rich Presence Client</b><br/>
-  <sub>Last updated: January 4, 2026</sub>
+  <sub>Last updated: January 7, 2026</sub>
 </p>
 
 ## 📋 Summary
