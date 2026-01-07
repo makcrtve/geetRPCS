@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="README.md"><img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English"/></a>
+  <a href="README.en.md"><img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English"/></a>
   <a href="README.id.md"><img src="https://img.shields.io/badge/Bahasa-Indonesia-red?style=flat-square" alt="Indonesia"/></a>
 </p>
 
@@ -55,7 +55,8 @@
 
 ### 🎯 Core
 - 🔍 **Auto Detect** - 40+ popular applications
-- ⌨️ **Global Hotkeys** - Keyboard shortcuts [NEW]
+- 🖱️ **Mouse Energy** - Real-time activity level [NEW]
+- ⌨️ **Global Hotkeys** - Keyboard shortcuts
 - 👀 **Preview Window** - Live presence preview
 - 🛠️ **App Manager** - Blacklist applications
 
@@ -74,6 +75,7 @@
 <td width="50%">
 
 ### 🔧 Utility
+- 🎯 **Smart Defaults** - Works without config.json [NEW]
 - 🔄 **Auto Update** - New version notifications
 - ⚡ **Quick Actions** - Fast access to configs
 - 🚀 **Auto Startup** - Run when Windows starts
@@ -89,6 +91,32 @@
 </td>
 </tr>
 </table>
+
+---
+
+## 🖱️ Mouse Energy Detector
+
+<p align="center">
+  <b>Show your real-time productivity level on Discord!</b>
+</p>
+
+geetRPCS v1.2.5 introduces **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
+
+| Level | Emoji | Condition |
+|:------|:-----:|:----------|
+| **Sleeping** | 💤 | No activity for > 30 seconds |
+| **Relaxing** | ☕ | Low activity (casual scrolling) |
+| **Normal** | 🎯 | Standard activity (regular work) |
+| **Focused** | 🔥 | High activity (intensive editing) |
+| **Rush** | ⚡ | Very high activity (deadline mode!) |
+
+**Example Discord display:**
+```
+Working on FL Studio 2025
+Untitled - FL Studio | 🔥 Focused
+```
+
+> 💡 **Tip:** Toggle this feature on/off via System Tray menu → "🖱️ Mouse Energy Detector"
 
 ---
 
@@ -119,7 +147,7 @@
 Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 | Shortcut | Function |
-|----------|--------|
+|----------|----------|
 | `CTRL` + `ALT` + `P` | ⏸️ Pause / Resume Presence |
 | `CTRL` + `ALT` + `V` | 👀 Toggle Preview Window |
 | `CTRL` + `ALT` + `H` | 🔒 Toggle Private Mode |
@@ -130,9 +158,11 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 **Right-click** the tray icon to access the manual menu:
 
 | Menu | Function |
-|------|--------|
+|------|----------|
 | ⏸️ Pause | Toggle presence on/off |
 | 🔒 Private Mode | Censor window titles |
+| 🖱️ Mouse Energy | Toggle activity detector [NEW] |
+| 📡 Telemetry | Toggle anonymous usage data [NEW] |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
 | 📊 Statistics | View & export statistics |
@@ -159,8 +189,19 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 ## ⚙️ Configuration
 
+### 🎯 Smart Defaults (New in v1.2.5)
+
+geetRPCS now works **out of the box** without requiring a `config.json` file! The application uses optimized default settings automatically.
+
+**config.json is only needed if you want to:**
+- Use your own Discord Application ID
+- Customize presence text
+- Add custom buttons
+
+> 💡 **Tip:** Create config.json via Quick Actions → "Edit config.json" (will auto-create with defaults)
+
 <details>
-<summary><b>📄 config.json</b> - Main configuration</summary>
+<summary><b>📄 config.json</b> - Main configuration (Optional)</summary>
 
 ```json
 {
@@ -172,7 +213,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.4",
+      "LargeImageText": "geetRPCS v1.2.5",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -229,15 +270,16 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 ```
 geetRPCS/
-├── geetRPCS.exe          # Main application (v1.2.4)
-├── config.json           # Discord RPC Configuration
-├── apps.json             # Application list
-├── geetrpcs.ico          # Icon
-├── settings.json         # Settings (auto)
-├── statistics.json       # Tracking data (auto)
-├── geetRPCS.log          # Log file (auto)
-├── ImageCache/           # Image cache (auto)
-└── Languages/            # Language files (auto)
+├── geetRPCS.exe          # Main application (v1.2.5)
+├── apps.json             # Application list (required)
+├── rpicon.ico            # Icon (required)
+├── config.json           # Discord RPC Configuration (optional)
+├── settings.json         # Settings (auto-generated)
+├── statistics.json       # Tracking data (auto-generated)
+├── geetRPCS.log          # Log file (auto-generated)
+├── .telemetry            # Launch counter (auto-generated)
+├── ImageCache/           # Image cache (auto-generated)
+└── Languages/            # Language files (auto-generated)
 ```
 
 </details>
@@ -253,6 +295,16 @@ geetRPCS/
 2. Settings → Activity Privacy → Enable "Display current activity"
 3. Restart geetRPCS and Discord
 4. Make sure you are not in **Pause** mode
+
+</details>
+
+<details>
+<summary><b>Mouse Energy not updating?</b></summary>
+
+1. Ensure "🖱️ Mouse Energy Detector" is enabled in the tray menu
+2. The feature analyzes activity over time - wait a few seconds
+3. Some fullscreen applications might affect detection
+4. Check `geetRPCS.log` for any MouseTracker errors
 
 </details>
 
@@ -284,16 +336,31 @@ Ensure no other application is using the same shortcuts. Some fullscreen games r
 </details>
 
 <details>
+<summary><b>What data does Telemetry collect?</b></summary>
+
+Anonymous telemetry (opt-in) collects:
+- Discord username (for unique user count)
+- App version
+- Session duration
+- Number of apps used
+
+**No personal data, file names, or window titles are collected.**
+You can disable it anytime via the tray menu.
+
+</details>
+
+<details>
 <summary><b>Troubleshooting</b></summary>
 
 Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 | Error | Solution |
-|-------|--------|
-| Config not found | Ensure files are in the same folder |
+|-------|----------|
+| Apps.json not found | Ensure apps.json is in the same folder |
 | Discord not connected | Ensure Discord Desktop is running |
 | Presence not showing | Check Pause mode and Manage Apps |
 | Preview image empty | Clear Cache → Refresh |
+| Mouse hook failed | Run as Administrator |
 
 </details>
 
@@ -302,7 +369,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/726971ceebe6af4d14aa069852ad76ea31d58b52878104283513b0974a354a76">
+  <a href="https://www.virustotal.com/gui/file/7066e6feab9c601859c58ba9d8429bf234342d150cd01d80808d6fb5a4a419e0/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F73%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -310,7 +377,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.2.4:**
+**Scan Result v1.2.5:**
 - ✅ **0/73** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
@@ -318,7 +385,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - New executable / not widely distributed
 - Discord RPC API access
 - Registry access (auto-startup)
-- **Global Hotkey hooks** (new feature v1.2.4)
+- **Global Hotkey hooks** (RegisterHotKey API)
+- **Mouse hooks** (SetWindowsHookEx API) [NEW]
 
 **Solution:** Whitelist in antivirus or verify on [VirusTotal](https://www.virustotal.com)
 
@@ -334,8 +402,11 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Preview Window
 - [x] App Manager
 - [x] Global Hotkeys support
+- [x] Mouse Energy Detector
+- [x] Smart Defaults (optional config)
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
+- [ ] Keyboard activity tracking
 
 ---
 
@@ -351,5 +422,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.4 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.5 • MIT License • 2026</sub>
 </p>
