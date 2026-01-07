@@ -1,8 +1,10 @@
 <h1 align="center">🔒 Privacy Policy</h1>
 <p align="center">
   <b>geetRPCS - Discord Rich Presence Client</b><br/>
-  <sub>Last updated: January 7, 2026</sub>
+  <sub>Last updated: 7 January 2026</sub>
 </p>
+
+---
 
 ## 📋 Summary
 
@@ -19,7 +21,7 @@ geetRPCS accesses the following information:
 | Data | Purpose | Stored? | Sent to Server? |
 |------|---------|:-------:|:---------------:|
 | Application process name | Detect running applications | ❌ No | ❌ No |
-| Active window title | Display on Discord presence | ❌ No | ❌ No |
+| Active window title | Display on Discord presence | ❌ No | ❌ No* |
 | Mouse activity | Detect work energy level | ❌ No | ❌ No |
 | Local configuration | Store user preferences | ✅ Local | ❌ No |
 | Usage statistics | Track app usage time | ✅ Local | ❌ No |
@@ -33,19 +35,45 @@ geetRPCS accesses the following information:
 
 ### What is Telemetry?
 
-Starting v1.2.5, geetRPCS provides an **optional telemetry** feature to help with application development. This feature is **enabled by default** but can be **disabled anytime**.
+Starting v1.2.5, geetRPCS provides an **optional telemetry** feature to help with application development and user support. This feature is **enabled by default** but can be **disabled anytime**.
 
 ### Data Collected (If Enabled):
 
 | Data | Purpose | Example |
 |------|---------|---------|
-| Discord username | Count unique users | `makcrtve` |
-| Discord User ID | Unique identification | `123456789` |
+| Discord username | Count unique users & support | `makcrtve` |
+| Discord User ID | Unique identification & support | `123456789` |
 | App version | Version adoption statistics | `1.2.5` |
 | Language | Language usage statistics | `id` or `en` |
 | Launch count | Usage statistics | `15` |
 | Session duration | Average usage | `2h 30m` |
 | Apps used count | Feature statistics | `5` |
+
+### Why Collect Discord Username & User ID?
+
+We understand this may raise questions. Here's our transparent explanation:
+
+**Purpose:**
+- 📊 **Count unique users** - Differentiate between "100 launches by 1 person" vs "100 launches by 50 people"
+- 🔄 **Track retention** - Know how many users return to use the app
+- 🛠️ **Provide support** - If you report an issue, we can check if your session data shows any anomalies
+
+**What we CANNOT do with this data:**
+| Action | Possible? |
+|--------|:---------:|
+| Access your Discord account | ❌ No |
+| Send you DMs or mentions | ❌ No |
+| See your Discord servers | ❌ No |
+| See your Discord activity | ❌ No |
+| Correlate with other personal data | ❌ No |
+
+**Important facts:**
+- Discord User ID is **public information** - anyone can see it via Discord's Developer Mode
+- We don't generate hidden tracking IDs that would be more "creepy"
+- Data is only sent to our Discord Webhook for simple analytics
+- **Can be disabled anytime** - app works 100% normally without it
+
+> 💡 **Analogy:** This is like a restaurant noting "Customer #12345 visited today" - they know a visitor came, but don't know who you are, where you live, or what you do after eating.
 
 ### What is NOT Collected:
 
@@ -62,7 +90,7 @@ Starting v1.2.5, geetRPCS provides an **optional telemetry** feature to help wit
 2. Click "📡 Send Anonymous Usage Data" to uncheck
 3. Telemetry stops immediately
 
-> **Note:** Telemetry data is sent to a Discord Webhook managed by the developer for development analysis. No data is sold or shared with third parties.
+> **Note:** Telemetry data is sent to a Discord Webhook managed by the developer for development analysis and user support. No data is sold or shared with third parties.
 
 ---
 
@@ -93,19 +121,19 @@ Mouse Energy Detector uses a **low-level mouse hook** to detect mouse activity a
 ## 📁 Files Created
 
 geetRPCS creates the following files in the installation folder:
-```text
-📁 geetRPCS Folder/
-├── 📄 config.json → Discord configuration (optional, created manually)
-├── 📄 apps.json → Application list (required)
-├── 📄 settings.json → User settings (auto-created)
-├── 📄 statistics.json → Local usage statistics (auto-created)
-├── 📄 geetRPCS.log → Activity log (auto-created)
-├── 📄 .telemetry → Launch counter for telemetry (auto-created)
-├── 🖼️ rpicon.ico → Application icon (required)
-├── 📁 ImageCache/ → Discord image cache (auto-created)
-└── 📁 Languages/ → Language files (auto-created)
+
 ```
----
+📁 geetRPCS Folder/
+├── 📄 config.json       → Discord configuration (optional, created manually)
+├── 📄 apps.json         → Application list (required)
+├── 📄 settings.json     → User settings (auto-created)
+├── 📄 statistics.json   → Local usage statistics (auto-created)
+├── 📄 geetRPCS.log      → Activity log (auto-created)
+├── 📄 .telemetry        → Launch counter for telemetry (auto-created)
+├── 🖼️ rpicon.ico        → Application icon (required)
+├── 📁 ImageCache/       → Discord image cache (auto-created)
+└── 📁 Languages/        → Language files (auto-created)
+```
 
 ### About Log Files
 
@@ -176,7 +204,10 @@ All configuration data is stored **locally** on your computer:
 ### Registry Entry
 
 If auto-startup is enabled, geetRPCS creates an entry at:
-`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
+```
+HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+```
+
 Key: `geetRPCS`
 Value: Path to executable
 
@@ -194,7 +225,7 @@ You can remove this entry anytime through the tray menu.
 - ✅ Does not require administrator rights (except for mouse hook in some cases)
 - ✅ Does not modify system files
 
-### Security Recommendations:
+### Rekommendasi Keamanan:
 
 1. Download only from [official GitHub](https://github.com/makcrtve/geetRPCS/releases)
 2. Verify file hash if available
@@ -264,7 +295,7 @@ If you do not agree, you can:
 **"Your privacy is our priority."**
 
 geetRPCS is designed with a **privacy-first** principle.
-The data we collect is optional and completely anonymous.
+The data we collect is optional, transparent, and used solely to improve the app and provide support.
 
 </div>
 
