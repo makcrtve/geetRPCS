@@ -107,7 +107,7 @@ Mouse Energy Detector uses a **low-level mouse hook** to detect mouse activity a
 | Mouse position | ❌ No (memory only) | ❌ No |
 | Movement speed | ❌ No (memory only) | ❌ No |
 | Click count | ❌ No (memory only) | ❌ No |
-| Energy level | ❌ No | ✅ To Discord* |
+| Energy level | ❌ No | ✅ To Discord |
 
 > *Only the energy level text (e.g., "🔥 Focused") is sent to Discord as part of the presence.
 
