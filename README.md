@@ -55,7 +55,7 @@
 
 ### 🎯 Core
 - 🔍 **Auto Detect** - 40+ popular applications
-- 🖱️ **Mouse Energy** - Real-time activity level [NEW]
+- 🖱️ **Mouse Energy** - Real-time activity level
 - ⌨️ **Global Hotkeys** - Keyboard shortcuts
 - 👀 **Preview Window** - Live presence preview
 - 🛠️ **App Manager** - Blacklist applications
@@ -75,8 +75,8 @@
 <td width="50%">
 
 ### 🔧 Utility
-- 🎯 **Smart Defaults** - Works without config.json [NEW]
-- 🔄 **Auto Update** - New version notifications
+- 🎯 **Smart Defaults** - Works without config.json
+- 🔄 **True Hot Reload** - Edit & apply instantly [NEW]
 - ⚡ **Quick Actions** - Fast access to configs
 - 🚀 **Auto Startup** - Run when Windows starts
 
@@ -87,10 +87,35 @@
 - 🖼️ **Custom Assets** - Use your own images
 - 📝 **Custom Text** - Custom texts & placeholders
 - 🔘 **Custom Buttons** - Link to portfolio
+- 🔗 **URL Validation** - Smart button filtering [NEW]
 
 </td>
 </tr>
 </table>
+
+---
+
+## 🔄 True Hot Reload (New in v1.2.6)
+
+<p align="center">
+  <b>Edit apps.json → Click Reload → Changes apply immediately!</b>
+</p>
+
+v1.2.6 introduces **True Hot Reload** - finally, editing `apps.json` and clicking "Reload All" actually works without needing to restart the application!
+
+| Before v1.2.6 | After v1.2.6 |
+|:--------------|:-------------|
+| Edit apps.json → Reload → ❌ Old cache used | Edit apps.json → Reload → ✅ New apps detected! |
+| Need to restart for changes | No restart required |
+| Assets stuck on old config | Assets refresh immediately |
+
+**What gets reloaded:**
+- ✅ New applications added to `apps.json`
+- ✅ Changed app names and custom details
+- ✅ Updated icons/assets
+- ✅ Modified buttons and URLs
+
+> 💡 **Tip:** Use `CTRL + ALT + R` to quickly reload after editing configs!
 
 ---
 
@@ -100,7 +125,7 @@
   <b>Show your real-time productivity level on Discord!</b>
 </p>
 
-geetRPCS v1.2.5 introduces **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
+geetRPCS features **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
 
 | Level | Emoji | Condition |
 |:------|:-----:|:----------|
@@ -161,8 +186,8 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 |------|----------|
 | ⏸️ Pause | Toggle presence on/off |
 | 🔒 Private Mode | Censor window titles |
-| 🖱️ Mouse Energy | Toggle activity detector [NEW] |
-| 📡 Telemetry | Toggle anonymous usage data [NEW] |
+| 🖱️ Mouse Energy | Toggle activity detector |
+| 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
 | 📊 Statistics | View & export statistics |
@@ -189,9 +214,9 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 ## ⚙️ Configuration
 
-### 🎯 Smart Defaults (New in v1.2.5)
+### 🎯 Smart Defaults
 
-geetRPCS now works **out of the box** without requiring a `config.json` file! The application uses optimized default settings automatically.
+geetRPCS works **out of the box** without requiring a `config.json` file! The application uses optimized default settings automatically.
 
 **config.json is only needed if you want to:**
 - Use your own Discord Application ID
@@ -213,7 +238,7 @@ geetRPCS now works **out of the box** without requiring a `config.json` file! Th
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.5",
+      "LargeImageText": "geetRPCS v1.2.6",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -248,7 +273,26 @@ geetRPCS now works **out of the box** without requiring a `config.json` file! Th
 ]
 ```
 
-**Adding an app:** Task Manager → note process name → add to apps.json → Reload All
+**Adding an app:** Task Manager → note process name → add to apps.json → Reload All (`CTRL+ALT+R`)
+
+</details>
+
+<details>
+<summary><b>🔗 Button URL Requirements</b> (New in v1.2.6)</summary>
+
+v1.2.6 adds smart URL validation for Discord buttons:
+
+| URL Format | Status |
+|:-----------|:------:|
+| `https://github.com` | ✅ Valid |
+| `http://example.com` | ✅ Valid |
+| `github.com` | ❌ Skipped (no protocol) |
+| `ftp://files.com` | ❌ Skipped (invalid protocol) |
+| Empty URL | ❌ Skipped |
+
+**Button label limit:** Maximum 32 characters
+
+> Invalid buttons are silently skipped - no errors, they just won't appear on Discord.
 
 </details>
 
@@ -270,7 +314,7 @@ geetRPCS now works **out of the box** without requiring a `config.json` file! Th
 
 ```
 geetRPCS/
-├── geetRPCS.exe          # Main application (v1.2.5)
+├── geetRPCS.exe          # Main application (v1.2.6)
 ├── apps.json             # Application list (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
@@ -299,6 +343,22 @@ geetRPCS/
 </details>
 
 <details>
+<summary><b>New app not detected after editing apps.json?</b></summary>
+
+**In v1.2.6, this should work automatically!**
+
+1. Edit `apps.json` and save
+2. Right-click tray → Quick Actions → **Reload All** (or press `CTRL+ALT+R`)
+3. New apps should be detected immediately
+
+If still not working, check:
+- Process name matches exactly (case-insensitive)
+- JSON syntax is valid
+- App is not disabled in **Manage Apps**
+
+</details>
+
+<details>
 <summary><b>Mouse Energy not updating?</b></summary>
 
 1. Ensure "🖱️ Mouse Energy Detector" is enabled in the tray menu
@@ -309,19 +369,29 @@ geetRPCS/
 </details>
 
 <details>
-<summary><b>Hotkeys not working?</b></summary>
+<summary><b>Buttons not appearing on Discord?</b></summary>
 
-Ensure no other application is using the same shortcuts. Some fullscreen games running "As Administrator" might block hotkeys if geetRPCS is not also run as Admin.
+v1.2.6 validates button URLs. Check that your URLs:
+- Start with `http://` or `https://`
+- Are valid URLs (not just domain names)
+- Labels are 32 characters or less
+
+**Example of valid button:**
+```json
+{ "label": "My Website", "url": "https://example.com" }
+```
+
+**Example of invalid button (will be skipped):**
+```json
+{ "label": "My Website", "url": "example.com" }
+```
 
 </details>
 
 <details>
-<summary><b>Application not detected?</b></summary>
+<summary><b>Hotkeys not working?</b></summary>
 
-1. Open Task Manager → note the correct process name
-2. Add it to `apps.json`
-3. Quick Actions → Reload All (CTRL+ALT+R)
-4. Ensure it is not disabled in **Manage Apps**
+Ensure no other application is using the same shortcuts. Some fullscreen games running "As Administrator" might block hotkeys if geetRPCS is not also run as Admin.
 
 </details>
 
@@ -361,6 +431,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 | Presence not showing | Check Pause mode and Manage Apps |
 | Preview image empty | Clear Cache → Refresh |
 | Mouse hook failed | Run as Administrator |
+| Buttons not appearing | Check URL format (must start with http/https) |
 
 </details>
 
@@ -369,7 +440,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/fd49328bef93c6dfbdbc2c9599ee6fc6b2c8592d54cde24d899f594879b0a11e/detection">
+  <a href="https://www.virustotal.com/gui/file/6e1607c50d4bab6d24840b3cf88f07cead687e71d0e976fd55c4da6955f10cf9/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F62%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -377,8 +448,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.2.5:**
-- ✅ **0/73** malware detections (Clean)
+**Scan Result v1.2.6:**
+- ✅ **0/72** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
@@ -386,7 +457,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - Discord RPC API access
 - Registry access (auto-startup)
 - **Global Hotkey hooks** (RegisterHotKey API)
-- **Mouse hooks** (SetWindowsHookEx API) [NEW]
+- **Mouse hooks** (SetWindowsHookEx API)
 
 **Solution:** Whitelist in antivirus or verify on [VirusTotal](https://www.virustotal.com)
 
@@ -404,6 +475,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Global Hotkeys support
 - [x] Mouse Energy Detector
 - [x] Smart Defaults (optional config)
+- [x] True Hot Reload
+- [x] URL Validation for buttons
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 - [ ] Keyboard activity tracking
@@ -422,5 +495,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.5 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.6 • MIT License • 2026</sub>
 </p>
