@@ -21,7 +21,7 @@ geetRPCS accesses the following information:
 | Data | Purpose | Stored? | Sent to Server? |
 |------|---------|:-------:|:---------------:|
 | Application process name | Detect running applications | ❌ No | ❌ No |
-| Active window title | Display on Discord presence | ❌ No | ❌ No* |
+| Active window title | Display on Discord presence | ❌ No | ❌ No |
 | Mouse activity | Detect work energy level | ❌ No | ❌ No |
 | Local configuration | Store user preferences | ✅ Local | ❌ No |
 | Usage statistics | Track app usage time | ✅ Local | ❌ No |
