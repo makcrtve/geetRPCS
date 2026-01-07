@@ -159,7 +159,7 @@ geetRPCS connects to:
 | Discord RPC (local) | Display Rich Presence | Status, details, configured images |
 | Discord API | Fetch image assets | Application ID |
 | GitHub API | Check for updates | No user data |
-| Discord Webhook* | Telemetry (optional) | Anonymous data (see Telemetry section) |
+| Discord Webhook | Telemetry (optional) | Anonymous data (see Telemetry section) |
 
 > *Only if telemetry is enabled
 
