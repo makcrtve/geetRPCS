@@ -1,204 +1,281 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/geetrpcs-banner.png" width="400"/>
-</p>
-
-<h1 align="center">🔒 Kebijakan Privasi</h1>
+<h1 align="center">🔒 Privacy Policy</h1>
 <p align="center">
   <b>geetRPCS - Discord Rich Presence Client</b><br/>
-  <sub>Terakhir diperbarui: 4 Januari 2026</sub>
+  <sub>Last updated: January 4, 2026</sub>
 </p>
 
----
+<p align="center">
+  <a href="#-bahasa-indonesia">🇮🇩 Bahasa Indonesia</a> •
+  <a href="#-english">🇬🇧 English</a>
+</p>
 
-## 📋 Ringkasan
+## 📋 Summary
 
-**geetRPCS** menghormati privasi penggunanya. Dokumen ini menjelaskan bagaimana aplikasi kami menangani data dan informasi pengguna.
+**geetRPCS** respects user privacy. This document explains how our application handles user data and information.
 
-> **TL;DR:** geetRPCS **TIDAK** mengumpulkan, menyimpan, atau mengirim data pribadi kamu ke server manapun. Semua data tetap di komputer lokal kamu.
-
----
-
-## 🔍 Data yang Diakses
-
-geetRPCS mengakses informasi berikut **secara lokal** di komputer kamu:
-
-| Data | Tujuan | Disimpan? | Dikirim ke Server? |
-|------|--------|:---------:|:------------------:|
-| Nama process aplikasi | Mendeteksi aplikasi yang berjalan | ❌ Tidak | ❌ Tidak |
-| Judul window aktif | Menampilkan di Discord presence | ❌ Tidak | ❌ Tidak* |
-| Konfigurasi lokal | Menyimpan preferensi pengguna | ✅ Lokal | ❌ Tidak |
-| Log aktivitas | Debugging dan troubleshooting | ✅ Lokal | ❌ Tidak |
-
-> *Judul window dikirim ke Discord API untuk ditampilkan sebagai Rich Presence, sesuai dengan persetujuan pengguna.
+> **TL;DR:** geetRPCS collects **anonymous** usage data **optionally** (can be disabled). All configuration data and statistics remain on your local computer.
 
 ---
 
-## 📁 File yang Dibuat
+## 🔍 Data Accessed
 
-geetRPCS membuat file-file berikut di folder instalasi:
+geetRPCS accesses the following information:
 
+| Data | Purpose | Stored? | Sent to Server? |
+|------|---------|:-------:|:---------------:|
+| Application process name | Detect running applications | ❌ No | ❌ No |
+| Active window title | Display on Discord presence | ❌ No | ❌ No* |
+| Mouse activity | Detect work energy level | ❌ No | ❌ No |
+| Local configuration | Store user preferences | ✅ Local | ❌ No |
+| Usage statistics | Track app usage time | ✅ Local | ❌ No |
+| Activity log | Debugging and troubleshooting | ✅ Local | ❌ No |
+
+> *Window title is sent to Discord API to display as Rich Presence, in accordance with user consent.
+
+---
+
+## 📡 Telemetry (Optional)
+
+### What is Telemetry?
+
+Starting v1.2.5, geetRPCS provides an **optional telemetry** feature to help with application development. This feature is **enabled by default** but can be **disabled anytime**.
+
+### Data Collected (If Enabled):
+
+| Data | Purpose | Example |
+|------|---------|---------|
+| Discord username | Count unique users | `makcrtve` |
+| Discord User ID | Unique identification | `123456789` |
+| App version | Version adoption statistics | `1.2.5` |
+| Language | Language usage statistics | `id` or `en` |
+| Launch count | Usage statistics | `15` |
+| Session duration | Average usage | `2h 30m` |
+| Apps used count | Feature statistics | `5` |
+
+### What is NOT Collected:
+
+- ❌ File or project names
+- ❌ Window titles / screen content
+- ❌ Geographic location
+- ❌ System information (RAM, CPU, etc.)
+- ❌ Browsing activity
+- ❌ Other personal data
+
+### How to Disable Telemetry:
+
+1. Right-click geetRPCS tray icon
+2. Click "📡 Send Anonymous Usage Data" to uncheck
+3. Telemetry stops immediately
+
+> **Note:** Telemetry data is sent to a Discord Webhook managed by the developer for development analysis. No data is sold or shared with third parties.
+
+---
+
+## 🖱️ Mouse Energy Detector
+
+### About This Feature:
+
+Mouse Energy Detector uses a **low-level mouse hook** to detect mouse activity and display an "energy level" on Discord.
+
+### Data Processed:
+
+| Data | Stored? | Sent? |
+|------|:-------:|:-----:|
+| Mouse position | ❌ No (memory only) | ❌ No |
+| Movement speed | ❌ No (memory only) | ❌ No |
+| Click count | ❌ No (memory only) | ❌ No |
+| Energy level | ❌ No | ✅ To Discord* |
+
+> *Only the energy level text (e.g., "🔥 Focused") is sent to Discord as part of the presence.
+
+### How to Disable:
+
+1. Right-click geetRPCS tray icon
+2. Click "🖱️ Mouse Energy Detector" to uncheck
+
+---
+
+## 📁 Files Created
+
+geetRPCS creates the following files in the installation folder:
+```text
+📁 geetRPCS Folder/
+├── 📄 config.json → Discord configuration (optional, created manually)
+├── 📄 apps.json → Application list (required)
+├── 📄 settings.json → User settings (auto-created)
+├── 📄 statistics.json → Local usage statistics (auto-created)
+├── 📄 geetRPCS.log → Activity log (auto-created)
+├── 📄 .telemetry → Launch counter for telemetry (auto-created)
+├── 🖼️ rpicon.ico → Application icon (required)
+├── 📁 ImageCache/ → Discord image cache (auto-created)
+└── 📁 Languages/ → Language files (auto-created)
 ```
-📁 Folder geetRPCS/
-├── 📄 config.json      → Konfigurasi Discord (dibuat oleh pengguna)
-├── 📄 apps.json        → Daftar aplikasi (dibuat oleh pengguna)
-├── 📄 geetRPCS.log     → Log aktivitas (dibuat otomatis)
-└── 🖼️ geetrpcs.ico     → Ikon aplikasi (dibuat oleh pengguna)
-```
+---
 
-### Tentang File Log
+### About Log Files
 
-File `geetRPCS.log` berisi:
-- ✅ Waktu aplikasi dimulai/berhenti
-- ✅ Nama aplikasi yang terdeteksi
-- ✅ Error dan status koneksi Discord
-- ❌ **TIDAK** berisi data sensitif
-- ❌ **TIDAK** berisi informasi pribadi
+The `geetRPCS.log` file contains:
+- ✅ Application start/stop times
+- ✅ Detected application names
+- ✅ Error and Discord connection status
+- ✅ Mouse Energy status (if enabled)
+- ✅ Telemetry status (success/failure)
+- ❌ Does **NOT** contain sensitive data
+- ❌ Does **NOT** contain window titles or file names
 
-Kamu bisa menghapus file log kapan saja tanpa mempengaruhi fungsi aplikasi.
+You can delete the log file anytime without affecting application functionality.
 
 ---
 
-## 🌐 Koneksi Jaringan
+## 🌐 Network Connections
 
-geetRPCS hanya terhubung ke:
+geetRPCS connects to:
 
-| Layanan | Tujuan | Data yang Dikirim |
-|---------|--------|-------------------|
-| Discord RPC (lokal) | Menampilkan Rich Presence | Status, detail, gambar yang dikonfigurasi |
+| Service | Purpose | Data Sent |
+|---------|---------|-----------|
+| Discord RPC (local) | Display Rich Presence | Status, details, configured images |
+| Discord API | Fetch image assets | Application ID |
+| GitHub API | Check for updates | No user data |
+| Discord Webhook* | Telemetry (optional) | Anonymous data (see Telemetry section) |
 
-### Yang TIDAK Kami Lakukan:
+> *Only if telemetry is enabled
 
-- ❌ **Tidak** menghubungi server eksternal milik kami
-- ❌ **Tidak** mengirim analytics atau telemetry
-- ❌ **Tidak** mengumpulkan data penggunaan
-- ❌ **Tidak** melacak aktivitas browsing
-- ❌ **Tidak** mengakses file pribadi
-- ❌ **Tidak** membaca konten dokumen
+### What We Do NOT Do:
 
----
-
-## 🔒 Mode Privat
-
-geetRPCS menyediakan fitur **Private Mode** untuk perlindungan privasi tambahan:
-
-### Saat Private Mode AKTIF:
-- ✅ Judul window disensor menjadi `********`
-- ✅ Nama file/project tidak terlihat di Discord
-- ✅ Cocok untuk streaming atau screen sharing
-
-### Cara Mengaktifkan:
-1. Double-click ikon tray, atau
-2. Klik kanan → pilih "🔒 Private Mode"
+- ❌ **Do not** sell data to third parties
+- ❌ **Do not** track browsing activity
+- ❌ **Do not** access personal files
+- ❌ **Do not** read document contents
+- ❌ **Do not** record keystrokes
 
 ---
 
-## 🗂️ Penyimpanan Data
+## 🔒 Private Mode
 
-### Data Lokal
+geetRPCS provides a **Private Mode** feature for additional privacy protection:
 
-Semua data disimpan **secara lokal** di komputer kamu:
+### When Private Mode is ACTIVE:
+- ✅ Window titles are censored to `********`
+- ✅ File/project names are hidden from Discord
+- ✅ Suitable for streaming or screen sharing
 
-| Lokasi | Isi |
-|--------|-----|
-| Folder instalasi | config.json, apps.json, log |
-| Registry Windows* | Path executable (jika auto-startup diaktifkan) |
+### How to Enable:
+1. Right-click → select "🔒 Private Mode", or
+2. Press `CTRL + ALT + H`
 
-> *Hanya jika kamu mengaktifkan "Run on Windows startup"
+---
+
+## 🗂️ Data Storage
+
+### Local Data
+
+All configuration data is stored **locally** on your computer:
+
+| Location | Contents |
+|----------|----------|
+| Installation folder | config.json, apps.json, settings.json, statistics.json, log |
+| Windows Registry* | Executable path (if auto-startup is enabled) |
+
+> *Only if you enable "Run on Windows startup"
 
 ### Registry Entry
 
-Jika auto-startup diaktifkan, geetRPCS membuat entry di:
-```
-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
-```
-
+If auto-startup is enabled, geetRPCS creates an entry at:
+`HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`
 Key: `geetRPCS`
-Value: Path ke executable
+Value: Path to executable
 
-Kamu bisa menghapus entry ini kapan saja melalui menu tray.
-
----
-
-## 🛡️ Keamanan
-
-### Praktik Keamanan Kami:
-
-- ✅ Tidak ada koneksi ke server eksternal
-- ✅ Tidak ada pengumpulan data
-- ✅ Kode berjalan sepenuhnya di lokal
-- ✅ Tidak memerlukan hak administrator
-- ✅ Tidak memodifikasi file sistem
-
-### Rekomendasi Keamanan:
-
-1. Download hanya dari [GitHub resmi](https://github.com/makcrtve/geetRPCS/releases)
-2. Verifikasi hash file jika tersedia
-3. Jangan jalankan versi yang dimodifikasi pihak ketiga
+You can remove this entry anytime through the tray menu.
 
 ---
 
-## 👤 Hak Pengguna
+## 🛡️ Security
 
-Kamu memiliki hak penuh atas data kamu:
+### Our Security Practices:
 
-| Hak | Cara |
-|-----|------|
-| **Melihat data** | Buka file config.json dan geetRPCS.log |
-| **Mengedit data** | Edit file konfigurasi dengan text editor |
-| **Menghapus data** | Hapus folder geetRPCS |
-| **Menonaktifkan logging** | Hapus file geetRPCS.log (akan dibuat ulang) |
-| **Menghapus dari startup** | Menu tray → uncheck "Run on Windows startup" |
+- ✅ Telemetry is optional and can be disabled
+- ✅ No sensitive data is collected
+- ✅ Code runs entirely locally
+- ✅ Does not require administrator rights (except for mouse hook in some cases)
+- ✅ Does not modify system files
 
----
+### Security Recommendations:
 
-## 🔄 Pembaruan Kebijakan
-
-Kebijakan privasi ini dapat diperbarui sewaktu-waktu. Perubahan signifikan akan diumumkan melalui:
-
-- 📋 Release notes di GitHub
-- 📄 Update pada file PRIVACY.md
-
-Tanggal "Terakhir diperbarui" di bagian atas dokumen menunjukkan revisi terbaru.
+1. Download only from [official GitHub](https://github.com/makcrtve/geetRPCS/releases)
+2. Verify file hash if available
+3. Do not run third-party modified versions
+4. Disable telemetry if uncomfortable
 
 ---
 
-## 📞 Kontak
+## 👤 User Rights
 
-Jika kamu memiliki pertanyaan tentang kebijakan privasi ini:
+You have full rights over your data:
 
-- 📧 Buat [Issue](https://github.com/makcrtve/geetRPCS/issues) di GitHub
+| Right | How |
+|-------|-----|
+| **View data** | Open config.json, settings.json, statistics.json, geetRPCS.log files |
+| **Edit data** | Edit configuration files with a text editor |
+| **Delete data** | Delete geetRPCS folder |
+| **Disable telemetry** | Tray menu → uncheck "📡 Send Anonymous Usage Data" |
+| **Disable mouse tracking** | Tray menu → uncheck "🖱️ Mouse Energy Detector" |
+| **Disable logging** | Delete geetRPCS.log file (will be recreated) |
+| **Remove from startup** | Tray menu → uncheck "Run on Windows startup" |
 
 ---
 
-## 📜 Persetujuan
+## 🔄 Policy Updates
 
-Dengan menggunakan geetRPCS, kamu menyetujui:
+This privacy policy may be updated at any time. Significant changes will be announced through:
 
-1. ✅ Data yang dikonfigurasi di config.json akan ditampilkan di Discord
-2. ✅ Judul window aplikasi dapat ditampilkan di Discord (kecuali Private Mode aktif)
-3. ✅ File log dibuat untuk keperluan debugging
+- 📋 Release notes on GitHub
+- 📄 Updates to PRIVACY.md file
 
-Jika kamu tidak setuju, kamu dapat:
-- Tidak menggunakan aplikasi ini
-- Mengaktifkan Private Mode untuk menyembunyikan judul window
-- Menghapus file log secara berkala
+The "Last updated" date at the top of this document indicates the latest revision.
+
+---
+
+## 📞 Contact
+
+If you have questions about this privacy policy:
+
+- 📧 Create an [Issue](https://github.com/makcrtve/geetRPCS/issues) on GitHub
+
+---
+
+## 📜 Consent
+
+By using geetRPCS, you agree to:
+
+1. ✅ Data configured in config.json will be displayed on Discord
+2. ✅ Application window titles may be displayed on Discord (unless Private Mode is active)
+3. ✅ Mouse energy level may be displayed on Discord (if feature is active)
+4. ✅ Log files are created for debugging purposes
+5. ✅ Anonymous data may be sent for telemetry (if feature is active)
+
+If you do not agree, you can:
+- Not use this application
+- Enable Private Mode to hide window titles
+- Disable Mouse Energy Detector
+- Disable Telemetry
+- Delete log files periodically
 
 ---
 
 <div align="center">
 
-## 🎯 Komitmen Kami
+## 🎯 Our Commitment
 
-**"Privasi kamu adalah prioritas kami."**
+**"Your privacy is our priority."**
 
-geetRPCS dirancang dengan prinsip **privacy-first**. 
-Kami tidak mengumpulkan data karena kami tidak membutuhkannya.
+geetRPCS is designed with a **privacy-first** principle.
+The data we collect is optional and completely anonymous.
 
 </div>
 
 ---
 
 <p align="center">
-  <b>geetRPCS</b><br/>
-  <sub>© 2025 makcrtve - All Rights Reserved</sub>
+  <b>geetRPCS v1.2.5</b><br/>
+  <sub>© 2026 makcrtve - All Rights Reserved</sub>
 </p>
