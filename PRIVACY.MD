@@ -225,7 +225,7 @@ You can remove this entry anytime through the tray menu.
 - ✅ Does not require administrator rights (except for mouse hook in some cases)
 - ✅ Does not modify system files
 
-### Rekommendasi Keamanan:
+### Safety Recommendations:
 
 1. Download only from [official GitHub](https://github.com/makcrtve/geetRPCS/releases)
 2. Verify file hash if available
