@@ -4,11 +4,6 @@
   <sub>Last updated: January 4, 2026</sub>
 </p>
 
-<p align="center">
-  <a href="#-bahasa-indonesia">🇮🇩 Bahasa Indonesia</a> •
-  <a href="#-english">🇬🇧 English</a>
-</p>
-
 ## 📋 Summary
 
 **geetRPCS** respects user privacy. This document explains how our application handles user data and information.
