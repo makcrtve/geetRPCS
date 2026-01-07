@@ -449,7 +449,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <summary><b>Scan Details & False Positive Info</b></summary>
 
 **Scan Result v1.2.6:**
-- ✅ **0/72** malware detections (Clean)
+- ✅ **0/62** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
