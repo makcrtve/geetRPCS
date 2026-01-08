@@ -43,18 +43,34 @@ function Install-GeetRPCS {
         $webClient = New-Object System.Net.WebClient
         $sourceUri = New-Object System.Uri($downloadUrl)
         
-        $startTick = Get-Date
+        $startTime = Get-Date
         $webClient.DownloadFileAsync($sourceUri, $tempPath)
 
         while ($webClient.IsBusy) {
             $stats = Get-Item $tempPath -ErrorAction SilentlyContinue
             if ($stats) {
                 $currentSize = $stats.Length
-                $percent = [Math]::Round(($currentSize / $totalSize) * 100)
-                $currentMB = [Math]::Round($currentSize / 1MB, 2)
-                $totalMB = [Math]::Round($totalSize / 1MB, 2)
                 
-                $msg = "`r[Progress] $currentMB MB / $totalMB MB ($percent%)"
+                if ($totalSize -gt 0) { $percent = [Math]::Round(($currentSize / $totalSize) * 100) } else { $percent = 0 }
+
+                $timeElapsed = (Get-Date) - $startTime
+                $secondsElapsed = $timeElapsed.TotalSeconds
+                $speedBytesPerSec = if ($secondsElapsed -gt 0) { $currentSize / $secondsElapsed } else { 0 }
+                
+                $speedMBps = "{0:N2} MB/s" -f ($speedBytesPerSec / 1MB)
+                $remainingBytes = $totalSize - $currentSize
+                $secondsRemaining = if ($speedBytesPerSec -gt 0) { $remainingBytes / $speedBytesPerSec } else { 0 }
+                $etaStr = "{0:mm}:{0:ss}" -f (New-TimeSpan -Seconds $secondsRemaining)
+
+                $currentMB = "{0:N2}" -f ($currentSize / 1MB)
+                $totalMB = "{0:N2}" -f ($totalSize / 1MB)
+
+                $barWidth = 15
+                $filled = [Math]::Floor(($percent / 100) * $barWidth)
+                if ($filled -gt $barWidth) { $filled = $barWidth }
+                $progressBar = "[" + ("=" * $filled) + (" " * ($barWidth - $filled)) + "]"
+
+                $msg = "`r$progressBar $currentMB/$totalMB MB ($percent%) @ $speedMBps | ETA: $etaStr    "
                 Write-Host -NoNewline $msg -ForegroundColor White
             }
             Start-Sleep -Milliseconds 200
