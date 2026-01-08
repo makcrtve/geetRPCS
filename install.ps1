@@ -84,15 +84,25 @@ function Install-GeetRPCS {
 
         if ($DesktopShortcut) {
             Write-Host "[4/5] Creating Desktop shortcut..." -ForegroundColor Yellow
+            
+            Start-Sleep -Milliseconds 500 
+
             $desktopPath = [Environment]::GetFolderPath("Desktop")
             $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
             $targetPath = Join-Path $installDir $exeName
+            
             $WshShell = New-Object -ComObject WScript.Shell
             $Shortcut = $WshShell.CreateShortcut($shortcutPath)
             $Shortcut.TargetPath = $targetPath
             $Shortcut.WorkingDirectory = $installDir
-            $Shortcut.IconLocation = "$targetPath,0"
+            
+            $Shortcut.IconLocation = $targetPath 
+            
             $Shortcut.Save()
+
+            if (Get-Command "ie4uinit.exe" -ErrorAction SilentlyContinue) {
+                & "ie4uinit.exe" -show
+            }
         }
 
         Write-Host "[5/5] Finalizing installation..." -ForegroundColor Yellow
