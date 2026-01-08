@@ -39,14 +39,31 @@
 
 ## 🚀 Quick Start
 
-1. **Download** the latest release from [Releases Page](https://github.com/makcrtve/geetRPCS/releases/latest).
-   - **Portable Version** (Recommended): `geetRPCS-v1.2.6-portable.zip` - No installation required.
-   - **Minimal Version**: `geetRPCS-v1.2.6-minimal.zip` - Requires [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime).
+Choose the installation method that suits you best:
+
+### 1. Recommended (Portable + Shortcut) ⭐
+Downloads the portable version (standalone) via PowerShell and automatically creates a Desktop shortcut for easy access.
+```ps
+irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -DesktopShortcut
+```
+
+### 2. Lightweight (Minimal + Shortcut)
+Smaller file size, but requires [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) installed. Includes Desktop shortcut.
+```ps
+irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -Version "minimal" -DesktopShortcut
+```
+
+### 3. Standard (Portable Only)
+Downloads the portable version via PowerShell without creating any shortcuts.
+```ps
+irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS
+```
+
+### 4. Manual Download (Zip)
+If you prefer not to use the command line, you can download and install manually:
+1. Download the latest `.zip` file from the **[Releases Page](https://github.com/makcrtve/geetRPCS/releases/latest)**.
 2. **Extract** the zip file to your preferred folder.
 3. **Run** `geetRPCS.exe`.
-4. **Done!** The icon will appear in your system tray.
-
-> **Requirements:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) (for Minimal version)
 
 ---
 
