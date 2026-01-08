@@ -15,6 +15,9 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Lachee/discord-rpc-csharp">
+    <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=discord&logoColor=white" alt="using C#"/>
+  </a>
   <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
