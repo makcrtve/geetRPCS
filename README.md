@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://github.com/Lachee/discord-rpc-csharp">
-    <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=discord&logoColor=white" alt="using C#"/>
+    <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=csharp&logoColor=white" alt="using C#"/>
   </a>
   <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
@@ -39,14 +39,14 @@
 
 ## 🚀 Quick Start
 
-```md
-1. Download  →  github.com/makcrtve/geetRPCS/releases/latest
-2. Extract   →  to your preferred folder
-3. Run       →  geetRPCS.exe
-4. Done      →  Icon appears in the system tray
-```
+1. **Download** the latest release from [Releases Page](https://github.com/makcrtve/geetRPCS/releases/latest).
+   - **Portable Version** (Recommended): `geetRPCS-v1.2.6-portable.zip` - No installation required.
+   - **Minimal Version**: `geetRPCS-v1.2.6-minimal.zip` - Requires [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime).
+2. **Extract** the zip file to your preferred folder.
+3. **Run** `geetRPCS.exe`.
+4. **Done!** The icon will appear in your system tray.
 
-> **Requirements:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
+> **Requirements:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) (for Minimal version)
 
 ---
 
@@ -443,7 +443,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/6e1607c50d4bab6d24840b3cf88f07cead687e71d0e976fd55c4da6955f10cf9/detection">
+  <a href="https://www.virustotal.com/gui/file/YOUR_FILE_HASH_HERE/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F62%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
