@@ -16,15 +16,15 @@
 
 <p align="center">
   <a href="https://github.com/Lachee/discord-rpc-csharp">
-    <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=discord&logoColor=white" alt="using C#"/>
+    <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=csharp&logoColor=white" alt="using C#"/>
   </a>
   <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
-    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
+    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Versi&color=success" alt="Download"/>
   </a>
-  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Unduhan&color=blue" alt="Downloads"/>
 </p>
 
 <p align="center">
@@ -39,14 +39,14 @@
 
 ## 🚀 Mulai Cepat
 
-```md
-1. Download  →  github.com/makcrtve/geetRPCS/releases/latest
-2. Ekstrak   →  ke folder pilihanmu
-3. Jalankan  →  geetRPCS.exe
-4. Selesai   →  Ikon muncul di system tray
-```
+1. **Unduh** rilis terbaru dari [Halaman Rilis](https://github.com/makcrtve/geetRPCS/releases/latest).
+   - **Versi Portable** (Rekomendasi): `geetRPCS-v1.2.6-portable.zip` - Langsung jalan, tidak perlu instalasi.
+   - **Versi Minimal**: `geetRPCS-v1.2.6-minimal.zip` - Membutuhkan [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime).
+2. **Ekstrak** file zip ke folder pilihanmu.
+3. **Jalankan** `geetRPCS.exe`.
+4. **Selesai!** Ikon akan muncul di system tray.
 
-> **Persyaratan:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0)
+> **Persyaratan:** Windows 10/11 • Discord Desktop • [.NET 8.0 Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) (khusus versi Minimal)
 
 ---
 
@@ -443,8 +443,11 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 ## 🛡️ Keamanan
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/6e1607c50d4bab6d24840b3cf88f07cead687e71d0e976fd55c4da6955f10cf9/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F62%20Bersih-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  <a href="https://www.virustotal.com/gui/file/d512a338ca3bca11bbcabd8073831694929202aaad62d39a94851483c8989e1c/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F65%20Bersih-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  </a>
+  <a href="https://www.virustotal.com/gui/file/72c03212682d9f228cf5bb4960e3aafa5a6359e8f00f10c0a960c600ac53baaa/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Bersih-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
 
@@ -452,7 +455,7 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 <summary><b>Detail Scan & Info False Positive</b></summary>
 
 **Hasil Scan v1.2.6:**
-- ✅ **0/62** deteksi malware (Bersih)
+- ✅ **0/65** deteksi malware (Bersih)
 - ✅ Code Signed: Tidak (Self-contained)
 
 **False Positive?** Beberapa AV mungkin menandainya karena:
@@ -500,4 +503,3 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.2.6 • Lisensi MIT • 2026</sub>
 </p>
-
