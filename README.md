@@ -443,8 +443,11 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/YOUR_FILE_HASH_HERE/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F62%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  <a href="https://www.virustotal.com/gui/file/d512a338ca3bca11bbcabd8073831694929202aaad62d39a94851483c8989e1c/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F65%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  </a>
+  <a href="https://www.virustotal.com/gui/file/72c03212682d9f228cf5bb4960e3aafa5a6359e8f00f10c0a960c600ac53baaa/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
 
@@ -452,7 +455,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <summary><b>Scan Details & False Positive Info</b></summary>
 
 **Scan Result v1.2.6:**
-- ✅ **0/62** malware detections (Clean)
+- ✅ **0/65** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
