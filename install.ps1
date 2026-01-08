@@ -82,6 +82,9 @@ function Install-GeetRPCS {
         Expand-Archive -Path $tempPath -DestinationPath $installDir -Force
         Remove-Item $tempPath -Force
 
+        Write-Host "      Unblocking files to fix icon issue..." -ForegroundColor DarkGray
+        Get-ChildItem -Path $installDir -Recurse | Unblock-File
+
         if ($DesktopShortcut) {
             Write-Host "[4/5] Creating Desktop shortcut..." -ForegroundColor Yellow
             
