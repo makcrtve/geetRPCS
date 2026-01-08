@@ -78,31 +78,41 @@ function Install-GeetRPCS {
         Write-Host "`nDownload complete!" -ForegroundColor Green
 
         if (-not (Test-Path $installDir)) { New-Item -ItemType Directory -Path $installDir -Force | Out-Null }
+        
         Write-Host "[3/5] Extracting files..." -ForegroundColor Yellow
         Expand-Archive -Path $tempPath -DestinationPath $installDir -Force
         Remove-Item $tempPath -Force
+        
+        Write-Host "      Searching for executable..." -ForegroundColor DarkGray
+        $realExeFile = Get-ChildItem -Path $installDir -Filter $exeName -Recurse | Select-Object -First 1
+        
+        if (-not $realExeFile) {
+            throw "File $exeName not found after extraction!"
+        }
+        
+        $validExePath = $realExeFile.FullName
+        $validWorkDir = $realExeFile.DirectoryName
+        
+        Write-Host "      Found at: $validExePath" -ForegroundColor DarkGray
 
-        Write-Host "      Unblocking files to fix icon issue..." -ForegroundColor DarkGray
-        Get-ChildItem -Path $installDir -Recurse | Unblock-File
+        Get-ChildItem -Path $validWorkDir -Recurse | Unblock-File
 
         if ($DesktopShortcut) {
             Write-Host "[4/5] Creating Desktop shortcut..." -ForegroundColor Yellow
-            Start-Sleep -Seconds 1
+            Start-Sleep -Milliseconds 500
 
             $desktopPath = [Environment]::GetFolderPath("Desktop")
             $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
-            $targetPath = Join-Path $installDir $exeName
             
             $WshShell = New-Object -ComObject WScript.Shell
             $Shortcut = $WshShell.CreateShortcut($shortcutPath)
-            $Shortcut.TargetPath = $targetPath
-            $Shortcut.WorkingDirectory = $installDir
             
-            $Shortcut.IconLocation = "`"$targetPath`",0"
+            $Shortcut.TargetPath = $validExePath
+            $Shortcut.WorkingDirectory = $validWorkDir
+            
+            $Shortcut.IconLocation = "`"$validExePath`",0"
             
             $Shortcut.Save()
-            
-            (Get-Item $shortcutPath).LastWriteTime = Get-Date
         }
 
         Write-Host "[5/5] Finalizing installation..." -ForegroundColor Yellow
@@ -110,11 +120,11 @@ function Install-GeetRPCS {
 
         Write-Host "`n✅ Installation completed successfully!" -ForegroundColor Green
         Write-Host "--------------------------------------------------" -ForegroundColor Cyan
-        Write-Host "LOCATION: $installDir" -ForegroundColor White
+        Write-Host "LOCATION: $validWorkDir" -ForegroundColor White
         Write-Host "--------------------------------------------------" -ForegroundColor Cyan
         
         Write-Host "Opening installation folder..." -ForegroundColor Gray
-        explorer.exe $installDir
+        explorer.exe $validWorkDir
 
     } catch {
         Write-Host "`n❌ Installation failed: $($_.Exception.Message)" -ForegroundColor Red
