@@ -28,23 +28,41 @@ function Install-GeetRPCS {
         if (-not $asset) { throw "Could not find the $Version version for release $tag" }
 
         $downloadUrl = $asset.browser_download_url
+        $totalSize = $asset.size
         $tempPath = Join-Path $env:TEMP $asset.name
 
         $process = Get-Process | Where-Object { $_.ProcessName -eq "geetRPCS" }
         if ($process) {
-            Write-Host "[!] geetRPCS is currently running. Closing it to update..." -ForegroundColor Yellow
+            Write-Host "[!] geetRPCS is running. Closing to update..." -ForegroundColor Yellow
             Stop-Process -Name "geetRPCS" -Force
             Start-Sleep -Seconds 1
         }
 
-        if (-not (Test-Path $installDir)) { 
-            New-Item -ItemType Directory -Path $installDir -Force | Out-Null 
-        }
-        
         Write-Host "[2/5] Downloading $Version version ($tag)..." -ForegroundColor Green
-        Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing
+        
+        $webClient = New-Object System.Net.WebClient
+        $sourceUri = New-Object System.Uri($downloadUrl)
+        
+        $startTick = Get-Date
+        $webClient.DownloadFileAsync($sourceUri, $tempPath)
 
-        Write-Host "[3/5] Extracting files to LocalAppData..." -ForegroundColor Yellow
+        while ($webClient.IsBusy) {
+            $stats = Get-Item $tempPath -ErrorAction SilentlyContinue
+            if ($stats) {
+                $currentSize = $stats.Length
+                $percent = [Math]::Round(($currentSize / $totalSize) * 100)
+                $currentMB = [Math]::Round($currentSize / 1MB, 2)
+                $totalMB = [Math]::Round($totalSize / 1MB, 2)
+                
+                $msg = "`r[Progress] $currentMB MB / $totalMB MB ($percent%)"
+                Write-Host -NoNewline $msg -ForegroundColor White
+            }
+            Start-Sleep -Milliseconds 200
+        }
+        Write-Host "`nDownload complete!" -ForegroundColor Green
+
+        if (-not (Test-Path $installDir)) { New-Item -ItemType Directory -Path $installDir -Force | Out-Null }
+        Write-Host "[3/5] Extracting files..." -ForegroundColor Yellow
         Expand-Archive -Path $tempPath -DestinationPath $installDir -Force
         Remove-Item $tempPath -Force
 
@@ -53,15 +71,12 @@ function Install-GeetRPCS {
             $desktopPath = [Environment]::GetFolderPath("Desktop")
             $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
             $targetPath = Join-Path $installDir $exeName
-            
             $WshShell = New-Object -ComObject WScript.Shell
             $Shortcut = $WshShell.CreateShortcut($shortcutPath)
             $Shortcut.TargetPath = $targetPath
             $Shortcut.WorkingDirectory = $installDir
             $Shortcut.IconLocation = "$targetPath,0"
             $Shortcut.Save()
-        } else {
-            Write-Host "[4/5] Skipping shortcut creation (use -DesktopShortcut to enable)." -ForegroundColor Gray
         }
 
         Write-Host "[5/5] Finalizing installation..." -ForegroundColor Yellow
@@ -71,8 +86,8 @@ function Install-GeetRPCS {
         Write-Host "--------------------------------------------------" -ForegroundColor Cyan
         Write-Host "LOCATION: $installDir" -ForegroundColor White
         Write-Host "--------------------------------------------------" -ForegroundColor Cyan
-        Write-Host "Opening installation folder...`n" -ForegroundColor Gray
         
+        Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir
 
     } catch {
