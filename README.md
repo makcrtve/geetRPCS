@@ -76,6 +76,7 @@ If you prefer not to use the command line, you can download and install manually
 ### 🎯 Core
 - 🔍 **Auto Detect** - 40+ popular applications
 - 🖱️ **Mouse Energy** - Real-time activity level
+- 🎨 **Tray Animation** - Visual feedback on app switch [NEW]
 - ⌨️ **Global Hotkeys** - Keyboard shortcuts
 - 👀 **Preview Window** - Live presence preview
 - 🛠️ **App Manager** - Blacklist applications
@@ -96,9 +97,9 @@ If you prefer not to use the command line, you can download and install manually
 
 ### 🔧 Utility
 - 🎯 **Smart Defaults** - Works without config.json
-- 🔄 **True Hot Reload** - Edit & apply instantly [NEW]
+- 🔄 **True Hot Reload** - Edit & apply instantly
 - ⚡ **Quick Actions** - Fast access to configs
-- 🚀 **Auto Startup** - Run when Windows starts
+- 🚀 **Auto Startup** - Run when Windows starts [IMPROVED]
 
 </td>
 <td width="50%">
@@ -107,7 +108,7 @@ If you prefer not to use the command line, you can download and install manually
 - 🖼️ **Custom Assets** - Use your own images
 - 📝 **Custom Text** - Custom texts & placeholders
 - 🔘 **Custom Buttons** - Link to portfolio
-- 🔗 **URL Validation** - Smart button filtering [NEW]
+- 🔗 **URL Validation** - Smart button filtering
 
 </td>
 </tr>
@@ -115,27 +116,18 @@ If you prefer not to use the command line, you can download and install manually
 
 ---
 
-## 🔄 True Hot Reload (New in v1.2.6)
+## 🎨 Tray Icon Animation <sup>NEW</sup>
 
-<p align="center">
-  <b>Edit apps.json → Click Reload → Changes apply immediately!</b>
-</p>
+The system tray icon now comes alive! When geetRPCS detects an app switch, the icon performs a smooth **360° rotation with brightness pulse** effect.
 
-v1.2.6 introduces **True Hot Reload** - finally, editing `apps.json` and clicking "Reload All" actually works without needing to restart the application!
+| Property | Value |
+|:---------|:------|
+| **Effect** | Rotation + Brightness pulse |
+| **Duration** | 800ms (12 frames) |
+| **Easing** | Ease-In-Out Quadratic |
+| **Toggle** | Tray menu → "🎨 Tray Icon Animation" |
 
-| Before v1.2.6 | After v1.2.6 |
-|:--------------|:-------------|
-| Edit apps.json → Reload → ❌ Old cache used | Edit apps.json → Reload → ✅ New apps detected! |
-| Need to restart for changes | No restart required |
-| Assets stuck on old config | Assets refresh immediately |
-
-**What gets reloaded:**
-- ✅ New applications added to `apps.json`
-- ✅ Changed app names and custom details
-- ✅ Updated icons/assets
-- ✅ Modified buttons and URLs
-
-> 💡 **Tip:** Use `CTRL + ALT + R` to quickly reload after editing configs!
+> 💡 This subtle animation provides visual confirmation that geetRPCS detected your app switch!
 
 ---
 
@@ -207,6 +199,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 | ⏸️ Pause | Toggle presence on/off |
 | 🔒 Private Mode | Censor window titles |
 | 🖱️ Mouse Energy | Toggle activity detector |
+| 🎨 Tray Animation | Toggle icon animation [NEW] |
 | 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
@@ -258,7 +251,7 @@ geetRPCS works **out of the box** without requiring a `config.json` file! The ap
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.6",
+      "LargeImageText": "geetRPCS v1.2.7",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -298,9 +291,9 @@ geetRPCS works **out of the box** without requiring a `config.json` file! The ap
 </details>
 
 <details>
-<summary><b>🔗 Button URL Requirements</b> (New in v1.2.6)</summary>
+<summary><b>🔗 Button URL Requirements</b></summary>
 
-v1.2.6 adds smart URL validation for Discord buttons:
+geetRPCS validates button URLs automatically:
 
 | URL Format | Status |
 |:-----------|:------:|
@@ -334,7 +327,7 @@ v1.2.6 adds smart URL validation for Discord buttons:
 
 ```
 geetRPCS/
-├── geetRPCS.exe          # Main application (v1.2.6)
+├── geetRPCS.exe          # Main application (v1.2.7)
 ├── apps.json             # Application list (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
@@ -363,9 +356,27 @@ geetRPCS/
 </details>
 
 <details>
-<summary><b>New app not detected after editing apps.json?</b></summary>
+<summary><b>Tray animation not working?</b></summary>
 
-**In v1.2.6, this should work automatically!**
+1. Ensure "🎨 Tray Icon Animation" is enabled in the tray menu
+2. Animation only triggers on **app switch** (not window title changes)
+3. Check `geetRPCS.log` for TrayAnimator messages
+
+</details>
+
+<details>
+<summary><b>Startup not working?</b></summary>
+
+v1.2.7 improved startup validation:
+1. Make sure geetRPCS is **not** running from a temporary folder
+2. Move the application to a permanent location (e.g., `C:\Programs\geetRPCS\`)
+3. Enable startup again via the tray menu
+4. If you moved the app, re-enable startup to update the registry path
+
+</details>
+
+<details>
+<summary><b>New app not detected after editing apps.json?</b></summary>
 
 1. Edit `apps.json` and save
 2. Right-click tray → Quick Actions → **Reload All** (or press `CTRL+ALT+R`)
@@ -391,7 +402,7 @@ If still not working, check:
 <details>
 <summary><b>Buttons not appearing on Discord?</b></summary>
 
-v1.2.6 validates button URLs. Check that your URLs:
+Check that your URLs:
 - Start with `http://` or `https://`
 - Are valid URLs (not just domain names)
 - Labels are 32 characters or less
@@ -399,11 +410,6 @@ v1.2.6 validates button URLs. Check that your URLs:
 **Example of valid button:**
 ```json
 { "label": "My Website", "url": "https://example.com" }
-```
-
-**Example of invalid button (will be skipped):**
-```json
-{ "label": "My Website", "url": "example.com" }
 ```
 
 </details>
@@ -426,20 +432,6 @@ Ensure no other application is using the same shortcuts. Some fullscreen games r
 </details>
 
 <details>
-<summary><b>What data does Telemetry collect?</b></summary>
-
-Anonymous telemetry (opt-in) collects:
-- Discord username (for unique user count)
-- App version
-- Session duration
-- Number of apps used
-
-**No personal data, file names, or window titles are collected.**
-You can disable it anytime via the tray menu.
-
-</details>
-
-<details>
 <summary><b>Troubleshooting</b></summary>
 
 Open `geetRPCS.log` or right-click tray → **Open Log File**
@@ -452,6 +444,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 | Preview image empty | Clear Cache → Refresh |
 | Mouse hook failed | Run as Administrator |
 | Buttons not appearing | Check URL format (must start with http/https) |
+| Startup from temp rejected | Move app to permanent folder |
 
 </details>
 
@@ -460,19 +453,19 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/d512a338ca3bca11bbcabd8073831694929202aaad62d39a94851483c8989e1c/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F65%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  <a href="https://www.virustotal.com/gui/file/b630bd2fddc5f27991997a5ed056b4591aaff77fd3be36ae20a5b923dfceeb1a/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F72%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file/72c03212682d9f228cf5bb4960e3aafa5a6359e8f00f10c0a960c600ac53baaa/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>
+  <a href="https://www.virustotal.com/gui/file/4751693dc4e695f25972b33d3e91beb76527bbe81a250150f5dbe034cc75d6da/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F72%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  </a>  
 </p>
 
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.2.6:**
-- ✅ **0/65** malware detections (Clean)
+**Scan Result v1.2.7:**
+- ✅ **0/72** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
@@ -481,6 +474,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - Registry access (auto-startup)
 - **Global Hotkey hooks** (RegisterHotKey API)
 - **Mouse hooks** (SetWindowsHookEx API)
+- **Icon manipulation** (GDI+ for tray animation)
 
 **Solution:** Whitelist in antivirus or verify on [VirusTotal](https://www.virustotal.com)
 
@@ -500,6 +494,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Smart Defaults (optional config)
 - [x] True Hot Reload
 - [x] URL Validation for buttons
+- [x] Tray Icon Animation
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 - [ ] Keyboard activity tracking
@@ -518,5 +513,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.6 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.7 • MIT License • 2026</sub>
 </p>
