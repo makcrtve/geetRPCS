@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="RELEASE/README.en.md"><img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English"/></a>
+  <a href="RELEASE/README.md"><img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English"/></a>
   <a href="RELEASE/README.id.md"><img src="https://img.shields.io/badge/Bahasa-Indonesia-red?style=flat-square" alt="Indonesia"/></a>
 </p>
 
@@ -10,8 +10,8 @@
 <h1 align="center">geetRPCS</h1>
 
 <p align="center">
-  <b>Automatic Discord Rich Presence for your favorite apps!</b><br/>
-  <sub>Display your activity on Discord in real-time with extreme efficiency 🚀</sub>
+  <b>Discord Rich Presence Otomatis untuk aplikasi favoritmu!</b><br/>
+  <sub>Tampilkan aktivitasmu di Discord secara real-time dengan efisiensi ekstrim 🚀</sub>
 </p>
 
 <p align="center">
@@ -22,90 +22,90 @@
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
-    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
+    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Versi&color=success" alt="Download"/>
   </a>
-  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Unduhan&color=blue" alt="Downloads"/>
 </p>
 
 <p align="center">
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-features">Features</a> •
-  <a href="#-supported-apps">Supported Apps</a> •
-  <a href="#%EF%B8%8F-configuration">Configuration</a> •
+  <a href="#-mulai-cepat">Mulai Cepat</a> •
+  <a href="#-fitur">Fitur</a> •
+  <a href="#-aplikasi-didukung">Aplikasi Didukung</a> •
+  <a href="#%EF%B8%8F-konfigurasi">Konfigurasi</a> •
   <a href="#-faq">FAQ</a>
 </p>
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Mulai Cepat
 
-Choose the installation method that suits you best:
+Pilih metode instalasi yang paling sesuai untukmu:
 
-### 1. Recommended (Portable + Shortcut) ⭐
-Downloads the portable version (standalone) via PowerShell and automatically creates a Desktop shortcut for easy access.
+### 1. Direkomendasikan (Portable + Shortcut) ⭐
+Unduh versi portable (standalone) via PowerShell dan otomatis buat shortcut di Desktop.
 ```ps
 irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -DesktopShortcut
 ```
 
-### 2. Lightweight (Minimal + Shortcut)
-Smaller file size, but requires [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) installed. Includes Desktop shortcut.
+### 2. Ringan (Minimal + Shortcut)
+Ukuran file lebih kecil, memerlukan [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime).
 ```ps
 irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -Version "minimal" -DesktopShortcut
 ```
 
-### 3. Standard (Portable Only)
-Downloads the portable version via PowerShell without creating any shortcuts.
+### 3. Standar (Hanya Portable)
+Unduh versi portable tanpa membuat shortcut apapun.
 ```ps
 irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS
 ```
 
-### 4. Manual Download (Zip)
-Download and install manually from the **[Releases Page](https://github.com/makcrtve/geetRPCS/releases/latest)**.
+### 4. Unduh Manual (Zip)
+Unduh secara manual melalui **[Halaman Releases](https://github.com/makcrtve/geetRPCS/releases/latest)**.
 
 ---
 
-## ✨ Features
+## ✨ Fitur
 
 <table>
 <tr>
 <td width="50%">
 
-### 🎯 Core
-- 🔍 **Auto Detect** - 40+ popular applications
-- 🖱️ **Mouse Energy** - Real-time activity level
-- 🎨 **Tray Animation** - Visual feedback [NEW]
-- ⌨️ **Global Hotkeys** - Keyboard shortcuts
-- 👀 **Preview Window** - Reactive live preview
+### 🎯 Inti
+- 🔍 **Auto Deteksi** - 40+ aplikasi populer
+- 🖱️ **Mouse Energy** - Level aktivitas real-time
+- 🎨 **Animasi Tray** - Feedback visual [BARU]
+- ⌨️ **Hotkey Global** - Pintasan keyboard
+- 👀 **Jendela Preview** - Live preview reaktif
 
 </td>
 <td width="50%">
 
-### ⚙️ Control
-- ⏸️ **Pause Mode** - Temporarily hide presence
-- 🔒 **Private Mode** - Censor window titles
-- 📊 **Statistics** - Tracking + Export
-- ⚡ **True Hot Reload** - Edit & apply instantly
-- 🌐 **Multi-Language** - EN / ID
+### ⚙️ Kontrol
+- ⏸️ **Mode Jeda** - Sembunyikan presence sementara
+- 🔒 **Mode Privat** - Sensor judul jendela
+- 📊 **Statistik** - Tracking + Ekspor
+- 🔄 **True Hot Reload** - Edit & terapkan instan
+- 🌐 **Multi-Bahasa** - EN / ID
 
 </td>
 </tr>
 <tr>
 <td width="50%">
 
-### 🔧 Utility
-- 🎯 **Smart Defaults** - Works without config.json
-- � **Ultra Efficient** - 10-20MB RAM usage [NEW]
-- 🔄 **Auto Update** - Version notifications
-- 🚀 **Auto Startup** - Robust validation [IMPROVED]
+### 🔧 Utilitas
+- 🎯 **Smart Defaults** - Jalan tanpa config.json
+- 📉 **Sangat Efisien** - Penggunaan RAM 10-20MB [BARU]
+- 🔄 **Auto Update** - Notifikasi versi baru
+- 🚀 **Auto Startup** - Validasi lebih kokoh [PENINGKATAN]
 
 </td>
 <td width="50%">
 
-### 🎨 Customization
-- 🖼️ **Custom Assets** - Use your own images
-- 📝 **Custom Text** - Placeholders supported
-- 🔘 **Custom Buttons** - With URL validation
-- 🔗 **Smart Assets** - Auto-refresh mapping
+### 🎨 Kustomisasi
+- 🖼 *Aset Kustom* - Gunakan gambar sendiri
+- 📝 *Teks Kustom* - Dukungan placeholders
+- 🔘 *Tombol Kustom* - Dengan validasi URL
+- 🔗 *Aset Pintar* - Refresh mapping otomatis
 
 </td>
 </tr>
@@ -113,96 +113,92 @@ Download and install manually from the **[Releases Page](https://github.com/makc
 
 ---
 
-## 📉 Extreme Efficiency Engine <sup>NEW</sup>
+## 📉 Engine Efisiensi Ekstrim <sup>BARU</sup>
 
-Version 1.2.7 introduces a complete engine overhaul focusing on being "lighter than air":
+Versi 1.2.7 memperkenalkan perombakan total pada engine agar aplikasi terasa "lebih ringan dari udara":
 
-| Metric | Improvement |
+| Metrik | Peningkatan |
 |:-------|:------------|
-| **RAM Usage** | **10 MB - 20 MB** (Reduced from ~80MB) |
-| **CPU Usage** | **~0%** (Switched from polling to Event-Based monitoring) |
-| **Footprint** | Active memory trimming & full UI disposal on close |
+| **RAM Usage** | **10 MB - 20 MB** (Turun dari ~80MB) |
+| **CPU Usage** | **~0%** (Beralih ke pemantauan berbasis Event) |
+| **Footprint** | Pembersihan memori aktif & disposal UI total |
 
-> 💡 **How it works:** We use `SetWinEventHook` to only wake up when you actually switch windows. No constant polling = No CPU waste!
+> 💡 **Cara kerja:** Kami menggunakan `SetWinEventHook` untuk hanya "bangun" saat Anda benar-benar berpindah jendela. Tidak ada pengecekan terus-menerus = Tidak ada pemborosan CPU!
 
 ---
 
-## 🎨 Tray Icon Animation <sup>NEW</sup>
+## 🎨 Animasi Ikon Tray <sup>BARU</sup>
 
-The system tray icon now comes alive! When geetRPCS detects an app switch, the icon performs a smooth **360° rotation with brightness pulse** effect.
+Ikon system tray kini hidup! Saat geetRPCS mendeteksi pergantian aplikasi, ikon akan melakukan animasi **rotasi 360° dengan efek brightness pulse** yang halus.
 
-- **Effect:** Rotation + Brightness pulse
-- **Duration:** 800ms (12 frames)
+- **Efek:** Rotasi + Denyut Kecerahan
+- **Durasi:** 800ms (12 frame)
 - **Easing:** Ease-In-Out Quadratic
-- **Control:** Enable/Disable via Tray Menu
+- **Kontrol:** Aktifkan/Matikan via Menu Tray
 
 ---
 
-## 🖱️ Mouse Energy Detector
+## 🖱️ Detektor Energi Mouse
 
-<p align="center">
-  <b>Show your real-time productivity level on Discord!</b>
-</p>
+Tampilkan level produktivitasmu secara real-time di Discord! Fitur ini menganalisis aktivitas mouse untuk menentukan "level energi" kamu.
 
-Analyzes mouse activity/velocity to display your "energy level" on Discord presence.
-
-| Level | Emoji | Condition |
-|:------|:-----:|:----------|
-| **Sleeping** | 💤 | No activity for > 30 seconds |
-| **Relaxing** | ☕ | Low activity (casual scrolling) |
-| **Normal** | 🎯 | Standard activity (regular work) |
-| **Focused** | 🔥 | High activity (intensive editing) |
-| **Rush** | ⚡ | Very high activity (deadline mode!) |
+| Level | Emoji | Kondisi |
+|:------|:-----:|:--------|
+| **Tidur** | 💤 | Tidak ada aktivitas > 30 detik |
+| **Santai** | ☕ | Aktivitas rendah (scroll santai) |
+| **Normal** | 🎯 | Aktivitas standar (kerja biasa) |
+| **Fokus** | 🔥 | Aktivitas tinggi (editing intensif) |
+| **Rush** | ⚡ | Aktivitas luar biasa (mode deadline!) |
 
 ---
 
-## 🎯 Supported Apps
+## 🎯 Aplikasi Didukung
 
 <details open>
-<summary><b>41 Software • 64+ Process Names</b> (click to toggle)</summary>
+<summary><b>41 Software • 64+ Nama Proses</b> (klik untuk buka/tutup)</summary>
 
-| Category | Applications |
+| Kategori | Aplikasi |
 |:--------:|----------|
 | 🎵 **DAW** | FL Studio, Ableton, Cubase, REAPER, Pro Tools, Studio One, Reason, Cakewalk |
 | 🎬 **Video** | Premiere Pro, After Effects, DaVinci Resolve, Filmora, Vegas Pro, CapCut |
-| 🎨 **Design** | Photoshop, Illustrator, Lightroom, Figma, Canva, CorelDRAW, GIMP, Inkscape, Affinity |
+| 🎨 **Desain** | Photoshop, Illustrator, Lightroom, Figma, Canva, CorelDRAW, GIMP, Inkscape, Affinity |
 | 🧊 **3D/CAD** | Blender, Maya, SketchUp, AutoCAD |
 | 📡 **Stream** | OBS Studio, Streamlabs |
 | 🌐 **Browser** | Chrome, Brave, Firefox, Edge, Zen |
-| 📦 **Others** | Adobe Audition, VLC, MS Office, Telegram, HandBrake |
+| 📦 **Lainnya** | Adobe Audition, VLC, MS Office, Telegram, HandBrake |
 
 </details>
 
 ---
 
-## 🖥️ Usage
+## 🖥️ Penggunaan
 
-### ⌨️ Global Hotkeys (Shortcuts)
-| Shortcut | Function |
-|----------|----------|
-| `CTRL` + `ALT` + `P` | ⏸️ Pause / Resume Presence |
-| `CTRL` + `ALT` + `V` | 👀 Toggle Preview Window |
-| `CTRL` + `ALT` + `H` | 🔒 Toggle Private Mode |
-| `CTRL` + `ALT` + `R` | 🔄 Reload Config |
-| `CTRL` + `ALT` + `S` | 📊 Show Today's Stats |
+### ⌨️ Hotkey Global (Pintasan)
+| Pintasan | Fungsi |
+|----------|--------|
+| `CTRL` + `ALT` + `P` | ⏸️ Jeda / Lanjutkan Presence |
+| `CTRL` + `ALT` + `V` | 👀 Toggle Jendela Preview |
+| `CTRL` + `ALT` + `H` | 🔒 Toggle Mode Privat |
+| `CTRL` + `ALT` + `R` | 🔄 Reload Konfigurasi |
+| `CTRL` + `ALT` + `S` | 📊 Tampilkan Statistik Hari Ini |
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Konfigurasi
 
 ### 🎯 Smart Defaults
-geetRPCS works **out of the box**! `config.json` is only needed for advanced customization (Custom AppIDs, buttons, etc.).
+geetRPCS langsung berfungsi tanpa konfigurasi! `config.json` hanya dibutuhkan jika ingin kustomisasi lanjut (AppID sendiri, tombol, dll).
 
 <details>
-<summary><b>📄 config.json</b> - Main configuration (Optional)</summary>
+<summary><b>📄 config.json</b> - Konfigurasi Utama (Opsional)</summary>
 
 ```json
 {
   "Discord": {
-    "ApplicationId": "YOUR_DISCORD_APP_ID",
-    "Details": "Idling...",
-    "State": "Ready to work",
-    "ActiveDetails": "Working on {app_name}",
+    "ApplicationId": "APP_ID_DISCORD_KAMU",
+    "Details": "Sedang santai...",
+    "State": "Siap bekerja",
+    "ActiveDetails": "Bekerja di {app_name}",
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
@@ -216,11 +212,11 @@ geetRPCS works **out of the box**! `config.json` is only needed for advanced cus
 </details>
 
 <details>
-<summary><b>🔗 Button URL Requirements</b></summary>
+<summary><b>🔗 Syarat URL Tombol</b></summary>
 
-geetRPCS validates button URLs automatically. Invalid URLs or labels > 32 characters will be skipped.
+geetRPCS memvalidasi URL secara otomatis. URL yang tidak valid atau label > 32 karakter akan dilewati.
 - ✅ `https://github.com`
-- ❌ `github.com` (missing protocol)
+- ❌ `github.com` (tanpa protokol)
 </details>
 
 ---
@@ -228,30 +224,30 @@ geetRPCS validates button URLs automatically. Invalid URLs or labels > 32 charac
 ## ❓ FAQ
 
 <details>
-<summary><b>Presence not showing on Discord?</b></summary>
+<summary><b>Presence tidak muncul di Discord?</b></summary>
 
-1. Ensure you are using Discord **Desktop** (not web)
-2. Settings → Activity Privacy → Enable "Display current activity"
-3. Restart geetRPCS and Discord
+1. Pastikan gunakan Discord **Desktop** (bukan web).
+2. Settings → Activity Privacy → Aktifkan "Display current activity".
+3. Restart geetRPCS dan Discord.
 </details>
 
 <details>
-<summary><b>Tray animation not working?</b></summary>
+<summary><b>Animasi tray tidak jalan?</b></summary>
 
-1. Ensure "🎨 Tray Icon Animation" is enabled in tray menu.
-2. It triggers only on **app switch**, not window title changes.
+1. Pastikan "🎨 Animasi Ikon Tray" aktif di menu.
+2. Animasi hanya terpicu saat **pindah aplikasi**, bukan ganti judul window.
 </details>
 
 <details>
-<summary><b>Startup not working?</b></summary>
+<summary><b>Startup tidak berfungsi?</b></summary>
 
-1. Move geetRPCS to a permanent folder (not Downloads/Temp).
-2. Enable startup via tray menu to update registries.
+1. Pindahkan folder geetRPCS ke lokasi permanen (Bukan Temp/Downloads).
+2. Aktifkan ulang fitur startup melalui menu tray untuk update registry.
 </details>
 
 ---
 
-## 🛡️ Security
+## 🛡️ Keamanan
 
 <p align="center">
   <a href="https://www.virustotal.com/gui/file/a7f78aa1c7b5bf17018ec3c7a0ac523d00394ad86b5da7b502627ca1f961f164/detection">
@@ -262,24 +258,24 @@ geetRPCS validates button URLs automatically. Invalid URLs or labels > 32 charac
   </a>  
 </p>
 
-**Scan Result v1.2.7:** 0/71 Detections.
-> Note: Some AVs may flag "Hooks" (Mouse/Hotkeys) as false positives.
+**Hasil Scan v1.2.7:** 0/71 Deteksi.
+> Catatan: Beberapa AV mungkin menandai "Hook" (Hotkey/Mouse) sebagai false positive.
 
 ---
 
 ## 🔮 Roadmap
-- [x] Auto-update checker
-- [x] Statistics tracker
-- [x] Reactive Preview Window
-- [x] Tray Icon Animation
-- [x] Extreme Memory Optimization
+- [x] Pemeriksa update otomatis
+- [x] Pelacak statistik
+- [x] Jendela Preview Reaktif
+- [x] Animasi Ikon Tray
+- [x] Optimasi Memori Ekstrim
 - [x] True Hot Reload
-- [ ] UI Dashboard (WPF/WinUI)
-- [ ] Keyboard activity tracking
+- [ ] Dashboard UI (WPF/WinUI)
+- [ ] Pelacakan aktivitas keyboard
 
 ---
 
 <p align="center">
-  <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.7 • MIT License • 2026</sub>
+  <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
+  <sub>geetRPCS v1.2.7 • Lisensi MIT • 2026</sub>
 </p>
