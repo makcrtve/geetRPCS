@@ -13,6 +13,10 @@ function Install-GeetRPCS {
     $installDir = "$env:LOCALAPPDATA\geetRPCS"
     $exeName = "geetRPCS.exe"
     $versionFile = Join-Path $installDir ".version"
+
+    $preserveFolders = @(
+        "ImageCache", "Languages"
+    )
     
     $preserveFiles = @(
         "apps.json",
