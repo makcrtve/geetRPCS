@@ -226,10 +226,5 @@ function Uninstall-GeetRPCS {
     Write-Host ""
 }
 
-# Auto-run when invoked via iex
-if ($MyInvocation.InvocationName -eq 'iex' -or
-    $MyInvocation.InvocationName -eq '&' -or
-    $null -eq $MyInvocation.Line -or
-    $MyInvocation.Line -match 'iex') {
-    Uninstall-GeetRPCS
-}
+# Auto-run
+Uninstall-GeetRPCS
