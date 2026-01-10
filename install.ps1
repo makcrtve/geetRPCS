@@ -3,13 +3,16 @@ function Install-GeetRPCS {
     param(
         [Parameter(Mandatory=$false)]
         [ValidateSet("minimal", "portable")]
-        [string]$Version = "portable",
+        [string]$Version = "",
 
         [Parameter(Mandatory=$false)]
         [switch]$DesktopShortcut,
 
         [Parameter(Mandatory=$false)]
-        [switch]$StartMenu
+        [switch]$StartMenuShortcut,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$Silent
     )
 
     $repo = "makcrtve/geetRPCS"
@@ -26,17 +29,108 @@ function Install-GeetRPCS {
         "settings.json"
     )
 
-    Write-Host "`n==========================================" -ForegroundColor Cyan
-    Write-Host "       geetRPCS Installer / Updater" -ForegroundColor Cyan
-    Write-Host "==========================================`n" -ForegroundColor Cyan
+    # ══════════════════════════════════════════════════════════════
+    # HELPER FUNCTION: Show Menu
+    # ══════════════════════════════════════════════════════════════
+    function Show-Menu {
+        param (
+            [string]$Title,
+            [string[]]$Options,
+            [int]$Default = 0
+        )
+
+        Write-Host "`n$Title" -ForegroundColor Cyan
+        for ($i = 0; $i -lt $Options.Count; $i++) {
+            if ($i -eq $Default) {
+                Write-Host "  [$($i + 1)] $($Options[$i]) " -NoNewline
+                Write-Host "(default)" -ForegroundColor DarkGray
+            } else {
+                Write-Host "  [$($i + 1)] $($Options[$i])"
+            }
+        }
+
+        $selection = Read-Host "`nEnter choice [1-$($Options.Count)]"
+
+        if ([string]::IsNullOrWhiteSpace($selection)) {
+            return $Default
+        }
+
+        $index = 0
+        if ([int]::TryParse($selection, [ref]$index)) {
+            if ($index -ge 1 -and $index -le $Options.Count) {
+                return $index - 1
+            }
+        }
+
+        return $Default
+    }
+
+    function Show-YesNo {
+        param (
+            [string]$Question,
+            [bool]$Default = $true
+        )
+
+        $defaultText = if ($Default) { "Y/n" } else { "y/N" }
+        $response = Read-Host "$Question [$defaultText]"
+
+        if ([string]::IsNullOrWhiteSpace($response)) {
+            return $Default
+        }
+
+        return $response.ToLower() -eq 'y' -or $response.ToLower() -eq 'yes'
+    }
+
+    # ══════════════════════════════════════════════════════════════
+    # HEADER
+    # ══════════════════════════════════════════════════════════════
+    Clear-Host
+    Write-Host ""
+    Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host "  ║                                           ║" -ForegroundColor Cyan
+    Write-Host "  ║       geetRPCS Installer / Updater        ║" -ForegroundColor Cyan
+    Write-Host "  ║                                           ║" -ForegroundColor Cyan
+    Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host ""
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
     try {
         # ══════════════════════════════════════════════════════════════
-        # [1/6] CHECK VERSION
+        # INTERACTIVE MENU (if not Silent mode)
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[1/6] Checking latest version from GitHub..." -ForegroundColor Yellow
+        if (-not $Silent) {
+            # Version selection
+            if ([string]::IsNullOrWhiteSpace($Version)) {
+                $versionOptions = @(
+                    "Portable (Recommended) - Standalone, no dependencies",
+                    "Minimal - Smaller size, requires .NET 8.0 Runtime"
+                )
+                $versionChoice = Show-Menu -Title "Select Version:" -Options $versionOptions -Default 0
+                $Version = if ($versionChoice -eq 0) { "portable" } else { "minimal" }
+            }
+
+            # Desktop shortcut
+            if (-not $PSBoundParameters.ContainsKey('DesktopShortcut')) {
+                $DesktopShortcut = Show-YesNo -Question "Create Desktop shortcut?" -Default $true
+            }
+
+            # Start Menu shortcut
+            if (-not $PSBoundParameters.ContainsKey('StartMenuShortcut')) {
+                $StartMenuShortcut = Show-YesNo -Question "Create Start Menu shortcut?" -Default $true
+            }
+
+            Write-Host ""
+        } else {
+            if ([string]::IsNullOrWhiteSpace($Version)) {
+                $Version = "portable"
+            }
+        }
+
+        # ══════════════════════════════════════════════════════════════
+        # [1/7] CHECK VERSION
+        # ══════════════════════════════════════════════════════════════
+        Write-Host "[1/7] Checking latest version from GitHub..." -ForegroundColor Yellow
         $releaseInfo = Invoke-RestMethod -Uri "https://api.github.com/repos/$repo/releases/latest" -ErrorAction Stop
         $latestTag = $releaseInfo.tag_name
 
@@ -51,7 +145,6 @@ function Install-GeetRPCS {
 
                 if ($installedVersion -eq $latestTag -and $installedType -eq $Version) {
                     Write-Host "`n✅ Already up to date! ($installedVersion - $installedType)" -ForegroundColor Green
-                    Write-Host "   Use -Force parameter to reinstall." -ForegroundColor Gray
 
                     $exePath = Join-Path $installDir $exeName
                     if (Test-Path $exePath) {
@@ -62,8 +155,8 @@ function Install-GeetRPCS {
                 }
 
                 $isUpdate = $true
-                Write-Host "   Installed: $installedVersion ($installedType)" -ForegroundColor DarkGray
-                Write-Host "   Available: $latestTag ($Version)" -ForegroundColor DarkGray
+                Write-Host "      Installed: $installedVersion ($installedType)" -ForegroundColor DarkGray
+                Write-Host "      Available: $latestTag ($Version)" -ForegroundColor DarkGray
             }
         }
 
@@ -76,22 +169,24 @@ function Install-GeetRPCS {
         $tempExtractPath = Join-Path $env:TEMP "geetRPCS_extract_$(Get-Random)"
 
         # ══════════════════════════════════════════════════════════════
-        # [2/6] CLOSE RUNNING INSTANCE
+        # [2/7] CLOSE RUNNING INSTANCE
         # ══════════════════════════════════════════════════════════════
         $process = Get-Process | Where-Object { $_.ProcessName -eq "geetRPCS" }
         if ($process) {
-            Write-Host "[!] geetRPCS is running. Closing to update..." -ForegroundColor Yellow
+            Write-Host "[2/7] geetRPCS is running. Closing..." -ForegroundColor Yellow
             Stop-Process -Name "geetRPCS" -Force
             Start-Sleep -Seconds 2
+        } else {
+            Write-Host "[2/7] No running instance found" -ForegroundColor DarkGray
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [3/6] DOWNLOAD
+        # [3/7] DOWNLOAD
         # ══════════════════════════════════════════════════════════════
         if ($isUpdate) {
-            Write-Host "[2/6] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
+            Write-Host "[3/7] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
         } else {
-            Write-Host "[2/6] Downloading $Version version ($latestTag)..." -ForegroundColor Green
+            Write-Host "[3/7] Downloading $Version version ($latestTag)..." -ForegroundColor Green
         }
 
         $webClient = New-Object System.Net.WebClient
@@ -119,24 +214,24 @@ function Install-GeetRPCS {
                 $currentMB = "{0:N2}" -f ($currentSize / 1MB)
                 $totalMB = "{0:N2}" -f ($totalSize / 1MB)
 
-                $barWidth = 15
+                $barWidth = 20
                 $filled = [Math]::Floor(($percent / 100) * $barWidth)
                 if ($filled -gt $barWidth) { $filled = $barWidth }
-                $progressBar = "[" + ("=" * $filled) + (" " * ($barWidth - $filled)) + "]"
+                $progressBar = "[" + ("█" * $filled) + ("░" * ($barWidth - $filled)) + "]"
 
-                $msg = "`r$progressBar $currentMB/$totalMB MB ($percent%) @ $speedMBps | ETA: $etaStr    "
+                $msg = "`r      $progressBar $currentMB/$totalMB MB ($percent%) @ $speedMBps | ETA: $etaStr    "
                 Write-Host -NoNewline $msg -ForegroundColor White
             }
             Start-Sleep -Milliseconds 200
         }
-        Write-Host "`n   Download complete!" -ForegroundColor Green
+        Write-Host "`n      Download complete!" -ForegroundColor Green
 
         # ══════════════════════════════════════════════════════════════
-        # [4/6] BACKUP USER DATA (if updating)
+        # [4/7] BACKUP USER DATA (if updating)
         # ══════════════════════════════════════════════════════════════
         $backupPath = $null
         if ($isUpdate -and (Test-Path $installDir)) {
-            Write-Host "[3/6] Backing up user data..." -ForegroundColor Yellow
+            Write-Host "[4/7] Backing up user data..." -ForegroundColor Yellow
             $backupPath = Join-Path $env:TEMP "geetRPCS_backup_$(Get-Random)"
             New-Item -ItemType Directory -Path $backupPath -Force | Out-Null
 
@@ -173,13 +268,13 @@ function Install-GeetRPCS {
                 Write-Host "      └─ Backed up $backedUpCount items" -ForegroundColor DarkGray
             }
         } else {
-            Write-Host "[3/6] Fresh installation (no backup needed)" -ForegroundColor Yellow
+            Write-Host "[4/7] Fresh installation (no backup needed)" -ForegroundColor DarkGray
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [5/6] EXTRACT & INSTALL
+        # [5/7] EXTRACT & INSTALL
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[4/6] Extracting files..." -ForegroundColor Yellow
+        Write-Host "[5/7] Extracting files..." -ForegroundColor Yellow
 
         New-Item -ItemType Directory -Path $tempExtractPath -Force | Out-Null
         Expand-Archive -Path $tempPath -DestinationPath $tempExtractPath -Force
@@ -194,10 +289,10 @@ function Install-GeetRPCS {
         }
 
         if (Test-Path $installDir) {
-            Write-Host "[5/6] Cleaning old installation..." -ForegroundColor Yellow
+            Write-Host "[6/7] Cleaning old installation..." -ForegroundColor Yellow
             Remove-Item -Path $installDir -Recurse -Force -ErrorAction SilentlyContinue
         } else {
-            Write-Host "[5/6] Creating installation directory..." -ForegroundColor Yellow
+            Write-Host "[6/7] Creating installation directory..." -ForegroundColor Yellow
         }
 
         New-Item -ItemType Directory -Path $installDir -Force | Out-Null
@@ -251,59 +346,97 @@ function Install-GeetRPCS {
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
 
         # ══════════════════════════════════════════════════════════════
-        # [6/6] CREATE SHORTCUTS (if requested)
+        # [7/7] CREATE SHORTCUTS
         # ══════════════════════════════════════════════════════════════
-        if ($DesktopShortcut -or $StartMenu) {
-            Write-Host "[6/6] Creating shortcuts..." -ForegroundColor Yellow
+        Write-Host "[7/7] Creating shortcuts..." -ForegroundColor Yellow
+
+        $shortcutsCreated = @()
+
+        # Desktop Shortcut
+        if ($DesktopShortcut) {
+            $desktopPath = [Environment]::GetFolderPath("Desktop")
+            $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
+
+            if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
+
             $WshShell = New-Object -ComObject WScript.Shell
+            $Shortcut = $WshShell.CreateShortcut($shortcutPath)
+            $Shortcut.TargetPath = $exePath
+            $Shortcut.WorkingDirectory = $installDir
+            $Shortcut.IconLocation = "$exePath,0"
+            $Shortcut.Description = "geetRPCS - PS3 Games Library Manager"
+            $Shortcut.Save()
 
-            if ($DesktopShortcut) {
-                $desktopPath = [Environment]::GetFolderPath("Desktop")
-                $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
-                if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
+            $shortcutsCreated += "Desktop"
+            Write-Host "      ├─ ✅ Desktop shortcut" -ForegroundColor DarkGray
+        }
 
-                $Shortcut = $WshShell.CreateShortcut($shortcutPath)
-                $Shortcut.TargetPath = $exePath
-                $Shortcut.WorkingDirectory = $installDir
-                $Shortcut.IconLocation = "$exePath,0"
-                $Shortcut.Save()
-                Write-Host "      ├─ Desktop shortcut created" -ForegroundColor DarkGray
+        # Start Menu Shortcut
+        if ($StartMenuShortcut) {
+            $startMenuPath = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs"
+            $startMenuFolder = Join-Path $startMenuPath "geetRPCS"
+
+            # Buat folder di Start Menu
+            if (-not (Test-Path $startMenuFolder)) {
+                New-Item -ItemType Directory -Path $startMenuFolder -Force | Out-Null
             }
 
-            if ($StartMenu) {
-                $programsPath = [Environment]::GetFolderPath("Programs")
-                $shortcutPath = Join-Path $programsPath "geetRPCS.lnk"
-                if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
+            $shortcutPath = Join-Path $startMenuFolder "geetRPCS.lnk"
 
-                $Shortcut = $WshShell.CreateShortcut($shortcutPath)
-                $Shortcut.TargetPath = $exePath
-                $Shortcut.WorkingDirectory = $installDir
-                $Shortcut.IconLocation = "$exePath,0"
-                $Shortcut.Save()
-                Write-Host "      └─ Start Menu shortcut created" -ForegroundColor DarkGray
-            }
+            if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
 
-            if (Get-Command "ie4uinit.exe" -ErrorAction SilentlyContinue) {
-                & "ie4uinit.exe" -show 2>$null
-            }
+            $WshShell = New-Object -ComObject WScript.Shell
+            $Shortcut = $WshShell.CreateShortcut($shortcutPath)
+            $Shortcut.TargetPath = $exePath
+            $Shortcut.WorkingDirectory = $installDir
+            $Shortcut.IconLocation = "$exePath,0"
+            $Shortcut.Description = "geetRPCS - PS3 Games Library Manager"
+            $Shortcut.Save()
+
+            # Uninstall Start Menu shortcut
+            $uninstallShortcutPath = Join-Path $startMenuFolder "Uninstall geetRPCS.lnk"
+            $UninstallShortcut = $WshShell.CreateShortcut($uninstallShortcutPath)
+            $UninstallShortcut.TargetPath = "powershell.exe"
+            $UninstallShortcut.Arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"Remove-Item -Path '$installDir' -Recurse -Force; Remove-Item -Path '$startMenuFolder' -Recurse -Force; Remove-Item -Path '$([Environment]::GetFolderPath('Desktop'))\geetRPCS.lnk' -Force -ErrorAction SilentlyContinue; Write-Host 'geetRPCS has been uninstalled.' -ForegroundColor Green; Start-Sleep -Seconds 2`""
+            $UninstallShortcut.IconLocation = "shell32.dll,31"
+            $UninstallShortcut.Description = "Uninstall geetRPCS"
+            $UninstallShortcut.Save()
+
+            $shortcutsCreated += "Start Menu"
+            Write-Host "      ├─ ✅ Start Menu shortcut" -ForegroundColor DarkGray
+            Write-Host "      ├─ ✅ Uninstall shortcut" -ForegroundColor DarkGray
+        }
+
+        if ($shortcutsCreated.Count -eq 0) {
+            Write-Host "      └─ No shortcuts created" -ForegroundColor DarkGray
         } else {
-            Write-Host "[6/6] Skipping shortcut creation" -ForegroundColor DarkGray
+            Write-Host "      └─ Created: $($shortcutsCreated -join ', ')" -ForegroundColor DarkGray
+        }
+
+        # Refresh icon cache
+        if (Get-Command "ie4uinit.exe" -ErrorAction SilentlyContinue) {
+            & "ie4uinit.exe" -show 2>$null
         }
 
         # ══════════════════════════════════════════════════════════════
         # DONE
         # ══════════════════════════════════════════════════════════════
-        Write-Host "`n==========================================" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Green
         if ($isUpdate) {
-            Write-Host "  ✅ Update completed successfully!" -ForegroundColor Green
-            Write-Host "     $installedVersion → $latestTag" -ForegroundColor White
+            Write-Host "  ║     ✅ Update completed successfully!    ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host ""
+            Write-Host "  $installedVersion → $latestTag ($Version)" -ForegroundColor White
         } else {
-            Write-Host "  ✅ Installation completed successfully!" -ForegroundColor Green
-            Write-Host "     Version: $latestTag ($Version)" -ForegroundColor White
+            Write-Host "  ║  ✅ Installation completed successfully! ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host ""
+            Write-Host "  Version: $latestTag ($Version)" -ForegroundColor White
         }
-        Write-Host "==========================================" -ForegroundColor Green
-        Write-Host "LOCATION: $installDir" -ForegroundColor Cyan
-        Write-Host "==========================================`n" -ForegroundColor Green
+        Write-Host ""
+        Write-Host "  📁 Location: $installDir" -ForegroundColor Cyan
+        Write-Host ""
 
         Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir
@@ -320,9 +453,10 @@ function Install-GeetRPCS {
     }
 }
 
+# Auto-run when invoked via iex
 if ($MyInvocation.InvocationName -eq 'iex' -or
     $MyInvocation.InvocationName -eq '&' -or
     $null -eq $MyInvocation.Line -or
     $MyInvocation.Line -match 'iex') {
-    Install-GeetRPCS -Version "portable" -StartMenu -DesktopShortcut
+    Install-GeetRPCS
 }
