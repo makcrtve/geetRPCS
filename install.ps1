@@ -6,7 +6,10 @@ function Install-GeetRPCS {
         [string]$Version = "portable",
 
         [Parameter(Mandatory=$false)]
-        [switch]$DesktopShortcut
+        [switch]$DesktopShortcut,
+
+        [Parameter(Mandatory=$false)]
+        [switch]$StartMenu
     )
 
     $repo = "makcrtve/geetRPCS"
@@ -17,7 +20,7 @@ function Install-GeetRPCS {
     $preserveFolders = @(
         "ImageCache", "Languages"
     )
-    
+
     $preserveFiles = @(
         "apps.json",
         "settings.json"
@@ -39,17 +42,17 @@ function Install-GeetRPCS {
 
         $installedVersion = $null
         $isUpdate = $false
-        
+
         if (Test-Path $versionFile) {
             $versionData = Get-Content $versionFile -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue
             if ($versionData) {
                 $installedVersion = $versionData.version
                 $installedType = $versionData.type
-                
+
                 if ($installedVersion -eq $latestTag -and $installedType -eq $Version) {
                     Write-Host "`n✅ Already up to date! ($installedVersion - $installedType)" -ForegroundColor Green
                     Write-Host "   Use -Force parameter to reinstall." -ForegroundColor Gray
-                    
+
                     $exePath = Join-Path $installDir $exeName
                     if (Test-Path $exePath) {
                         Write-Host "`nOpening installation folder..." -ForegroundColor Gray
@@ -57,13 +60,13 @@ function Install-GeetRPCS {
                     }
                     return
                 }
-                
+
                 $isUpdate = $true
                 Write-Host "   Installed: $installedVersion ($installedType)" -ForegroundColor DarkGray
                 Write-Host "   Available: $latestTag ($Version)" -ForegroundColor DarkGray
             }
         }
-        
+
         $asset = $releaseInfo.assets | Where-Object { $_.name -like "*$Version.zip" } | Select-Object -First 1
         if (-not $asset) { throw "Could not find the $Version version for release $latestTag" }
 
@@ -90,10 +93,10 @@ function Install-GeetRPCS {
         } else {
             Write-Host "[2/6] Downloading $Version version ($latestTag)..." -ForegroundColor Green
         }
-        
+
         $webClient = New-Object System.Net.WebClient
         $sourceUri = New-Object System.Uri($downloadUrl)
-        
+
         $startTime = Get-Date
         $webClient.DownloadFileAsync($sourceUri, $tempPath)
 
@@ -101,13 +104,13 @@ function Install-GeetRPCS {
             $stats = Get-Item $tempPath -ErrorAction SilentlyContinue
             if ($stats) {
                 $currentSize = $stats.Length
-                
+
                 if ($totalSize -gt 0) { $percent = [Math]::Round(($currentSize / $totalSize) * 100) } else { $percent = 0 }
 
                 $timeElapsed = (Get-Date) - $startTime
                 $secondsElapsed = $timeElapsed.TotalSeconds
                 $speedBytesPerSec = if ($secondsElapsed -gt 0) { $currentSize / $secondsElapsed } else { 0 }
-                
+
                 $speedMBps = "{0:N2} MB/s" -f ($speedBytesPerSec / 1MB)
                 $remainingBytes = $totalSize - $currentSize
                 $secondsRemaining = if ($speedBytesPerSec -gt 0) { $remainingBytes / $speedBytesPerSec } else { 0 }
@@ -136,9 +139,9 @@ function Install-GeetRPCS {
             Write-Host "[3/6] Backing up user data..." -ForegroundColor Yellow
             $backupPath = Join-Path $env:TEMP "geetRPCS_backup_$(Get-Random)"
             New-Item -ItemType Directory -Path $backupPath -Force | Out-Null
-            
+
             $backedUpCount = 0
-            
+
             foreach ($folder in $preserveFolders) {
                 $sourcePath = Join-Path $installDir $folder
                 if (Test-Path $sourcePath) {
@@ -148,7 +151,7 @@ function Install-GeetRPCS {
                     Write-Host "      ├─ 📁 $folder" -ForegroundColor DarkGray
                 }
             }
-            
+
             foreach ($file in $preserveFiles) {
                 $sourcePath = Join-Path $installDir $file
                 if (Test-Path $sourcePath) {
@@ -163,7 +166,7 @@ function Install-GeetRPCS {
                     Write-Host "      ├─ 📄 $file" -ForegroundColor DarkGray
                 }
             }
-            
+
             if ($backedUpCount -eq 0) {
                 Write-Host "      └─ No user data found" -ForegroundColor DarkGray
             } else {
@@ -177,39 +180,39 @@ function Install-GeetRPCS {
         # [5/6] EXTRACT & INSTALL
         # ══════════════════════════════════════════════════════════════
         Write-Host "[4/6] Extracting files..." -ForegroundColor Yellow
-        
+
         New-Item -ItemType Directory -Path $tempExtractPath -Force | Out-Null
         Expand-Archive -Path $tempPath -DestinationPath $tempExtractPath -Force
         Remove-Item $tempPath -Force
-        
+
         $extractedContent = Get-ChildItem -Path $tempExtractPath
         $sourceDir = $tempExtractPath
-        
+
         if ($extractedContent.Count -eq 1 -and $extractedContent[0].PSIsContainer) {
             $sourceDir = $extractedContent[0].FullName
             Write-Host "      └─ Found: $($extractedContent[0].Name)" -ForegroundColor DarkGray
         }
-        
+
         if (Test-Path $installDir) {
             Write-Host "[5/6] Cleaning old installation..." -ForegroundColor Yellow
             Remove-Item -Path $installDir -Recurse -Force -ErrorAction SilentlyContinue
         } else {
             Write-Host "[5/6] Creating installation directory..." -ForegroundColor Yellow
         }
-        
+
         New-Item -ItemType Directory -Path $installDir -Force | Out-Null
 
         Write-Host "      └─ Installing to: $installDir" -ForegroundColor DarkGray
         Copy-Item -Path "$sourceDir\*" -Destination $installDir -Recurse -Force
 
         Remove-Item -Path $tempExtractPath -Recurse -Force -ErrorAction SilentlyContinue
-        
+
         # ══════════════════════════════════════════════════════════════
         # RESTORE USER DATA
         # ══════════════════════════════════════════════════════════════
         if ($backupPath -and (Test-Path $backupPath)) {
             Write-Host "      └─ Restoring user data..." -ForegroundColor DarkGray
-            
+
             foreach ($folder in $preserveFolders) {
                 $sourcePath = Join-Path $backupPath $folder
                 if (Test-Path $sourcePath) {
@@ -217,7 +220,7 @@ function Install-GeetRPCS {
                     Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
                 }
             }
-            
+
             foreach ($file in $preserveFiles) {
                 $sourcePath = Join-Path $backupPath $file
                 if (Test-Path $sourcePath) {
@@ -225,7 +228,7 @@ function Install-GeetRPCS {
                     Copy-Item -Path $sourcePath -Destination $destPath -Force
                 }
             }
-            
+
             Remove-Item -Path $backupPath -Recurse -Force -ErrorAction SilentlyContinue
         }
 
@@ -248,23 +251,38 @@ function Install-GeetRPCS {
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
 
         # ══════════════════════════════════════════════════════════════
-        # [6/6] CREATE SHORTCUT (if requested)
+        # [6/6] CREATE SHORTCUTS (if requested)
         # ══════════════════════════════════════════════════════════════
-        if ($DesktopShortcut) {
-            Write-Host "[6/6] Creating Desktop shortcut..." -ForegroundColor Yellow
-            
-            $desktopPath = [Environment]::GetFolderPath("Desktop")
-            $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
-            
-            if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
-
+        if ($DesktopShortcut -or $StartMenu) {
+            Write-Host "[6/6] Creating shortcuts..." -ForegroundColor Yellow
             $WshShell = New-Object -ComObject WScript.Shell
-            $Shortcut = $WshShell.CreateShortcut($shortcutPath)
-            $Shortcut.TargetPath = $exePath
-            $Shortcut.WorkingDirectory = $installDir
-            $Shortcut.IconLocation = "$exePath,0"
-            $Shortcut.Save()
-            
+
+            if ($DesktopShortcut) {
+                $desktopPath = [Environment]::GetFolderPath("Desktop")
+                $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
+                if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
+
+                $Shortcut = $WshShell.CreateShortcut($shortcutPath)
+                $Shortcut.TargetPath = $exePath
+                $Shortcut.WorkingDirectory = $installDir
+                $Shortcut.IconLocation = "$exePath,0"
+                $Shortcut.Save()
+                Write-Host "      ├─ Desktop shortcut created" -ForegroundColor DarkGray
+            }
+
+            if ($StartMenu) {
+                $programsPath = [Environment]::GetFolderPath("Programs")
+                $shortcutPath = Join-Path $programsPath "geetRPCS.lnk"
+                if (Test-Path $shortcutPath) { Remove-Item $shortcutPath -Force }
+
+                $Shortcut = $WshShell.CreateShortcut($shortcutPath)
+                $Shortcut.TargetPath = $exePath
+                $Shortcut.WorkingDirectory = $installDir
+                $Shortcut.IconLocation = "$exePath,0"
+                $Shortcut.Save()
+                Write-Host "      └─ Start Menu shortcut created" -ForegroundColor DarkGray
+            }
+
             if (Get-Command "ie4uinit.exe" -ErrorAction SilentlyContinue) {
                 & "ie4uinit.exe" -show 2>$null
             }
@@ -286,13 +304,13 @@ function Install-GeetRPCS {
         Write-Host "==========================================" -ForegroundColor Green
         Write-Host "LOCATION: $installDir" -ForegroundColor Cyan
         Write-Host "==========================================`n" -ForegroundColor Green
-        
+
         Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir
 
     } catch {
         Write-Host "`n❌ Installation failed: $($_.Exception.Message)" -ForegroundColor Red
-        
+
         if ($tempPath -and (Test-Path $tempPath)) {
             Remove-Item $tempPath -Force -ErrorAction SilentlyContinue
         }
@@ -302,9 +320,9 @@ function Install-GeetRPCS {
     }
 }
 
-if ($MyInvocation.InvocationName -eq 'iex' -or 
-    $MyInvocation.InvocationName -eq '&' -or 
-    $null -eq $MyInvocation.Line -or 
+if ($MyInvocation.InvocationName -eq 'iex' -or
+    $MyInvocation.InvocationName -eq '&' -or
+    $null -eq $MyInvocation.Line -or
     $MyInvocation.Line -match 'iex') {
-    Install-GeetRPCS -Version "portable"
+    Install-GeetRPCS -Version "portable" -StartMenu -DesktopShortcut
 }
