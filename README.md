@@ -111,11 +111,11 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 <td width="50%">
 
 ### 🎯 Core
-- 🔍 **Auto Detect** - 40+ popular applications
-- 🖱️ **Mouse Energy** - Real-time activity level
+- 🔍 **Hybrid Detection** - Event-based + Polling
+- 🛡️ **Single Instance** - Prevents duplicate processes
+- 📉 **Ultra Low RAM** - Uses only 5-15MB RAM
 - 🎨 **Tray Animation** - Visual feedback on app switch
-- ⌨️ **Global Hotkeys** - Keyboard shortcuts
-- 👀 **Preview Window** - Live presence preview
+- 👀 **Smart Preview** - Auto-refreshing presence preview
 - 🛠️ **App Manager** - Blacklist applications
 
 </td>
@@ -133,7 +133,7 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 <td width="50%">
 
 ### 🔧 Utility
-- 🎯 **Smart Defaults** - Works without config.json
+- 🖱️ **Mouse Energy** - Real-time activity level
 - 🔄 **True Hot Reload** - Edit & apply instantly
 - ⚡ **Quick Actions** - Fast access to configs
 - 🚀 **Auto Startup** - Run when Windows starts
@@ -197,7 +197,7 @@ Untitled - FL Studio | 🔥 Focused
 ## 🎯 Supported Apps
 
 <details open>
-<summary><b>41 Software • 64+ Process Names</b> (click to toggle)</summary>
+<summary><b>42 Software • 65+ Process Names</b> (click to toggle)</summary>
 
 | Category | Applications |
 |:--------:|----------|
@@ -207,7 +207,7 @@ Untitled - FL Studio | 🔥 Focused
 | 🧊 **3D/CAD** | Blender, Maya, SketchUp, AutoCAD |
 | 📡 **Stream** | OBS Studio, Streamlabs |
 | 🌐 **Browser** | Chrome, Brave, Firefox, Edge, Zen |
-| 📦 **Others** | Adobe Audition, VLC, MS Office, Telegram, HandBrake |
+| 📦 **Others** | Orange Data Mining, Adobe Audition, VLC, MS Office, Telegram, HandBrake |
 
 </details>
 
@@ -264,9 +264,9 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 ## ⚙️ Configuration
 
-### 🎯 Smart Defaults
+### 🎯 Unified Settings
 
-geetRPCS works **out of the box** without requiring a `config.json` file! The application uses optimized default settings automatically.
+geetRPCS works **out of the box**! The application now uses a centralized `settings.json` and internal caches to ensure performance.
 
 **config.json is only needed if you want to:**
 - Use your own Discord Application ID
@@ -368,12 +368,11 @@ geetRPCS validates button URLs automatically:
 ├── apps.json             # Application list (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
-├── settings.json         # Settings (auto-generated)
-├── .version              # Version info (auto-generated)
-├── statistics.json       # Tracking data (auto-generated)
+├── settings.json         # User settings (auto-managed)
+├── statistics.json       # Tracking data (auto-managed)
 ├── geetRPCS.log          # Log file (auto-generated)
 ├── .telemetry            # Launch counter (auto-generated)
-├── ImageCache/           # Image cache (auto-generated)
+├── ImageCache/           # Preview Image cache (auto-generated)
 └── Languages/            # Language files (auto-generated)
 ```
 
@@ -405,7 +404,7 @@ irm https://bit.ly/geetrpcs | iex
 The installer will:
 - ✅ Detect your current version
 - ✅ Download only if a new version is available
-- ✅ Backup your settings (`apps.json`, `settings.json`)
+- ✅ Backup your settings (`apps.json`, `settings.json`, `statistics.json`)
 - ✅ Install the update
 - ✅ Restore your settings
 
@@ -423,7 +422,7 @@ The installer will:
 <details>
 <summary><b>Startup not working?</b></summary>
 
-v1.2.7 improved startup validation:
+v1.2.7+ improved startup validation:
 1. Make sure geetRPCS is **not** running from a temporary folder
 2. Move the application to a permanent location (e.g., `C:\Programs\geetRPCS\`)
 3. Enable startup again via the tray menu
@@ -483,7 +482,7 @@ Ensure no other application is using the same shortcuts. Some fullscreen games r
 1. Upload images in Discord Developer Portal
 2. Wait a few minutes (Discord sync)
 3. Key names must match **exactly** (case sensitive)
-4. Preview Window → 🔄 Refresh
+4. Preview Window → 🔄 Refresh (Auto-refresh enabled in v1.2.8)
 
 </details>
 
@@ -501,6 +500,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 | Mouse hook failed | Run as Administrator |
 | Buttons not appearing | Check URL format (must start with http/https) |
 | Startup from temp rejected | Move app to permanent folder |
+| Already running | v1.2.8 prevents duplicate instances. Check tray. |
 
 </details>
 
@@ -509,19 +509,19 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/4e54e168c20bc02bc718bcda8155477bc92d195da18ce176d772777895f32bb0/detection">
+  <a href="https://www.virustotal.com/gui/file/09b073de3ed8bc48eb79e6a5c621ed943f30db0737cf0397302da6bc53d759f8/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file/d2254ed3d046c9877ef764e4200521b01a6c5fc2b15fb9cf3065039d9787bc32/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F70%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+  <a href="https://www.virustotal.com/gui/file/1e9dd509fdef735ef62ffb128ca871f07c10a2d15058a3531061117b6b4900d6/detection">
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>  
 </p>
 
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.2.7:**
-- ✅ **0/72** malware detections (Clean)
+**Scan Result v1.2.8:**
+- ✅ **0/71** malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
@@ -552,6 +552,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] URL Validation for buttons
 - [x] Tray Icon Animation
 - [x] One-command installer/updater
+- [x] Single Instance Enforcement
+- [x] Memory Optimization
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 - [ ] Keyboard activity tracking
@@ -570,5 +572,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.7 • MIT License • 2025</sub>
+  <sub>geetRPCS v1.2.8 • MIT License • 2026</sub>
 </p>
