@@ -453,10 +453,5 @@ function Install-GeetRPCS {
     }
 }
 
-# Auto-run when invoked via iex
-if ($MyInvocation.InvocationName -eq 'iex' -or
-    $MyInvocation.InvocationName -eq '&' -or
-    $null -eq $MyInvocation.Line -or
-    $MyInvocation.Line -match 'iex') {
-    Install-GeetRPCS
-}
+# Auto-run
+Install-GeetRPCS
