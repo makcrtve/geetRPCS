@@ -44,22 +44,16 @@ Pilih metode instalasi yang paling sesuai untukmu:
 ### 1. Direkomendasikan (Portable + Shortcut) ⭐
 Unduh versi portable (standalone) via PowerShell dan otomatis buat shortcut di Desktop.
 ```ps
-irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -DesktopShortcut
+irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -DesktopShortcut
 ```
 
 ### 2. Ringan (Minimal + Shortcut)
 Ukuran file lebih kecil, memerlukan [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime).
 ```ps
-irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS -Version "minimal" -DesktopShortcut
+irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Version "minimal" -DesktopShortcut
 ```
 
-### 3. Standar (Hanya Portable)
-Unduh versi portable tanpa membuat shortcut apapun.
-```ps
-irm https://raw.githubusercontent.com/makcrtve/geetRPCS/main/install.ps1 | iex; Install-GeetRPCS
-```
-
-### 4. Unduh Manual (Zip)
+### 3. Unduh Manual (Zip)
 Unduh secara manual melalui **[Halaman Releases](https://github.com/makcrtve/geetRPCS/releases/latest)**.
 
 ---
@@ -279,3 +273,4 @@ geetRPCS memvalidasi URL secara otomatis. URL yang tidak valid atau label > 32 k
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.2.7 • Lisensi MIT • 2026</sub>
 </p>
+
