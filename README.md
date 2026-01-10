@@ -39,25 +39,68 @@
 
 ## 🚀 Quick Start
 
-Choose the installation method that suits you best:
+### ⚡ One-Command Install (Recommended)
 
-### 1. Recommended (Portable + Shortcut) ⭐
-Downloads the portable version (standalone) via PowerShell and automatically creates a Desktop shortcut for easy access.
-```ps
-irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -DesktopShortcut
+Open **PowerShell** and run:
+
+```powershell
+irm https://bit.ly/geetrpcs | iex
 ```
 
-### 2. Lightweight (Minimal + Shortcut)
-Smaller file size, but requires [.NET 8.0 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0/runtime) installed. Includes Desktop shortcut.
-```ps
-irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Version "minimal" -DesktopShortcut
+The interactive installer will guide you through:
+
+```
+  ╔═══════════════════════════════════════════╗
+  ║       geetRPCS Installer / Updater        ║
+  ╚═══════════════════════════════════════════╝
+
+Select Version:
+  [1] Portable (Recommended) - Standalone, no dependencies
+  [2] Minimal - Smaller size, requires .NET 8.0 Runtime
+
+Enter choice [1-2]: _
+
+Create Desktop shortcut? [Y/n]: _
+Create Start Menu shortcut? [Y/n]: _
 ```
 
-### 3. Manual Download (Zip)
-If you prefer not to use the command line, you can download and install manually:
-1. Download the latest `.zip` file from the **[Releases Page](https://github.com/makcrtve/geetRPCS/releases/latest)**.
-2. **Extract** the zip file to your preferred folder.
-3. **Run** `geetRPCS.exe`.
+> 💡 **Update:** Run the same command to update to the latest version. Your settings will be preserved!
+
+---
+
+### 🗑️ Uninstall
+
+```powershell
+irm https://bit.ly/geetrpcs-del | iex
+```
+
+<details>
+<summary><b>Advanced Installation Options</b></summary>
+
+#### Silent Install (No Prompts)
+```powershell
+# Portable + All Shortcuts
+irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Silent -DesktopShortcut -StartMenuShortcut
+
+# Minimal + No Shortcuts
+irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Version "minimal" -Silent
+```
+
+#### Silent Uninstall
+```powershell
+# Clean uninstall (remove everything)
+irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent
+
+# Keep user data (settings, cache)
+irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
+```
+
+#### Manual Download (Zip)
+1. Download the latest `.zip` from **[Releases](https://github.com/makcrtve/geetRPCS/releases/latest)**
+2. Extract to your preferred folder
+3. Run `geetRPCS.exe`
+
+</details>
 
 ---
 
@@ -70,7 +113,7 @@ If you prefer not to use the command line, you can download and install manually
 ### 🎯 Core
 - 🔍 **Auto Detect** - 40+ popular applications
 - 🖱️ **Mouse Energy** - Real-time activity level
-- 🎨 **Tray Animation** - Visual feedback on app switch [NEW]
+- 🎨 **Tray Animation** - Visual feedback on app switch
 - ⌨️ **Global Hotkeys** - Keyboard shortcuts
 - 👀 **Preview Window** - Live presence preview
 - 🛠️ **App Manager** - Blacklist applications
@@ -93,7 +136,7 @@ If you prefer not to use the command line, you can download and install manually
 - 🎯 **Smart Defaults** - Works without config.json
 - 🔄 **True Hot Reload** - Edit & apply instantly
 - ⚡ **Quick Actions** - Fast access to configs
-- 🚀 **Auto Startup** - Run when Windows starts [IMPROVED]
+- 🚀 **Auto Startup** - Run when Windows starts
 
 </td>
 <td width="50%">
@@ -110,7 +153,7 @@ If you prefer not to use the command line, you can download and install manually
 
 ---
 
-## 🎨 Tray Icon Animation <sup>NEW</sup>
+## 🎨 Tray Icon Animation
 
 The system tray icon now comes alive! When geetRPCS detects an app switch, the icon performs a smooth **360° rotation with brightness pulse** effect.
 
@@ -179,11 +222,11 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 | Shortcut | Function |
 |----------|----------|
-| `CTRL` + `ALT` + `P` | ⏸️ Pause / Resume Presence |
-| `CTRL` + `ALT` + `V` | 👀 Toggle Preview Window |
-| `CTRL` + `ALT` + `H` | 🔒 Toggle Private Mode |
-| `CTRL` + `ALT` + `R` | 🔄 Reload Config |
-| `CTRL` + `ALT` + `S` | 📊 Show Today's Stats |
+| `Ctrl + Alt + P` | ⏸️ Pause / Resume Presence |
+| `Ctrl + Alt + V` | 👀 Toggle Preview Window |
+| `Ctrl + Alt + H` | 🔒 Toggle Private Mode |
+| `Ctrl + Alt + R` | 🔄 Reload Config |
+| `Ctrl + Alt + S` | 📊 Show Today's Stats |
 
 ### 🖱️ System Tray Menu
 **Right-click** the tray icon to access the manual menu:
@@ -193,7 +236,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 | ⏸️ Pause | Toggle presence on/off |
 | 🔒 Private Mode | Censor window titles |
 | 🖱️ Mouse Energy | Toggle activity detector |
-| 🎨 Tray Animation | Toggle icon animation [NEW] |
+| 🎨 Tray Animation | Toggle icon animation |
 | 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
@@ -280,7 +323,7 @@ geetRPCS works **out of the box** without requiring a `config.json` file! The ap
 ]
 ```
 
-**Adding an app:** Task Manager → note process name → add to apps.json → Reload All (`CTRL+ALT+R`)
+**Adding an app:** Task Manager → note process name → add to apps.json → Reload All (`Ctrl+Alt+R`)
 
 </details>
 
@@ -320,12 +363,13 @@ geetRPCS validates button URLs automatically:
 <summary><b>📁 File Structure</b></summary>
 
 ```
-geetRPCS/
-├── geetRPCS.exe          # Main application (v1.2.7)
+📁 %LOCALAPPDATA%\geetRPCS\
+├── geetRPCS.exe          # Main application
 ├── apps.json             # Application list (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
 ├── settings.json         # Settings (auto-generated)
+├── .version              # Version info (auto-generated)
 ├── statistics.json       # Tracking data (auto-generated)
 ├── geetRPCS.log          # Log file (auto-generated)
 ├── .telemetry            # Launch counter (auto-generated)
@@ -346,6 +390,24 @@ geetRPCS/
 2. Settings → Activity Privacy → Enable "Display current activity"
 3. Restart geetRPCS and Discord
 4. Make sure you are not in **Pause** mode
+
+</details>
+
+<details>
+<summary><b>How to update geetRPCS?</b></summary>
+
+Simply run the same install command:
+
+```powershell
+irm https://bit.ly/geetrpcs | iex
+```
+
+The installer will:
+- ✅ Detect your current version
+- ✅ Download only if a new version is available
+- ✅ Backup your settings (`apps.json`, `settings.json`)
+- ✅ Install the update
+- ✅ Restore your settings
 
 </details>
 
@@ -373,7 +435,7 @@ v1.2.7 improved startup validation:
 <summary><b>New app not detected after editing apps.json?</b></summary>
 
 1. Edit `apps.json` and save
-2. Right-click tray → Quick Actions → **Reload All** (or press `CTRL+ALT+R`)
+2. Right-click tray → Quick Actions → **Reload All** (or press `Ctrl+Alt+R`)
 3. New apps should be detected immediately
 
 If still not working, check:
@@ -489,6 +551,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] True Hot Reload
 - [x] URL Validation for buttons
 - [x] Tray Icon Animation
+- [x] One-command installer/updater
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 - [ ] Keyboard activity tracking
@@ -507,5 +570,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.7 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.7 • MIT License • 2025</sub>
 </p>
