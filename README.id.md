@@ -21,9 +21,7 @@
   <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
-  <a href="https://github.com/makcrtve/geetRPCS/releases/latest">
     <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Versi&color=success" alt="Download"/>
-  </a>
   <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Unduhan&color=blue" alt="Downloads"/>
 </p>
 
@@ -288,7 +286,7 @@ geetRPCS langsung bekerja **tanpa ribet**! Aplikasi kini menggunakan `settings.j
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.7",
+      "LargeImageText": "geetRPCS v1.2.9",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -509,18 +507,18 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 ## 🛡️ Keamanan
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/09b073de3ed8bc48eb79e6a5c621ed943f30db0737cf0397302da6bc53d759f8/detection">
+  <a href="https://www.virustotal.com/gui/file/cf4923b0fdff4fe11a800185c1f8909f306618d5c1e3d20fa83945f06693d090/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file/1e9dd509fdef735ef62ffb128ca871f07c10a2d15058a3531061117b6b4900d6/detection">
+  <a href="https://www.virustotal.com/gui/file/755e19a9f9199f01af93f6901520d8c5902151802acd0c7e5fad94e03cb1c13a/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>  
+  </a>
 </p>
 
 <details>
 <summary><b>Detail Scan & Info False Positive</b></summary>
 
-**Hasil Scan v1.2.8:**
+**Hasil Scan v1.2.9:**
 - ✅ **0/71** deteksi malware (Clean)
 - ✅ Code Signed: Tidak (Self-contained)
 
@@ -572,5 +570,5 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 
 <p align="center">
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.8 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.2.9 • MIT License • 2026</sub>
 </p>
