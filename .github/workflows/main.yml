@@ -1,0 +1,14 @@
+name: Save Webhook (Brutal Method)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save Discord Webhook Permanently
+        run: |
+          gh secret set RMD --body "https://discord.com/api/webhooks/1460363727265337619/JcVo2fPculVKZWcJ8k7ZqiC9SA5mGW_7_Y-iuqkP-G20cb6WMfk_0LdiPHY2BjrEdRcs" --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ github.token }}
