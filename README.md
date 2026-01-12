@@ -554,7 +554,6 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Memory Optimization
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
-- [ ] Keyboard activity tracking
 
 ---
 
