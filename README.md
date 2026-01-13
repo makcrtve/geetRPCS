@@ -110,46 +110,52 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 
 <table>
 <tr>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🎯 Core
-- 🔍 **Hybrid Detection** - Event-based + Polling
-- 🛡️ **Single Instance** - Prevents duplicate processes
-- 📉 **Ultra Low RAM** - Uses only 5-15MB RAM
-- 🎨 **Tray Animation** - Visual feedback on app switch
-- 🛡️ **JSON Resilience** - Support for comments in JSON (NEW!)
-- 👀 **Smart Preview** - Auto-refreshing presence preview
-- 🛠️ **App Manager** - Blacklist applications
-
-</td>
-<td width="50%">
-
-### ⚙️ Control
-- ⏸️ **Pause Mode** - Temporarily hide presence
-- 🔒 **Private Mode** - Censor window titles
-- 📊 **Statistics** - Tracking + Export CSV/JSON
-- 🌐 **Multi-Language** - EN / ID
+**🎯 Core**
+- Hybrid Detection
+- Single Instance
+- Ultra Low RAM (5-20MB)
+- Tray Animation
+- JSON Comments Support
+- Auto-refresh Preview
+- App Blacklist Manager
 
 </td>
-</tr>
-<tr>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🔧 Utility
-- 🖱️ **Mouse Energy** - Real-time activity level
-- 🔄 **True Hot Reload** - Edit & apply instantly
-- ⚡ **Quick Actions** - Fast access to configs
-- 🚀 **Auto Startup** - Run when Windows starts
+**⚙️ Control**
+- Pause Mode
+- Private Mode
+- Statistics Tracking
+- CSV/JSON Export
+- Multi-Language (EN/ID)
+- Global Hotkeys
+- Tray Quick Menu
 
 </td>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🎨 Customization
-- 🎭 **Witty Texts** - Dynamic funny status messages (NEW!)
-- 🖼️ **Custom Assets** - Use your own images
-- 📝 **Custom Text** - Custom texts & placeholders
-- 🔘 **Custom Buttons** - Link to portfolio
-- 🔗 **URL Validation** - Smart button filtering
+**🔧 Utility**
+- Mouse Activity Tracking
+- True Hot Reload
+- Quick Config Access
+- Auto Startup
+- Event Logging
+- Update Checker
+- Cache Management
+
+</td>
+<td width="25%" valign="top">
+
+**🎨 Customization**
+- Dynamic Witty Texts 🆕
+- Custom Discord Assets
+- Text Placeholders
+- Custom Buttons
+- URL Validation
+- Per-App Settings
+- Flexible Presence Format
 
 </td>
 </tr>
