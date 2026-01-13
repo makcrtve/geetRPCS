@@ -10,8 +10,8 @@
 <h1 align="center">geetRPCS</h1>
 
 <p align="center">
-  <b>Discord Rich Presence Otomatis untuk aplikasi favoritmu!</b><br/>
-  <sub>Tampilkan aktivitasmu di Discord secara real-time, tanpa ribet 🚀</sub>
+  <b>Discord Rich Presence Otomatis untuk aplikasi favorit Anda!</b><br/>
+  <sub>Tampilkan aktivitas Anda di Discord secara real-time, tanpa ribet 🚀</sub>
 </p>
 
 <p align="center">
@@ -25,14 +25,14 @@
     <img src="https://img.shields.io/badge/Join_Discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Join Discord"/>
   </a>
   <br/>
-  <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Versi&color=success" alt="Download"/>
-  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Unduhan&color=blue" alt="Downloads"/>
+  <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
+  <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
 </p>
 
 <p align="center">
   <a href="#-mulai-cepat">Mulai Cepat</a> •
   <a href="#-fitur">Fitur</a> •
-  <a href="#-aplikasi-didukung">Aplikasi Didukung</a> •
+  <a href="#-aplikasi-yang-didukung">Aplikasi Didukung</a> •
   <a href="#%EF%B8%8F-konfigurasi">Konfigurasi</a> •
   <a href="#-faq">FAQ</a>
 </p>
@@ -49,7 +49,7 @@ Buka **PowerShell** dan jalankan:
 irm https://bit.ly/geetrpcs | iex
 ```
 
-Installer interaktif akan memandu kamu:
+Installer interaktif akan memandu Anda:
 
 ```
   ╔═══════════════════════════════════════════╗
@@ -57,7 +57,7 @@ Installer interaktif akan memandu kamu:
   ╚═══════════════════════════════════════════╝
 
 Pilih Versi:
-  [1] Portable (Direkomendasikan) - Mandiri, tanpa dependensi
+  [1] Portable (Direkomendasikan) - Standalone, tanpa dependensi
   [2] Minimal - Ukuran lebih kecil, memerlukan .NET 8.0 Runtime
 
 Masukkan pilihan [1-2]: _
@@ -66,7 +66,7 @@ Buat shortcut Desktop? [Y/n]: _
 Buat shortcut Start Menu? [Y/n]: _
 ```
 
-> 💡 **Update:** Jalankan perintah yang sama untuk update ke versi terbaru. Pengaturanmu akan tetap aman!
+> 💡 **Update:** Jalankan perintah yang sama untuk update ke versi terbaru. Pengaturan Anda akan tetap tersimpan!
 
 ---
 
@@ -79,7 +79,7 @@ irm https://bit.ly/geetrpcs-del | iex
 <details>
 <summary><b>Opsi Instalasi Lanjutan</b></summary>
 
-#### Instalasi Senyap (Tanpa Prompt)
+#### Silent Install (Tanpa Prompt)
 ```powershell
 # Portable + Semua Shortcut
 irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Silent -DesktopShortcut -StartMenuShortcut
@@ -88,18 +88,18 @@ irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Silent -DesktopShortcut -St
 irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Version "minimal" -Silent
 ```
 
-#### Uninstall Senyap
+#### Silent Uninstall
 ```powershell
 # Uninstall bersih (hapus semua)
 irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent
 
-# Simpan data pengguna (pengaturan, cache)
+# Simpan data pengguna (settings, cache)
 irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 ```
 
 #### Download Manual (Zip)
 1. Download `.zip` terbaru dari **[Releases](https://github.com/makcrtve/geetRPCS/releases/latest)**
-2. Ekstrak ke folder pilihanmu
+2. Ekstrak ke folder pilihan Anda
 3. Jalankan `geetRPCS.exe`
 
 </details>
@@ -110,46 +110,52 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 
 <table>
 <tr>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🎯 Inti
-- 🔍 **Deteksi Hybrid** - Berbasis event + polling
-- 🛡️ **Single Instance** - Cegah proses duplikat
-- 📉 **RAM Ultra Rendah** - Hanya gunakan 5-15MB RAM
-- 🎨 **Animasi Tray** - Feedback visual saat ganti aplikasi
-- 🛡️ **Ketahanan JSON** - Dukungan komentar di JSON (BARU!)
-- 👀 **Preview Pintar** - Preview presence auto-refresh
-- 🛠️ **Kelola Aplikasi** - Blacklist aplikasi tertentu
-
-</td>
-<td width="50%">
-
-### ⚙️ Kontrol
-- ⏸️ **Mode Pause** - Sembunyikan presence sementara
-- 🔒 **Mode Private** - Sensor judul window
-- 📊 **Statistik** - Pelacakan + Ekspor CSV/JSON
-- 🌐 **Multi-Bahasa** - EN / ID
+**🎯 Inti**
+- Deteksi Hibrida
+- Single Instance
+- RAM Ultra Rendah (5-20MB)
+- Animasi Ikon Tray
+- Dukungan Komentar JSON
+- Preview Auto-refresh
+- Manajer Blacklist Aplikasi
 
 </td>
-</tr>
-<tr>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🔧 Utilitas
-- 🖱️ **Mouse Energy** - Level aktivitas real-time
-- 🔄 **True Hot Reload** - Edit & terapkan instan
-- ⚡ **Quick Actions** - Akses cepat ke config
-- 🚀 **Auto Startup** - Jalan saat Windows mulai
+**⚙️ Kontrol**
+- Mode Jeda
+- Mode Privat
+- Pelacakan Statistik
+- Ekspor CSV/JSON
+- Multi-Bahasa (EN/ID)
+- Hotkey Global
+- Menu Cepat Tray
 
 </td>
-<td width="50%">
+<td width="25%" valign="top">
 
-### 🎨 Kustomisasi
-- 🎭 **Teks Jenaka** - Status lucu dinamis (BARU!)
-- 🖼️ **Aset Custom** - Pakai gambar sendiri
-- 📝 **Teks Custom** - Teks & placeholder custom
-- 🔘 **Tombol Custom** - Link ke portfolio
-- 🔗 **Validasi URL** - Filter tombol pintar
+**🔧 Utilitas**
+- Pelacakan Aktivitas Mouse
+- Hot Reload Sesungguhnya
+- Akses Konfigurasi Cepat
+- Auto Startup
+- Event Logging
+- Pemeriksa Update
+- Manajemen Cache
+
+</td>
+<td width="25%" valign="top">
+
+**🎨 Kustomisasi**
+- Teks Lucu Dinamis 🆕
+- Aset Discord Kustom
+- Placeholder Teks
+- Tombol Kustom
+- Validasi URL
+- Pengaturan Per-Aplikasi
+- Format Presence Fleksibel
 
 </td>
 </tr>
@@ -159,26 +165,26 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 
 ## 🎨 Animasi Ikon Tray
 
-Ikon system tray kini hidup! Ketika geetRPCS mendeteksi perpindahan aplikasi, ikon melakukan efek **rotasi 360° dengan pulsa brightness** yang mulus.
+Ikon system tray kini hidup! Ketika geetRPCS mendeteksi perpindahan aplikasi, ikon melakukan efek **rotasi 360° dengan pulse brightness** yang smooth.
 
 | Properti | Nilai |
 |:---------|:------|
-| **Efek** | Rotasi + Pulsa brightness |
+| **Efek** | Rotasi + Pulse brightness |
 | **Durasi** | 800ms (12 frame) |
-| **Easing** | Ease-In-Out Quadratic |
-| **Toggle** | Menu tray → "🎨 Animasi Ikon Tray" |
+| **Easing** | Ease-In-Out Kuadratik |
+| **Toggle** | Menu tray → "🎨 Tray Icon Animation" |
 
-> 💡 Animasi halus ini memberikan konfirmasi visual bahwa geetRPCS mendeteksi perpindahan aplikasimu!
+> 💡 Animasi halus ini memberikan konfirmasi visual bahwa geetRPCS mendeteksi perpindahan aplikasi Anda!
 
 ---
 
-## 🖱️ Detektor Mouse Energy
+## 🖱️ Detektor Energi Mouse
 
 <p align="center">
-  <b>Tunjukkan level produktivitasmu secara real-time di Discord!</b>
+  <b>Tampilkan level produktivitas real-time Anda di Discord!</b>
 </p>
 
-geetRPCS memiliki **Detektor Mouse Energy** - fitur unik yang menganalisis aktivitas mouse-mu dan menampilkan "level energi" saat ini di Discord presence.
+geetRPCS dilengkapi **Mouse Energy Detector** - fitur unik yang menganalisis aktivitas mouse Anda dan menampilkan "level energi" saat ini di presence Discord.
 
 | Level | Emoji | Kondisi |
 |:------|:-----:|:----------|
@@ -190,47 +196,47 @@ geetRPCS memiliki **Detektor Mouse Energy** - fitur unik yang menganalisis aktiv
 
 **Contoh tampilan Discord:**
 ```
-Bekerja di FL Studio 2025
+Working on FL Studio 2025
 Untitled - FL Studio | 🔥 Focused
 ```
 
-> 💡 **Tip:** Toggle fitur ini on/off via Menu System Tray → "🖱️ Detektor Mouse Energy"
+> 💡 **Tips:** Toggle fitur ini on/off via Menu System Tray → "🖱️ Mouse Energy Detector"
 
 ---
 
-## 🎭 Mesin Narasi Jenaka
+## 🎭 Mesin Narasi Lucu
 
 <p align="center">
-  <b>Bawa kepribadian ke status Discord-mu!</b>
+  <b>Berikan kepribadian pada status Discord Anda!</b>
 </p>
 
-Alih-alih pesan "Working..." yang membosankan, geetRPCS kini menampilkan **teks dinamis dan lucu** yang berganti setiap 60 detik!
+Alih-alih pesan "Working..." yang membosankan, geetRPCS kini menampilkan **teks lucu dinamis** yang berputar setiap 60 detik!
 
 **Fitur:**
-- 🎲 Pemilihan acak dari teks lucu yang telah dikurasi
+- 🎲 Pemilihan acak dari teks lucu yang dikurasi
 - 🔄 Auto-rotasi setiap 60 detik
 - 📝 Sepenuhnya dapat dikustomisasi via `witty.json`
-- 🎯 Nol dampak performa
-- 🔌 Placeholder `{witty_text}` baru
+- 🎯 Nol biaya performa
+- 🔌 Placeholder baru `{witty_text}`
 
 **Contoh Teks:**
 
-| Aplikasi | Teks Jenaka |
-|:---------|:------------|
-| **FL Studio** | "Bikin lagu yang bakal hits 🔥", "Mana snare-nya? 🥁", "Soundgoodizer di Master 🎚️" |
-| **VS Code** | "Compile kode spaghetti 🍝", "Di komputer saya jalan kok 🤷", "Debug 100 error 🐛" |
+| Aplikasi | Teks Lucu |
+|:---------|:----------|
+| **FL Studio** | "Produksi lagu hits berikutnya 🔥", "Dimana snare-nya? 🥁", "Soundgoodizer di Master 🎚️" |
+| **VS Code** | "Compile kode spaghetti 🍝", "Di laptop saya jalan kok 🤷", "Debug 100 error 🐛" |
 | **Chrome** | "100 tab terbuka 🔥", "Riset di YouTube 🎥", "Pasti lagi kerja... 👀" |
 
-**Cara Pakai:**
-1. Edit `witty.json` untuk menambah teks sendiri
+**Cara Menggunakan:**
+1. Edit `witty.json` untuk menambahkan teks Anda sendiri
 2. Gunakan `{witty_text}` di field `customDetails`
 3. Reload dengan `Ctrl+Alt+R`
 
-> 💡 **Tip:** 400+ teks bawaan tersedia untuk 40+ aplikasi!
+> 💡 **Tips:** 400+ teks pre-written tersedia untuk 40+ aplikasi!
 
 ---
 
-## 🎯 Aplikasi Didukung
+## 🎯 Aplikasi yang Didukung
 
 <details open>
 <summary><b>42 Software • 65+ Nama Proses</b> (klik untuk toggle)</summary>
@@ -241,26 +247,26 @@ Alih-alih pesan "Working..." yang membosankan, geetRPCS kini menampilkan **teks 
 | 🎬 **Video** | Premiere Pro, After Effects, DaVinci Resolve, Filmora, Vegas Pro, CapCut |
 | 🎨 **Desain** | Photoshop, Illustrator, Lightroom, Figma, Canva, CorelDRAW, GIMP, Inkscape, Affinity |
 | 🧊 **3D/CAD** | Blender, Maya, SketchUp, AutoCAD |
-| 📡 **Stream** | OBS Studio, Streamlabs |
+| 📡 **Streaming** | OBS Studio, Streamlabs |
 | 🌐 **Browser** | Chrome, Brave, Firefox, Edge, Zen |
 | 📦 **Lainnya** | Orange Data Mining, Adobe Audition, VLC, MS Office, Telegram, HandBrake |
 
 </details>
 
-> 💡 **Tip:** Kamu bisa menambah aplikasi sendiri di `apps.json`!
+> 💡 **Tips:** Anda dapat menambahkan aplikasi sendiri di `apps.json`!
 
 ---
 
 ## 🖥️ Penggunaan
 
 ### ⌨️ Hotkey Global (Shortcut)
-Kontrol geetRPCS langsung dari keyboard, bahkan saat aplikasi diminimize:
+Kontrol geetRPCS langsung dari keyboard Anda, bahkan ketika aplikasi diminimalkan:
 
 | Shortcut | Fungsi |
 |----------|--------|
-| `Ctrl + Alt + P` | ⏸️ Pause / Resume Presence |
+| `Ctrl + Alt + P` | ⏸️ Jeda / Lanjutkan Presence |
 | `Ctrl + Alt + V` | 👀 Toggle Jendela Preview |
-| `Ctrl + Alt + H` | 🔒 Toggle Mode Private |
+| `Ctrl + Alt + H` | 🔒 Toggle Mode Privat |
 | `Ctrl + Alt + R` | 🔄 Reload Config |
 | `Ctrl + Alt + S` | 📊 Tampilkan Statistik Hari Ini |
 
@@ -269,16 +275,16 @@ Kontrol geetRPCS langsung dari keyboard, bahkan saat aplikasi diminimize:
 
 | Menu | Fungsi |
 |------|--------|
-| ⏸️ Pause | Toggle presence hidup/mati |
-| 🔒 Mode Private | Sensor judul window |
+| ⏸️ Pause | Toggle presence on/off |
+| 🔒 Private Mode | Sensor judul window |
 | 🖱️ Mouse Energy | Toggle detektor aktivitas |
-| 🎨 Animasi Tray | Toggle animasi ikon |
+| 🎨 Tray Animation | Toggle animasi ikon |
 | 📡 Telemetry | Toggle data penggunaan anonim |
-| 👀 Jendela Preview | Preview langsung Discord presence |
-| 🛠️ Kelola Aplikasi | Aktifkan/nonaktifkan aplikasi |
-| 📊 Statistik | Lihat & ekspor statistik |
+| 👀 Preview Window | Preview langsung presence Discord |
+| 🛠️ Manage Apps | Aktifkan/nonaktifkan aplikasi |
+| 📊 Statistics | Lihat & ekspor statistik |
 | ⚡ Quick Actions | Akses folder, edit config |
-| 🌐 Bahasa | Ganti bahasa (EN/ID) |
+| 🌐 Language | Ubah bahasa (EN/ID) |
 
 <details>
 <summary><b>📸 Screenshot</b></summary>
@@ -300,16 +306,16 @@ Kontrol geetRPCS langsung dari keyboard, bahkan saat aplikasi diminimize:
 
 ## ⚙️ Konfigurasi
 
-### 🎯 Pengaturan Terpadu
+### 🎯 Pengaturan Terpusat
 
-geetRPCS bekerja **langsung pakai**! Aplikasi sekarang menggunakan `settings.json` terpusat dan cache internal untuk memastikan performa.
+geetRPCS bekerja **langsung pakai**! Aplikasi kini menggunakan `settings.json` terpusat dan cache internal untuk memastikan performa.
 
-**config.json hanya diperlukan jika kamu ingin:**
+**config.json hanya diperlukan jika Anda ingin:**
 - Menggunakan Discord Application ID sendiri
 - Kustomisasi teks presence
-- Menambah tombol custom
+- Menambahkan tombol kustom
 
-> 💡 **Tip:** Buat config.json via Quick Actions → "Edit config.json" (akan auto-dibuat dengan default)
+> 💡 **Tips:** Buat config.json via Quick Actions → "Edit config.json" (akan auto-create dengan default)
 
 <details>
 <summary><b>📄 config.json</b> - Konfigurasi utama (Opsional)</summary>
@@ -318,9 +324,9 @@ geetRPCS bekerja **langsung pakai**! Aplikasi sekarang menggunakan `settings.jso
 {
   "Discord": {
     "ApplicationId": "YOUR_DISCORD_APP_ID",
-    "Details": "Menganggur...",
+    "Details": "Sedang idle...",
     "State": "Siap bekerja",
-    "ActiveDetails": "Bekerja di {app_name}",
+    "ActiveDetails": "Bekerja dengan {app_name}",
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
@@ -351,7 +357,7 @@ geetRPCS bekerja **langsung pakai**! Aplikasi sekarang menggunakan `settings.jso
     "largeText": "FL Studio 2025",
     "smallKey": "geetrpcs-logo",
     "smallText": "geetRPCS",
-    "customDetails": "Produksi di {app_name}",
+    "customDetails": "Produksi dengan {app_name}",
     "buttons": [
       { "label": "Portfolio Saya", "url": "https://example.com" }
     ]
@@ -359,26 +365,26 @@ geetRPCS bekerja **langsung pakai**! Aplikasi sekarang menggunakan `settings.jso
 ]
 ```
 
-**Menambah aplikasi:** Task Manager → catat nama proses → tambah ke apps.json → Reload All (`Ctrl+Alt+R`)
+**Menambah aplikasi:** Task Manager → catat nama proses → tambahkan ke apps.json → Reload All (`Ctrl+Alt+R`)
 
 </details>
 
 <details>
 <summary><b>🔗 Persyaratan URL Tombol</b></summary>
 
-geetRPCS validasi URL tombol secara otomatis:
+geetRPCS memvalidasi URL tombol secara otomatis:
 
 | Format URL | Status |
 |:-----------|:------:|
 | `https://github.com` | ✅ Valid |
 | `http://example.com` | ✅ Valid |
-| `github.com` | ❌ Dilewati (tanpa protokol) |
-| `ftp://files.com` | ❌ Dilewati (protokol invalid) |
+| `github.com` | ❌ Dilewati (tidak ada protokol) |
+| `ftp://files.com` | ❌ Dilewati (protokol tidak valid) |
 | URL kosong | ❌ Dilewati |
 
 **Batas label tombol:** Maksimal 32 karakter
 
-> Tombol invalid dilewati secara diam-diam - tanpa error, mereka hanya tidak akan muncul di Discord.
+> Tombol tidak valid akan dilewati secara diam-diam - tidak ada error, hanya tidak muncul di Discord.
 
 </details>
 
@@ -387,7 +393,7 @@ geetRPCS validasi URL tombol secara otomatis:
 
 1. Buka [Discord Developer Portal](https://discord.com/developers/applications)
 2. Pilih aplikasi → **Rich Presence** → **Art Assets**
-3. Upload gambar dengan nama yang cocok dengan `largeKey` / `smallKey`
+3. Upload gambar dengan nama yang sesuai dengan `largeKey` / `smallKey`
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/makcrtve/geetRPCS/main/assets/discord-assets.png" width="500"/>
@@ -402,15 +408,15 @@ geetRPCS validasi URL tombol secara otomatis:
 📁 %LOCALAPPDATA%\geetRPCS\
 ├── geetRPCS.exe          # Aplikasi utama
 ├── apps.json             # Daftar aplikasi (wajib)
-├── witty.json            # Teks jenaka (wajib)
+├── witty.json            # Teks lucu (wajib)
 ├── rpicon.ico            # Ikon (wajib)
 ├── config.json           # Konfigurasi Discord RPC (opsional)
-├── settings.json         # Pengaturan pengguna (auto-kelola)
-├── statistics.json       # Data pelacakan (auto-kelola)
-├── geetRPCS.log          # File log (auto-dibuat)
-├── .telemetry            # Penghitung peluncuran (auto-dibuat)
-├── ImageCache/           # Cache gambar preview (auto-dibuat)
-└── Languages/            # File bahasa (auto-dibuat)
+├── settings.json         # Pengaturan pengguna (auto-managed)
+├── statistics.json       # Data pelacakan (auto-managed)
+├── geetRPCS.log          # File log (auto-generated)
+├── .telemetry            # Penghitung peluncuran (auto-generated)
+├── ImageCache/           # Cache gambar preview (auto-generated)
+└── Languages/            # File bahasa (auto-generated)
 ```
 
 </details>
@@ -422,48 +428,48 @@ geetRPCS validasi URL tombol secara otomatis:
 <details>
 <summary><b>Presence tidak muncul di Discord?</b></summary>
 
-1. Pastikan kamu menggunakan Discord **Desktop** (bukan web)
+1. Pastikan menggunakan Discord **Desktop** (bukan web)
 2. Settings → Activity Privacy → Aktifkan "Display current activity"
 3. Restart geetRPCS dan Discord
-4. Pastikan kamu tidak dalam mode **Pause**
+4. Pastikan Anda tidak dalam mode **Pause**
 
 </details>
 
 <details>
 <summary><b>Cara update geetRPCS?</b></summary>
 
-Cukup jalankan perintah instalasi yang sama:
+Cukup jalankan perintah install yang sama:
 
 ```powershell
 irm https://bit.ly/geetrpcs | iex
 ```
 
 Installer akan:
-- ✅ Deteksi versi saat ini
-- ✅ Download hanya jika ada versi baru
-- ✅ Backup pengaturanmu (`apps.json`, `settings.json`, `statistics.json`)
+- ✅ Deteksi versi Anda saat ini
+- ✅ Download hanya jika versi baru tersedia
+- ✅ Backup pengaturan Anda (`apps.json`, `settings.json`, `statistics.json`)
 - ✅ Install update
-- ✅ Restore pengaturanmu
+- ✅ Restore pengaturan Anda
 
 </details>
 
 <details>
-<summary><b>Animasi tray tidak bekerja?</b></summary>
+<summary><b>Animasi tray tidak berfungsi?</b></summary>
 
-1. Pastikan "🎨 Animasi Ikon Tray" diaktifkan di menu tray
-2. Animasi hanya dipicu saat **ganti aplikasi** (bukan perubahan judul window)
+1. Pastikan "🎨 Tray Icon Animation" diaktifkan di menu tray
+2. Animasi hanya trigger saat **perpindahan aplikasi** (bukan perubahan judul window)
 3. Cek `geetRPCS.log` untuk pesan TrayAnimator
 
 </details>
 
 <details>
-<summary><b>Startup tidak bekerja?</b></summary>
+<summary><b>Startup tidak berfungsi?</b></summary>
 
 v1.2.7+ meningkatkan validasi startup:
 1. Pastikan geetRPCS **tidak** berjalan dari folder temporary
-2. Pindahkan aplikasi ke lokasi permanen (mis., `C:\Programs\geetRPCS\`)
+2. Pindahkan aplikasi ke lokasi permanen (contoh: `C:\Programs\geetRPCS\`)
 3. Aktifkan startup lagi via menu tray
-4. Jika kamu memindahkan aplikasi, aktifkan ulang startup untuk update path registry
+4. Jika Anda memindahkan aplikasi, aktifkan ulang startup untuk update path registry
 
 </details>
 
@@ -472,19 +478,19 @@ v1.2.7+ meningkatkan validasi startup:
 
 1. Edit `apps.json` dan simpan
 2. Klik kanan tray → Quick Actions → **Reload All** (atau tekan `Ctrl+Alt+R`)
-3. Aplikasi baru seharusnya langsung terdeteksi
+3. Aplikasi baru harus terdeteksi langsung
 
-Jika masih tidak bekerja, periksa:
+Jika masih tidak bekerja, cek:
 - Nama proses cocok persis (case-insensitive)
 - Sintaks JSON valid
-- Aplikasi tidak dinonaktifkan di **Kelola Aplikasi**
+- Aplikasi tidak dinonaktifkan di **Manage Apps**
 
 </details>
 
 <details>
 <summary><b>Mouse Energy tidak update?</b></summary>
 
-1. Pastikan "🖱️ Detektor Mouse Energy" diaktifkan di menu tray
+1. Pastikan "🖱️ Mouse Energy Detector" diaktifkan di menu tray
 2. Fitur menganalisis aktivitas dari waktu ke waktu - tunggu beberapa detik
 3. Beberapa aplikasi fullscreen mungkin mempengaruhi deteksi
 4. Cek `geetRPCS.log` untuk error MouseTracker
@@ -494,12 +500,12 @@ Jika masih tidak bekerja, periksa:
 <details>
 <summary><b>Tombol tidak muncul di Discord?</b></summary>
 
-Periksa bahwa URL-mu:
+Pastikan URL Anda:
 - Dimulai dengan `http://` atau `https://`
-- URL yang valid (bukan hanya nama domain)
+- Adalah URL valid (bukan hanya nama domain)
 - Label 32 karakter atau kurang
 
-**Contoh tombol yang valid:**
+**Contoh tombol valid:**
 ```json
 { "label": "Website Saya", "url": "https://example.com" }
 ```
@@ -507,9 +513,9 @@ Periksa bahwa URL-mu:
 </details>
 
 <details>
-<summary><b>Hotkey tidak bekerja?</b></summary>
+<summary><b>Hotkey tidak berfungsi?</b></summary>
 
-Pastikan tidak ada aplikasi lain yang menggunakan shortcut yang sama. Beberapa game fullscreen yang jalan "As Administrator" mungkin memblokir hotkey jika geetRPCS tidak juga dijalankan sebagai Admin.
+Pastikan tidak ada aplikasi lain yang menggunakan shortcut yang sama. Beberapa game fullscreen yang berjalan "As Administrator" mungkin memblokir hotkey jika geetRPCS tidak juga dijalankan sebagai Admin.
 
 </details>
 
@@ -519,25 +525,25 @@ Pastikan tidak ada aplikasi lain yang menggunakan shortcut yang sama. Beberapa g
 1. Upload gambar di Discord Developer Portal
 2. Tunggu beberapa menit (sinkronisasi Discord)
 3. Nama key harus cocok **persis** (case sensitive)
-4. Jendela Preview → 🔄 Refresh (Auto-refresh diaktifkan di v1.2.8)
+4. Preview Window → 🔄 Refresh (Auto-refresh diaktifkan di v1.2.8)
 
 </details>
 
 <details>
 <summary><b>Troubleshooting</b></summary>
 
-Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
+Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 
 | Error | Solusi |
 |-------|--------|
-| Apps.json tidak ditemukan | Pastikan apps.json ada di folder yang sama |
-| Discord tidak terkoneksi | Pastikan Discord Desktop berjalan |
-| Presence tidak muncul | Cek mode Pause dan Kelola Aplikasi |
-| Gambar preview kosong | Clear Cache → Refresh |
-| Mouse hook gagal | Jalankan sebagai Administrator |
-| Tombol tidak muncul | Cek format URL (harus dimulai http/https) |
-| Startup dari temp ditolak | Pindah aplikasi ke folder permanen |
-| Sudah berjalan | v1.2.8 cegah instance duplikat. Cek tray. |
+| Apps.json not found | Pastikan apps.json ada di folder yang sama |
+| Discord not connected | Pastikan Discord Desktop berjalan |
+| Presence not showing | Cek mode Pause dan Manage Apps |
+| Preview image empty | Clear Cache → Refresh |
+| Mouse hook failed | Jalankan sebagai Administrator |
+| Buttons not appearing | Cek format URL (harus dimulai dengan http/https) |
+| Startup from temp rejected | Pindahkan aplikasi ke folder permanen |
+| Already running | v1.2.8 mencegah instance duplikat. Cek tray. |
 
 </details>
 
@@ -547,10 +553,10 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 
 <p align="center">
   <a href="https://www.virustotal.com/gui/file/641f510931e9280af5e4aca37796b120b4c24514af7d685772868a680492ceff/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Bersih-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
   <a href="https://www.virustotal.com/gui/file/3ec9263b32939cb1bd3c18fd5415f3450c3a86f5fa6c580034272f00113a5ed6/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Bersih-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
+    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
 
@@ -558,15 +564,15 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 <summary><b>Detail Scan & Info False Positive</b></summary>
 
 **Hasil Scan v1.3.0:**
-- ✅ `0/71` | `0/70` deteksi malware (Bersih)
+- ✅ `0/71` | `0/70` deteksi malware (Clean)
 - ✅ Code Signed: Tidak (Self-contained)
 
-**False Positive?** Beberapa antivirus mungkin menandainya karena:
+**False Positive?** Beberapa AV mungkin menandainya karena:
 - Executable baru / tidak banyak didistribusikan
 - Akses Discord RPC API
 - Akses registry (auto-startup)
-- **Global Hotkey hooks** (RegisterHotKey API)
-- **Mouse hooks** (SetWindowsHookEx API)
+- **Hook hotkey global** (RegisterHotKey API)
+- **Hook mouse** (SetWindowsHookEx API)
 - **Manipulasi ikon** (GDI+ untuk animasi tray)
 
 **Solusi:** Whitelist di antivirus atau verifikasi di [VirusTotal](https://www.virustotal.com)
@@ -581,33 +587,33 @@ Buka `geetRPCS.log` atau klik kanan tray → **Buka File Log**
 - [x] Pelacak statistik
 - [x] Multi-bahasa (EN/ID)
 - [x] Jendela Preview
-- [x] Kelola Aplikasi
-- [x] Dukungan Global Hotkeys
-- [x] Detektor Mouse Energy
-- [x] Smart Defaults (config opsional)
-- [x] True Hot Reload
+- [x] Manajer Aplikasi
+- [x] Dukungan Hotkey Global
+- [x] Detektor Energi Mouse
+- [x] Default Cerdas (config opsional)
+- [x] Hot Reload Sesungguhnya
 - [x] Validasi URL untuk tombol
 - [x] Animasi Ikon Tray
-- [x] One-command installer/updater
-- [x] Single Instance Enforcement
+- [x] Installer/updater satu perintah
+- [x] Penegakan Single Instance
 - [x] Optimasi Memori
 - [ ] Dukungan lebih banyak software
 - [ ] UI Dashboard (WPF/WinUI)
 
 ---
 
-## 📞 Tautan
+## 📞 Link
 
 <p align="center">
   <a href="https://github.com/makcrtve/geetRPCS/issues">🐛 Laporkan Bug</a> •
   <a href="https://github.com/makcrtve/geetRPCS/discussions">💬 Diskusi</a> •
-  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Rilis</a> •
-  <a href="https://discord.gg/ScTybDUEpH">🎮 Gabung Discord</a>
+  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Releases</a> •
+  <a href="https://discord.gg/ScTybDUEpH">🎮 Join Discord</a>
 </p>
 
 ---
 
 <p align="center">
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.0 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.3.0 • Lisensi MIT • 2026</sub>
 </p>
