@@ -15,13 +15,17 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/Lachee/discord-rpc-csharp">
     <img src="https://img.shields.io/badge/using-C%23-00bb88.svg?style=flat-square&logo=csharp&logoColor=white" alt="using C#"/>
   </a>
   <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Windows"/>
   <img src="https://img.shields.io/badge/.NET_8.0-512BD4?style=flat-square&logo=dotnet&logoColor=white" alt=".NET 8"/>
-  <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"/>
-    <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
+  <a href="https://discord.gg/ScTybDUEpH">
+    <img src="https://img.shields.io/badge/Join_Discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Join Discord"/>
+  </a>
+  <br/>
+  <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat-square&label=Version&color=success" alt="Download"/>
   <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat-square&label=Downloads&color=blue" alt="Downloads"/>
 </p>
 
@@ -113,6 +117,7 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 - 🛡️ **Single Instance** - Prevents duplicate processes
 - 📉 **Ultra Low RAM** - Uses only 5-15MB RAM
 - 🎨 **Tray Animation** - Visual feedback on app switch
+- 🛡️ **JSON Resilience** - Support for comments in JSON (NEW!)
 - 👀 **Smart Preview** - Auto-refreshing presence preview
 - 🛠️ **App Manager** - Blacklist applications
 
@@ -140,6 +145,7 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 <td width="50%">
 
 ### 🎨 Customization
+- 🎭 **Witty Texts** - Dynamic funny status messages (NEW!)
 - 🖼️ **Custom Assets** - Use your own images
 - 📝 **Custom Text** - Custom texts & placeholders
 - 🔘 **Custom Buttons** - Link to portfolio
@@ -189,6 +195,38 @@ Untitled - FL Studio | 🔥 Focused
 ```
 
 > 💡 **Tip:** Toggle this feature on/off via System Tray menu → "🖱️ Mouse Energy Detector"
+
+---
+
+## 🎭 Witty Narrative Engine
+
+<p align="center">
+  <b>Bring personality to your Discord status!</b>
+</p>
+
+Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humorous texts** that rotate every 60 seconds!
+
+**Features:**
+- 🎲 Random selection from curated funny texts
+- 🔄 Auto-rotates every 60 seconds
+- 📝 Fully customizable via `witty.json`
+- 🎯 Zero performance cost
+- 🔌 New `{witty_text}` placeholder
+
+**Example Texts:**
+
+| App | Witty Texts |
+|:----|:------------|
+| **FL Studio** | "Producing the next heater 🔥", "Where is the snare? 🥁", "Soundgoodizer on Master 🎚️" |
+| **VS Code** | "Compiling spaghetti code 🍝", "It works on my machine 🤷", "Debugging 100 errors 🐛" |
+| **Chrome** | "100 tabs open 🔥", "Researching on YouTube 🎥", "Definitely working... 👀" |
+
+**How to Use:**
+1. Edit `witty.json` to add your own texts
+2. Use `{witty_text}` in `customDetails` field
+3. Reload with `Ctrl+Alt+R`
+
+> 💡 **Tip:** 400+ pre-written texts included for 40+ applications!
 
 ---
 
@@ -286,7 +324,7 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.2.9",
+      "LargeImageText": "geetRPCS v1.3.0",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -364,6 +402,7 @@ geetRPCS validates button URLs automatically:
 📁 %LOCALAPPDATA%\geetRPCS\
 ├── geetRPCS.exe          # Main application
 ├── apps.json             # Application list (required)
+├── witty.json            # Witty texts (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
 ├── settings.json         # User settings (auto-managed)
@@ -507,10 +546,10 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/cf4923b0fdff4fe11a800185c1f8909f306618d5c1e3d20fa83945f06693d090/detection">
+  <a href="https://www.virustotal.com/gui/file/641f510931e9280af5e4aca37796b120b4c24514af7d685772868a680492ceff/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/NTMxNmU2MzUwMDhkYzU1Y2VmOTJjOWZmOGE0ZTg0ZDM6MTc2ODEwODgyMQ==/detection">
+  <a href="https://www.virustotal.com/gui/file/3ec9263b32939cb1bd3c18fd5415f3450c3a86f5fa6c580034272f00113a5ed6/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -518,8 +557,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.2.9:**
-- ✅ **0/71** malware detections (Clean)
+**Scan Result v1.3.0:**
+- ✅ `0/71` | `0/70` malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
 **False Positive?** Some AVs might flag it because:
@@ -562,12 +601,13 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <p align="center">
   <a href="https://github.com/makcrtve/geetRPCS/issues">🐛 Report Bug</a> •
   <a href="https://github.com/makcrtve/geetRPCS/discussions">💬 Discussions</a> •
-  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Releases</a>
+  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Releases</a> •
+  <a href="https://discord.gg/ScTybDUEpH">🎮 Join Discord</a>
 </p>
 
 ---
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.2.9 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.3.0 • MIT License • 2026</sub>
 </p>
