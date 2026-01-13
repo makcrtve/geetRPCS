@@ -12,6 +12,9 @@ function Install-GeetRPCS {
         [switch]$StartMenuShortcut,
 
         [Parameter(Mandatory=$false)]
+        [switch]$ResetAppsJson,
+
+        [Parameter(Mandatory=$false)]
         [switch]$Silent
     )
 
@@ -25,9 +28,10 @@ function Install-GeetRPCS {
     )
 
     $preserveFiles = @(
-        "apps.json",
         "settings.json"
     )
+
+    $appsJsonPath = Join-Path $installDir "apps.json"
 
     # ══════════════════════════════════════════════════════════════
     # HELPER FUNCTION: Show Menu
@@ -100,7 +104,6 @@ function Install-GeetRPCS {
         # INTERACTIVE MENU (if not Silent mode)
         # ══════════════════════════════════════════════════════════════
         if (-not $Silent) {
-            # Version selection
             if ([string]::IsNullOrWhiteSpace($Version)) {
                 $versionOptions = @(
                     "Portable (Recommended) - Standalone, no dependencies",
@@ -110,14 +113,18 @@ function Install-GeetRPCS {
                 $Version = if ($versionChoice -eq 0) { "portable" } else { "minimal" }
             }
 
-            # Desktop shortcut
             if (-not $PSBoundParameters.ContainsKey('DesktopShortcut')) {
                 $DesktopShortcut = Show-YesNo -Question "Create Desktop shortcut?" -Default $true
             }
 
-            # Start Menu shortcut
             if (-not $PSBoundParameters.ContainsKey('StartMenuShortcut')) {
                 $StartMenuShortcut = Show-YesNo -Question "Create Start Menu shortcut?" -Default $true
+            }
+
+            if ((Test-Path $appsJsonPath) -and -not $PSBoundParameters.ContainsKey('ResetAppsJson')) {
+                Write-Host ""
+                Write-Host "⚠️  apps.json file detected" -ForegroundColor Yellow
+                $ResetAppsJson = Show-YesNo -Question "Reset apps.json to default? (No = keep current)" -Default $false
             }
 
             Write-Host ""
@@ -143,7 +150,7 @@ function Install-GeetRPCS {
                 $installedVersion = $versionData.version
                 $installedType = $versionData.type
 
-                if ($installedVersion -eq $latestTag -and $installedType -eq $Version) {
+                if ($installedVersion -eq $latestTag -and $installedType -eq $Version -and -not $ResetAppsJson) {
                     Write-Host "`n✅ Already up to date! ($installedVersion - $installedType)" -ForegroundColor Green
 
                     $exePath = Join-Path $installDir $exeName
@@ -262,6 +269,15 @@ function Install-GeetRPCS {
                 }
             }
 
+            if (-not $ResetAppsJson -and (Test-Path $appsJsonPath)) {
+                $destPath = Join-Path $backupPath "apps.json"
+                Copy-Item -Path $appsJsonPath -Destination $destPath -Force
+                $backedUpCount++
+                Write-Host "      ├─ 📄 apps.json (keeping current)" -ForegroundColor DarkGray
+            } elseif ($ResetAppsJson -and (Test-Path $appsJsonPath)) {
+                Write-Host "      ├─ 🔄 apps.json (will be reset to default)" -ForegroundColor Yellow
+            }
+
             if ($backedUpCount -eq 0) {
                 Write-Host "      └─ No user data found" -ForegroundColor DarkGray
             } else {
@@ -324,12 +340,21 @@ function Install-GeetRPCS {
                 }
             }
 
+            if (-not $ResetAppsJson) {
+                $appsJsonBackup = Join-Path $backupPath "apps.json"
+                if (Test-Path $appsJsonBackup) {
+                    Copy-Item -Path $appsJsonBackup -Destination $appsJsonPath -Force
+                    Write-Host "         ✅ apps.json restored" -ForegroundColor Green
+                }
+            } else {
+                Write-Host "         ✅ apps.json reset to default" -ForegroundColor Green
+            }
+
             Remove-Item -Path $backupPath -Recurse -Force -ErrorAction SilentlyContinue
         }
 
         Get-ChildItem -Path $installDir -Recurse -File | Unblock-File -ErrorAction SilentlyContinue
 
-        # Verify executable exists
         $exePath = Join-Path $installDir $exeName
         if (-not (Test-Path $exePath)) {
             throw "File $exeName not found after extraction!"
@@ -352,7 +377,6 @@ function Install-GeetRPCS {
 
         $shortcutsCreated = @()
 
-        # Desktop Shortcut
         if ($DesktopShortcut) {
             $desktopPath = [Environment]::GetFolderPath("Desktop")
             $shortcutPath = Join-Path $desktopPath "geetRPCS.lnk"
@@ -371,12 +395,10 @@ function Install-GeetRPCS {
             Write-Host "      ├─ ✅ Desktop shortcut" -ForegroundColor DarkGray
         }
 
-        # Start Menu Shortcut
         if ($StartMenuShortcut) {
             $startMenuPath = Join-Path $env:APPDATA "Microsoft\Windows\Start Menu\Programs"
             $startMenuFolder = Join-Path $startMenuPath "geetRPCS"
 
-            # Buat folder di Start Menu
             if (-not (Test-Path $startMenuFolder)) {
                 New-Item -ItemType Directory -Path $startMenuFolder -Force | Out-Null
             }
@@ -393,7 +415,6 @@ function Install-GeetRPCS {
             $Shortcut.Description = "geetRPCS - PS3 Games Library Manager"
             $Shortcut.Save()
 
-            # Uninstall Start Menu shortcut
             $uninstallShortcutPath = Join-Path $startMenuFolder "Uninstall geetRPCS.lnk"
             $UninstallShortcut = $WshShell.CreateShortcut($uninstallShortcutPath)
             $UninstallShortcut.TargetPath = "powershell.exe"
@@ -413,7 +434,6 @@ function Install-GeetRPCS {
             Write-Host "      └─ Created: $($shortcutsCreated -join ', ')" -ForegroundColor DarkGray
         }
 
-        # Refresh icon cache
         if (Get-Command "ie4uinit.exe" -ErrorAction SilentlyContinue) {
             & "ie4uinit.exe" -show 2>$null
         }
@@ -436,6 +456,9 @@ function Install-GeetRPCS {
         }
         Write-Host ""
         Write-Host "  📁 Location: $installDir" -ForegroundColor Cyan
+        if ($ResetAppsJson) {
+            Write-Host "  🔄 apps.json has been reset to default" -ForegroundColor Yellow
+        }
         Write-Host ""
 
         Write-Host "Opening installation folder..." -ForegroundColor Gray
@@ -453,5 +476,4 @@ function Install-GeetRPCS {
     }
 }
 
-# Auto-run
 Install-GeetRPCS
