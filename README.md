@@ -572,7 +572,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
   <a href="https://www.virustotal.com/gui/file/36128aa46bd9505c3543f7ad2a9f9bbc51222b86fbd913d817f7b2bf056ab3dd/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file/a241c2b9cf59588b5f15be46072a54c224c1b94f5fb47d3a392ac65acb67a7c6/detection">
+  <a href="https://www.virustotal.com/gui/file-analysis/OTU0ZGQzZjA1YzczNWNiNTNmYTgzZjhlM2ExZDZhNWY6MTc2ODQ5NTkwMQ==/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
