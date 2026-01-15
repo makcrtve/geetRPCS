@@ -132,24 +132,25 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 - Multi-Language (EN/ID)
 - Global Hotkeys
 - Tray Quick Menu
+- Change App ID via Menu 🆕
 
 </td>
 <td width="25%" valign="top">
 
 **🔧 Utility**
-- Mouse Activity Tracking
+- Optimized Async I/O 🚀
 - True Hot Reload
 - Quick Config Access
 - Auto Startup
 - Event Logging
-- Update Checker
+- Update Checker (Custom UI) 🆕
 - Cache Management
 
 </td>
 <td width="25%" valign="top">
 
 **🎨 Customization**
-- Dynamic Witty Texts 🆕
+- Dynamic Witty Texts
 - Custom Discord Assets
 - Text Placeholders
 - Custom Buttons
@@ -184,7 +185,7 @@ The system tray icon now comes alive! When geetRPCS detects an app switch, the i
   <b>Show your real-time productivity level on Discord!</b>
 </p>
 
-geetRPCS features **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
+geetRPCS features the **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
 
 | Level | Emoji | Condition |
 |:------|:-----:|:----------|
@@ -282,6 +283,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 | 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
+| 🔑 Change App ID | Update Discord App ID instantly 🆕 |
 | 📊 Statistics | View & export statistics |
 | ⚡ Quick Actions | Access folder, edit config |
 | 🌐 Language | Change language (EN/ID) |
@@ -315,7 +317,20 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
 - Customize presence text
 - Add custom buttons
 
-> 💡 **Tip:** Create config.json via Quick Actions → "Edit config.json" (will auto-create with defaults)
+> 💡 **Tip:** Create config.json via Quick Actions → "Edit config.json" (will auto-create with defaults) OR use the new **"Change App ID"** menu item!
+
+<details>
+<summary><b>🔑 New: Change App ID from Tray</b></summary>
+
+Starting v1.3.1, you no longer need to edit `config.json` manually to change your Discord Application ID.
+
+1. Right-click tray icon
+2. Select **"🔑 Change App ID"**
+3. Enter your new Application ID
+4. Click OK
+
+The app will automatically update `config.json` and reload the Discord connection.
+</details>
 
 <details>
 <summary><b>📄 config.json</b> - Main configuration (Optional)</summary>
@@ -330,7 +345,7 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.0",
+      "LargeImageText": "geetRPCS v1.3.1",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -411,8 +426,8 @@ geetRPCS validates button URLs automatically:
 ├── witty.json            # Witty texts (required)
 ├── rpicon.ico            # Icon (required)
 ├── config.json           # Discord RPC Configuration (optional)
-├── settings.json         # User settings (auto-managed)
-├── statistics.json       # Tracking data (auto-managed)
+├── settings.json         # User settings (auto-managed, async)
+├── statistics.json       # Tracking data (auto-managed, async)
 ├── geetRPCS.log          # Log file (auto-generated)
 ├── .telemetry            # Launch counter (auto-generated)
 ├── ImageCache/           # Preview Image cache (auto-generated)
@@ -450,6 +465,8 @@ The installer will:
 - ✅ Backup your settings (`apps.json`, `settings.json`, `statistics.json`)
 - ✅ Install the update
 - ✅ Restore your settings
+
+**v1.3.1 Note:** The update checker now features a beautiful custom dialog matching Discord's theme!
 
 </details>
 
@@ -505,7 +522,7 @@ Check that your URLs:
 - Are valid URLs (not just domain names)
 - Labels are 32 characters or less
 
-**Example of valid button:**
+**Example of a valid button:**
 ```json
 { "label": "My Website", "url": "https://example.com" }
 ```
@@ -522,7 +539,7 @@ Ensure no other application is using the same shortcuts. Some fullscreen games r
 <details>
 <summary><b>Images not showing?</b></summary>
 
-1. Upload images in Discord Developer Portal
+1. Upload images in the Discord Developer Portal
 2. Wait a few minutes (Discord sync)
 3. Key names must match **exactly** (case sensitive)
 4. Preview Window → 🔄 Refresh (Auto-refresh enabled in v1.2.8)
@@ -542,7 +559,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 | Preview image empty | Clear Cache → Refresh |
 | Mouse hook failed | Run as Administrator |
 | Buttons not appearing | Check URL format (must start with http/https) |
-| Startup from temp rejected | Move app to permanent folder |
+| Startup from temp rejected | Move app to a permanent folder |
 | Already running | v1.2.8 prevents duplicate instances. Check tray. |
 
 </details>
@@ -552,10 +569,10 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/641f510931e9280af5e4aca37796b120b4c24514af7d685772868a680492ceff/detection">
+  <a href="https://www.virustotal.com/gui/file/36128aa46bd9505c3543f7ad2a9f9bbc51222b86fbd913d817f7b2bf056ab3dd/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file/3ec9263b32939cb1bd3c18fd5415f3450c3a86f5fa6c580034272f00113a5ed6/detection">
+  <a href="https://www.virustotal.com/gui/file/a241c2b9cf59588b5f15be46072a54c224c1b94f5fb47d3a392ac65acb67a7c6/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -563,7 +580,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.3.0:**
+**Scan Result v1.3.1:**
 - ✅ `0/71` | `0/70` malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
@@ -583,8 +600,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 ## 🔮 Roadmap
 
-- [x] Auto-update checker
-- [x] Statistics tracker
+- [x] Auto-update checker (Custom UI)
+- [x] Statistics tracker (Async I/O)
 - [x] Multi-language (EN/ID)
 - [x] Preview Window
 - [x] App Manager
@@ -597,6 +614,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] One-command installer/updater
 - [x] Single Instance Enforcement
 - [x] Memory Optimization
+- [x] Change App ID from Menu 🆕
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -615,5 +633,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.0 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.3.1 • MIT License • 2026</sub>
 </p>
