@@ -12,9 +12,6 @@ function Install-GeetRPCS {
         [switch]$StartMenuShortcut,
 
         [Parameter(Mandatory=$false)]
-        [switch]$ResetAppsJson,
-
-        [Parameter(Mandatory=$false)]
         [switch]$Silent
     )
 
@@ -22,16 +19,6 @@ function Install-GeetRPCS {
     $installDir = "$env:LOCALAPPDATA\geetRPCS"
     $exeName = "geetRPCS.exe"
     $versionFile = Join-Path $installDir ".version"
-
-    $preserveFolders = @(
-        "ImageCache", "Languages"
-    )
-
-    $preserveFiles = @(
-        "settings.json"
-    )
-
-    $appsJsonPath = Join-Path $installDir "apps.json"
 
     # ══════════════════════════════════════════════════════════════
     # HELPER FUNCTION: Show Menu
@@ -121,12 +108,6 @@ function Install-GeetRPCS {
                 $StartMenuShortcut = Show-YesNo -Question "Create Start Menu shortcut?" -Default $true
             }
 
-            if ((Test-Path $appsJsonPath) -and -not $PSBoundParameters.ContainsKey('ResetAppsJson')) {
-                Write-Host ""
-                Write-Host "⚠️  apps.json file detected" -ForegroundColor Yellow
-                $ResetAppsJson = Show-YesNo -Question "Reset apps.json to default? (No = keep current)" -Default $false
-            }
-
             Write-Host ""
         } else {
             if ([string]::IsNullOrWhiteSpace($Version)) {
@@ -135,9 +116,9 @@ function Install-GeetRPCS {
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [1/7] CHECK VERSION
+        # [1/6] CHECK VERSION
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[1/7] Checking latest version from GitHub..." -ForegroundColor Yellow
+        Write-Host "[1/6] Checking latest version from GitHub..." -ForegroundColor Yellow
         $releaseInfo = Invoke-RestMethod -Uri "https://api.github.com/repos/$repo/releases/latest" -ErrorAction Stop
         $latestTag = $releaseInfo.tag_name
 
@@ -150,7 +131,7 @@ function Install-GeetRPCS {
                 $installedVersion = $versionData.version
                 $installedType = $versionData.type
 
-                if ($installedVersion -eq $latestTag -and $installedType -eq $Version -and -not $ResetAppsJson) {
+                if ($installedVersion -eq $latestTag -and $installedType -eq $Version) {
                     Write-Host "`n✅ Already up to date! ($installedVersion - $installedType)" -ForegroundColor Green
 
                     $exePath = Join-Path $installDir $exeName
@@ -176,24 +157,24 @@ function Install-GeetRPCS {
         $tempExtractPath = Join-Path $env:TEMP "geetRPCS_extract_$(Get-Random)"
 
         # ══════════════════════════════════════════════════════════════
-        # [2/7] CLOSE RUNNING INSTANCE
+        # [2/6] CLOSE RUNNING INSTANCE
         # ══════════════════════════════════════════════════════════════
         $process = Get-Process | Where-Object { $_.ProcessName -eq "geetRPCS" }
         if ($process) {
-            Write-Host "[2/7] geetRPCS is running. Closing..." -ForegroundColor Yellow
+            Write-Host "[2/6] geetRPCS is running. Closing..." -ForegroundColor Yellow
             Stop-Process -Name "geetRPCS" -Force
             Start-Sleep -Seconds 2
         } else {
-            Write-Host "[2/7] No running instance found" -ForegroundColor DarkGray
+            Write-Host "[2/6] No running instance found" -ForegroundColor DarkGray
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [3/7] DOWNLOAD
+        # [3/6] DOWNLOAD
         # ══════════════════════════════════════════════════════════════
         if ($isUpdate) {
-            Write-Host "[3/7] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
+            Write-Host "[3/6] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
         } else {
-            Write-Host "[3/7] Downloading $Version version ($latestTag)..." -ForegroundColor Green
+            Write-Host "[3/6] Downloading $Version version ($latestTag)..." -ForegroundColor Green
         }
 
         $webClient = New-Object System.Net.WebClient
@@ -234,63 +215,9 @@ function Install-GeetRPCS {
         Write-Host "`n      Download complete!" -ForegroundColor Green
 
         # ══════════════════════════════════════════════════════════════
-        # [4/7] BACKUP USER DATA (if updating)
+        # [4/6] EXTRACT FILES
         # ══════════════════════════════════════════════════════════════
-        $backupPath = $null
-        if ($isUpdate -and (Test-Path $installDir)) {
-            Write-Host "[4/7] Backing up user data..." -ForegroundColor Yellow
-            $backupPath = Join-Path $env:TEMP "geetRPCS_backup_$(Get-Random)"
-            New-Item -ItemType Directory -Path $backupPath -Force | Out-Null
-
-            $backedUpCount = 0
-
-            foreach ($folder in $preserveFolders) {
-                $sourcePath = Join-Path $installDir $folder
-                if (Test-Path $sourcePath) {
-                    $destPath = Join-Path $backupPath $folder
-                    Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
-                    $backedUpCount++
-                    Write-Host "      ├─ 📁 $folder" -ForegroundColor DarkGray
-                }
-            }
-
-            foreach ($file in $preserveFiles) {
-                $sourcePath = Join-Path $installDir $file
-                if (Test-Path $sourcePath) {
-                    $destPath = Join-Path $backupPath $file
-
-                    $destDir = Split-Path $destPath -Parent
-                    if (-not (Test-Path $destDir)) {
-                        New-Item -ItemType Directory -Path $destDir -Force | Out-Null
-                    }
-                    Copy-Item -Path $sourcePath -Destination $destPath -Force
-                    $backedUpCount++
-                    Write-Host "      ├─ 📄 $file" -ForegroundColor DarkGray
-                }
-            }
-
-            if (-not $ResetAppsJson -and (Test-Path $appsJsonPath)) {
-                $destPath = Join-Path $backupPath "apps.json"
-                Copy-Item -Path $appsJsonPath -Destination $destPath -Force
-                $backedUpCount++
-                Write-Host "      ├─ 📄 apps.json (keeping current)" -ForegroundColor DarkGray
-            } elseif ($ResetAppsJson -and (Test-Path $appsJsonPath)) {
-                Write-Host "      ├─ 🔄 apps.json (will be reset to default)" -ForegroundColor Yellow
-            }
-
-            if ($backedUpCount -eq 0) {
-                Write-Host "      └─ No user data found" -ForegroundColor DarkGray
-            } else {
-                Write-Host "      └─ Backed up $backedUpCount items" -ForegroundColor DarkGray
-            }
-        } else {
-            Write-Host "[4/7] Fresh installation (no backup needed)" -ForegroundColor DarkGray
-        }
-
-        # ══════════════════════════════════════════════════════════════
-        # [5/7] EXTRACT & INSTALL
-        # ══════════════════════════════════════════════════════════════
-        Write-Host "[5/7] Extracting files..." -ForegroundColor Yellow
+        Write-Host "[4/6] Extracting files..." -ForegroundColor Yellow
 
         New-Item -ItemType Directory -Path $tempExtractPath -Force | Out-Null
         Expand-Archive -Path $tempPath -DestinationPath $tempExtractPath -Force
@@ -304,11 +231,15 @@ function Install-GeetRPCS {
             Write-Host "      └─ Found: $($extractedContent[0].Name)" -ForegroundColor DarkGray
         }
 
+        # ══════════════════════════════════════════════════════════════
+        # [5/6] CLEAN & INSTALL (Full Replace - No Preservation)
+        # ══════════════════════════════════════════════════════════════
         if (Test-Path $installDir) {
-            Write-Host "[6/7] Cleaning old installation..." -ForegroundColor Yellow
+            Write-Host "[5/6] Removing old installation completely..." -ForegroundColor Yellow
+            Write-Host "      ⚠️  All existing files will be replaced" -ForegroundColor DarkYellow
             Remove-Item -Path $installDir -Recurse -Force -ErrorAction SilentlyContinue
         } else {
-            Write-Host "[6/7] Creating installation directory..." -ForegroundColor Yellow
+            Write-Host "[5/6] Creating installation directory..." -ForegroundColor Yellow
         }
 
         New-Item -ItemType Directory -Path $installDir -Force | Out-Null
@@ -317,41 +248,6 @@ function Install-GeetRPCS {
         Copy-Item -Path "$sourceDir\*" -Destination $installDir -Recurse -Force
 
         Remove-Item -Path $tempExtractPath -Recurse -Force -ErrorAction SilentlyContinue
-
-        # ══════════════════════════════════════════════════════════════
-        # RESTORE USER DATA
-        # ══════════════════════════════════════════════════════════════
-        if ($backupPath -and (Test-Path $backupPath)) {
-            Write-Host "      └─ Restoring user data..." -ForegroundColor DarkGray
-
-            foreach ($folder in $preserveFolders) {
-                $sourcePath = Join-Path $backupPath $folder
-                if (Test-Path $sourcePath) {
-                    $destPath = Join-Path $installDir $folder
-                    Copy-Item -Path $sourcePath -Destination $destPath -Recurse -Force
-                }
-            }
-
-            foreach ($file in $preserveFiles) {
-                $sourcePath = Join-Path $backupPath $file
-                if (Test-Path $sourcePath) {
-                    $destPath = Join-Path $installDir $file
-                    Copy-Item -Path $sourcePath -Destination $destPath -Force
-                }
-            }
-
-            if (-not $ResetAppsJson) {
-                $appsJsonBackup = Join-Path $backupPath "apps.json"
-                if (Test-Path $appsJsonBackup) {
-                    Copy-Item -Path $appsJsonBackup -Destination $appsJsonPath -Force
-                    Write-Host "         ✅ apps.json restored" -ForegroundColor Green
-                }
-            } else {
-                Write-Host "         ✅ apps.json reset to default" -ForegroundColor Green
-            }
-
-            Remove-Item -Path $backupPath -Recurse -Force -ErrorAction SilentlyContinue
-        }
 
         Get-ChildItem -Path $installDir -Recurse -File | Unblock-File -ErrorAction SilentlyContinue
 
@@ -371,9 +267,9 @@ function Install-GeetRPCS {
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
 
         # ══════════════════════════════════════════════════════════════
-        # [7/7] CREATE SHORTCUTS
+        # [6/6] CREATE SHORTCUTS
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[7/7] Creating shortcuts..." -ForegroundColor Yellow
+        Write-Host "[6/6] Creating shortcuts..." -ForegroundColor Yellow
 
         $shortcutsCreated = @()
 
@@ -456,9 +352,26 @@ function Install-GeetRPCS {
         }
         Write-Host ""
         Write-Host "  📁 Location: $installDir" -ForegroundColor Cyan
-        if ($ResetAppsJson) {
-            Write-Host "  🔄 apps.json has been reset to default" -ForegroundColor Yellow
-        }
+        Write-Host ""
+
+        # ══════════════════════════════════════════════════════════════
+        # APOLOGY MESSAGE
+        # ══════════════════════════════════════════════════════════════
+        Write-Host "  ╔═══════════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ║   ⚠️  IMPORTANT NOTICE                                         ║" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ║   We apologize for any inconvenience this may cause.          ║" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ║   All previous files (including settings.json, apps.json,     ║" -ForegroundColor Magenta
+        Write-Host "  ║   ImageCache, and Languages) have been reset to default.      ║" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ║   You may need to reconfigure your settings and re-add        ║" -ForegroundColor Magenta
+        Write-Host "  ║   your game library.                                          ║" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ║   Thank you for your understanding! 🙏                        ║" -ForegroundColor Magenta
+        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
+        Write-Host "  ╚═══════════════════════════════════════════════════════════════╝" -ForegroundColor Magenta
         Write-Host ""
 
         Write-Host "Opening installation folder..." -ForegroundColor Gray
