@@ -132,7 +132,8 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 - Multi-Language (EN/ID)
 - Global Hotkeys
 - Tray Quick Menu
-- Change App ID via Menu 🆕
+- Change App ID via Menu
+- **Dynamic App ID Switching (Per-App) 🆕**
 
 </td>
 <td width="25%" valign="top">
@@ -143,7 +144,8 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 - Quick Config Access
 - Auto Startup
 - Event Logging
-- Update Checker (Custom UI) 🆕
+- Update Checker (Custom UI)
+- **Auto Apps DB Update 🆕**
 - Cache Management
 
 </td>
@@ -185,7 +187,7 @@ The system tray icon now comes alive! When geetRPCS detects an app switch, the i
   <b>Show your real-time productivity level on Discord!</b>
 </p>
 
-geetRPCS features the **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
+geetRPCS features a **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
 
 | Level | Emoji | Condition |
 |:------|:-----:|:----------|
@@ -224,7 +226,7 @@ Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humoro
 
 | App | Witty Texts |
 |:----|:------------|
-| **FL Studio** | "Producing the next heater 🔥", "Where is the snare? 🥁", "Soundgoodizer on Master 🎚️" |
+| **FL Studio** | "Producing next heater 🔥", "Where is snare? 🥁", "Soundgoodizer on Master 🎚️" |
 | **VS Code** | "Compiling spaghetti code 🍝", "It works on my machine 🤷", "Debugging 100 errors 🐛" |
 | **Chrome** | "100 tabs open 🔥", "Researching on YouTube 🎥", "Definitely working... 👀" |
 
@@ -283,7 +285,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 | 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
-| 🔑 Change App ID | Update Discord App ID instantly 🆕 |
+| 🔑 Change App ID | Update the default Discord App ID |
 | 📊 Statistics | View & export statistics |
 | ⚡ Quick Actions | Access folder, edit config |
 | 🌐 Language | Change language (EN/ID) |
@@ -317,19 +319,39 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
 - Customize presence text
 - Add custom buttons
 
-> 💡 **Tip:** Create config.json via Quick Actions → "Edit config.json" (will auto-create with defaults) OR use the new **"Change App ID"** menu item!
+> 💡 **Tip:** Create `config.json` via Quick Actions → "Edit config.json" (will auto-create with defaults) OR use the **"Change App ID"** menu item!
 
 <details>
-<summary><b>🔑 New: Change App ID from Tray</b></summary>
+<summary><b>🔑 Dynamic Client ID Switching (New in v1.3.2)</b></summary>
 
-Starting v1.3.1, you no longer need to edit `config.json` manually to change your Discord Application ID.
+You can now assign **different Discord App IDs for specific applications** without manually changing the config every time.
 
-1. Right-click tray icon
-2. Select **"🔑 Change App ID"**
-3. Enter your new Application ID
-4. Click OK
+**How it works:**
+1. Add a `"clientId"` field to a specific app in `apps.json`.
+2. When geetRPCS detects that app, it will automatically switch to that specific App ID.
+3. When you switch to another app (without a custom ID), it reverts to the global/default ID.
 
-The app will automatically update `config.json` and reload the Discord connection.
+**Example:**
+```json
+[
+  {
+    "process": "chrome",
+    "appName": "Google Chrome",
+    "clientId": "111111111111111111", 
+    ...
+  },
+  {
+    "process": "FL64",
+    "appName": "FL Studio",
+    "clientId": "222222222222222222", 
+    ...
+  }
+]
+```
+
+**Benefits:**
+- Different Discord Rich Presences for different contexts (Work vs Personal).
+- Use specific app assets/icons per application.
 </details>
 
 <details>
@@ -338,14 +360,14 @@ The app will automatically update `config.json` and reload the Discord connectio
 ```json
 {
   "Discord": {
-    "ApplicationId": "YOUR_DISCORD_APP_ID",
+    "ApplicationId": "YOUR_DEFAULT_DISCORD_APP_ID",
     "Details": "Idling...",
     "State": "Ready to work",
     "ActiveDetails": "Working on {app_name}",
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.1",
+      "LargeImageText": "geetRPCS v1.3.2",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -373,6 +395,7 @@ The app will automatically update `config.json` and reload the Discord connectio
     "smallKey": "geetrpcs-logo",
     "smallText": "geetRPCS",
     "customDetails": "Producing on {app_name}",
+    "clientId": "OPTIONAL_SPECIFIC_APP_ID",
     "buttons": [
       { "label": "My Portfolio", "url": "https://example.com" }
     ]
@@ -380,7 +403,9 @@ The app will automatically update `config.json` and reload the Discord connectio
 ]
 ```
 
-**Adding an app:** Task Manager → note process name → add to apps.json → Reload All (`Ctrl+Alt+R`)
+**Adding an app:** Task Manager → note process name → add to `apps.json` → Reload All (`Ctrl+Alt+R`)
+
+> **Note:** If `"clientId"` is omitted, the app uses the default ID from `config.json`.
 
 </details>
 
@@ -466,7 +491,42 @@ The installer will:
 - ✅ Install the update
 - ✅ Restore your settings
 
-**v1.3.1 Note:** The update checker now features a beautiful custom dialog matching Discord's theme!
+**v1.3.2 Note:** The update checker now features a beautiful custom dialog matching Discord's theme!
+
+</details>
+
+<details>
+<summary><b>How to use different Discord App IDs for specific apps?</b></summary>
+
+In **v1.3.2**, you can override the global App ID per app.
+
+1. Open `apps.json`.
+2. Add `"clientId": "YOUR_SPECIFIC_APP_ID"` to the desired application entry.
+3. Reload configuration (`Ctrl+Alt+R`).
+
+Example:
+```json
+{
+  "process": "VSCode",
+  "appName": "VS Code",
+  "clientId": "987654321098765432", 
+  ...
+}
+```
+This will use `987654321098765432` for VS Code only.
+
+</details>
+
+<details>
+<summary><b>How does the Automatic Apps Database Update work?</b></summary>
+
+Starting **v1.3.2**, geetRPCS automatically checks if your `apps.json` database is outdated upon startup.
+
+- **If update is found:** A dialog appears asking if you want to update.
+- **If you click "Update":** The app downloads the latest `apps.json` from GitHub and replaces the local one.
+- **If you click "Close":** You keep your current local version.
+
+This ensures you always have support for the latest software without manually downloading files.
 
 </details>
 
@@ -580,7 +640,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.3.1:**
+**Scan Result v1.3.2:**
 - ✅ `0/71` | `0/70` malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
@@ -614,7 +674,9 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] One-command installer/updater
 - [x] Single Instance Enforcement
 - [x] Memory Optimization
-- [x] Change App ID from Menu 🆕
+- [x] Change App ID from Menu
+- [x] **Dynamic App ID Switching (Per-App) 🆕**
+- [x] **Auto Apps Database Update 🆕**
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -633,5 +695,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.1 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.3.2 • MIT License • 2026</sub>
 </p>
