@@ -629,10 +629,10 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file/36128aa46bd9505c3543f7ad2a9f9bbc51222b86fbd913d817f7b2bf056ab3dd/detection">
+  <a href="https://www.virustotal.com/gui/file/630ce466ad21a17af1c2644f23725b5d650f0070939bd0d7b7ca3d2687189d73/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/OTU0ZGQzZjA1YzczNWNiNTNmYTgzZjhlM2ExZDZhNWY6MTc2ODQ5NTkwMQ==/detection">
+  <a href="https://www.virustotal.com/gui/file/50e01da9d75725c46116e8a2713a7741e2c6d8a65f1cb636ce6c2fa87180d625/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
