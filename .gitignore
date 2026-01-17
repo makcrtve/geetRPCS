@@ -108,3 +108,12 @@ $RECYCLE.BIN/
 *.log
 nlog-*.log
 
+# =========================== Assets Folder ===================================
+# Ignore everything in assets except files needed for README
+assets/*
+!assets/geetrpcs-banner.png
+!assets/screenshot-1.png
+!assets/screenshot-2.png
+!assets/screenshot-3.png
+!assets/screenshot-4.png
+!assets/discord-assets.png
