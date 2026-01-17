@@ -705,5 +705,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.3 • MIT License • 2026</sub>
+  <sub>geetRPCS v1.3.3 • Apache 2.0 License • 2026</sub>
 </p>
