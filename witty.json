@@ -1,0 +1,677 @@
+{
+  "_comment_music_production": "========== MUSIC PRODUCTION ==========",
+
+  "FL64": [
+    "Producing the next heater 🔥",
+    "Compressing the compressor 🔊",
+    "Where is the snare? 🥁",
+    "Staring at the piano roll 👀",
+    "Soundgoodizer on Master 🎚️",
+    "Maximus on everything 💪",
+    "It's the sidechain, trust me 🎛️",
+    "One more pattern... 🎹"
+  ],
+  "FL": [
+    "Producing the next heater 🔥",
+    "Compressing the compressor 🔊",
+    "Where is the snare? 🥁",
+    "Staring at the piano roll 👀",
+    "Soundgoodizer on Master 🎚️",
+    "Maximus on everything 💪",
+    "It's the sidechain, trust me 🎛️",
+    "One more pattern... 🎹"
+  ],
+  "Ableton Live 12 Suite": [
+    "Producing the next heater 🔥",
+    "Warping that sample 🎵",
+    "Where is the snare? 🥁",
+    "Pushing to the limit 🎚️",
+    "OTT on everything 🔊",
+    "Automating the automation 📈",
+    "Freezing and flattening 🧊",
+    "Max for Live magic ✨"
+  ],
+  "Cubase": [
+    "MIDI in, masterpiece out 🎹",
+    "Cubase logic > Logic Pro 😏",
+    "Channel strip perfection 🎛️",
+    "VariAudio wizardry 🎤",
+    "Control Room vibes 🎧",
+    "Steinberg supremacy 👑"
+  ],
+  "Cubase13": [
+    "MIDI in, masterpiece out 🎹",
+    "Cubase 13 superiority 😏",
+    "Channel strip perfection 🎛️",
+    "VariAudio wizardry 🎤",
+    "Control Room vibes 🎧",
+    "Steinberg supremacy 👑"
+  ],
+  "Cubase12": [
+    "MIDI in, masterpiece out 🎹",
+    "Cubase 12 excellence 😏",
+    "Channel strip perfection 🎛️",
+    "VariAudio wizardry 🎤",
+    "Control Room vibes 🎧",
+    "Steinberg supremacy 👑"
+  ],
+  "reaper": [
+    "Routing everything to everything 🔀",
+    "Custom actions FTW ⚡",
+    "It's called efficiency 💰",
+    "ReaScript magic 🪄",
+    "SWS extensions loaded 🚀",
+    "The DAW that never crashes 🛡️"
+  ],
+  "Pro Tools": [
+    "Industry standard things 🎙️",
+    "Bouncing to disk... again ⏳",
+    "Session file: 47GB 💾",
+    "AAX plugins only 🔌",
+    "The studio choice 🏆",
+    "Recording the masterpiece 🎚️"
+  ],
+  "ProTools": [
+    "Industry standard things 🎙️",
+    "Bouncing to disk... again ⏳",
+    "Session file: 47GB 💾",
+    "AAX plugins only 🔌",
+    "The studio choice 🏆",
+    "Recording the masterpiece 🎚️"
+  ],
+  "Studio One": [
+    "Drag and drop everything 🎵",
+    "One DAW to rule them all 💍",
+    "Scratch pad experiments 📝",
+    "PreSonus perfection 🎛️",
+    "Arranger track genius 🧠",
+    "Fat Channel vibes 🔊"
+  ],
+  "Studio One 6": [
+    "Drag and drop everything 🎵",
+    "Studio One 6 supremacy 💍",
+    "Scratch pad experiments 📝",
+    "PreSonus perfection 🎛️",
+    "Arranger track genius 🧠",
+    "Fat Channel vibes 🔊"
+  ],
+  "Reason": [
+    "Flipping the rack 🔄",
+    "Cable management pro 🎛️",
+    "Reason to make music 🎹",
+    "Combinators on combinators 📦",
+    "Virtual studio vibes 🎨",
+    "Dr. Octo REX time 🎵"
+  ],
+  "Cakewalk": [
+    "Free DAW, priceless music 🎵",
+    "BandLab blessing 🙏",
+    "SONAR legacy continues 🎹",
+    "Skylight interface 🌟",
+    "Producer on a budget 💰",
+    "Windows warrior 🪟"
+  ],
+  "SONAR": [
+    "Free DAW, priceless music 🎵",
+    "BandLab blessing 🙏",
+    "SONAR legacy continues 🎹",
+    "Skylight interface 🌟",
+    "Producer on a budget 💰",
+    "Windows warrior 🪟"
+  ],
+  "Bitwig": [
+    "Modular everything 🎛️",
+    "Grid patching 🔌",
+    "Clip launcher vibes 🎵",
+    "Bitwig excellence ⚡",
+    "Hybrid tracks master 🔀",
+    "Modern DAW king 👑"
+  ],
+
+  "_comment_audio_editing": "========== AUDIO EDITING ==========",
+
+  "Adobe Audition": [
+    "Waveform therapy 🎵",
+    "Noise reduction wizard 🎚️",
+    "Multitrack mixing 🎧",
+    "Podcast perfection 🎙️",
+    "Spectral editing magic ✨",
+    "Audio cleanup pro 🧹"
+  ],
+  "audacity": [
+    "Free audio editor king 👑",
+    "Noise removal wizard 🎚️",
+    "Waveform staring 👀",
+    "Effect chain building 🔗",
+    "Open source audio 🎵",
+    "Recording legend 🎙️"
+  ],
+
+  "_comment_video_editing": "========== VIDEO EDITING ==========",
+
+  "Adobe Premiere Pro": [
+    "Timeline tetris 🎬",
+    "Rendering overnight ⏳",
+    "Lumetri color grading 🎨",
+    "Proxy workflow champion 📹",
+    "Essential Graphics master 🎯",
+    "Keyboard shortcut ninja ⌨️",
+    "Mercury Engine go brrrr 🚀"
+  ],
+  "AfterFX": [
+    "Keyframe wizard 🪄",
+    "Expressions everywhere 💻",
+    "RAM preview loading... ⏳",
+    "Motion graphics magic ✨",
+    "Plugin collection: unlimited 🔌",
+    "Comp nesting inception 🎭",
+    "After Effects supremacy 👑"
+  ],
+  "Resolve": [
+    "Color grading cinema 🎨",
+    "Node-based perfection 🔗",
+    "Free Hollywood editor 🎬",
+    "Fusion compositing 🌟",
+    "Fairlight audio master 🎚️",
+    "Professional on a budget 💰"
+  ],
+  "DaVinci Resolve": [
+    "Color grading cinema 🎨",
+    "Node-based perfection 🔗",
+    "Free Hollywood editor 🎬",
+    "Fusion compositing 🌟",
+    "Fairlight audio master 🎚️",
+    "Professional on a budget 💰"
+  ],
+  "Filmora": [
+    "Beginner no more 🎬",
+    "Template master 📋",
+    "Quick edit champion ⚡",
+    "YouTube ready 📺",
+    "Effects library heaven 🌈",
+    "Easy mode activated 😎"
+  ],
+  "Filmora X": [
+    "Beginner no more 🎬",
+    "Filmora X excellence 📋",
+    "Quick edit champion ⚡",
+    "YouTube ready 📺",
+    "Effects library heaven 🌈",
+    "Easy mode activated 😎"
+  ],
+  "vegas": [
+    "Event-based editing 🎞️",
+    "Timeline sorcery 🪄",
+    "Vegas baby! 🎰",
+    "Nested timeline chaos 🔀",
+    "Keyframe animation ✨",
+    "Windows editor OG 🪟"
+  ],
+  "VEGAS Pro": [
+    "Event-based editing 🎞️",
+    "Timeline sorcery 🪄",
+    "Vegas baby! 🎰",
+    "Nested timeline chaos 🔀",
+    "Keyframe animation ✨",
+    "Windows editor OG 🪟"
+  ],
+  "CapCut": [
+    "TikTok edit incoming 📱",
+    "Template master 🎬",
+    "Trending audio vibes 🎵",
+    "Effect overload ✨",
+    "Vertical video pro 📲",
+    "Gen Z editor 😎"
+  ],
+
+  "_comment_3d_modeling": "========== 3D MODELING & ANIMATION ==========",
+
+  "blender": [
+    "Donut tutorial survivor 🍩",
+    "Free 3D supremacy 🏆",
+    "Render time: infinity ⏳",
+    "Cycles vs Eevee debate 🤔",
+    "Shift+A everything 🎨",
+    "Geometry Nodes wizard 🪄",
+    "Modeling the masterpiece 🗿"
+  ],
+  "maya": [
+    "Industry standard modeling 🎨",
+    "Autodesk subscription pain 💸",
+    "Graph Editor guru 📊",
+    "Polygon pushing pro 🔺",
+    "MEL scripting time 💻",
+    "Animation excellence 🎬"
+  ],
+  "Maya": [
+    "Industry standard modeling 🎨",
+    "Autodesk subscription pain 💸",
+    "Graph Editor guru 📊",
+    "Polygon pushing pro 🔺",
+    "MEL scripting time 💻",
+    "Animation excellence 🎬"
+  ],
+  "ZBrush": [
+    "Million polygon sculpting 🗿",
+    "DynaMesh everything 🔄",
+    "Subdivision surface master 📊",
+    "ZBrush supremacy 👑",
+    "Digital clay wizard 🎨",
+    "Pixologic legend ⚡"
+  ],
+  "Adobe Substance 3D Painter": [
+    "PBR texturing pro 🎨",
+    "Smart materials magic 🪄",
+    "UV painting wizard 🖼️",
+    "Substance excellence ✨",
+    "Layer stack inception 📚",
+    "Baking perfection 🍞"
+  ],
+  "Substance 3D Painter": [
+    "PBR texturing pro 🎨",
+    "Smart materials magic 🪄",
+    "UV painting wizard 🖼️",
+    "Substance excellence ✨",
+    "Layer stack inception 📚",
+    "Baking perfection 🍞"
+  ],
+
+  "_comment_cad_architecture": "========== CAD & ARCHITECTURE ==========",
+
+  "SketchUp": [
+    "Push/Pull champion 📐",
+    "3D warehouse shopping 🛒",
+    "Architect's best friend 🏛️",
+    "Simple = Powerful ⚡",
+    "Extensions for days 🔌",
+    "Layout legend 📋"
+  ],
+  "SketchUp 2024": [
+    "Push/Pull champion 📐",
+    "3D warehouse 2024 🛒",
+    "Architect's best friend 🏛️",
+    "Simple = Powerful ⚡",
+    "Extensions for days 🔌",
+    "Layout legend 📋"
+  ],
+  "SketchUp 2023": [
+    "Push/Pull champion 📐",
+    "3D warehouse 2023 🛒",
+    "Architect's best friend 🏛️",
+    "Simple = Powerful ⚡",
+    "Extensions for days 🔌",
+    "Layout legend 📋"
+  ],
+  "acad": [
+    "Layer 0 everything 📏",
+    "Command line wizard ⌨️",
+    "Drafting perfection 📐",
+    "XREF nightmare 🔗",
+    "Dimension style chaos 📊",
+    "CAD master 👑"
+  ],
+  "AutoCAD": [
+    "Layer 0 everything 📏",
+    "Command line wizard ⌨️",
+    "Drafting perfection 📐",
+    "XREF nightmare 🔗",
+    "Dimension style chaos 📊",
+    "CAD master 👑"
+  ],
+  "AutoCAD 2024": [
+    "Layer 0 everything 📏",
+    "AutoCAD 2024 precision ⌨️",
+    "Drafting perfection 📐",
+    "XREF nightmare 🔗",
+    "Dimension style chaos 📊",
+    "CAD master 👑"
+  ],
+  "AutoCAD 2025": [
+    "Layer 0 everything 📏",
+    "AutoCAD 2025 precision ⌨️",
+    "Drafting perfection 📐",
+    "XREF nightmare 🔗",
+    "Dimension style chaos 📊",
+    "CAD master 👑"
+  ],
+
+  "_comment_graphic_design": "========== GRAPHIC DESIGN & PHOTO EDITING ==========",
+
+  "Photoshop": [
+    "Fixing ugly pixels 🎨",
+    "Final_final_v2.psd 📁",
+    "Ctrl+Z is my best friend ↩️",
+    "Making the logo bigger 📏",
+    "Content-Aware Fill magic 🪄",
+    "Layer count: 147 📚",
+    "Pen tool precision ✏️",
+    "Neural filters experimenting 🤖"
+  ],
+  "Illustrator": [
+    "Anchor point perfection ⚓",
+    "Pen tool master ✏️",
+    "Vector everything 📐",
+    "Pathfinder operations 🔀",
+    "Artboard organizing 🎨",
+    "Logo design champion 👑",
+    "Bézier curve zen 📈"
+  ],
+  "Lightroom": [
+    "Slider moving simulator 🎚️",
+    "Preset hunting 🎨",
+    "Catalog organizing 📚",
+    "RAW processing pro 📸",
+    "Before/after obsession 🔄",
+    "HSL panel wizard 🌈"
+  ],
+  "gimp": [
+    "Free Photoshop alternative 🎨",
+    "Open source champion 🏆",
+    "Layer masking pro 🖼️",
+    "Filters for days 🌈",
+    "G'MIC plugin heaven 🔌",
+    "GIMP gang 💪"
+  ],
+  "gimp-2.10": [
+    "Free Photoshop alternative 🎨",
+    "Open source champion 🏆",
+    "Layer masking pro 🖼️",
+    "Filters for days 🌈",
+    "G'MIC plugin heaven 🔌",
+    "GIMP gang 💪"
+  ],
+  "inkscape": [
+    "SVG supremacy 🎨",
+    "Path perfection 📐",
+    "Free vector king 👑",
+    "Bézier bezier bezier 📈",
+    "Extensions library 🔌",
+    "Trace bitmap wizard 🪄"
+  ],
+  "Affinity": [
+    "Designer, Photo, or Publisher? 🤔",
+    "One-time payment gang 💰",
+    "Adobe alternative pro 🎨",
+    "Studio Link magic 🔗",
+    "Affinity supremacy ⚡",
+    "Professional on budget 💎"
+  ],
+  "CorelDRW": [
+    "Vector veteran 🎨",
+    "CorelDRAW classic ⭐",
+    "Bézier curve master 📈",
+    "Print shop champion 🖨️",
+    "Not Adobe, better 😏",
+    "PowerClip magic 🪄"
+  ],
+  "CorelDRAW": [
+    "Vector veteran 🎨",
+    "CorelDRAW classic ⭐",
+    "Bézier curve master 📈",
+    "Print shop champion 🖨️",
+    "Not Adobe, better 😏",
+    "PowerClip magic 🪄"
+  ],
+  "krita": [
+    "Digital painting pro 🎨",
+    "Brush engine heaven 🖌️",
+    "Free art software king 👑",
+    "Layer blending magic ✨",
+    "Animation workflow 🎬",
+    "Stabilizer on max 📏"
+  ],
+  "CLIPStudioPaint": [
+    "Manga mode activated 📚",
+    "3D model reference 🗿",
+    "Brush collection: infinite 🖌️",
+    "Perspective ruler wizard 📐",
+    "Comic panel master 🎨",
+    "Digital art excellence ✨"
+  ],
+  "Aseprite": [
+    "Pixel art perfection 🎨",
+    "Frame by frame ⏱️",
+    "8-bit aesthetic 👾",
+    "Sprite sheet master 📋",
+    "Palette perfection 🎨",
+    "Indie game dev 🎮"
+  ],
+
+  "_comment_ui_ux_design": "========== UI/UX DESIGN ==========",
+
+  "Figma": [
+    "Auto-layout everything 📐",
+    "Component master 🧩",
+    "FigJam brainstorm 💡",
+    "Design system building 🎨",
+    "It's not just for design 😏",
+    "Collaborative chaos 👥",
+    "Prototyping magic ✨"
+  ],
+  "figma": [
+    "Auto-layout everything 📐",
+    "Component master 🧩",
+    "FigJam brainstorm 💡",
+    "Design system building 🎨",
+    "It's not just for design 😏",
+    "Collaborative chaos 👥",
+    "Prototyping magic ✨"
+  ],
+  "Canva": [
+    "Template hunting 🎨",
+    "Design made easy 😎",
+    "Brand kit perfection 🎯",
+    "Social media ready 📱",
+    "Non-designer designer 🖼️",
+    "Drag, drop, done ✨"
+  ],
+
+  "_comment_streaming": "========== STREAMING & RECORDING ==========",
+
+  "obs64": [
+    "Stream starting in 3... 🎥",
+    "Dropped frames: 0 💪",
+    "Scene switching ninja 🥷",
+    "Going live! 🔴",
+    "Chat is this real? 💬",
+    "Bitrate optimization 📊",
+    "Encoder settings wizard 🎛️"
+  ],
+  "obs32": [
+    "Stream starting in 3... 🎥",
+    "Dropped frames: 0 💪",
+    "Scene switching ninja 🥷",
+    "Going live! 🔴",
+    "Chat is this real? 💬",
+    "Bitrate optimization 📊",
+    "Encoder settings wizard 🎛️"
+  ],
+  "Streamlabs OBS": [
+    "Streamlabs supremacy 🎮",
+    "Widget overload 📊",
+    "Alert testing time 🔔",
+    "Going live with style 🎨",
+    "Donation goals loading 💰",
+    "Chat integration pro 💬"
+  ],
+  "Streamlabs Desktop": [
+    "Streamlabs supremacy 🎮",
+    "Widget overload 📊",
+    "Alert testing time 🔔",
+    "Going live with style 🎨",
+    "Donation goals loading 💰",
+    "Chat integration pro 💬"
+  ],
+
+  "_comment_media_tools": "========== MEDIA TOOLS ==========",
+
+  "HandBrake": [
+    "Compressing the compression 🗜️",
+    "RF value: 18 📊",
+    "Queue of 47 videos ⏳",
+    "Free converter king 👑",
+    "x264 vs x265 debate 🤔",
+    "Shrinking file sizes 📉"
+  ],
+  "vlc": [
+    "Playing everything 🎬",
+    "Codec? What codec? 🎥",
+    "Traffic cone vibes 🚧",
+    "VLC supremacy 👑",
+    "Media player king 🏆",
+    "Shortcuts memorized ⌨️"
+  ],
+
+  "_comment_browsers": "========== WEB BROWSERS ==========",
+
+  "brave": [
+    "Researching on YouTube 🎥",
+    "100 tabs open 🔥",
+    "Definitely working... 👀",
+    "Ad-free browsing 🛡️",
+    "Crypto rewards earning 💰",
+    "Privacy mode: ON 🔒",
+    "BAT tokens stacking 📈"
+  ],
+  "chrome": [
+    "Researching on YouTube 🎥",
+    "100 tabs open 🔥",
+    "Definitely working... 👀",
+    "RAM? What RAM? 💾",
+    "Extension overload 🔌",
+    "Incognito moment 🕵️",
+    "Google everything 🌐"
+  ],
+  "firefox": [
+    "Researching on YouTube 🎥",
+    "100 tabs open 🔥",
+    "Definitely working... 👀",
+    "Privacy first 🔒",
+    "Fox mode activated 🦊",
+    "Addon paradise 🔌",
+    "Not Chrome gang 💪"
+  ],
+  "zen": [
+    "Researching on YouTube 🎥",
+    "Zen browsing mode 🧘",
+    "Definitely working... 👀",
+    "Minimalist vibes ✨",
+    "Tab management zen 🎯",
+    "Firefox but cooler 😎"
+  ],
+  "msedge": [
+    "Researching on YouTube 🎥",
+    "100 tabs open 🔥",
+    "Definitely working... 👀",
+    "Chromium but Microsoft 🪟",
+    "Bing rewards hunting 💰",
+    "Copilot sidebar 🤖",
+    "Collections organizing 📚"
+  ],
+
+  "_comment_office": "========== OFFICE & PRODUCTIVITY ==========",
+
+  "WINWORD": [
+    "Writing on {app_name} 📝",
+    "Formatting nightmare 📄",
+    "Track changes chaos 🔄",
+    "Template master 📋",
+    "Microsoft Word warrior ⌨️",
+    "Page break drama 📃"
+  ],
+  "EXCEL": [
+    "VLOOKUP or die 📊",
+    "Pivot table wizard 🔄",
+    "Formula inception =IF(IF(IF 💻",
+    "Spreadsheet sorcery 🪄",
+    "Conditional formatting ✨",
+    "Macro recording 🤖",
+    "Cell merging regrets 🙃"
+  ],
+  "POWERPNT": [
+    "Slide master 🎭",
+    "Transition overload ✨",
+    "Death by PowerPoint 💀",
+    "Presenter view panic 👀",
+    "Template hunting 🎨",
+    "Animation timeline chaos ⏱️"
+  ],
+  "Notion": [
+    "Second brain building 🧠",
+    "Database inception 📊",
+    "Template obsession 📋",
+    "Productivity theater 🎭",
+    "Page linking chaos 🔗",
+    "Notion supremacy 👑"
+  ],
+
+  "_comment_communication": "========== COMMUNICATION ==========",
+
+  "Telegram": [
+    "Privacy first 🔒",
+    "Sticker collection: 1000+ 😄",
+    "Secret chat mode 🤫",
+    "Channel scrolling 📱",
+    "Group chat chaos 💬",
+    "Cloud storage unlimited ☁️"
+  ],
+  "Slack": [
+    "Channel surfing 💬",
+    "@ everyone panic 🚨",
+    "Emoji reaction king 😄",
+    "Thread diving 🏊",
+    "Integration overload 🔌",
+    "Status updating 📍"
+  ],
+  "WhatsApp": [
+    "Message seen: panic 👀",
+    "Group chat muting 🔇",
+    "Voice note sending 🎙️",
+    "Status stalking 👻",
+    "Forwarding chains 🔄",
+    "WhatsApp Web pro 💻"
+  ],
+  "Zoom": [
+    "You're on mute 🎤",
+    "Virtual background fails 🤦",
+    "Waiting room vibes ⏳",
+    "Gallery view judging 👀",
+    "Screen sharing panic 🖥️",
+    "Breakout room chaos 🌪️"
+  ],
+
+  "_comment_data_science": "========== DATA SCIENCE & ANALYSIS ==========",
+
+  "Orange": [
+    "Visual programming ✨",
+    "Widget connecting 🔗",
+    "Data mining made easy 📊",
+    "Machine learning GUI 🤖",
+    "Python without code 🐍",
+    "Workflow building 🔨"
+  ],
+  "Orange3": [
+    "Visual programming ✨",
+    "Widget connecting 🔗",
+    "Data mining made easy 📊",
+    "Machine learning GUI 🤖",
+    "Python without code 🐍",
+    "Workflow building 🔨"
+  ],
+  "pythonw": [
+    "Visual programming ✨",
+    "Widget connecting 🔗",
+    "Data mining made easy 📊",
+    "Machine learning GUI 🤖",
+    "Python without code 🐍",
+    "Workflow building 🔨"
+  ],
+  "python": [
+    "Visual programming ✨",
+    "Widget connecting 🔗",
+    "Data mining made easy 📊",
+    "Machine learning GUI 🤖",
+    "Python without code 🐍",
+    "Workflow building 🔨"
+  ]
+}

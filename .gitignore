@@ -1,0 +1,110 @@
+# ============================================================================
+#  geetRPCS - .gitignore
+#  GitHub: https://github.com/makcrtve/geetRPCS
+# ============================================================================
+
+# =========================== Build Results ===================================
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+publish/
+
+# =========================== Visual Studio ===================================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Visual Studio cache/options directory
+.vs/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+*.nuget.props
+*.nuget.targets
+
+# =========================== .NET Core / SDK =================================
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+# =========================== User-specific files =============================
+*.userprefs
+*.DotSettings.user
+
+# =========================== Local configuration =============================
+# Configuration files that may contain sensitive data
+config.json
+
+# Backup files
+*.backup
+*.bak
+
+# =========================== IDE / Editors ===================================
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# =========================== Windows =========================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# =========================== macOS ===========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# =========================== Temporary files =================================
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+
+# =========================== Generated documentation =========================
+*.md
+
+# =========================== Scripts =========================================
+*.bat
+*.ps1
+
+# =========================== Configuration ===================================
+*.ini
+
+# =========================== Logs ============================================
+*.log
+nlog-*.log
+

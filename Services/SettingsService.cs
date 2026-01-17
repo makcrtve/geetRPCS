@@ -1,0 +1,132 @@
+/**
+ * geetRPCS - Settings Service
+ * Manages persistent application settings
+ */
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
+using geetRPCS.Models;
+
+namespace geetRPCS.Services
+{
+    internal class SettingsService
+    {
+        private static readonly string SettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.json");
+        private static readonly object _lock = new object();
+        private static SettingsService _instance;
+        private static AppSettings _settings;
+        public static SettingsService Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        _instance ??= new SettingsService();
+                    }
+                }
+                return _instance;
+            }
+        }
+        private SettingsService()
+        {
+            Load();
+        }
+        // --- Property Accessors ---
+        public string Language
+        {
+            get { lock (_lock) { return _settings.Language; } }
+            set { lock (_lock) { _settings.Language = value; } }
+        }
+        public List<string> DisabledApps
+        {
+            get { lock (_lock) { return _settings.DisabledApps; } }
+            set { lock (_lock) { _settings.DisabledApps = value; } }
+        }
+        public bool MouseEnergyEnabled
+        {
+            get { lock (_lock) { return _settings.MouseEnergyEnabled; } }
+            set { lock (_lock) { _settings.MouseEnergyEnabled = value; } }
+        }
+        public bool TrayAnimationEnabled
+        {
+            get { lock (_lock) { return _settings.TrayAnimationEnabled; } }
+            set { lock (_lock) { _settings.TrayAnimationEnabled = value; } }
+        }
+        public bool TelemetryEnabled
+        {
+            get { lock (_lock) { return _settings.TelemetryEnabled; } }
+            set { lock (_lock) { _settings.TelemetryEnabled = value; } }
+        }
+        public Dictionary<string, AppOverrideConfig> AppOverrides
+        {
+            get { lock (_lock) { return _settings.AppOverrides; } }
+            set { lock (_lock) { _settings.AppOverrides = value; } }
+        }
+        private static void Load()
+        {
+            try
+            {
+                if (File.Exists(SettingsPath))
+                {
+                    string json = File.ReadAllText(SettingsPath);
+                    _settings = JsonSerializer.Deserialize<AppSettings>(json, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    }) ?? new AppSettings();
+                }
+                else
+                {
+                    _settings = new AppSettings();
+                }
+            }
+            catch
+            {
+                _settings = new AppSettings();
+            }
+        }
+        private static readonly System.Threading.SemaphoreSlim _fileLock = new System.Threading.SemaphoreSlim(1, 1);
+        public static async Task SaveAsync()
+        {
+            try
+            {
+                string json;
+                lock (_lock)
+                {
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    json = JsonSerializer.Serialize(_settings, options);
+                }
+                await _fileLock.WaitAsync().ConfigureAwait(false);
+                try
+                {
+                    await File.WriteAllTextAsync(SettingsPath, json).ConfigureAwait(false);
+                }
+                finally
+                {
+                    _fileLock.Release();
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "geetRPCS.log");
+                    string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                    File.AppendAllText(logPath, $"[{timestamp}] [SettingsService] [ERROR] Failed to save settings: {ex.Message}\r\n");
+                }
+                catch { /* If logging fails, we can't do much */ }
+            }
+        }
+        public static void Reload()
+        {
+            lock (_lock)
+            {
+                Load();
+            }
+        }
+    }
+}

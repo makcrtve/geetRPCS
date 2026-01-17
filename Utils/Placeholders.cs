@@ -1,0 +1,48 @@
+/**
+ * geetRPCS - Placeholder Resolver
+ * Handles dynamic variable replacement in RPC text (e.g., {app_name})
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Text;
+using geetRPCS.Services;
+
+namespace geetRPCS.Utils
+{
+    internal static class Placeholders
+    {
+        public static void Reload() => AppConfigManager.Reload();
+        public static string GetAppName(string processName)
+        {
+            var app = AppConfigManager.Apps.Find(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
+            return app?.AppName ?? processName;
+        }
+        public static string Replace(string format, string processName, IntPtr hWnd)
+        {
+            if (string.IsNullOrEmpty(format)) return format;
+            string appName = GetAppName(processName);
+            string title = GetWindowTitle(hWnd);
+            if (string.IsNullOrEmpty(title) || title.Length <= 3) title = "Working...";
+            return format.Replace("{process_name}", processName)
+                .Replace("{app_name}", appName)
+                .Replace("{window_title}", title);
+        }
+        public static string GetWindowTitle(IntPtr hWnd)
+        {
+            if (hWnd == IntPtr.Zero) return "";
+            int len = GetWindowTextLengthW(hWnd);
+            if (len <= 0) return "";
+            var sb = new StringBuilder(len + 1);
+            GetWindowTextW(hWnd, sb, sb.Capacity);
+            string title = sb.ToString();
+            if (string.IsNullOrWhiteSpace(title) || title.Length <= 3) return "";
+            return title;
+        }
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetWindowTextLengthW(IntPtr hWnd);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern int GetWindowTextW(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+    }
+}

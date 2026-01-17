@@ -1,0 +1,876 @@
+[
+  {
+    "db_version": "1.3.2.3",
+    "_comment": "Database Version - DO NOT REMOVE"
+  },
+  {
+    "_comment": "========== MUSIC PRODUCTION =========="
+  },
+  {
+    "process": "FL64",
+    "appName": "FL Studio 2025",
+    "clientId": "1461667363102654518",
+    "largeKey": "flstudio",
+    "largeText": "FL Studio 2025",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "My Portfolio",
+        "url": "https://example.com"
+      },
+      {
+        "label": "My Portfolio",
+        "url": "https://example.com"
+      }
+    ]
+  },
+  {
+    "process": "FL",
+    "appName": "FL Studio 2025",
+    "clientId": "1461667363102654518",
+    "largeKey": "flstudio",
+    "largeText": "FL Studio 2025",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      { "label": "My Website", "url": "https://yourwebsite.com" }
+    ]
+  },
+  {
+    "process": "Ableton Live 12 Suite",
+    "appName": "Ableton Live 12 Suite",
+    "clientId": "1461306928864035043",
+    "largeKey": "ableton",
+    "largeText": "Ableton Live 12 Suite",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "My Portfolio",
+        "url": "https://example.com"
+      },
+      {
+        "label": "My Portfolio",
+        "url": "https://example.com"
+      }
+    ]
+  },
+  {
+    "process": "Cubase",
+    "appName": "Cubase",
+    "clientId": "1461601267557203968",
+    "largeKey": "cubase",
+    "largeText": "Cubase",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Cubase13",
+    "appName": "Cubase 13",
+    "clientId": "1461601267557203968",
+    "largeKey": "cubase",
+    "largeText": "Cubase 13",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Cubase12",
+    "appName": "Cubase 12",
+    "clientId": "1461601267557203968",
+    "largeKey": "cubase",
+    "largeText": "Cubase 12",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "reaper",
+    "appName": "REAPER",
+    "clientId": "1461679107816554636",
+    "largeKey": "reaper",
+    "largeText": "REAPER",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Pro Tools",
+    "appName": "Pro Tools",
+    "clientId": "1461679857346936975",
+    "largeKey": "protools",
+    "largeText": "Pro Tools",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "ProTools",
+    "appName": "Pro Tools",
+    "clientId": "1461679857346936975",
+    "largeKey": "protools",
+    "largeText": "Pro Tools",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Studio One",
+    "appName": "Studio One",
+    "clientId": "1461679341078450309",
+    "largeKey": "studioone",
+    "largeText": "Studio One",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Studio One 6",
+    "appName": "Studio One 6",
+    "clientId": "1461679341078450309",
+    "largeKey": "studioone",
+    "largeText": "Studio One 6",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Reason",
+    "appName": "Reason",
+    "clientId": "1461679631408037918",
+    "largeKey": "reason",
+    "largeText": "Reason",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Cakewalk",
+    "appName": "Cakewalk by BandLab",
+    "clientId": "1461588028777824422",
+    "largeKey": "cakewalk",
+    "largeText": "Cakewalk by BandLab",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "SONAR",
+    "appName": "Cakewalk by BandLab",
+    "clientId": "1461588028777824422",
+    "largeKey": "cakewalk",
+    "largeText": "Cakewalk by BandLab",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Bitwig",
+    "appName": "Bitwig Studio",
+    "clientId": "1461568784866476145",
+    "largeKey": "bitwig",
+    "largeText": "Bitwig Studio",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== AUDIO EDITING =========="
+  },
+  {
+    "process": "Adobe Audition",
+    "appName": "Adobe Audition",
+    "clientId": "1461568490103247020",
+    "largeKey": "audition",
+    "largeText": "Adobe Audition",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "audacity",
+    "appName": "Audacity",
+    "clientId": "1461568318384373800",
+    "largeKey": "audacity",
+    "largeText": "Audacity",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== VIDEO EDITING =========="
+  },
+  {
+    "process": "Adobe Premiere Pro",
+    "appName": "Adobe Premiere Pro",
+    "clientId": "1461680115309219901",
+    "largeKey": "premierepro",
+    "largeText": "Adobe Premiere Pro",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "AfterFX",
+    "appName": "Adobe After Effects",
+    "clientId": "1461567942956159017",
+    "largeKey": "aftereffects",
+    "largeText": "Adobe After Effects",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Resolve",
+    "appName": "DaVinci Resolve",
+    "clientId": "1461666003665817630",
+    "largeKey": "davinci",
+    "largeText": "DaVinci Resolve",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "DaVinci Resolve",
+    "appName": "DaVinci Resolve",
+    "clientId": "1461666003665817630",
+    "largeKey": "davinci",
+    "largeText": "DaVinci Resolve",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Filmora",
+    "appName": "Wondershare Filmora",
+    "clientId": "1461666678281863333",
+    "largeKey": "filmora",
+    "largeText": "Wondershare Filmora",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Filmora X",
+    "appName": "Wondershare Filmora X",
+    "clientId": "1461666678281863333",
+    "largeKey": "filmora",
+    "largeText": "Wondershare Filmora X",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "vegas",
+    "appName": "Vegas Pro",
+    "clientId": "1461709042832507057",
+    "largeKey": "vegaspro",
+    "largeText": "Vegas Pro",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "VEGAS Pro",
+    "appName": "Vegas Pro",
+    "clientId": "1461709042832507057",
+    "largeKey": "vegaspro",
+    "largeText": "Vegas Pro",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "CapCut",
+    "appName": "CapCut",
+    "clientId": "1461589007396901078",
+    "largeKey": "capcut",
+    "largeText": "CapCut",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== 3D MODELING & ANIMATION =========="
+  },
+  {
+    "process": "blender",
+    "appName": "Blender",
+    "clientId": "1461568908501848246",
+    "largeKey": "blender",
+    "largeText": "Blender",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "maya",
+    "appName": "Autodesk Maya",
+    "clientId": "1461710809292996781",
+    "largeKey": "maya",
+    "largeText": "Autodesk Maya",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Maya",
+    "appName": "Autodesk Maya",
+    "clientId": "1461710809292996781",
+    "largeKey": "maya",
+    "largeText": "Autodesk Maya",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "ZBrush",
+    "appName": "ZBrush",
+    "clientId": "1461725050368430090",
+    "largeKey": "zbrush",
+    "largeText": "ZBrush",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Adobe Substance 3D Painter",
+    "appName": "Substance 3D Painter",
+    "clientId": "1461710404865626248",
+    "largeKey": "substancepainter",
+    "largeText": "Substance 3D Painter",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Substance 3D Painter",
+    "appName": "Substance 3D Painter",
+    "clientId": "1461710404865626248",
+    "largeKey": "substancepainter",
+    "largeText": "Substance 3D Painter",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== CAD & ARCHITECTURE =========="
+  },
+  {
+    "process": "SketchUp",
+    "appName": "SketchUp",
+    "clientId": "1461711041120571392",
+    "largeKey": "sketchup",
+    "largeText": "SketchUp",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "SketchUp 2024",
+    "appName": "SketchUp 2024",
+    "clientId": "1461711041120571392",
+    "largeKey": "sketchup",
+    "largeText": "SketchUp 2024",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "SketchUp 2023",
+    "appName": "SketchUp 2023",
+    "clientId": "1461711041120571392",
+    "largeKey": "sketchup",
+    "largeText": "SketchUp 2023",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "acad",
+    "appName": "AutoCAD",
+    "clientId": "1461568630453043383",
+    "largeKey": "autocad",
+    "largeText": "AutoCAD",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "AutoCAD",
+    "appName": "AutoCAD",
+    "clientId": "1461568630453043383",
+    "largeKey": "autocad",
+    "largeText": "AutoCAD",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "AutoCAD 2024",
+    "appName": "AutoCAD 2024",
+    "clientId": "1461568630453043383",
+    "largeKey": "autocad",
+    "largeText": "AutoCAD 2024",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "AutoCAD 2025",
+    "appName": "AutoCAD 2025",
+    "clientId": "1461568630453043383",
+    "largeKey": "autocad",
+    "largeText": "AutoCAD 2025",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== GRAPHIC DESIGN & PHOTO EDITING =========="
+  },
+  {
+    "process": "Photoshop",
+    "appName": "Adobe Photoshop",
+    "clientId": "1461680428976050372",
+    "largeKey": "photoshop",
+    "largeText": "Adobe Photoshop",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Illustrator",
+    "appName": "Adobe Illustrator",
+    "clientId": "1461678096787968052",
+    "largeKey": "illustrator",
+    "largeText": "Adobe Illustrator",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Lightroom",
+    "appName": "Adobe Lightroom",
+    "clientId": "1461680631997268080",
+    "largeKey": "lightroom",
+    "largeText": "Adobe Lightroom",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "gimp",
+    "appName": "GIMP",
+    "clientId": "1461668129288753325",
+    "largeKey": "gimp",
+    "largeText": "GIMP",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "gimp-2.10",
+    "appName": "GIMP",
+    "clientId": "1461668129288753325",
+    "largeKey": "gimp",
+    "largeText": "GIMP",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "inkscape",
+    "appName": "Inkscape",
+    "clientId": "1461678377361473668",
+    "largeKey": "inkscape",
+    "largeText": "Inkscape",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Affinity",
+    "appName": "Affinity",
+    "clientId": "1461567798080966801",
+    "largeKey": "affinity",
+    "largeText": "Affinity Studio",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "CorelDRW",
+    "appName": "CorelDRAW",
+    "clientId": "1461600992221986817",
+    "largeKey": "coreldraw",
+    "largeText": "CorelDRAW",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "CorelDRAW",
+    "appName": "CorelDRAW",
+    "clientId": "1461600992221986817",
+    "largeKey": "coreldraw",
+    "largeText": "CorelDRAW",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "krita",
+    "appName": "Krita",
+    "largeKey": "krita",
+    "largeText": "Krita",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "CLIPStudioPaint",
+    "appName": "Clip Studio Paint",
+    "clientId": "1461591032478171222",
+    "largeKey": "clipstudiopaint",
+    "largeText": "Clip Studio Paint",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Aseprite",
+    "appName": "Aseprite",
+    "clientId": "1461568231142854688",
+    "largeKey": "aseprite",
+    "largeText": "Aseprite",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== UI/UX DESIGN =========="
+  },
+  {
+    "process": "Figma",
+    "appName": "Figma",
+    "clientId": "1461666416087269538",
+    "largeKey": "figma",
+    "largeText": "Figma",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "figma",
+    "appName": "Figma",
+    "clientId": "1461666416087269538",
+    "largeKey": "figma",
+    "largeText": "Figma",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Canva",
+    "appName": "Canva",
+    "clientId": "1461588833647853600",
+    "largeKey": "canva",
+    "largeText": "Canva",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== MEDIA TOOLS =========="
+  },
+  {
+    "process": "HandBrake",
+    "appName": "HandBrake",
+    "clientId": "1461668870585843814",
+    "largeKey": "handbrake",
+    "largeText": "HandBrake",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== WEB BROWSERS =========="
+  },
+  {
+    "process": "brave",
+    "appName": "Brave Browser",
+    "clientId": "1461569034976759979",
+    "largeKey": "brave",
+    "largeText": "Brave Browser",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makcrtve/geetRPCS"
+      }
+    ]
+  },
+  {
+    "process": "chrome",
+    "appName": "Google Chrome",
+    "clientId": "1461589215921049768",
+    "largeKey": "chrome",
+    "largeText": "Google Chrome",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makcrtve/geetRPCS"
+      }
+    ]
+  },
+  {
+    "process": "firefox",
+    "appName": "Mozilla Firefox",
+    "clientId": "1461667004519026699",
+    "largeKey": "firefox",
+    "largeText": "Mozilla Firefox",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makcrtve/geetRPCS"
+      }
+    ]
+  },
+  {
+    "process": "zen",
+    "appName": "Zen Browser",
+    "clientId": "1461681192507277546",
+    "largeKey": "zen",
+    "largeText": "Zen Browser",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makcrtve/geetRPCS"
+      }
+    ]
+  },
+  {
+    "process": "msedge",
+    "appName": "Microsoft Edge",
+    "clientId": "1461680977129508995",
+    "largeKey": "msedge",
+    "largeText": "Microsoft Edge",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/makcrtve/geetRPCS"
+      }
+    ]
+  },
+  {
+    "_comment": "========== OFFICE & PRODUCTIVITY =========="
+  },
+  {
+    "process": "WINWORD",
+    "appName": "Microsoft Word",
+    "clientId": "1461682385669324883",
+    "largeKey": "msword",
+    "largeText": "Microsoft Word",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "EXCEL",
+    "appName": "Microsoft Excel",
+    "clientId": "1461691782168580230",
+    "largeKey": "msexcel",
+    "largeText": "Microsoft Excel",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "POWERPNT",
+    "appName": "Microsoft PowerPoint",
+    "clientId": "1461692188785115292",
+    "largeKey": "mspowerpoint",
+    "largeText": "Microsoft PowerPoint",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Notion",
+    "appName": "Notion",
+    "clientId": "1461725295907176649",
+    "largeKey": "notion",
+    "largeText": "Notion",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== COMMUNICATION =========="
+  },
+  {
+    "process": "Telegram",
+    "appName": "Telegram",
+    "clientId": "1461709383879626905",
+    "largeKey": "telegram",
+    "largeText": "Telegram",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Slack",
+    "appName": "Slack",
+    "clientId": "1461735183630860539",
+    "largeKey": "slack",
+    "largeText": "Slack",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "WhatsApp",
+    "appName": "WhatsApp",
+    "clientId": "1461724732335325184",
+    "largeKey": "whatsapp",
+    "largeText": "WhatsApp",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Zoom",
+    "appName": "Zoom",
+    "clientId": "1461731845011017822",
+    "largeKey": "zoom",
+    "largeText": "Zoom",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "_comment": "========== DATA SCIENCE & ANALYSIS =========="
+  },
+  {
+    "process": "Orange",
+    "appName": "Orange Data Mining",
+    "largeKey": "orange",
+    "largeText": "Orange Data Mining",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "Orange3",
+    "appName": "Orange Data Mining",
+    "largeKey": "orange",
+    "largeText": "Orange Data Mining",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "pythonw",
+    "windowTitle": "Orange",
+    "appName": "Orange Data Mining",
+    "largeKey": "orange",
+    "largeText": "Orange Data Mining",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  },
+  {
+    "process": "python",
+    "windowTitle": "Orange",
+    "appName": "Orange Data Mining",
+    "largeKey": "orange",
+    "largeText": "Orange Data Mining",
+    "smallKey": "geetrpcs-small",
+    "smallText": "geetRPCS",
+    "customDetails": "{witty_text}",
+    "buttons": []
+  }
+]
