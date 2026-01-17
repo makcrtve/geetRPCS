@@ -34,6 +34,7 @@
   <a href="#-features">Features</a> •
   <a href="#-supported-apps">Supported Apps</a> •
   <a href="#%EF%B8%8F-configuration">Configuration</a> •
+  <a href="#-build-from-source">Build</a> •
   <a href="#-faq">FAQ</a>
 </p>
 
@@ -103,6 +104,30 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 3. Run `geetRPCS.exe`
 
 </details>
+
+---
+
+## 🛠️ Build from Source
+
+Requirements:
+- **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)**
+- Windows OS
+
+### 1. Clone the repository
+```powershell
+git clone https://github.com/makcrtve/geetRPCS.git
+cd geetRPCS
+```
+
+### 2. Run the build script
+Simply run the included batch file to build both **Portable** and **Minimal** versions:
+```cmd
+publish.bat
+```
+
+> **Output Location:** The compiled files will be in the `publish/` directory.
+> - `geetRPCS-vX.X.X-portable/` (Standalone, no dependencies)
+> - `geetRPCS-vX.X.X-minimal/` (Requires .NET Runtime)
 
 ---
 
