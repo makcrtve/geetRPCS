@@ -34,7 +34,6 @@
   <a href="#-features">Features</a> •
   <a href="#-supported-apps">Supported Apps</a> •
   <a href="#%EF%B8%8F-configuration">Configuration</a> •
-  <a href="#-build-from-source">Build</a> •
   <a href="#-faq">FAQ</a>
 </p>
 
@@ -107,7 +106,9 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 
 ---
 
-## 🛠️ Build from Source
+<details>
+<summary><b>🛠️ For Developers: Build from Source</b></summary>
+<br>
 
 Requirements:
 - **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)**
@@ -133,6 +134,8 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 ```
 
 > **Output Location:** The executable will be in the `publish/` folder inside the project directory.
+
+</details>
 
 ---
 
