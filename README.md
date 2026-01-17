@@ -119,15 +119,20 @@ git clone https://github.com/makcrtve/geetRPCS.git
 cd geetRPCS
 ```
 
-### 2. Run the build script
-Simply run the included batch file to build both **Portable** and **Minimal** versions:
-```cmd
-publish.bat
+### 2. Build the project
+Open a terminal in the project folder and run:
+
+**Portable (Recommended):**
+```powershell
+dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true --output publish/portable
 ```
 
-> **Output Location:** The compiled files will be in the `publish/` directory.
-> - `geetRPCS-vX.X.X-portable/` (Standalone, no dependencies)
-> - `geetRPCS-vX.X.X-minimal/` (Requires .NET Runtime)
+**Minimal (Requires .NET Runtime):**
+```powershell
+dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained=false --output publish/minimal
+```
+
+> **Output Location:** The executable will be in the `publish/` folder inside the project directory.
 
 ---
 
