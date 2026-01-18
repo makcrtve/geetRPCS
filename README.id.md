@@ -149,6 +149,8 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Deteksi Hibrida
 - Satu Instansi (Single Instance)
 - RAM Sangat Rendah (5-30MB)
+- **Nol Input Lag (Baru)**
+- **Presence Lengket (Baru)**
 - Animasi Ikon Tray
 - Dukungan Komentar JSON
 - Preview Auto-refresh
@@ -177,7 +179,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Akses Config Cepat
 - Auto Startup
 - Logging Event
-- Update Checker (UI Kustom)
+- Update Checker (Balloon Tip)
 - Update Database App Otomatis
 - Manajemen Cache
 - **.gitignore Ready 🆕**
@@ -408,7 +410,7 @@ Anda sekarang bisa menetapkan **Discord App ID yang berbeda untuk aplikasi terte
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.3",
+      "LargeImageText": "geetRPCS v1.3.4",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -532,7 +534,7 @@ Installer akan:
 - ✅ Install update
 - ✅ Restore pengaturan Anda
 
-**Catatan v1.3.3:** Source code kini siap open-source dengan `.gitignore` yang tepat dan formatting profesional!
+**Catatan v1.3.4:** Versi ini menghadirkan Update Non-Intrusif dan Sticky Presence!
 
 </details>
 
@@ -681,7 +683,7 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 <details>
 <summary><b>Detail Scan & Info False Positive</b></summary>
 
-**Hasil Scan v1.3.3:**
+**Hasil Scan v1.3.4:**
 - ✅ `0/71` | `0/69` deteksi malware (Bersih)
 - ✅ Code Signed: Tidak (Self-contained)
 
@@ -718,8 +720,9 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 - [x] Ganti App ID dari Menu
 - [x] Ganti App ID Dinamis (Per-App)
 - [x] Update Database App Otomatis
-- [x] **.gitignore & GitHub Ready 🆕**
-- [x] **Formatting Kode Profesional 🆕**
+- [x] .gitignore & GitHub Ready
+- [x] Formatting Kode Profesional
+- [x] **Sticky Rich Presence (v1.3.4) 🆕**
 - [ ] Dukungan software lebih banyak
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -738,5 +741,5 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 
 <p align="center">
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.3 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.4 • Apache 2.0 License • 2026</sub>
 </p>
