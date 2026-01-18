@@ -95,7 +95,12 @@ $RECYCLE.BIN/
 *.swo
 
 # =========================== Generated documentation =========================
+# =========================== Generated documentation =========================
 *.md
+!README.md
+!README.id.md
+!PRIVACY.md
+!RELEASE/*.md
 
 # =========================== Scripts =========================================
 *.bat
