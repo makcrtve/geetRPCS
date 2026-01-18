@@ -672,10 +672,10 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 ## 🛡️ Keamanan
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file-analysis/ZmI0NWJiYmJmMjA2MTIxMDlmNTI2NzIzMTM4YmVmYmY6MTc2ODYyNTE2NQ==/detection">
+  <a href="https://www.virustotal.com/gui/file/e80c8eeb02ba6722424f87033653f4935fe090109af15e32eeb883e713922f78/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/MDdlNzQ5ZGJmMTZhYzY3ZmI5ZmZiYjM4MzI1MDE1ZjU6MTc2ODYyNTE5Ng==/detection">
+  <a href="https://www.virustotal.com/gui/file-analysis/ODgwYzcwYzgyODA5MzM3MTUxZDQ2NDY2OWE2Yzk1Y2U6MTc2ODczMjUzNA==/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
