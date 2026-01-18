@@ -47,6 +47,7 @@ class Program : ApplicationContext
     private MouseActivityTracker? _mouseTracker;
     private TrayIconAnimator? _trayAnimator;
     private static StreamWriter? _logWriter;
+    private UpdateChecker.GitHubRelease? _pendingUpdate; // Store pending update
     private readonly Control _threadMarshaller = new Control();
     private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
     private static readonly string ConfigPath = Path.Combine(AppFolder, "config.json");
@@ -56,6 +57,7 @@ class Program : ApplicationContext
     private const int STATS_SAVE_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
     private const int WITTY_ROTATION_INTERVAL_MS = 5000;      // 5 seconds
     private const int BALLOON_TIP_TIMEOUT_MS = 2000;
+    private const int APPS_UPDATE_CHECK_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
     #endregion
 
     // --- Main Entry ---
@@ -103,9 +105,28 @@ class Program : ApplicationContext
             Task.Run(async () =>
             {
                 await Task.Delay(3000);
-                _threadMarshaller.Invoke(new Action(async () => 
+                _threadMarshaller.Invoke(new Action(async () =>
                 {
-                    await UpdateChecker.CheckForUpdates(showUpToDateMessage: false);
+                    var release = await UpdateChecker.CheckForUpdates(showUpToDateMessage: false);
+                    if (release != null)
+                    {
+                        _pendingUpdate = release;
+                        string mode = SettingsService.Instance.UpdateNotificationMode; // "Notification", "Dialog", "Silent"
+                        Log($"Update available. Mode: {mode}");
+
+                        if (mode == "Dialog")
+                        {
+                             UpdateChecker.ShowEnhancedUpdateDialog(release);
+                        }
+                        else if (mode == "Notification")
+                        {
+                             ShowBalloonTip(LanguageManager.Current.UpdateAvailableTitle,
+                                 $"{LanguageManager.Current.UpdateAvailableMessage}\n\nv{release.TagName?.TrimStart('v')}", 
+                                 ToolTipIcon.Info);
+                        }
+                        // Silent mode does nothing
+                    }
+
                     if (await UpdateChecker.CheckForAppsUpdate(silent: true))
                     {
                         AppConfigManager.Reload();
@@ -126,6 +147,30 @@ class Program : ApplicationContext
                 {
                     await Task.Delay(TimeSpan.FromMinutes(30));
                     MemoryHelper.TrimMemory();
+                }
+            });
+            // Periodic apps.json update checker
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await Task.Delay(APPS_UPDATE_CHECK_INTERVAL_MS);
+                    try
+                    {
+                        if (await UpdateChecker.CheckForAppsUpdate(silent: true))
+                        {
+                            AppConfigManager.Reload();
+                            _threadMarshaller.Invoke(new Action(() =>
+                            {
+                                ShowBalloonTip(LanguageManager.Current.AppName, LanguageManager.Current.MsgAppsUpdated, ToolTipIcon.Info);
+                            }));
+                            Log("Periodic apps.json update applied successfully", "INFO", "UpdateChecker");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log($"Periodic apps update check failed: {ex.Message}", "ERROR", "UpdateChecker");
+                    }
                 }
             });
             InitStatsTimer();
@@ -152,8 +197,8 @@ class Program : ApplicationContext
         {
             Log("Opening ManageAppsForm...");
             _manageAppsForm = new ManageAppsForm(
-                AppConfigManager.Apps, 
-                _disabledApps, 
+                AppConfigManager.Apps,
+                _disabledApps,
                 SettingsService.Instance.AppOverrides,
                 async (proc, enabled) =>
                 {
@@ -195,15 +240,15 @@ class Program : ApplicationContext
     private void InitStatsTimer()
     {
         statsTimer = new System.Windows.Forms.Timer { Interval = STATS_SAVE_INTERVAL_MS };
-        statsTimer.Tick += async (_, __) => 
-        { 
+        statsTimer.Tick += async (_, __) =>
+        {
             string json;
-            lock (_lockState) 
-            { 
-                json = statistics.PrepareJson(); 
+            lock (_lockState)
+            {
+                json = statistics.PrepareJson();
             }
             await AppStatistics.WriteJsonAsync(json);
-            Log("Statistics auto-saved"); 
+            Log("Statistics auto-saved");
         };
         statsTimer.Start();
         var wittyTimer = new System.Windows.Forms.Timer { Interval = WITTY_ROTATION_INTERVAL_MS };
@@ -221,7 +266,7 @@ class Program : ApplicationContext
     }
     private void TogglePreviewVisibility()
     {
-        if (previewForm == null || previewForm.IsDisposed) 
+        if (previewForm == null || previewForm.IsDisposed)
         {
             Log("Creating PresencePreviewForm...");
             InitPreviewForm();
@@ -444,6 +489,16 @@ class Program : ApplicationContext
                 Visible = true
             };
             trayIcon.DoubleClick += (s, e) => _threadMarshaller.Invoke(new Action(() => OnTogglePause(null, EventArgs.Empty)));
+            trayIcon.BalloonTipClicked += (s, e) =>
+            {
+               if (_pendingUpdate != null)
+               {
+                   _threadMarshaller.Invoke(new Action(() => {
+                        UpdateChecker.ShowEnhancedUpdateDialog(_pendingUpdate);
+                        _pendingUpdate = null; // Clear after showing
+                   }));
+               }
+            };
             UpdateTrayMenu();
             _trayAnimator = new TrayIconAnimator(trayIcon, IconPath, _threadMarshaller, (msg) => Log(msg));
             Log("Tray icon setup completed", "INFO", "TrayIcon");
@@ -542,10 +597,10 @@ class Program : ApplicationContext
                     try
                     {
                         IntPtr hwnd = process.MainWindowHandle;
-                        if (hwnd != IntPtr.Zero) 
-                        { 
-                            OnAppDetected(currentApp, "", "", hwnd); 
-                            break; 
+                        if (hwnd != IntPtr.Zero)
+                        {
+                            OnAppDetected(currentApp, "", "", hwnd);
+                            break;
                         }
                     }
                     catch { }
@@ -943,7 +998,14 @@ class Program : ApplicationContext
             menu.Items.Add(new ToolStripSeparator());
             AddLanguageMenu(menu);
             menu.Items.Add(LanguageManager.Current.MenuCheckUpdates, null,
-                async (_, __) => await UpdateChecker.CheckForUpdates(showUpToDateMessage: true));
+                async (_, __) => 
+                {
+                    var release = await UpdateChecker.CheckForUpdates(showUpToDateMessage: true);
+                    if (release != null)
+                    {
+                        _threadMarshaller.Invoke(new Action(() => UpdateChecker.ShowEnhancedUpdateDialog(release)));
+                    }
+                });
             menu.Items.Add(LanguageManager.Current.MenuOpenLog, null, (_, __) =>
             {
                 try

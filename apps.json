@@ -1,6 +1,6 @@
-[
+﻿[
   {
-    "db_version": "1.3.3",
+    "db_version": "1.3.4",
     "_comment": "Database Version - DO NOT REMOVE"
   },
   {
@@ -13,7 +13,6 @@
     "largeKey": "flstudio",
     "largeText": "FL Studio 2025",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -33,7 +32,6 @@
     "largeKey": "flstudio",
     "largeText": "FL Studio 2025",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       { "label": "My Website", "url": "https://yourwebsite.com" }
@@ -46,7 +44,6 @@
     "largeKey": "ableton",
     "largeText": "Ableton Live 12 Suite",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -66,7 +63,6 @@
     "largeKey": "cubase",
     "largeText": "Cubase",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -77,7 +73,6 @@
     "largeKey": "cubase",
     "largeText": "Cubase 13",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -88,7 +83,6 @@
     "largeKey": "cubase",
     "largeText": "Cubase 12",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -99,7 +93,6 @@
     "largeKey": "reaper",
     "largeText": "REAPER",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -110,7 +103,6 @@
     "largeKey": "protools",
     "largeText": "Pro Tools",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -121,7 +113,6 @@
     "largeKey": "protools",
     "largeText": "Pro Tools",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -132,7 +123,6 @@
     "largeKey": "studioone",
     "largeText": "Studio One",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -143,7 +133,6 @@
     "largeKey": "studioone",
     "largeText": "Studio One 6",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -154,7 +143,6 @@
     "largeKey": "reason",
     "largeText": "Reason",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -165,7 +153,6 @@
     "largeKey": "cakewalk",
     "largeText": "Cakewalk by BandLab",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -176,7 +163,6 @@
     "largeKey": "cakewalk",
     "largeText": "Cakewalk by BandLab",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -187,7 +173,6 @@
     "largeKey": "bitwig",
     "largeText": "Bitwig Studio",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -201,7 +186,6 @@
     "largeKey": "audition",
     "largeText": "Adobe Audition",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -212,7 +196,6 @@
     "largeKey": "audacity",
     "largeText": "Audacity",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -226,7 +209,6 @@
     "largeKey": "premierepro",
     "largeText": "Adobe Premiere Pro",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -237,7 +219,6 @@
     "largeKey": "aftereffects",
     "largeText": "Adobe After Effects",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -248,7 +229,6 @@
     "largeKey": "davinci",
     "largeText": "DaVinci Resolve",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -259,7 +239,6 @@
     "largeKey": "davinci",
     "largeText": "DaVinci Resolve",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -270,7 +249,6 @@
     "largeKey": "filmora",
     "largeText": "Wondershare Filmora",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -281,7 +259,6 @@
     "largeKey": "filmora",
     "largeText": "Wondershare Filmora X",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -292,7 +269,6 @@
     "largeKey": "vegaspro",
     "largeText": "Vegas Pro",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -303,7 +279,6 @@
     "largeKey": "vegaspro",
     "largeText": "Vegas Pro",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -314,7 +289,6 @@
     "largeKey": "capcut",
     "largeText": "CapCut",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -328,7 +302,6 @@
     "largeKey": "blender",
     "largeText": "Blender",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -339,7 +312,6 @@
     "largeKey": "maya",
     "largeText": "Autodesk Maya",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -350,7 +322,6 @@
     "largeKey": "maya",
     "largeText": "Autodesk Maya",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -361,7 +332,6 @@
     "largeKey": "zbrush",
     "largeText": "ZBrush",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -372,7 +342,6 @@
     "largeKey": "substancepainter",
     "largeText": "Substance 3D Painter",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -383,7 +352,6 @@
     "largeKey": "substancepainter",
     "largeText": "Substance 3D Painter",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -397,7 +365,6 @@
     "largeKey": "sketchup",
     "largeText": "SketchUp",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -408,7 +375,6 @@
     "largeKey": "sketchup",
     "largeText": "SketchUp 2024",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -419,7 +385,6 @@
     "largeKey": "sketchup",
     "largeText": "SketchUp 2023",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -430,7 +395,6 @@
     "largeKey": "autocad",
     "largeText": "AutoCAD",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -441,7 +405,6 @@
     "largeKey": "autocad",
     "largeText": "AutoCAD",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -452,7 +415,6 @@
     "largeKey": "autocad",
     "largeText": "AutoCAD 2024",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -463,7 +425,6 @@
     "largeKey": "autocad",
     "largeText": "AutoCAD 2025",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -477,7 +438,6 @@
     "largeKey": "photoshop",
     "largeText": "Adobe Photoshop",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -488,7 +448,6 @@
     "largeKey": "illustrator",
     "largeText": "Adobe Illustrator",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -499,7 +458,6 @@
     "largeKey": "lightroom",
     "largeText": "Adobe Lightroom",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -510,7 +468,6 @@
     "largeKey": "gimp",
     "largeText": "GIMP",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -521,7 +478,6 @@
     "largeKey": "gimp",
     "largeText": "GIMP",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -532,7 +488,6 @@
     "largeKey": "inkscape",
     "largeText": "Inkscape",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -543,7 +498,6 @@
     "largeKey": "affinity",
     "largeText": "Affinity Studio",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -554,7 +508,6 @@
     "largeKey": "coreldraw",
     "largeText": "CorelDRAW",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -565,7 +518,6 @@
     "largeKey": "coreldraw",
     "largeText": "CorelDRAW",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -575,7 +527,6 @@
     "largeKey": "krita",
     "largeText": "Krita",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -586,7 +537,6 @@
     "largeKey": "clipstudiopaint",
     "largeText": "Clip Studio Paint",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -597,7 +547,6 @@
     "largeKey": "aseprite",
     "largeText": "Aseprite",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -611,7 +560,6 @@
     "largeKey": "figma",
     "largeText": "Figma",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -622,7 +570,6 @@
     "largeKey": "figma",
     "largeText": "Figma",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -633,7 +580,6 @@
     "largeKey": "canva",
     "largeText": "Canva",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -647,7 +593,6 @@
     "largeKey": "handbrake",
     "largeText": "HandBrake",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -661,7 +606,6 @@
     "largeKey": "brave",
     "largeText": "Brave Browser",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -677,7 +621,6 @@
     "largeKey": "chrome",
     "largeText": "Google Chrome",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -693,7 +636,6 @@
     "largeKey": "firefox",
     "largeText": "Mozilla Firefox",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -709,7 +651,6 @@
     "largeKey": "zen",
     "largeText": "Zen Browser",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -725,7 +666,6 @@
     "largeKey": "msedge",
     "largeText": "Microsoft Edge",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": [
       {
@@ -744,7 +684,6 @@
     "largeKey": "msword",
     "largeText": "Microsoft Word",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -755,7 +694,6 @@
     "largeKey": "msexcel",
     "largeText": "Microsoft Excel",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -766,7 +704,6 @@
     "largeKey": "mspowerpoint",
     "largeText": "Microsoft PowerPoint",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -777,7 +714,6 @@
     "largeKey": "notion",
     "largeText": "Notion",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -791,7 +727,6 @@
     "largeKey": "telegram",
     "largeText": "Telegram",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -802,7 +737,6 @@
     "largeKey": "slack",
     "largeText": "Slack",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -813,7 +747,6 @@
     "largeKey": "whatsapp",
     "largeText": "WhatsApp",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -824,7 +757,6 @@
     "largeKey": "zoom",
     "largeText": "Zoom",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -837,7 +769,6 @@
     "largeKey": "orange",
     "largeText": "Orange Data Mining",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -847,7 +778,6 @@
     "largeKey": "orange",
     "largeText": "Orange Data Mining",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -858,7 +788,6 @@
     "largeKey": "orange",
     "largeText": "Orange Data Mining",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   },
@@ -869,7 +798,6 @@
     "largeKey": "orange",
     "largeText": "Orange Data Mining",
     "smallKey": "geetrpcs-small",
-    "smallText": "geetRPCS",
     "customDetails": "{witty_text}",
     "buttons": []
   }

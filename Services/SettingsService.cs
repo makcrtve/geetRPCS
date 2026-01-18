@@ -62,6 +62,11 @@ namespace geetRPCS.Services
             get { lock (_lock) { return _settings.TelemetryEnabled; } }
             set { lock (_lock) { _settings.TelemetryEnabled = value; } }
         }
+        public string UpdateNotificationMode
+        {
+            get { lock (_lock) { return _settings.UpdateNotificationMode; } }
+            set { lock (_lock) { _settings.UpdateNotificationMode = value; } }
+        }
         public Dictionary<string, AppOverrideConfig> AppOverrides
         {
             get { lock (_lock) { return _settings.AppOverrides; } }

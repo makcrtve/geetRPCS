@@ -1,3 +1,8 @@
+/**
+ * geetRPCS - Taskbar Watcher
+ * Tracks active window focus state for Presence switching
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -5,6 +10,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+
 namespace geetRPCS.Services
 {
     internal static class TaskbarWatcher
@@ -15,10 +21,11 @@ namespace geetRPCS.Services
         private static readonly object _lock = new object();
         private static IntPtr _hookHandle;
         private static WinEventDelegate _eventDelegate;
-        private static Thread _backgroundPollThread;
+        private static System.Threading.Timer _debounceTimer;
         private const uint EVENT_SYSTEM_FOREGROUND = 0x0003;
         private const uint WINEVENT_OUTOFCONTEXT = 0;
         private delegate void WinEventDelegate(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime);
+
         public static void Reload()
         {
             AppConfigManager.Reload();
@@ -29,53 +36,93 @@ namespace geetRPCS.Services
             }
             CheckCurrentApp();
         }
+
+        private static System.Threading.Timer _livenessTimer;
+
         public static void Start(AppChanged callback)
         {
             _callback = callback;
             _eventDelegate = new WinEventDelegate(WinEventProc);
+
+            _debounceTimer = new System.Threading.Timer(_ => CheckCurrentApp(), null, Timeout.Infinite, Timeout.Infinite);
+            _livenessTimer = new System.Threading.Timer(_ => CheckLiveness(), null, 3000, 3000);
+
             _hookHandle = SetWinEventHook(EVENT_SYSTEM_FOREGROUND, EVENT_SYSTEM_FOREGROUND, IntPtr.Zero, _eventDelegate, 0, 0, WINEVENT_OUTOFCONTEXT);
-            _backgroundPollThread = new Thread(() =>
-            {
-                while (true)
-                {
-                    try
-                    {
-                        CheckCurrentApp();
-                    }
-                    catch
-                    {
-                    }
-                    Thread.Sleep(1000);
-                }
-            }) { IsBackground = true, Name = "TaskbarWatcherFallback" };
-            _backgroundPollThread.Start();
+
             CheckCurrentApp();
         }
+
         private static void WinEventProc(IntPtr hWinEventHook, uint eventType, IntPtr hwnd, int idObject, int idChild, uint dwEventThread, uint dwmsEventTime)
         {
             if (eventType == EVENT_SYSTEM_FOREGROUND)
             {
-                CheckCurrentApp();
+                _debounceTimer.Change(250, Timeout.Infinite);
             }
         }
+
         private static void CheckCurrentApp()
         {
             var (proc, hwnd, title) = GetCurrentApp();
             lock (_lock)
             {
-                if (proc == _lastFound && title == _lastTitle)
-                    return;
-                _lastFound = proc;
-                _lastTitle = title;
+                if (proc != null)
+                {
+                    if (proc == _lastFound && title == _lastTitle)
+                        return;
+                    _lastFound = proc;
+                    _lastTitle = title;
+                    _callback?.Invoke(proc, null, title, hwnd);
+                }
+                else
+                {
+                    if (_lastFound != null)
+                    {
+                        if (IsProcessRunning(_lastFound))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            _lastFound = null;
+                            _lastTitle = null;
+                            _callback?.Invoke("config", null, null, IntPtr.Zero);
+                        }
+                    }
+                }
             }
-            _callback?.Invoke(proc ?? "config", null, title, hwnd);
         }
+
+        private static void CheckLiveness()
+        {
+            // Periodically check if the "sticky" app is still running
+            lock (_lock)
+            {
+                if (_lastFound != null)
+                {
+                    if (!IsProcessRunning(_lastFound))
+                    {
+                        _lastFound = null;
+                        _lastTitle = null;
+                        _callback?.Invoke("config", null, null, IntPtr.Zero);
+                    }
+                }
+            }
+        }
+
+        private static bool IsProcessRunning(string processName)
+        {
+            try
+            {
+                return Process.GetProcessesByName(processName).Length > 0;
+            }
+            catch { return false; }
+        }
+
         private static (string processName, IntPtr hWnd, string title) GetCurrentApp()
         {
-            var apps = AppConfigManager.Apps;
-            var targetProcessNames = AppConfigManager.ProcessNames;
-            string lastFound;
-            lock (_lock) { lastFound = _lastFound; }
+            // CRITICAL OPTIMIZATION: Only check the FOREGROUND window.
+            // Do NOT scan all processes. This caused the lag.
+
             IntPtr foregroundHwnd = GetForegroundWindow();
             if (foregroundHwnd != IntPtr.Zero)
             {
@@ -86,70 +133,29 @@ namespace geetRPCS.Services
                     {
                         using var p = Process.GetProcessById((int)pid);
                         string procName = p.ProcessName;
-                        if (targetProcessNames.Contains(procName))
+
+                        if (AppConfigManager.ProcessNames.Contains(procName))
                         {
                             string title = GetWindowTitle(foregroundHwnd);
-                            if (!string.IsNullOrEmpty(title) && title.Length > 2)
-                            {
-                                var matchingConfigs = apps.Where(a => a.Process != null && a.Process.Equals(procName, StringComparison.OrdinalIgnoreCase)).ToList();
-                                var titleMatch = matchingConfigs.FirstOrDefault(a =>
-                                    !string.IsNullOrEmpty(a.WindowTitle) &&
-                                    title.IndexOf(a.WindowTitle, StringComparison.OrdinalIgnoreCase) >= 0);
-                                if (titleMatch != null) return (procName, foregroundHwnd, title);
-                                var defaultMatch = matchingConfigs.FirstOrDefault(a => string.IsNullOrEmpty(a.WindowTitle));
-                                if (defaultMatch != null) return (procName, foregroundHwnd, title);
-                            }
+                            var apps = AppConfigManager.Apps;
+                            var matchingConfigs = apps.Where(a => a.Process != null && a.Process.Equals(procName, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                            var titleMatch = matchingConfigs.FirstOrDefault(a =>
+                                !string.IsNullOrEmpty(a.WindowTitle) &&
+                                title.IndexOf(a.WindowTitle, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                            if (titleMatch != null) return (procName, foregroundHwnd, title);
+
+                            var defaultMatch = matchingConfigs.FirstOrDefault(a => string.IsNullOrEmpty(a.WindowTitle));
+                            if (defaultMatch != null) return (procName, foregroundHwnd, title);
                         }
                     }
-                    catch { }
-                }
-            }
-            if (!string.IsNullOrEmpty(lastFound))
-            {
-               var processes = Process.GetProcessesByName(lastFound);
-               foreach (var p in processes)
-               {
-                   using (p)
-                   {
-                       if (CheckProcessWindow(p, lastFound, apps, out var result))
-                           return result;
-                   }
-               }
-            }
-            foreach (var targetProc in targetProcessNames)
-            {
-                if (string.Equals(targetProc, lastFound, StringComparison.OrdinalIgnoreCase)) continue;
-                var processes = Process.GetProcessesByName(targetProc);
-                foreach (var p in processes)
-                {
-                    using (p)
+                    catch
                     {
-                        if (CheckProcessWindow(p, targetProc, apps, out var result))
-                            return result;
                     }
                 }
             }
             return (null, IntPtr.Zero, null);
-        }
-        private static bool CheckProcessWindow(Process process, string processName, List<geetRPCS.Models.AppConfig> apps, out (string, IntPtr, string) result)
-        {
-            result = (null, IntPtr.Zero, null);
-            try
-            {
-                if (process.HasExited) return false;
-                IntPtr hwnd = process.MainWindowHandle;
-                if (hwnd == IntPtr.Zero) return false;
-                string title = GetWindowTitle(hwnd);
-                if (string.IsNullOrEmpty(title) || title.Length <= 2) return false;
-                var matchingConfigs = apps.Where(a => a.Process != null && a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase)).ToList();
-                if (matchingConfigs.Any())
-                {
-                    result = (processName, hwnd, title);
-                    return true;
-                }
-            }
-            catch { }
-            return false;
         }
         private static string GetWindowTitle(IntPtr hWnd)
         {

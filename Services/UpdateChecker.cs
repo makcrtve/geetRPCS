@@ -114,7 +114,7 @@ namespace geetRPCS.Services
             dialog.ShowDialog();
             return result;
         }
-        public static async Task CheckForUpdates(bool showUpToDateMessage = false)
+        public static async Task<GitHubRelease> CheckForUpdates(bool showUpToDateMessage = false)
         {
             try
             {
@@ -127,7 +127,7 @@ namespace geetRPCS.Services
                         MessageBox.Show(LanguageManager.Current.UpdateCheckFailed,
                             LanguageManager.Current.UpdateAvailableTitle,
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    return null;
                 }
                 string latestVersion = latestRelease.TagName?.TrimStart('v') ?? "0.0.0";
                 Log($"Current version: {CURRENT_VERSION}", "DEBUG");
@@ -135,13 +135,14 @@ namespace geetRPCS.Services
                 if (IsNewerVersion(latestVersion, CURRENT_VERSION))
                 {
                     Log($"New version available: {latestVersion}", "INFO");
-                    ShowEnhancedUpdateDialog(latestRelease);
+                    return latestRelease;
                 }
                 else
                 {
                     Log("Application is up to date", "INFO");
                     if (showUpToDateMessage)
                         ShowUpToDateDialog();
+                    return null;
                 }
             }
             catch (Exception ex)
@@ -151,6 +152,7 @@ namespace geetRPCS.Services
                     MessageBox.Show($"{LanguageManager.Current.UpdateCheckFailed}\n\n{ex.Message}",
                         LanguageManager.Current.UpdateAvailableTitle,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
         private static async Task<GitHubRelease> FetchLatestRelease()
@@ -180,7 +182,7 @@ namespace geetRPCS.Services
             }
             catch { return false; }
         }
-        private static void ShowEnhancedUpdateDialog(GitHubRelease release)
+        public static void ShowEnhancedUpdateDialog(GitHubRelease release)
         {
             string latestVersion = release.TagName?.TrimStart('v') ?? "Unknown";
             string releaseNotes = release.Body ?? "No release notes available.";

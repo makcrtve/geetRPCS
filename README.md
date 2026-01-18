@@ -149,6 +149,8 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Hybrid Detection
 - Single Instance
 - Ultra Low RAM (5-30MB)
+- **Zero Input Lag (New)**
+- **Sticky Presence (New)**
 - Tray Animation
 - JSON Comments Support
 - Auto-refresh Preview
@@ -177,10 +179,10 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Quick Config Access
 - Auto Startup
 - Event Logging
-- Update Checker (Custom UI)
+- Update Checker (Balloon Tip)
 - Auto Apps DB Update
 - Cache Management
-- **.gitignore Ready 🆕**
+- **.gitignore Ready**
 
 </td>
 <td width="25%" valign="top">
@@ -408,7 +410,7 @@ You can now assign **different Discord App IDs for specific applications** witho
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.3",
+      "LargeImageText": "geetRPCS v1.3.4",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -532,7 +534,7 @@ The installer will:
 - ✅ Install the update
 - ✅ Restore your settings
 
-**v1.3.3 Note:** The source code is now open-source ready with proper `.gitignore` and professional formatting!
+**v1.3.4 Note:** This version introduces Non-Intrusive Updates and Sticky Presence!
 
 </details>
 
@@ -670,10 +672,10 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 ## 🛡️ Security
 
 <p align="center">
-  <a href="https://www.virustotal.com/gui/file-analysis/ZmI0NWJiYmJmMjA2MTIxMDlmNTI2NzIzMTM4YmVmYmY6MTc2ODYyNTE2NQ==/detection">
+  <a href="https://www.virustotal.com/gui/file/e80c8eeb02ba6722424f87033653f4935fe090109af15e32eeb883e713922f78/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/MDdlNzQ5ZGJmMTZhYzY3ZmI5ZmZiYjM4MzI1MDE1ZjU6MTc2ODYyNTE5Ng==/detection">
+  <a href="https://www.virustotal.com/gui/file-analysis/ODgwYzcwYzgyODA5MzM3MTUxZDQ2NDY2OWE2Yzk1Y2U6MTc2ODczMjUzNA==/detection">
     <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
   </a>
 </p>
@@ -681,7 +683,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.3.3:**
+**Scan Result v1.3.4:**
 - ✅ `0/71` | `0/69` malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
@@ -718,8 +720,9 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Change App ID from Menu
 - [x] Dynamic App ID Switching (Per-App)
 - [x] Auto Apps Database Update
-- [x] **.gitignore & GitHub Ready 🆕**
-- [x] **Professional Code Formatting 🆕**
+- [x] .gitignore & GitHub Ready
+- [x] Professional Code Formatting
+- [x] **Sticky Rich Presence (v1.3.4) 🆕**
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -738,5 +741,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.3 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.4 • Apache 2.0 License • 2026</sub>
 </p>

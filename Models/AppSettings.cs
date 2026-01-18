@@ -21,6 +21,8 @@ namespace geetRPCS.Models
         public bool TrayAnimationEnabled { get; set; } = true;
         [JsonPropertyName("telemetryEnabled")]
         public bool TelemetryEnabled { get; set; } = true;
+        [JsonPropertyName("updateNotificationMode")]
+        public string UpdateNotificationMode { get; set; } = "Notification"; // Notification, Dialog, Silent
         [JsonPropertyName("appOverrides")]
         public Dictionary<string, AppOverrideConfig> AppOverrides { get; set; } = new Dictionary<string, AppOverrideConfig>(StringComparer.OrdinalIgnoreCase);
     }
