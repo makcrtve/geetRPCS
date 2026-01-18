@@ -1,17 +1,17 @@
 function Install-GeetRPCS {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$false)]
+        [Parameter(Mandatory = $false)]
         [ValidateSet("minimal", "portable")]
         [string]$Version = "",
 
-        [Parameter(Mandatory=$false)]
+        [Parameter(Mandatory = $false)]
         [switch]$DesktopShortcut,
 
-        [Parameter(Mandatory=$false)]
+        [Parameter(Mandatory = $false)]
         [switch]$StartMenuShortcut,
 
-        [Parameter(Mandatory=$false)]
+        [Parameter(Mandatory = $false)]
         [switch]$Silent
     )
 
@@ -35,7 +35,8 @@ function Install-GeetRPCS {
             if ($i -eq $Default) {
                 Write-Host "  [$($i + 1)] $($Options[$i]) " -NoNewline
                 Write-Host "(default)" -ForegroundColor DarkGray
-            } else {
+            }
+            else {
                 Write-Host "  [$($i + 1)] $($Options[$i])"
             }
         }
@@ -109,7 +110,8 @@ function Install-GeetRPCS {
             }
 
             Write-Host ""
-        } else {
+        }
+        else {
             if ([string]::IsNullOrWhiteSpace($Version)) {
                 $Version = "portable"
             }
@@ -164,7 +166,8 @@ function Install-GeetRPCS {
             Write-Host "[2/6] geetRPCS is running. Closing..." -ForegroundColor Yellow
             Stop-Process -Name "geetRPCS" -Force
             Start-Sleep -Seconds 2
-        } else {
+        }
+        else {
             Write-Host "[2/6] No running instance found" -ForegroundColor DarkGray
         }
 
@@ -173,7 +176,8 @@ function Install-GeetRPCS {
         # ══════════════════════════════════════════════════════════════
         if ($isUpdate) {
             Write-Host "[3/6] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Host "[3/6] Downloading $Version version ($latestTag)..." -ForegroundColor Green
         }
 
@@ -238,7 +242,8 @@ function Install-GeetRPCS {
             Write-Host "[5/6] Removing old installation completely..." -ForegroundColor Yellow
             Write-Host "      ⚠️  All existing files will be replaced" -ForegroundColor DarkYellow
             Remove-Item -Path $installDir -Recurse -Force -ErrorAction SilentlyContinue
-        } else {
+        }
+        else {
             Write-Host "[5/6] Creating installation directory..." -ForegroundColor Yellow
         }
 
@@ -260,8 +265,8 @@ function Install-GeetRPCS {
         # SAVE VERSION INFO
         # ══════════════════════════════════════════════════════════════
         $versionData = @{
-            version = $latestTag
-            type = $Version
+            version     = $latestTag
+            type        = $Version
             installedAt = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
         }
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
@@ -326,7 +331,8 @@ function Install-GeetRPCS {
 
         if ($shortcutsCreated.Count -eq 0) {
             Write-Host "      └─ No shortcuts created" -ForegroundColor DarkGray
-        } else {
+        }
+        else {
             Write-Host "      └─ Created: $($shortcutsCreated -join ', ')" -ForegroundColor DarkGray
         }
 
@@ -344,7 +350,8 @@ function Install-GeetRPCS {
             Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
             Write-Host "  $installedVersion → $latestTag ($Version)" -ForegroundColor White
-        } else {
+        }
+        else {
             Write-Host "  ║  ✅ Installation completed successfully! ║" -ForegroundColor Green
             Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
@@ -359,7 +366,7 @@ function Install-GeetRPCS {
         # ══════════════════════════════════════════════════════════════
         Write-Host "  ╔═══════════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
         Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   ⚠️  IMPORTANT NOTICE                                         ║" -ForegroundColor Magenta
+        Write-Host "  ║   ⚠️  IMPORTANT NOTICE                                        ║" -ForegroundColor Magenta
         Write-Host "  ║                                                               ║" -ForegroundColor Magenta
         Write-Host "  ║   We apologize for any inconvenience this may cause.          ║" -ForegroundColor Magenta
         Write-Host "  ║                                                               ║" -ForegroundColor Magenta
@@ -377,7 +384,8 @@ function Install-GeetRPCS {
         Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir
 
-    } catch {
+    }
+    catch {
         Write-Host "`n❌ Installation failed: $($_.Exception.Message)" -ForegroundColor Red
 
         if ($tempPath -and (Test-Path $tempPath)) {
