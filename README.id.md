@@ -671,21 +671,17 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 
 ## 🛡️ Keamanan
 
-<p align="center">
-  <a href="https://www.virustotal.com/gui/file/e80c8eeb02ba6722424f87033653f4935fe090109af15e32eeb883e713922f78/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/ODgwYzcwYzgyODA5MzM3MTUxZDQ2NDY2OWE2Yzk1Y2U6MTc2ODczMjUzNA==/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>
-</p>
+### 🔓 100% Open Source & Aman
 
-<details>
-<summary><b>Detail Scan & Info False Positive</b></summary>
+Proyek ini adalah **Open Source**! Anda dapat memeriksa setiap baris kode di repositori ini.
 
-**Hasil Scan v1.3.5:**
-- ✅ `0/71` | `0/69` deteksi malware (Bersih)
-- ✅ Code Signed: Tidak (Self-contained)
+**⚠️ Catatan Deteksi Antivirus:**
+Karena aplikasi ini menggunakan hook sistem tingkat rendah (untuk mendeteksi penekanan tombol hotkey dan aktivitas mouse), **beberapa perangkat lunak Antivirus generik mungkin menandainya sebagai False Positive (Positif Palsu).**
+
+Jika Anda melihat peringatan merah di VirusTotal atau Windows Defender:
+1. **Itu adalah False Positive.** Aplikasi ini aman.
+2. Periksa kode sumbernya sendiri jika Anda ragu.
+3. Whitelist (izinkan) aplikasi di perangkat lunak keamanan Anda.
 
 **False Positive?** Beberapa AV mungkin menandainya karena:
 - Executable baru / tidak didistribusikan secara luas

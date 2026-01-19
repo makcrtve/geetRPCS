@@ -671,21 +671,17 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 ## 🛡️ Security
 
-<p align="center">
-  <a href="https://www.virustotal.com/gui/file/e80c8eeb02ba6722424f87033653f4935fe090109af15e32eeb883e713922f78/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F71%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>
-  <a href="https://www.virustotal.com/gui/file-analysis/ODgwYzcwYzgyODA5MzM3MTUxZDQ2NDY2OWE2Yzk1Y2U6MTc2ODczMjUzNA==/detection">
-    <img src="https://img.shields.io/badge/VirusTotal-0%2F69%20Clean-brightgreen?style=for-the-badge&logo=virustotal" alt="VirusTotal"/>
-  </a>
-</p>
+### 🔓 100% Open Source & Safe
 
-<details>
-<summary><b>Scan Details & False Positive Info</b></summary>
+This project is **Open Source**! You can inspect every line of code in this repository.
 
-**Scan Result v1.3.5:**
-- ✅ `0/71` | `0/69` malware detections (Clean)
-- ✅ Code Signed: No (Self-contained)
+**⚠️ Note on Antivirus Detections:**
+Because this application uses low-level system hooks (to detect key presses for hotkeys and mouse activity), **some generic Antivirus software might flag it as a False Positive.**
+
+If you see a red warning on VirusTotal or Windows Defender:
+1. **It is a False Positive.** The app is safe.
+2. Check the source code yourself if you are unsure.
+3. Whitelist the application in your security software.
 
 **False Positive?** Some AVs might flag it because:
 - New executable / not widely distributed
