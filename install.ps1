@@ -151,11 +151,11 @@ function Install-GeetRPCS {
     # ══════════════════════════════════════════════════════════════
     Clear-Host
     Write-Host ""
-    Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "  ║                                           ║" -ForegroundColor Cyan
-    Write-Host "  ║       geetRPCS Installer / Updater        ║" -ForegroundColor Cyan
-    Write-Host "  ║                                           ║" -ForegroundColor Cyan
-    Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host "  ║                                               ║" -ForegroundColor Cyan
+    Write-Host "  ║        geetRPCS Installer / Updater           ║" -ForegroundColor Cyan
+    Write-Host "  ║                                               ║" -ForegroundColor Cyan
+    Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -450,34 +450,39 @@ function Install-GeetRPCS {
         # DONE
         # ══════════════════════════════════════════════════════════════
         Write-Host ""
-        Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Green
+        Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Green
+        Write-Host "  ║                                               ║" -ForegroundColor Green
         if ($isUpdate) {
-            Write-Host "  ║     ✅ Update completed successfully!    ║" -ForegroundColor Green
-            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host "  ║       Update completed successfully!         ║" -ForegroundColor Green
+            Write-Host "  ║                                               ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
-            Write-Host "  $installedVersion → $latestTag ($Version)" -ForegroundColor White
+            Write-Host "  $installedVersion -> $latestTag ($Version)" -ForegroundColor White
         }
         else {
-            Write-Host "  ║  ✅ Installation completed successfully! ║" -ForegroundColor Green
-            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host "  ║     Installation completed successfully!     ║" -ForegroundColor Green
+            Write-Host "  ║                                               ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
             Write-Host "  Version: $latestTag ($Version)" -ForegroundColor White
         }
         Write-Host ""
-        Write-Host "  📁 Location: $installDir" -ForegroundColor Cyan
+        Write-Host "  Location: $installDir" -ForegroundColor Cyan
 
         # ══════════════════════════════════════════════════════════════
         # PRESERVED FILES INFO
         # ══════════════════════════════════════════════════════════════
         if ($isUpdate -and $backedUpFiles.Count -gt 0) {
             Write-Host ""
-            Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Cyan
-            Write-Host "  ║     📋 Your settings have been kept!      ║" -ForegroundColor Cyan
-            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Cyan
+            Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Cyan
+            Write-Host "  ║                                               ║" -ForegroundColor Cyan
+            Write-Host "  ║        Your settings have been kept!          ║" -ForegroundColor Cyan
+            Write-Host "  ║                                               ║" -ForegroundColor Cyan
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Cyan
             Write-Host ""
             Write-Host "  Preserved files:" -ForegroundColor White
             foreach ($file in $backedUpFiles) {
-                Write-Host "    ✓ $file" -ForegroundColor Green
+                Write-Host "    + $file" -ForegroundColor Green
             }
         }
 
