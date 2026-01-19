@@ -13,12 +13,13 @@
     <Product>geetRPCS Updater</Product>
     <Description>Helper utility for updating geetRPCS</Description>
 
-    <PublishAot>true</PublishAot>
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <DebugType>embedded</DebugType>
-    <DebugSymbols>false</DebugSymbols>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 </Project>
