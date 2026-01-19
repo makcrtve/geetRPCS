@@ -453,7 +453,7 @@ function Install-GeetRPCS {
         Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Green
         Write-Host "  ║                                               ║" -ForegroundColor Green
         if ($isUpdate) {
-            Write-Host "  ║       Update completed successfully!         ║" -ForegroundColor Green
+            Write-Host "  ║       Update completed successfully!          ║" -ForegroundColor Green
             Write-Host "  ║                                               ║" -ForegroundColor Green
             Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
