@@ -2,24 +2,29 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <AssemblyName>Updater</AssemblyName>
+    <AssemblyName>geetMaintenance</AssemblyName>
     <RootNamespace>geetRPCS.Updater</RootNamespace>
     <ApplicationIcon>..\rpicon.ico</ApplicationIcon>
     <Version>1.3.5</Version>
     <AssemblyVersion>1.3.5.0</AssemblyVersion>
     <FileVersion>1.3.5.0</FileVersion>
-    <Copyright>© 2026 makcrtve</Copyright>
+    <Copyright>© 2025 makcrtve</Copyright>
     <Company>makcrtve</Company>
-    <Product>geetRPCS Updater</Product>
-    <Description>Helper utility for updating geetRPCS</Description>
+    <Product>geetRPCS Maintenance Tool</Product>
+    <Description>Official maintenance utility for geetRPCS</Description>
 
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
-    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
-    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 
     <PublishTrimmed>true</PublishTrimmed>
-    <PublishReadyToRun>true</PublishReadyToRun>
+    <TrimMode>partial</TrimMode>
+    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Deterministic>true</Deterministic>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 </Project>
