@@ -258,7 +258,7 @@ namespace geetRPCS.UI
             infoPanel.Controls.Add(new Label
             {
                 Text = "ℹ️",
-                Font = new Font("Segoe UI Emoji", 9), // Slightly smaller font to avoid overlap
+                Font = new Font("Segoe UI Emoji", 9),
                 ForeColor = DiscordText,
                 Location = new Point(8, 10),
                 AutoSize = true
@@ -268,7 +268,7 @@ namespace geetRPCS.UI
                 Text = "Asset Info",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
                 ForeColor = DiscordText,
-                Location = new Point(34, 11), // Move to 34 to avoid info icon
+                Location = new Point(34, 11),
                 AutoSize = true
             });
             lblLargeImageText = new Label
@@ -316,7 +316,7 @@ namespace geetRPCS.UI
             {
                 Text = "🔄",
                 Font = new Font("Segoe UI Emoji", 11),
-                ForeColor = DiscordText, // Brighter color
+                ForeColor = DiscordText,
                 Location = new Point(185, 303),
                 AutoSize = true,
                 Cursor = Cursors.Hand
@@ -338,7 +338,7 @@ namespace geetRPCS.UI
             {
                 Text = "🗑️",
                 Font = new Font("Segoe UI Emoji", 11),
-                ForeColor = DiscordText, // Brighter color
+                ForeColor = DiscordText,
                 Location = new Point(210, 303),
                 AutoSize = true,
                 Cursor = Cursors.Hand
@@ -354,7 +354,7 @@ namespace geetRPCS.UI
             {
                 Text = "📌",
                 Font = new Font("Segoe UI Emoji", 11),
-                ForeColor = DiscordText, // Brighter color
+                ForeColor = DiscordText,
                 Location = new Point(235, 303),
                 AutoSize = true,
                 Cursor = Cursors.Hand
@@ -803,7 +803,7 @@ namespace geetRPCS.UI
         public async void UpdatePresence(RichPresence presence)
         {
             if (this.InvokeRequired) { this.BeginInvoke(new Action(() => UpdatePresence(presence))); return; }
-            if (!this.Visible) return; // Optimization: Don't update if not visible
+            if (!this.Visible) return;
             _currentPresence = presence;
             if (presence == null) { SetIdleState(); return; }
             if (lblAppName != null && !lblAppName.IsDisposed)
@@ -915,7 +915,7 @@ namespace geetRPCS.UI
             if (this.Visible) 
             {
                 this.Hide();
-                ClearImageMemoryCache(); // Release RAM when hidden
+                ClearImageMemoryCache();
             }
             else { this.Show(); this.BringToFront(); }
         }

@@ -81,6 +81,11 @@ namespace geetRPCS.Services
             get { lock (_lock) { return _settings.AppOverrides; } }
             set { lock (_lock) { _settings.AppOverrides = value; } }
         }
+        public string LogLevel
+        {
+            get { lock (_lock) { return _settings.LogLevel; } }
+            set { lock (_lock) { _settings.LogLevel = value; } }
+        }
         private static void Load()
         {
             try

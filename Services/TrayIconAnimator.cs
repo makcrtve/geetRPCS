@@ -193,8 +193,9 @@ namespace geetRPCS.Services
         {
             try
             {
+                // Use centralized LogService for DEBUG level
+                LogService.Debug($"[TrayAnimator] {message}", "TrayAnimator");
                 _logAction?.Invoke($"[TrayAnimator] {message}");
-                System.Diagnostics.Debug.WriteLine($"[TrayAnimator] {message}");
             }
             catch { }
         }

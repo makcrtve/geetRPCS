@@ -180,7 +180,7 @@ namespace geetRPCS.Services
                  {
                      return (DateTime.Now - entry.LastUpdated) >= _rotationInterval;
                  }
-                 return true; // No entry means we need one
+                 return true;
              }
         }
         public static void ResetForApp(string processName)

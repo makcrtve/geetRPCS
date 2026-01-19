@@ -283,14 +283,14 @@ namespace geetRPCS.UI
             btnEdit.Click += (s, e) => toggleExpand();
             Action performToggle = () =>
             {
-                bool currentState = _disabledApps.Contains(app.Process); // current disabled state
-                bool newState = currentState; // we want to ENABLE if it was disabled
+                bool currentState = _disabledApps.Contains(app.Process);
+                bool newState = currentState;
                 if (currentState) {
                     _disabledApps.Remove(app.Process);
-                    newState = true; // enabled
+                    newState = true;
                 } else {
                     _disabledApps.Add(app.Process);
-                    newState = false; // disabled
+                    newState = false;
                 }
                 toggle.Text = newState ? "✅" : "❌";
                 lblName.ForeColor = newState ? DiscordText : DiscordTextDark;

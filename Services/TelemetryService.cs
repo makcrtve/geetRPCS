@@ -28,7 +28,7 @@ namespace geetRPCS.Services
         private const ulong DEVELOPER_ID = 626250175857426452;
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string TelemetryPath = Path.Combine(AppFolder, ".telemetry");
-        private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
         private static readonly HttpClient _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
         private static string _cachedUsername, _cachedUserId;
         private static bool _isEnabled => SettingsService.Instance.TelemetryEnabled;
@@ -174,14 +174,14 @@ namespace geetRPCS.Services
         }
         private static void Log(string message, string level = "INFO")
         {
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "Telemetry");
+            // Also write to telemetry.log for backward compatibility
             try
             {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                string logEntry = $"[{timestamp}] [Telemetry] [{level}] {message}";
-                System.Diagnostics.Debug.WriteLine(logEntry);
                 string telemetryLog = Path.Combine(AppFolder, "telemetry.log");
-                File.AppendAllText(telemetryLog, logEntry + Environment.NewLine);
-                try { File.AppendAllText(LogPath, logEntry + Environment.NewLine); } catch { }
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                File.AppendAllText(telemetryLog, $"[{timestamp}] [Telemetry] [{level}] {message}" + Environment.NewLine);
             }
             catch { }
         }

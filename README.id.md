@@ -410,7 +410,7 @@ Anda sekarang bisa menetapkan **Discord App ID yang berbeda untuk aplikasi terte
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.4",
+      "LargeImageText": "geetRPCS v1.3.5",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -534,7 +534,7 @@ Installer akan:
 - ✅ Install update
 - ✅ Restore pengaturan Anda
 
-**Catatan v1.3.4:** Versi ini menghadirkan Update Non-Intrusif dan Sticky Presence!
+**Catatan v1.3.5:** Versi ini menghadirkan Sistem Logging Terpusat dengan level log dan rotasi!
 
 </details>
 
@@ -683,7 +683,7 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 <details>
 <summary><b>Detail Scan & Info False Positive</b></summary>
 
-**Hasil Scan v1.3.4:**
+**Hasil Scan v1.3.5:**
 - ✅ `0/71` | `0/69` deteksi malware (Bersih)
 - ✅ Code Signed: Tidak (Self-contained)
 
@@ -722,7 +722,8 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 - [x] Update Database App Otomatis
 - [x] .gitignore & GitHub Ready
 - [x] Formatting Kode Profesional
-- [x] **Sticky Rich Presence (v1.3.4) 🆕**
+- [x] Sticky Rich Presence (v1.3.4)
+- [x] **Sistem Logging Terpusat (v1.3.5) 🆕**
 - [ ] Dukungan software lebih banyak
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -741,5 +742,5 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 
 <p align="center">
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.4 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.5 • Apache 2.0 License • 2026</sub>
 </p>

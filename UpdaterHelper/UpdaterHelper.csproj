@@ -13,14 +13,12 @@
     <Product>geetRPCS Updater</Product>
     <Description>Helper utility for updating geetRPCS</Description>
 
-    <!-- Self-contained for reliability - doesn't depend on installed runtime -->
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 
-    <!-- Optimization: Reduce size -->
     <PublishTrimmed>true</PublishTrimmed>
     <InvariantGlobalization>true</InvariantGlobalization>
     <DebugType>embedded</DebugType>

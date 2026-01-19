@@ -34,7 +34,7 @@ namespace geetRPCS.Services
         public enum EnergyLevel { Sleeping, Relaxing, Normal, Focused, Rush }
         #endregion
         #region ----- Fields -----
-        private static readonly string LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "geetRPCS.log");
+
         private IntPtr _mouseHookHandle = IntPtr.Zero;
         private LowLevelMouseProc _mouseProc;
         private bool _isHookInstalled, _isRunning, _isEnabled = true;
@@ -337,12 +337,8 @@ namespace geetRPCS.Services
         #region ----- Helpers -----
         private static void Log(string message, string level = "INFO")
         {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                File.AppendAllText(LogPath, $"[{timestamp}] [MouseTracker] [{level}] {message}\r\n");
-            }
-            catch { }
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "MouseTracker");
         }
         #endregion
         #region ----- Dispose -----

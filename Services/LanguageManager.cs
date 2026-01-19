@@ -27,7 +27,7 @@ namespace geetRPCS.Services
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string LanguagesFolder = Path.Combine(AppFolder, "Languages");
         private static readonly string SettingsPath = Path.Combine(AppFolder, "settings.json");
-        private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
         private static Language _currentLanguage;
         private static string _currentLanguageCode = "en";
         public static Language Current => _currentLanguage ?? LoadLanguage("en");
@@ -158,13 +158,8 @@ namespace geetRPCS.Services
         }
         private static void Log(string message, string level = "INFO")
         {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                string formattedMessage = $"[{timestamp}] [LanguageManager] [{level}] {message}\r\n";
-                File.AppendAllText(LogPath, formattedMessage);
-            }
-            catch { }
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "LanguageManager");
         }
         // --- Models ---
         public class LanguageInfo

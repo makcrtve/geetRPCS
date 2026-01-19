@@ -26,7 +26,7 @@ namespace geetRPCS.Services
     {
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string StatsPath = Path.Combine(AppFolder, "statistics.json");
-        private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
         [JsonPropertyName("appUsage")]
         public Dictionary<string, AppUsageData> AppUsage { get; set; } = new();
         [JsonPropertyName("lastUpdated")]
@@ -222,12 +222,8 @@ namespace geetRPCS.Services
         #region ----- Helpers -----
         private static void Log(string message, string level = "INFO")
         {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                File.AppendAllText(LogPath, $"[{timestamp}] [Statistics] [{level}] {message}\r\n");
-            }
-            catch { }
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "Statistics");
         }
         #endregion
     }

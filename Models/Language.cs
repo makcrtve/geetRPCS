@@ -339,7 +339,7 @@ namespace geetRPCS.Models
                 MsgAppIdChanged = "Application ID changed successfully!\n\nPlease restart the application if the status does not update.",
                 ErrorSaveConfig = "Failed to save configuration.",
                 LinkTutorial = "📖 Read Tutorial",
-                UrlTutorial = "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md", // Link ke file Inggris
+                UrlTutorial = "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
                 LinkDownloadAssets = "⬇️ Download Asset Pack (Required)",
                 BtnSave = "Save",
                 MsgPresencePaused = "Rich Presence paused. Discord won't show any activity.",
@@ -483,7 +483,7 @@ namespace geetRPCS.Models
                 MsgAppIdChanged = "Application ID berhasil diubah!\n\nSilakan restart aplikasi jika status tidak berubah.",
                 ErrorSaveConfig = "Gagal menyimpan konfigurasi.",
                 LinkTutorial = "📖 Baca Tutorial",
-                UrlTutorial = "https://github.com/makcrtve/geetRPCS/blob/main/docs/id/CUSTOM_APP_ID.id.md", // Link ke file Indo
+                UrlTutorial = "https://github.com/makcrtve/geetRPCS/blob/main/docs/id/CUSTOM_APP_ID.id.md",
                 LinkDownloadAssets = "⬇️ Download Asset Pack (Wajib)",
                 BtnSave = "Simpan",
                 MsgPresencePaused = "Rich Presence dijeda. Discord tidak menampilkan aktivitas.",

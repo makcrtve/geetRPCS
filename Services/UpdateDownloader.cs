@@ -35,7 +35,7 @@ namespace geetRPCS.Services
 
         // --- Constants ---
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
-        private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
         private static readonly string TempUpdateFolder = Path.Combine(Path.GetTempPath(), "geetRPCS_update");
         private const int BUFFER_SIZE = 81920; // 80 KB buffer for faster downloads
 
@@ -454,12 +454,8 @@ namespace geetRPCS.Services
 
         private static void Log(string message, string level = "INFO")
         {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                File.AppendAllText(LogPath, $"[{timestamp}] [UpdateDownloader] [{level}] {message}\r\n");
-            }
-            catch { }
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "UpdateDownloader");
         }
     }
 }

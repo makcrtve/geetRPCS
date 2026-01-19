@@ -38,7 +38,7 @@ namespace geetRPCS.Services
         private static string CURRENT_VERSION => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.0.0";
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AppsPath = Path.Combine(AppFolder, "apps.json");
-        private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
         public static async Task<bool> CheckForAppsUpdate(bool silent = true)
         {
             try
@@ -252,7 +252,7 @@ namespace geetRPCS.Services
             AddLabel(contentPanel, LanguageManager.Current.UpdateHowTo, new Point(20, yPos), new Font("Segoe UI", 10, FontStyle.Bold), Color.White);
             yPos += 25;
 
-            // === Method 0: In-App Update (NEW - Recommended) ===
+            // === Method 0: In-App Update ===
             var inAppBox = new Panel
             {
                 Location = new Point(20, yPos),
@@ -570,12 +570,8 @@ namespace geetRPCS.Services
         }
         private static void Log(string message, string level = "INFO")
         {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                File.AppendAllText(LogPath, $"[{timestamp}] [UpdateChecker] [{level}] {message}\r\n");
-            }
-            catch { }
+            // Delegate to centralized LogService
+            LogService.Log(message, level, "UpdateChecker");
         }
 
         // --- UI Implementation ---

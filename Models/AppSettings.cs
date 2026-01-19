@@ -34,6 +34,8 @@ namespace geetRPCS.Models
         public string UpdateNotificationMode { get; set; } = "Notification"; // Notification, Dialog, Silent
         [JsonPropertyName("appOverrides")]
         public Dictionary<string, AppOverrideConfig> AppOverrides { get; set; } = new Dictionary<string, AppOverrideConfig>(StringComparer.OrdinalIgnoreCase);
+        [JsonPropertyName("logLevel")]
+        public string LogLevel { get; set; } = "INFO"; // DEBUG, INFO, WARN, ERROR
     }
     public class AppOverrideConfig
     {

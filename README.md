@@ -410,7 +410,7 @@ You can now assign **different Discord App IDs for specific applications** witho
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.4",
+      "LargeImageText": "geetRPCS v1.3.5",
       "SmallImageKey": "verified",
       "SmallImageText": "geetRPCS Standby"
     },
@@ -534,7 +534,7 @@ The installer will:
 - ✅ Install the update
 - ✅ Restore your settings
 
-**v1.3.4 Note:** This version introduces Non-Intrusive Updates and Sticky Presence!
+**v1.3.5 Note:** This version introduces Centralized Logging with log levels and rotation!
 
 </details>
 
@@ -683,7 +683,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 <details>
 <summary><b>Scan Details & False Positive Info</b></summary>
 
-**Scan Result v1.3.4:**
+**Scan Result v1.3.5:**
 - ✅ `0/71` | `0/69` malware detections (Clean)
 - ✅ Code Signed: No (Self-contained)
 
@@ -722,7 +722,8 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Auto Apps Database Update
 - [x] .gitignore & GitHub Ready
 - [x] Professional Code Formatting
-- [x] **Sticky Rich Presence (v1.3.4) 🆕**
+- [x] Sticky Rich Presence (v1.3.4)
+- [x] **Centralized Logging System (v1.3.5) 🆕**
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
@@ -741,5 +742,5 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.4 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.5 • Apache 2.0 License • 2026</sub>
 </p>

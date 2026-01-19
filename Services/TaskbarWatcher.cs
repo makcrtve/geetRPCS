@@ -103,7 +103,6 @@ namespace geetRPCS.Services
 
         private static void CheckLiveness()
         {
-            // Periodically check if the "sticky" app is still running
             lock (_lock)
             {
                 if (_lastFound != null)
@@ -129,8 +128,6 @@ namespace geetRPCS.Services
 
         private static (string processName, IntPtr hWnd, string title) GetCurrentApp()
         {
-            // CRITICAL OPTIMIZATION: Only check the FOREGROUND window.
-            // Do NOT scan all processes. This caused the lag.
 
             IntPtr foregroundHwnd = GetForegroundWindow();
             if (foregroundHwnd != IntPtr.Zero)

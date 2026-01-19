@@ -48,21 +48,20 @@ class Program : ApplicationContext
     private ManageAppsForm? _manageAppsForm;
     private DateTime lastStatsUpdate, _sessionStartTime;
     private System.Windows.Forms.Timer? statsTimer;
-    private readonly object _lockState = new object(), _lockLog = new object();
-    private static readonly object _lockLogStatic = new object();
+    private readonly object _lockState = new object();
     private HashSet<string> _disabledApps = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private HashSet<string> _appsUsedThisSession = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private GlobalHotkey? _hkPause, _hkPreview, _hkReload, _hkPrivate, _hkStats;
     private MouseActivityTracker? _mouseTracker;
     private TrayIconAnimator? _trayAnimator;
-    private static StreamWriter? _logWriter;
+
     private UpdateChecker.GitHubRelease? _pendingUpdate; // Store pending update
     private readonly Control _threadMarshaller = new Control();
     private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
     private static readonly string ConfigPath = Path.Combine(AppFolder, "config.json");
     private static readonly string AppsPath = Path.Combine(AppFolder, "apps.json");
     private static readonly string IconPath = Path.Combine(AppFolder, "rpicon.ico");
-    private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
+
     private const int STATS_SAVE_INTERVAL_MS = 5 * 60 * 1000; // 5 minutes
     private const int WITTY_ROTATION_INTERVAL_MS = 5000;      // 5 seconds
     private const int BALLOON_TIP_TIMEOUT_MS = 2000;
@@ -84,11 +83,7 @@ class Program : ApplicationContext
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
-            {
-                _logWriter = new StreamWriter(LogPath, true) { AutoFlush = true };
-            }
-            catch { }
+            LogService.Initialize();
             try
             {
                 Log($"Application started at {DateTime.Now}", "INFO", "Startup");
@@ -745,7 +740,7 @@ class Program : ApplicationContext
             }
             else
             {
-                Log($"Animation NOT triggered - enabled: {SettingsService.Instance.TrayAnimationEnabled}, prevApp: '{prevApp}', newApp: '{proc}'");
+                LogService.Debug($"Animation NOT triggered - enabled: {SettingsService.Instance.TrayAnimationEnabled}, prevApp: '{prevApp}', newApp: '{proc}'", "Program");
             }
             currentApp = proc;
             _appsUsedThisSession.Add(proc);
@@ -877,15 +872,8 @@ class Program : ApplicationContext
     }
     private static void Log(string message, string level = "INFO", string module = "geetRPCS")
     {
-        try
-        {
-            lock (_lockLogStatic)
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
-                _logWriter?.WriteLine($"[{timestamp}] [{module}] [{level}] {message}");
-            }
-        }
-        catch (Exception ex) { Console.WriteLine($"FATAL: Failed to write to log file: {ex.Message}"); }
+        // Delegate to centralized LogService (backward compatibility wrapper)
+        LogService.Log(message, level, module);
     }
     private void OpenFileWithDefaultEditor(string filePath, string fileName)
     {
@@ -1019,7 +1007,8 @@ class Program : ApplicationContext
             {
                 try
                 {
-                    if (File.Exists(LogPath)) System.Diagnostics.Process.Start("notepad.exe", LogPath);
+                    string logPath = Path.Combine(AppFolder, "geetRPCS.log");
+                    if (File.Exists(logPath)) System.Diagnostics.Process.Start("notepad.exe", logPath);
                     else MessageBox.Show(LanguageManager.Current.DialogLogNotCreated, LanguageManager.Current.AppName,
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1417,8 +1406,7 @@ class Program : ApplicationContext
             trayIcon?.Dispose();
             rpc?.ClearPresence();
             rpc?.Dispose();
-            _logWriter?.Close();
-            _logWriter?.Dispose();
+            LogService.Shutdown();
             _threadMarshaller?.Dispose();
         }
         catch { }
