@@ -388,7 +388,7 @@ class Program : ApplicationContext
                 LargeImageKey = "geetrpcs-logo",
                 LargeImageText = $"geetRPCS v{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3)}",
                 SmallImageKey = "geetrpcs-small",
-                SmallImageText = "geetRPCS Standby"
+                SmallImageText = "Powered by geetRPCS"
             },
             Buttons = new[]
             {
