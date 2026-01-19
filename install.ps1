@@ -460,7 +460,7 @@ function Install-GeetRPCS {
             Write-Host "  $installedVersion -> $latestTag ($Version)" -ForegroundColor White
         }
         else {
-            Write-Host "  ║     Installation completed successfully!     ║" -ForegroundColor Green
+            Write-Host "  ║     Installation completed successfully!      ║" -ForegroundColor Green
             Write-Host "  ║                                               ║" -ForegroundColor Green
             Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
