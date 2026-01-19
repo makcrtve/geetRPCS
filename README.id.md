@@ -724,6 +724,7 @@ Buka `geetRPCS.log` atau klik kanan tray → **Open Log File**
 - [x] Formatting Kode Profesional
 - [x] Sticky Rich Presence (v1.3.4)
 - [x] **Sistem Logging Terpusat (v1.3.5) 🆕**
+- [x] **Sinkronisasi Versi Updater (v1.3.5)**
 - [ ] Dukungan software lebih banyak
 - [ ] UI Dashboard (WPF/WinUI)
 

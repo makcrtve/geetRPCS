@@ -724,6 +724,7 @@ Open `geetRPCS.log` or right-click tray → **Open Log File**
 - [x] Professional Code Formatting
 - [x] Sticky Rich Presence (v1.3.4)
 - [x] **Centralized Logging System (v1.3.5) 🆕**
+- [x] **Updater Version Sync (v1.3.5)**
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
