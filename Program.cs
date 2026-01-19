@@ -392,7 +392,7 @@ class Program : ApplicationContext
             },
             Buttons = new[]
             {
-                new ButtonConfig { Label = "Try this app!", Url = "https://github.com/makcrtve/geetRPCS" }
+                new ButtonConfig { Label = "Try this app!", Url = "https://geetrpcs.vercel.app/" }
             }
         }
     };
