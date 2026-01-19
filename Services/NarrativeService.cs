@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using geetRPCS.Models;
 
@@ -141,7 +142,7 @@ namespace geetRPCS.Services
                 else
                 {
                     System.Diagnostics.Debug.WriteLine($"[NarrativeService] No witty texts found for '{processName}', checking AppConfig...");
-                    var app = AppConfigManager.Apps.Find(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
+                    var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
                     if (app != null && app.WittyTexts != null && app.WittyTexts.Count > 0)
                     {
                         System.Diagnostics.Debug.WriteLine($"[NarrativeService] Found {app.WittyTexts.Count} texts in AppConfig");

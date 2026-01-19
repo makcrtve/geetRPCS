@@ -749,7 +749,7 @@ class Program : ApplicationContext
             }
             currentApp = proc;
             _appsUsedThisSession.Add(proc);
-            var appConfig = AppConfigManager.Apps.Find(a => a.Process?.Equals(proc, StringComparison.OrdinalIgnoreCase) == true);
+            var appConfig = AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(proc, StringComparison.OrdinalIgnoreCase) == true);
             string? targetClientId = !string.IsNullOrEmpty(appConfig?.ClientId) ? appConfig.ClientId : config.Discord!.ApplicationId;
             if (_currentRpcClientId != targetClientId)
             {
@@ -801,7 +801,7 @@ class Program : ApplicationContext
     {
         if (SettingsService.Instance.AppOverrides.TryGetValue(processName, out var ov) && !string.IsNullOrWhiteSpace(ov.Details))
             return ov.Details;
-        var app = AppConfigManager.Apps.Find(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
+        var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
         if (!string.IsNullOrWhiteSpace(app?.CustomDetails)) return app.CustomDetails;
         return config.Discord!.ActiveDetails ?? "";
     }
@@ -813,7 +813,7 @@ class Program : ApplicationContext
     }
     private DiscordRPC.Button[]? GetButtonsForApp(string processName)
     {
-        var app = AppConfigManager.Apps.Find(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
+        var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
         if (app?.Buttons == null || app.Buttons.Count == 0) return null;
         var validButtons = app.Buttons
             .Where(b => !string.IsNullOrEmpty(b.Label)

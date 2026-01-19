@@ -26,6 +26,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+#nullable enable
+
 namespace geetRPCS.Services
 {
     internal static class UpdateChecker
@@ -33,7 +35,7 @@ namespace geetRPCS.Services
         // --- Configuration ---
         private const string GITHUB_API_URL = "https://api.github.com/repos/makcrtve/geetRPCS/releases/latest";
         private const string APPS_RAW_URL = "https://raw.githubusercontent.com/makcrtve/geetRPCS/main/apps.json";
-        private static string CURRENT_VERSION => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+        private static string CURRENT_VERSION => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.0.0";
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AppsPath = Path.Combine(AppFolder, "apps.json");
         private static readonly string LogPath = Path.Combine(AppFolder, "geetRPCS.log");
@@ -92,7 +94,7 @@ namespace geetRPCS.Services
         private static bool ShowAppsUpdateDialog(string remoteVersion)
         {
             using var dialog = CreateBaseDialog(LanguageManager.Current.UpdateAppsAvailableTitle, new Size(450, 350));
-            AddHeaderPanel(dialog, "📦", LanguageManager.Current.UpdateAppsAvailableMessage, null,
+            AddHeaderPanel(dialog, "📦", LanguageManager.Current.UpdateAppsAvailableMessage, null!,
                 Color.FromArgb(250, 168, 26), Color.FromArgb(250, 168, 26), Color.FromArgb(255, 188, 66));
             var contentPanel = CreateContentPanel(dialog);
             var versionBox = new Panel
@@ -125,7 +127,7 @@ namespace geetRPCS.Services
             dialog.ShowDialog();
             return result;
         }
-        public static async Task<GitHubRelease> CheckForUpdates(bool showUpToDateMessage = false)
+        public static async Task<GitHubRelease?> CheckForUpdates(bool showUpToDateMessage = false)
         {
             try
             {
@@ -166,7 +168,7 @@ namespace geetRPCS.Services
                 return null;
             }
         }
-        private static async Task<GitHubRelease> FetchLatestRelease()
+        private static async Task<GitHubRelease?> FetchLatestRelease()
         {
             try
             {
@@ -528,7 +530,7 @@ namespace geetRPCS.Services
         private static void ShowUpToDateDialog()
         {
             using var dialog = CreateBaseDialog("✅ You're Up to Date!", new Size(450, 280));
-            AddHeaderPanel(dialog, "✅", "You're Up to Date!", null,
+            AddHeaderPanel(dialog, "✅", "You're Up to Date!", null!,
                 Color.FromArgb(87, 242, 135), Color.FromArgb(87, 242, 135), Color.FromArgb(67, 181, 129));
             var contentPanel = CreateContentPanel(dialog);
             var versionBox = new Panel
@@ -694,10 +696,10 @@ namespace geetRPCS.Services
         #region ----- GitHub API Model -----
         public class GitHubRelease
         {
-            [JsonPropertyName("tag_name")] public string TagName { get; set; }
-            [JsonPropertyName("name")] public string Name { get; set; }
-            [JsonPropertyName("body")] public string Body { get; set; }
-            [JsonPropertyName("html_url")] public string HtmlUrl { get; set; }
+            [JsonPropertyName("tag_name")] public string? TagName { get; set; }
+            [JsonPropertyName("name")] public string? Name { get; set; }
+            [JsonPropertyName("body")] public string? Body { get; set; }
+            [JsonPropertyName("html_url")] public string? HtmlUrl { get; set; }
             [JsonPropertyName("published_at")] public DateTime PublishedAt { get; set; }
             [JsonPropertyName("prerelease")] public bool Prerelease { get; set; }
             [JsonPropertyName("assets")] public List<GitHubAsset>? Assets { get; set; }

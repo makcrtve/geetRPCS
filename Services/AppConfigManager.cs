@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using geetRPCS.Models;
@@ -26,8 +27,9 @@ namespace geetRPCS.Services
         private static HashSet<string> _processNames;
         private static readonly object _lock = new object();
         private static readonly string AppsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "apps.json");
+
         // --- Shared Data ---
-        public static List<AppConfig> Apps
+        public static IReadOnlyList<AppConfig> Apps
         {
             get
             {
@@ -38,6 +40,7 @@ namespace geetRPCS.Services
                 }
             }
         }
+
         public static HashSet<string> ProcessNames
         {
             get
@@ -49,6 +52,7 @@ namespace geetRPCS.Services
                 }
             }
         }
+
         public static void Reload()
         {
             lock (_lock)
@@ -59,8 +63,9 @@ namespace geetRPCS.Services
                     _apps = allApps.Where(a => !string.IsNullOrEmpty(a.Process)).ToList();
                     _processNames = new HashSet<string>(_apps.Select(a => a.Process), StringComparer.OrdinalIgnoreCase);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Debug.WriteLine($"[AppConfigManager] Failed to load apps.json: {ex.Message}");
                     _apps = new List<AppConfig>();
                     _processNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 }

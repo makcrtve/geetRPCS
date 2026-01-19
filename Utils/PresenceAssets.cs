@@ -13,6 +13,7 @@
  */
 
 using System;
+using System.Linq;
 using DiscordRPC;
 using geetRPCS.Services;
 
@@ -23,7 +24,7 @@ namespace geetRPCS.Utils
         public static void Reload() => AppConfigManager.Reload();
         public static Assets ForApp(string processName, Assets fallback)
         {
-            var app = AppConfigManager.Apps.Find(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
+            var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
             var assets = new Assets
             {
                 LargeImageKey = app?.LargeKey ?? fallback.LargeImageKey,

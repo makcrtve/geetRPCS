@@ -47,8 +47,8 @@ namespace geetRPCS.UI
         private readonly Color DiscordBlurple = Color.FromArgb(88, 101, 242);
         #endregion
         public ManageAppsForm(
-            List<AppConfig> apps, 
-            HashSet<string> disabledApps, 
+            IReadOnlyList<AppConfig> apps,
+            HashSet<string> disabledApps,
             Dictionary<string, AppOverrideConfig> overrides,
             Action<string, bool> onAppToggled,
             Action<string, string, string> onOverrideChanged)

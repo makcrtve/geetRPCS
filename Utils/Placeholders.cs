@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using geetRPCS.Services;
@@ -25,7 +26,7 @@ namespace geetRPCS.Utils
         public static void Reload() => AppConfigManager.Reload();
         public static string GetAppName(string processName)
         {
-            var app = AppConfigManager.Apps.Find(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
+            var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
             return app?.AppName ?? processName;
         }
         public static string Replace(string format, string processName, IntPtr hWnd)
