@@ -1,6 +1,15 @@
 /**
  * geetRPCS - Taskbar Watcher
- * Tracks active window focus state for Presence switching
+ * Monitors active windows and taskbar changes
+ */
+/*
+ * Copyright (c) 2026 makcrtve
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
  */
 
 using System;

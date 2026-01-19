@@ -1,7 +1,15 @@
 /**
- * @file Language.cs
- * @description Defines the translation structure and default language strings for the application.
- * Supports multi-language localization including English and Indonesian.
+ * geetRPCS - Localization
+ * Language localization models for geetRPCS
+ */
+/*
+ * Copyright (c) 2026 makcrtve
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
  */
 
 using System.Text.Json.Serialization;
@@ -195,10 +203,22 @@ namespace geetRPCS.Models
         public string MsgAppsUpdated { get; set; }
         [JsonPropertyName("update_how_to")]
         public string UpdateHowTo { get; set; }
+        [JsonPropertyName("update_method_inapp")]
+        public string UpdateMethodInApp { get; set; }
         [JsonPropertyName("update_method_ps")]
         public string UpdateMethodPs { get; set; }
         [JsonPropertyName("update_method_github")]
         public string UpdateMethodGithub { get; set; }
+        [JsonPropertyName("update_downloading")]
+        public string UpdateDownloading { get; set; }
+        [JsonPropertyName("update_extracting")]
+        public string UpdateExtracting { get; set; }
+        [JsonPropertyName("update_preparing")]
+        public string UpdatePreparing { get; set; }
+        [JsonPropertyName("update_ready_restart")]
+        public string UpdateReadyRestart { get; set; }
+        [JsonPropertyName("update_download_failed")]
+        public string UpdateDownloadFailed { get; set; }
         [JsonPropertyName("btn_copy")]
         public string BtnCopy { get; set; }
         [JsonPropertyName("btn_copied")]
@@ -207,6 +227,8 @@ namespace geetRPCS.Models
         public string BtnOpenLink { get; set; }
         [JsonPropertyName("btn_close")]
         public string BtnClose { get; set; }
+        [JsonPropertyName("btn_cancel")]
+        public string BtnCancel { get; set; }
         [JsonPropertyName("error_missing_files")]
         public string ErrorMissingFiles { get; set; }
         [JsonPropertyName("error_files_location")]
@@ -371,12 +393,19 @@ namespace geetRPCS.Models
                 BtnUpdateNow = "🚀 Update Now",
                 MsgAppsUpdated = "Applications database updated!",
                 UpdateHowTo = "🛠️ How to Update:",
-                UpdateMethodPs = "1. Via PowerShell (Recommended ⭐)",
+                UpdateMethodInApp = "★ In-App Update (Recommended)",
+                UpdateMethodPs = "1. Via PowerShell",
                 UpdateMethodGithub = "2. Via GitHub Releases",
+                UpdateDownloading = "Downloading update...",
+                UpdateExtracting = "Extracting files...",
+                UpdatePreparing = "Preparing update...",
+                UpdateReadyRestart = "Update ready! geetRPCS will restart.",
+                UpdateDownloadFailed = "Download failed. Please try another method.",
                 BtnCopy = "📋 Copy",
                 BtnCopied = "✅ Copied",
                 BtnOpenLink = "🌐 Open Link",
                 BtnClose = "Close",
+                BtnCancel = "Cancel",
                 ErrorMissingFiles = "The following files are missing:\n\n",
                 ErrorFilesLocation = "\n\nMake sure these files exist in:\n",
                 ErrorDiscordConnection = "Failed to connect to Discord:\n\n{0}\n\nMake sure Discord is running.",
@@ -508,12 +537,19 @@ namespace geetRPCS.Models
                 BtnUpdateNow = "🚀 Perbarui Sekarang",
                 MsgAppsUpdated = "Basis data aplikasi berhasil diperbarui!",
                 UpdateHowTo = "🛠️ Cara Update:",
-                UpdateMethodPs = "1. Via PowerShell (Direkomendasikan ⭐)",
+                UpdateMethodInApp = "★ Update Dalam Aplikasi (Direkomendasikan)",
+                UpdateMethodPs = "1. Via PowerShell",
                 UpdateMethodGithub = "2. Via GitHub Releases",
+                UpdateDownloading = "Mengunduh pembaruan...",
+                UpdateExtracting = "Mengekstrak file...",
+                UpdatePreparing = "Menyiapkan pembaruan...",
+                UpdateReadyRestart = "Pembaruan siap! geetRPCS akan restart.",
+                UpdateDownloadFailed = "Unduhan gagal. Silakan coba metode lain.",
                 BtnCopy = "📋 Salin",
                 BtnCopied = "✅ Tersalin",
                 BtnOpenLink = "🌐 Buka Link",
                 BtnClose = "Tutup",
+                BtnCancel = "Batal",
                 ErrorMissingFiles = "File berikut tidak ditemukan:\n\n",
                 ErrorFilesLocation = "\n\nPastikan file-file tersebut ada di:\n",
                 ErrorDiscordConnection = "Gagal terhubung ke Discord:\n\n{0}\n\nPastikan Discord sedang berjalan.",

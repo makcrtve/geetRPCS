@@ -1,9 +1,19 @@
 /**
  * geetRPCS - Update Checker
- * Handles application and definitions updates from GitHub
+ * Checks for application and apps.json updates
+ */
+/*
+ * Copyright (c) 2026 makcrtve
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -12,6 +22,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -188,12 +199,17 @@ namespace geetRPCS.Services
             string releaseNotes = release.Body ?? "No release notes available.";
             string downloadUrl = release.HtmlUrl ?? "https://github.com/makcrtve/geetRPCS/releases";
             DateTime publishedDate = release.PublishedAt;
-            using var dialog = CreateBaseDialog(LanguageManager.Current.UpdateAvailableTitle, new Size(550, 650));
-            dialog.MaximumSize = new Size(700, 850);
+
+            using var dialog = CreateBaseDialog(LanguageManager.Current.UpdateAvailableTitle, new Size(550, 750));
+            dialog.MaximumSize = new Size(700, 900);
             AddHeaderPanel(dialog, "🎊", LanguageManager.Current.UpdateAvailableMessage, LanguageManager.Current.UpdateSubtitle,
                 Color.FromArgb(88, 101, 242), Color.FromArgb(88, 101, 242), Color.FromArgb(115, 125, 255));
+
             var contentPanel = CreateContentPanel(dialog);
+            contentPanel.AutoScroll = true;
             int yPos = 10;
+
+            // Version box
             var versionBox = new Panel
             {
                 Location = new Point(20, yPos),
@@ -207,14 +223,17 @@ namespace geetRPCS.Services
             AddLabel(versionBox, $"v{latestVersion}", new Point(250, 35), new Font("Segoe UI", 11, FontStyle.Bold), Color.FromArgb(87, 242, 135));
             contentPanel.Controls.Add(versionBox);
             yPos += 85;
+
             AddLabel(contentPanel, $"📅 {LanguageManager.Current.UpdateReleased} {publishedDate:MMMM dd, yyyy 'at' HH:mm} UTC", new Point(20, yPos), new Font("Segoe UI", 8), Color.FromArgb(142, 146, 151));
             yPos += 25;
+
+            // Changelog
             AddLabel(contentPanel, LanguageManager.Current.UpdateChangelog, new Point(20, yPos), new Font("Segoe UI", 10, FontStyle.Bold), Color.White);
             yPos += 25;
             var changelogBox = new RichTextBox
             {
                 Location = new Point(20, yPos),
-                Size = new Size(contentPanel.Width - 60, 95),
+                Size = new Size(contentPanel.Width - 60, 80),
                 BackColor = Color.FromArgb(32, 34, 37),
                 ForeColor = Color.FromArgb(220, 221, 222),
                 Font = new Font("Segoe UI", 9),
@@ -225,9 +244,218 @@ namespace geetRPCS.Services
                 Text = FormatReleaseNotes(releaseNotes)
             };
             contentPanel.Controls.Add(changelogBox);
-            yPos += 110;
+            yPos += 90;
+
+            // How to update
             AddLabel(contentPanel, LanguageManager.Current.UpdateHowTo, new Point(20, yPos), new Font("Segoe UI", 10, FontStyle.Bold), Color.White);
             yPos += 25;
+
+            // === Method 0: In-App Update (NEW - Recommended) ===
+            var inAppBox = new Panel
+            {
+                Location = new Point(20, yPos),
+                Size = new Size(contentPanel.Width - 60, 90),
+                BackColor = Color.FromArgb(32, 34, 37),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+            };
+            // Highlight border effect
+            inAppBox.Paint += (s, e) => {
+                using var pen = new Pen(Color.FromArgb(88, 101, 242), 2);
+                e.Graphics.DrawRectangle(pen, 1, 1, inAppBox.Width - 3, inAppBox.Height - 3);
+            };
+
+            AddLabel(inAppBox, LanguageManager.Current.UpdateMethodInApp ?? "★ In-App Update (Recommended)", new Point(10, 8), new Font("Segoe UI", 9, FontStyle.Bold), Color.FromArgb(88, 101, 242));
+
+            var updateNowBtn = CreateButton(LanguageManager.Current.BtnUpdateNow, Color.FromArgb(88, 101, 242), new Size(150, 32));
+            updateNowBtn.Location = new Point(10, 35);
+            inAppBox.Controls.Add(updateNowBtn);
+
+            // Progress bar (hidden initially)
+            var progressBar = new ProgressBar
+            {
+                Location = new Point(10, 35),
+                Size = new Size(inAppBox.Width - 180, 25),
+                Style = ProgressBarStyle.Continuous,
+                Visible = false
+            };
+            inAppBox.Controls.Add(progressBar);
+
+            // Status label
+            var statusLabel = new Label
+            {
+                Location = new Point(10, 65),
+                Size = new Size(inAppBox.Width - 100, 20),
+                ForeColor = Color.FromArgb(185, 187, 190),
+                Font = new Font("Segoe UI", 8),
+                Text = "",
+                Visible = false
+            };
+            inAppBox.Controls.Add(statusLabel);
+
+            // Cancel button
+            var cancelBtn = CreateButton(LanguageManager.Current.BtnCancel ?? "Cancel", Color.FromArgb(237, 66, 69), new Size(80, 25));
+            cancelBtn.Font = new Font("Segoe UI", 8, FontStyle.Bold);
+            cancelBtn.Location = new Point(inAppBox.Width - 90, 35);
+            cancelBtn.Visible = false;
+            inAppBox.Controls.Add(cancelBtn);
+
+            CancellationTokenSource? cts = null;
+
+            updateNowBtn.Click += async (s, e) =>
+            {
+                try
+                {
+                    // Switch to progress mode
+                    updateNowBtn.Visible = false;
+                    progressBar.Visible = true;
+                    statusLabel.Visible = true;
+                    cancelBtn.Visible = true;
+                    progressBar.Value = 0;
+                    statusLabel.Text = LanguageManager.Current.UpdatePreparing ?? "Preparing update...";
+
+                    cts = new CancellationTokenSource();
+                    var downloader = new UpdateDownloader();
+
+                    // Wire up events - always use Invoke for thread safety
+                    downloader.OnProgressChanged += (percent, current, total, speed) =>
+                    {
+                        try
+                        {
+                            if (dialog.IsDisposed) return;
+
+                            Action updateUI = () =>
+                            {
+                                if (progressBar.IsDisposed || statusLabel.IsDisposed) return;
+
+                                progressBar.Value = Math.Min(Math.Max(percent, 0), 100);
+
+                                double currentMB = current / 1024.0 / 1024.0;
+                                double totalMB = total / 1024.0 / 1024.0;
+                                double speedMBps = speed / 1024.0 / 1024.0;
+
+                                // Calculate ETA
+                                string etaStr = "";
+                                if (speed > 0 && total > current)
+                                {
+                                    double remainingBytes = total - current;
+                                    double etaSeconds = remainingBytes / speed;
+                                    if (etaSeconds < 60)
+                                        etaStr = $" | ETA: {etaSeconds:F0}s";
+                                    else
+                                        etaStr = $" | ETA: {etaSeconds / 60:F0}m {etaSeconds % 60:F0}s";
+                                }
+
+                                statusLabel.Text = $"{currentMB:F1} / {totalMB:F1} MB @ {speedMBps:F2} MB/s{etaStr}";
+                            };
+
+                            if (dialog.InvokeRequired)
+                                dialog.BeginInvoke(updateUI);
+                            else
+                                updateUI();
+                        }
+                        catch { /* Ignore UI update errors */ }
+                    };
+
+                    downloader.OnStatusChanged += (status) =>
+                    {
+                        try
+                        {
+                            if (dialog.IsDisposed) return;
+
+                            Action updateUI = () =>
+                            {
+                                if (statusLabel.IsDisposed) return;
+                                statusLabel.Text = status;
+                            };
+
+                            if (dialog.InvokeRequired)
+                                dialog.BeginInvoke(updateUI);
+                            else
+                                updateUI();
+                        }
+                        catch { }
+                    };
+
+                    downloader.OnError += (error) =>
+                    {
+                        try
+                        {
+                            if (dialog.IsDisposed) return;
+
+                            Action updateUI = () =>
+                            {
+                                MessageBox.Show(error, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                // Reset UI
+                                updateNowBtn.Visible = true;
+                                progressBar.Visible = false;
+                                statusLabel.Visible = false;
+                                cancelBtn.Visible = false;
+                            };
+
+                            if (dialog.InvokeRequired)
+                                dialog.BeginInvoke(updateUI);
+                            else
+                                updateUI();
+                        }
+                        catch { }
+                    };
+
+                    cancelBtn.Click += (s2, e2) =>
+                    {
+                        cts?.Cancel();
+                        updateNowBtn.Visible = true;
+                        progressBar.Visible = false;
+                        statusLabel.Visible = false;
+                        cancelBtn.Visible = false;
+                        statusLabel.Text = "";
+                    };
+
+                    // Start download
+                    string? extractedPath = await downloader.PrepareUpdateAsync(release, cts.Token);
+
+                    if (!string.IsNullOrEmpty(extractedPath) && !cts.Token.IsCancellationRequested)
+                    {
+                        // Launch updater and close
+                        if (downloader.LaunchUpdater(extractedPath))
+                        {
+                            Log("Updater launched, closing application for update", "INFO");
+                            dialog.DialogResult = DialogResult.OK;
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            // Updater failed to launch
+                            updateNowBtn.Visible = true;
+                            progressBar.Visible = false;
+                            cancelBtn.Visible = false;
+                            statusLabel.Text = LanguageManager.Current.UpdateDownloadFailed ?? "Update failed. Try another method.";
+                        }
+                    }
+                    else if (!cts.Token.IsCancellationRequested)
+                    {
+                        // Download/extract failed
+                        updateNowBtn.Visible = true;
+                        progressBar.Visible = false;
+                        cancelBtn.Visible = false;
+                        statusLabel.Visible = true;
+                        statusLabel.Text = LanguageManager.Current.UpdateDownloadFailed ?? "Download failed. Try another method.";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log($"In-app update error: {ex.Message}", "ERROR");
+                    updateNowBtn.Visible = true;
+                    progressBar.Visible = false;
+                    cancelBtn.Visible = false;
+                    statusLabel.Visible = true;
+                    statusLabel.Text = "Error: " + ex.Message;
+                }
+            };
+
+            contentPanel.Controls.Add(inAppBox);
+            yPos += 100;
+
+            // === Method 1: PowerShell ===
             var method1Box = new Panel
             {
                 Location = new Point(20, yPos),
@@ -255,10 +483,10 @@ namespace geetRPCS.Services
             copyBtn.Click += (s, e) => {
                 try
                 {
-                    var thread = new System.Threading.Thread(() => {
+                    var thread = new Thread(() => {
                         try { Clipboard.SetText(cmdText); } catch { }
                     });
-                    thread.SetApartmentState(System.Threading.ApartmentState.STA);
+                    thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
                     thread.Join();
                     copyBtn.Text = LanguageManager.Current.BtnCopied;
@@ -272,6 +500,8 @@ namespace geetRPCS.Services
             method1Box.Controls.Add(copyBtn);
             contentPanel.Controls.Add(method1Box);
             yPos += 80;
+
+            // === Method 2: GitHub Releases ===
             var method2Box = new Panel
             {
                 Location = new Point(20, yPos),
@@ -284,10 +514,11 @@ namespace geetRPCS.Services
             githubLinkBtn.Font = new Font("Segoe UI", 8, FontStyle.Bold);
             githubLinkBtn.Location = new Point(method2Box.Width - 120, 13);
             githubLinkBtn.Click += (s, e) => {
-                try { Process.Start(new ProcessStartInfo { FileName = "https://api.github.com/repos/makcrtve/geetRPCS/releases/latest", UseShellExecute = true }); } catch { }
+                try { Process.Start(new ProcessStartInfo { FileName = downloadUrl, UseShellExecute = true }); } catch { }
             };
             method2Box.Controls.Add(githubLinkBtn);
             contentPanel.Controls.Add(method2Box);
+
             dialog.Controls.Add(contentPanel);
             var closeBtn = CreateButton(LanguageManager.Current.BtnClose, Color.FromArgb(79, 84, 92), new Size(130, 38));
             closeBtn.Click += (s, e) => dialog.DialogResult = DialogResult.Cancel;
@@ -469,6 +700,15 @@ namespace geetRPCS.Services
             [JsonPropertyName("html_url")] public string HtmlUrl { get; set; }
             [JsonPropertyName("published_at")] public DateTime PublishedAt { get; set; }
             [JsonPropertyName("prerelease")] public bool Prerelease { get; set; }
+            [JsonPropertyName("assets")] public List<GitHubAsset>? Assets { get; set; }
+        }
+        
+        public class GitHubAsset
+        {
+            [JsonPropertyName("name")] public string? Name { get; set; }
+            [JsonPropertyName("browser_download_url")] public string? BrowserDownloadUrl { get; set; }
+            [JsonPropertyName("size")] public long Size { get; set; }
+            [JsonPropertyName("download_count")] public int DownloadCount { get; set; }
         }
         #endregion
     }
