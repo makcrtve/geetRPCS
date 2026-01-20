@@ -75,8 +75,9 @@ function Install-GeetRPCS {
         )
 
         $defaultText = if ($Default) { "Y/n" } else { "y/N" }
-        
+
         while ($true) {
+            # DEBUG: Ensure new logic is active
             $response = Read-Host "$Question [$defaultText]"
 
             if ([string]::IsNullOrWhiteSpace($response)) {
@@ -91,7 +92,7 @@ function Install-GeetRPCS {
                 return $false
             }
 
-            Write-Host "Invalid input. Please enter 'y' or 'n'." -ForegroundColor Red
+            Write-Host "Invalid input: '$response'. Please enter 'y' or 'n'." -ForegroundColor Red
         }
     }
 
