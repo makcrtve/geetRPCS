@@ -25,12 +25,13 @@ namespace geetRPCS.Services
     {
         // --- Definitions ---
         #region Constants & Enums
-        private const double HIGH_ENERGY_VELOCITY = 600;
-        private const double MEDIUM_ENERGY_VELOCITY = 150;
-        private const double LOW_ENERGY_VELOCITY = 40;
+        private const double HIGH_ENERGY_VELOCITY = 1200;   // Vigorous mouse movement
+        private const double MEDIUM_ENERGY_VELOCITY = 400;  // Active work
+        private const double LOW_ENERGY_VELOCITY = 100;     // Casual browsing
         private const int IDLE_TIMEOUT_SECONDS = 30;
-        private const int HIGH_CLICKS_PER_MINUTE = 50;
-        private const int MEDIUM_CLICKS_PER_MINUTE = 15;
+        private const int HIGH_CLICKS_PER_MINUTE = 80;      // Intense clicking (gaming, editing)
+        private const int MEDIUM_CLICKS_PER_MINUTE = 25;    // Regular clicking
+        private const int STATE_STABILITY_THRESHOLD = 4;    // ~2 seconds (4 × 500ms analysis intervals)
         public enum EnergyLevel { Sleeping, Relaxing, Normal, Focused, Rush }
         #endregion
         #region ----- Fields -----
@@ -49,6 +50,8 @@ namespace geetRPCS.Services
         private DateTime _lastMoveTime, _lastClickTime;
         private Thread _analysisThread;
         private EnergyLevel _currentEnergy = EnergyLevel.Normal;
+        private EnergyLevel _pendingEnergy = EnergyLevel.Normal;
+        private int _stabilityCounter = 0;
 
         private readonly object _readLock = new object();
 
@@ -297,19 +300,28 @@ namespace geetRPCS.Services
                         newEnergy = CalculateEnergyLevel(avgVelocity, totalClicksInMinute);
                     }
 
-                    // Update public properties
+                    // Update public properties with hysteresis for stability
                     lock (_readLock)
                     {
                         _averageVelocity = avgVelocity;
                         _clicksPerMinute = totalClicksInMinute;
 
-                        if (newEnergy != _currentEnergy)
+                        // State stability hysteresis: require consistent state for ~2 seconds before changing
+                        if (newEnergy == _pendingEnergy)
                         {
-                            _currentEnergy = newEnergy;
-                            // Notify logic can go here or be dispatched
-                            // We dispatch it to avoid blocking analysis thread too much (though Action is usually fast)
-                            try { OnEnergyChanged?.Invoke(newEnergy, avgVelocity, totalClicksInMinute); } catch {}
-                            Log($"Energy: {newEnergy} (V: {avgVelocity:F0}, CPM: {totalClicksInMinute})", "INFO");
+                            _stabilityCounter++;
+                            if (_stabilityCounter >= STATE_STABILITY_THRESHOLD && newEnergy != _currentEnergy)
+                            {
+                                _currentEnergy = newEnergy;
+                                try { OnEnergyChanged?.Invoke(newEnergy, avgVelocity, totalClicksInMinute); } catch {}
+                                Log($"Energy: {newEnergy} (V: {avgVelocity:F0}, CPM: {totalClicksInMinute})", "INFO");
+                            }
+                        }
+                        else
+                        {
+                            // New pending state, reset counter
+                            _pendingEnergy = newEnergy;
+                            _stabilityCounter = 1;
                         }
                     }
                 }

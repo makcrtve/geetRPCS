@@ -66,6 +66,8 @@ class Program : ApplicationContext
     private const int WITTY_ROTATION_INTERVAL_MS = 5000;      // 5 seconds
     private const int BALLOON_TIP_TIMEOUT_MS = 2000;
     private const int APPS_UPDATE_CHECK_INTERVAL_MS = 30 * 60 * 1000; // 30 minutes
+    private const int MIN_ENERGY_RPC_INTERVAL_SECONDS = 5;  // Rate limit for energy-based RPC updates
+    private DateTime _lastEnergyRpcUpdate = DateTime.MinValue;
     #endregion
 
     // --- Main Entry ---
@@ -567,7 +569,15 @@ class Program : ApplicationContext
     private void OnMouseEnergyChanged(MouseActivityTracker.EnergyLevel energy, double velocity, int cpm)
     {
         if (!isPaused && currentApp != null && currentApp != "config" && SettingsService.Instance.MouseEnergyEnabled)
-            RefreshCurrentPresence();
+        {
+            var now = DateTime.UtcNow;
+            if ((now - _lastEnergyRpcUpdate).TotalSeconds >= MIN_ENERGY_RPC_INTERVAL_SECONDS)
+            {
+                _lastEnergyRpcUpdate = now;
+                RefreshCurrentPresence();
+                Log($"Energy RPC updated: {energy}", "DEBUG", "MouseEnergy");
+            }
+        }
     }
     private async void OnToggleMouseEnergy(object? sender, EventArgs e)
     {
