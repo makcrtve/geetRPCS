@@ -466,43 +466,6 @@
     "Drag, drop, done ✨"
   ],
 
-  "_comment_streaming": "========== STREAMING & RECORDING ==========",
-
-  "obs64": [
-    "Stream starting in 3... 🎥",
-    "Dropped frames: 0 💪",
-    "Scene switching ninja 🥷",
-    "Going live! 🔴",
-    "Chat is this real? 💬",
-    "Bitrate optimization 📊",
-    "Encoder settings wizard 🎛️"
-  ],
-  "obs32": [
-    "Stream starting in 3... 🎥",
-    "Dropped frames: 0 💪",
-    "Scene switching ninja 🥷",
-    "Going live! 🔴",
-    "Chat is this real? 💬",
-    "Bitrate optimization 📊",
-    "Encoder settings wizard 🎛️"
-  ],
-  "Streamlabs OBS": [
-    "Streamlabs supremacy 🎮",
-    "Widget overload 📊",
-    "Alert testing time 🔔",
-    "Going live with style 🎨",
-    "Donation goals loading 💰",
-    "Chat integration pro 💬"
-  ],
-  "Streamlabs Desktop": [
-    "Streamlabs supremacy 🎮",
-    "Widget overload 📊",
-    "Alert testing time 🔔",
-    "Going live with style 🎨",
-    "Donation goals loading 💰",
-    "Chat integration pro 💬"
-  ],
-
   "_comment_media_tools": "========== MEDIA TOOLS ==========",
 
   "HandBrake": [
