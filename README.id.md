@@ -1485,4 +1485,4 @@ Jika Anda melihat peringatan merah di VirusTotal atau Windows Defender:
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.3.5 • Apache 2.0 License • 2026</sub>
 </p>
->>>>>>> d6593fea42cea5d328861805517f388deda10b2f
+

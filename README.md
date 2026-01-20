@@ -1470,6 +1470,14 @@ If you see a red warning on VirusTotal or Windows Defender:
 
 ---
 
+## 🎉 Contributors
+
+<a href="https://github.com/makcrtve/geetRPCS/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=makcrtve/geetRPCS" />
+</a>
+
+---
+
 ## 📞 Links
 
 <p align="center">
@@ -1485,4 +1493,4 @@ If you see a red warning on VirusTotal or Windows Defender:
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
   <sub>geetRPCS v1.3.5 • Apache 2.0 License • 2026</sub>
 </p>
->>>>>>> d6593fea42cea5d328861805517f388deda10b2f
+
