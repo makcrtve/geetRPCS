@@ -1472,9 +1472,11 @@ If you see a red warning on VirusTotal or Windows Defender:
 
 ## 🎉 Contributors
 
-<a href="https://github.com/makcrtve/geetRPCS/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=makcrtve/geetRPCS" />
-</a>
+<p align="center">
+  <a href="https://github.com/makcrtve/geetRPCS/graphs/contributors">
+    <img src="https://contributors-img.web.app/image?repo=makcrtve/geetRPCS" />
+  </a>
+</p>
 
 ---
 
