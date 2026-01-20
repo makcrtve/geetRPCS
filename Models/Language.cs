@@ -201,6 +201,14 @@ namespace geetRPCS.Models
         public string BtnUpdateNow { get; set; }
         [JsonPropertyName("msg_apps_updated")]
         public string MsgAppsUpdated { get; set; }
+        [JsonPropertyName("update_witty_available_title")]
+        public string UpdateWittyAvailableTitle { get; set; }
+        [JsonPropertyName("update_witty_available_message")]
+        public string UpdateWittyAvailableMessage { get; set; }
+        [JsonPropertyName("update_witty_latest_version")]
+        public string UpdateWittyLatestVersion { get; set; }
+        [JsonPropertyName("msg_witty_updated")]
+        public string MsgWittyUpdated { get; set; }
         [JsonPropertyName("update_how_to")]
         public string UpdateHowTo { get; set; }
         [JsonPropertyName("update_method_inapp")]
@@ -392,6 +400,10 @@ namespace geetRPCS.Models
                 UpdateAppsLatestVersion = "Latest Database:",
                 BtnUpdateNow = "🚀 Update Now",
                 MsgAppsUpdated = "Applications database updated!",
+                UpdateWittyAvailableTitle = "Witty Texts Update",
+                UpdateWittyAvailableMessage = "🎉 New Witty Texts Available!",
+                UpdateWittyLatestVersion = "Latest Version:",
+                MsgWittyUpdated = "Witty texts database updated!",
                 UpdateHowTo = "🛠️ How to Update:",
                 UpdateMethodInApp = "★ In-App Update (Recommended)",
                 UpdateMethodPs = "1. Via PowerShell",
@@ -536,6 +548,10 @@ namespace geetRPCS.Models
                 UpdateAppsLatestVersion = "Basis Data Terbaru:",
                 BtnUpdateNow = "🚀 Perbarui Sekarang",
                 MsgAppsUpdated = "Basis data aplikasi berhasil diperbarui!",
+                UpdateWittyAvailableTitle = "Pembaruan Teks Witty",
+                UpdateWittyAvailableMessage = "🎉 Teks Witty Baru Tersedia!",
+                UpdateWittyLatestVersion = "Versi Terbaru:",
+                MsgWittyUpdated = "Basis data teks witty berhasil diperbarui!",
                 UpdateHowTo = "🛠️ Cara Update:",
                 UpdateMethodInApp = "★ Update Dalam Aplikasi (Direkomendasikan)",
                 UpdateMethodPs = "1. Via PowerShell",

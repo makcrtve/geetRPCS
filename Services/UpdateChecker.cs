@@ -35,9 +35,11 @@ namespace geetRPCS.Services
         // --- Configuration ---
         private const string GITHUB_API_URL = "https://api.github.com/repos/makcrtve/geetRPCS/releases/latest";
         private const string APPS_RAW_URL = "https://raw.githubusercontent.com/makcrtve/geetRPCS/main/apps.json";
+        private const string WITTY_RAW_URL = "https://raw.githubusercontent.com/makcrtve/geetRPCS/main/witty.json";
         private static string CURRENT_VERSION => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.0.0";
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AppsPath = Path.Combine(AppFolder, "apps.json");
+        private static readonly string WittyPath = Path.Combine(AppFolder, "witty.json");
         private static System.Threading.Timer? _autoUpdateTimer;
         private static bool _isAutoUpdateInProgress = false;
 
@@ -228,6 +230,94 @@ namespace geetRPCS.Services
             var infoLabel = new Label
             {
                 Text = "A new update for supported applications is available!\nThis update doesn't require restarting geetRPCS.",
+                Font = new Font("Segoe UI", 9),
+                ForeColor = Color.FromArgb(185, 187, 190),
+                Location = new Point(20, 110),
+                Size = new Size(contentPanel.Width - 40, 50),
+                TextAlign = ContentAlignment.TopCenter
+            };
+            contentPanel.Controls.Add(infoLabel);
+            dialog.Controls.Add(contentPanel);
+            var updateBtn = CreateButton(LanguageManager.Current.BtnUpdateNow, Color.FromArgb(87, 242, 135), new Size(160, 38));
+            var closeBtn = CreateButton(LanguageManager.Current.BtnClose, Color.FromArgb(79, 84, 92), new Size(100, 38));
+            bool result = false;
+            updateBtn.Click += (s, e) => { result = true; dialog.DialogResult = DialogResult.OK; };
+            closeBtn.Click += (s, e) => dialog.DialogResult = DialogResult.Cancel;
+            AddButtonPanel(dialog, closeBtn, updateBtn);
+            dialog.ShowDialog();
+            return result;
+        }
+
+        public static async Task<bool> CheckForWittyUpdate(bool silent = true)
+        {
+            try
+            {
+                Log("Checking for witty.json updates", "INFO");
+                if (!File.Exists(WittyPath)) return false;
+                string localJson = File.ReadAllText(WittyPath);
+                string localVersion = "0.0.0";
+                using (JsonDocument doc = JsonDocument.Parse(localJson))
+                {
+                    if (doc.RootElement.ValueKind == JsonValueKind.Object)
+                    {
+                        if (doc.RootElement.TryGetProperty("_version", out var verProp))
+                        {
+                            localVersion = verProp.GetString() ?? "0.0.0";
+                        }
+                    }
+                }
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "geetRPCS-UpdateChecker");
+                string remoteJson = await client.GetStringAsync(WITTY_RAW_URL);
+                string remoteVersion = "0.0.0";
+                using (JsonDocument doc = JsonDocument.Parse(remoteJson))
+                {
+                    if (doc.RootElement.ValueKind == JsonValueKind.Object)
+                    {
+                        if (doc.RootElement.TryGetProperty("_version", out var verProp))
+                        {
+                            remoteVersion = verProp.GetString() ?? "0.0.0";
+                        }
+                    }
+                }
+                Log($"Local Witty Version: {localVersion}, Remote Witty Version: {remoteVersion}", "DEBUG");
+                if (IsNewerVersion(remoteVersion, localVersion))
+                {
+                    Log($"New witty.json version available: {remoteVersion}", "INFO");
+                    if (ShowWittyUpdateDialog(remoteVersion))
+                    {
+                        File.WriteAllText(WittyPath, remoteJson);
+                        Log("witty.json updated successfully", "INFO");
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log($"Witty update check failed: {ex.Message}", "ERROR");
+            }
+            return false;
+        }
+
+        private static bool ShowWittyUpdateDialog(string remoteVersion)
+        {
+            using var dialog = CreateBaseDialog(LanguageManager.Current.UpdateWittyAvailableTitle ?? "Witty Texts Update", new Size(450, 350));
+            AddHeaderPanel(dialog, "💬", LanguageManager.Current.UpdateWittyAvailableMessage ?? "🎉 New Witty Texts Available!", null!,
+                Color.FromArgb(114, 137, 218), Color.FromArgb(114, 137, 218), Color.FromArgb(144, 167, 248));
+            var contentPanel = CreateContentPanel(dialog);
+            var versionBox = new Panel
+            {
+                Location = new Point(20, 20),
+                Size = new Size(contentPanel.Width - 40, 70),
+                BackColor = Color.FromArgb(32, 34, 37),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
+            };
+            AddLabel(versionBox, LanguageManager.Current.UpdateWittyLatestVersion ?? "Latest Version:", new Point(15, 15), new Font("Segoe UI", 9, FontStyle.Bold), Color.FromArgb(185, 187, 190));
+            AddLabel(versionBox, $"v{remoteVersion}", new Point(15, 38), new Font("Segoe UI", 12, FontStyle.Bold), Color.FromArgb(114, 137, 218));
+            contentPanel.Controls.Add(versionBox);
+            var infoLabel = new Label
+            {
+                Text = "New witty texts are available for your Discord presence!\nThis update doesn't require restarting geetRPCS.",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = Color.FromArgb(185, 187, 190),
                 Location = new Point(20, 110),

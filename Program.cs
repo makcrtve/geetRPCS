@@ -136,6 +136,12 @@ class Program : ApplicationContext
                         AppConfigManager.Reload();
                         ShowBalloonTip(LanguageManager.Current.AppName, LanguageManager.Current.MsgAppsUpdated, ToolTipIcon.Info);
                     }
+
+                    if (await UpdateChecker.CheckForWittyUpdate(silent: true))
+                    {
+                        NarrativeService.Reload();
+                        ShowBalloonTip(LanguageManager.Current.AppName, LanguageManager.Current.MsgWittyUpdated ?? "Witty texts database updated!", ToolTipIcon.Info);
+                    }
                 }));
             });
             config = LoadConfig();
@@ -153,7 +159,7 @@ class Program : ApplicationContext
                     MemoryHelper.TrimMemory();
                 }
             });
-            // Periodic apps.json update checker
+            // Periodic apps.json and witty.json update checker
             Task.Run(async () =>
             {
                 while (true)
@@ -170,10 +176,20 @@ class Program : ApplicationContext
                             }));
                             Log("Periodic apps.json update applied successfully", "INFO", "UpdateChecker");
                         }
+
+                        if (await UpdateChecker.CheckForWittyUpdate(silent: true))
+                        {
+                            NarrativeService.Reload();
+                            _threadMarshaller.Invoke(new Action(() =>
+                            {
+                                ShowBalloonTip(LanguageManager.Current.AppName, LanguageManager.Current.MsgWittyUpdated ?? "Witty texts database updated!", ToolTipIcon.Info);
+                            }));
+                            Log("Periodic witty.json update applied successfully", "INFO", "UpdateChecker");
+                        }
                     }
                     catch (Exception ex)
                     {
-                        Log($"Periodic apps update check failed: {ex.Message}", "ERROR", "UpdateChecker");
+                        Log($"Periodic update check failed: {ex.Message}", "ERROR", "UpdateChecker");
                     }
                 }
             });
