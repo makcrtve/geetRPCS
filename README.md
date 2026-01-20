@@ -66,7 +66,7 @@ Create Desktop shortcut? [Y/n]: _
 Create Start Menu shortcut? [Y/n]: _
 ```
 
-> 💡 **Update:** Run the same command to update to the latest version. Your settings will be preserved!
+> 💡 **Update:** Run the same command to update. Settings & shortcut preferences are preserved!
 
 ---
 
@@ -149,8 +149,8 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Hybrid Detection
 - Single Instance
 - Ultra Low RAM (5-30MB)
-- **Zero Input Lag (New)**
-- **Sticky Presence (New)**
+- **Zero Input Lag**
+- **Sticky Presence**
 - Tray Animation
 - JSON Comments Support
 - Auto-refresh Preview
@@ -174,15 +174,16 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 <td width="25%" valign="top">
 
 **🔧 Utility**
-- Optimized Async I/O 🚀
+- **Silent Auto-Update (v1.3.6)**
+- **Shortcut Manager (v1.3.6)**
+- Optimized Async I/O
 - True Hot Reload
 - Quick Config Access
 - Auto Startup
-- Event Logging
-- Update Checker (Balloon Tip)
+- Centralized Logging
 - Auto Apps DB Update
 - Cache Management
-- **.gitignore Ready**
+- .gitignore Ready
 
 </td>
 <td width="25%" valign="top">
@@ -263,7 +264,7 @@ Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humoro
 | App | Witty Texts |
 |:----|:------------|
 | **FL Studio** | "Producing next heater 🔥", "Where is snare? 🥁", "Soundgoodizer on Master 🎚️" |
-| **VS Code** | "Compiling spaghetti code 🍝", "It works on my machine 🤷", "Debugging 100 errors 🐛" |
+
 | **Chrome** | "100 tabs open 🔥", "Researching on YouTube 🎥", "Definitely working... 👀" |
 
 **How to Use:**
@@ -319,16 +320,17 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 
 | Menu | Function |
 |------|----------|
+| ⚡ Quick Actions | **Manager Shortcuts**, access folder, edit config |
 | ⏸️ Pause | Toggle presence on/off |
 | 🔒 Private Mode | Censor window titles |
 | 🖱️ Mouse Energy | Toggle activity detector |
+| 🔄 Auto-Update | **Toggle silent background updates** |
 | 🎨 Tray Animation | Toggle icon animation |
 | 📡 Telemetry | Toggle anonymous usage data |
 | 👀 Preview Window | Live preview Discord presence |
 | 🛠️ Manage Apps | Enable/disable applications |
 | 🔑 Change App ID | Update the default Discord App ID |
 | 📊 Statistics | View & export statistics |
-| ⚡ Quick Actions | Access folder, edit config |
 | 🌐 Language | Change language (EN/ID) |
 
 <details>
@@ -365,7 +367,7 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
 > 💡 **Tip:** Create `config.json` via Quick Actions → "Edit config.json" (will auto-create with defaults) OR use the **"Change App ID"** menu item!
 
 <details>
-<summary><b>🔑 Dynamic Client ID Switching (New in v1.3.2)</b></summary>
+<summary><b>🔑 Dynamic Client ID Switching</b></summary>
 
 You can now assign **different Discord App IDs for specific applications** without manually changing the config every time.
 
@@ -380,13 +382,13 @@ You can now assign **different Discord App IDs for specific applications** witho
   {
     "process": "chrome",
     "appName": "Google Chrome",
-    "clientId": "111111111111111111", 
+    "clientId": "111111111111111111",
     ...
   },
   {
-    "process": "FL64",
-    "appName": "FL Studio",
-    "clientId": "222222222222222222", 
+    "process": "Photoshop",
+    "appName": "Adobe Photoshop",
+    "clientId": "987654321098765432",
     ...
   }
 ]
@@ -421,7 +423,7 @@ You can now assign **different Discord App IDs for specific applications** witho
 }
 ```
 
-**Placeholders:** `{app_name}` • `{process_name}` • `{window_title}`
+**Placeholders:** `{app_name}` • `{process_name}` • `{window_title}` • `{witty_text}`
 
 </details>
 
@@ -509,57 +511,31 @@ geetRPCS validates button URLs automatically:
 ## ❓ FAQ
 
 <details>
+<summary><b>How to use the new Silent Auto-Update?</b></summary>
+
+1. Right-click the system tray icon
+2. Go to `Settings` (or directly in menu if visible) and check **Auto-Update**
+3. That's it! geetRPCS will check for updates every 6 hours and install them silently in the background.
+
+</details>
+
+<details>
+<summary><b>How to manage shortcuts?</b></summary>
+
+New in v1.3.6:
+1. Right-click system tray icon -> `⚡ Quick Actions` -> `➕ Manage Shortcuts`
+2. Click `Desktop Shortcut` or `Start Menu Shortcut` to toggle them.
+3. Your preference is saved forever!
+
+</details>
+
+<details>
 <summary><b>Presence not showing on Discord?</b></summary>
 
 1. Ensure you are using Discord **Desktop** (not web)
 2. Settings → Activity Privacy → Enable "Display current activity"
 3. Restart geetRPCS and Discord
 4. Make sure you are not in **Pause** mode
-
-</details>
-
-<details>
-<summary><b>How to update geetRPCS?</b></summary>
-
-Simply run the same install command:
-
-```powershell
-irm https://bit.ly/geetrpcs | iex
-```
-
-The installer will:
-- ✅ Detect your current version
-- ✅ Download only if a new version is available
-- ✅ Backup your settings (`apps.json`, `settings.json`, `statistics.json`)
-- ✅ Install the update
-- ✅ Restore your settings
-
-**v1.3.6 New Features:**
-- ✅ Silent Auto-Update: Enable from tray menu for zero-interaction updates
-- ✅ Persistent Shortcut Preferences: Installer remembers your choices
-- ✅ Manual Shortcut Management: Create/remove shortcuts from tray menu anytime
-
-</details>
-
-<details>
-<summary><b>How to use different Discord App IDs for specific apps?</b></summary>
-
-You can override the global App ID per app.
-
-1. Open `apps.json`.
-2. Add `"clientId": "YOUR_SPECIFIC_APP_ID"` to the desired application entry.
-3. Reload configuration (`Ctrl+Alt+R`).
-
-Example:
-```json
-{
-  "process": "chrome",
-  "appName": "Google Chrome",
-  "clientId": "987654321098765432",
-  ...
-}
-```
-This will use `987654321098765432` for Google Chrome only.
 
 </details>
 
@@ -573,100 +549,6 @@ geetRPCS automatically checks if your `apps.json` database is outdated upon star
 - **If you click "Close":** You keep your current local version.
 
 This ensures you always have support for the latest software without manually downloading files.
-
-</details>
-
-<details>
-<summary><b>Tray animation not working?</b></summary>
-
-1. Ensure "🎨 Tray Icon Animation" is enabled in the tray menu
-2. Animation only triggers on **app switch** (not window title changes)
-3. Check `geetRPCS.log` for TrayAnimator messages
-
-</details>
-
-<details>
-<summary><b>Startup not working?</b></summary>
-
-v1.2.7+ improved startup validation:
-1. Make sure geetRPCS is **not** running from a temporary folder
-2. Move the application to a permanent location (e.g., `C:\Programs\geetRPCS\`)
-3. Enable startup again via the tray menu
-4. If you moved the app, re-enable startup to update the registry path
-
-</details>
-
-<details>
-<summary><b>New app not detected after editing apps.json?</b></summary>
-
-1. Edit `apps.json` and save
-2. Right-click tray → Quick Actions → **Reload All** (or press `Ctrl+Alt+R`)
-3. New apps should be detected immediately
-
-If still not working, check:
-- Process name matches exactly (case-insensitive)
-- JSON syntax is valid
-- App is not disabled in **Manage Apps**
-
-</details>
-
-<details>
-<summary><b>Mouse Energy not updating?</b></summary>
-
-1. Ensure "🖱️ Mouse Energy Detector" is enabled in the tray menu
-2. The feature analyzes activity over time - wait a few seconds
-3. Some fullscreen applications might affect detection
-4. Check `geetRPCS.log` for any MouseTracker errors
-
-</details>
-
-<details>
-<summary><b>Buttons not appearing on Discord?</b></summary>
-
-Check that your URLs:
-- Start with `http://` or `https://`
-- Are valid URLs (not just domain names)
-- Labels are 32 characters or less
-
-**Example of a valid button:**
-```json
-{ "label": "My Website", "url": "https://example.com" }
-```
-
-</details>
-
-<details>
-<summary><b>Hotkeys not working?</b></summary>
-
-Ensure no other application is using the same shortcuts. Some fullscreen games running "As Administrator" might block hotkeys if geetRPCS is not also run as Admin.
-
-</details>
-
-<details>
-<summary><b>Images not showing?</b></summary>
-
-1. Upload images in the Discord Developer Portal
-2. Wait a few minutes (Discord sync)
-3. Key names must match **exactly** (case sensitive)
-4. Preview Window → 🔄 Refresh (Auto-refresh enabled in v1.2.8)
-
-</details>
-
-<details>
-<summary><b>Troubleshooting</b></summary>
-
-Open `geetRPCS.log` or right-click tray → **Open Log File**
-
-| Error | Solution |
-|-------|----------|
-| Apps.json not found | Ensure apps.json is in the same folder |
-| Discord not connected | Ensure Discord Desktop is running |
-| Presence not showing | Check Pause mode and Manage Apps |
-| Preview image empty | Clear Cache → Refresh |
-| Mouse hook failed | Run as Administrator |
-| Buttons not appearing | Check URL format (must start with http/https) |
-| Startup from temp rejected | Move app to a permanent folder |
-| Already running | v1.2.8 prevents duplicate instances. Check tray. |
 
 </details>
 
@@ -702,7 +584,7 @@ If you see a red warning on VirusTotal or Windows Defender:
 
 ## 🔮 Roadmap
 
-- [x] Auto-update checker (Custom UI)
+- [x] Auto-update checker (Silent Mode)
 - [x] Statistics tracker (Async I/O)
 - [x] Multi-language (EN/ID)
 - [x] Preview Window
@@ -722,8 +604,9 @@ If you see a red warning on VirusTotal or Windows Defender:
 - [x] .gitignore & GitHub Ready
 - [x] Professional Code Formatting
 - [x] Sticky Rich Presence (v1.3.4)
-- [x] **Centralized Logging System (v1.3.5) 🆕**
-- [x] **Updater Version Sync (v1.3.5)**
+- [x] Centralized Logging System (v1.3.5)
+- [x] **Silent Auto-Update (v1.3.6) 🆕**
+- [x] **Shortcut Manager (v1.3.6) 🆕**
 - [ ] More software support
 - [ ] UI Dashboard (WPF/WinUI)
 
