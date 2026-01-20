@@ -186,6 +186,13 @@ class Program : ApplicationContext
             RegisterHotkeys();
             InitMouseTracker();
             MemoryHelper.TrimMemory();
+            
+            // Start auto-update background checker if enabled
+            if (SettingsService.Instance.AutoUpdateEnabled)
+            {
+                UpdateChecker.StartAutoUpdateChecker();
+                Log("Auto-update background checker started");
+            }
         }
         catch (Exception ex)
         {
@@ -930,6 +937,21 @@ class Program : ApplicationContext
                     : (LanguageManager.Current.MsgTelemetryOff ?? "Usage data disabled"), ToolTipIcon.Info);
             };
             menu.Items.Add(telemetryItem);
+            
+            // Auto-Update toggle
+            var autoUpdateItem = new ToolStripMenuItem("🔄 Auto-Update") { Checked = SettingsService.Instance.AutoUpdateEnabled };
+            autoUpdateItem.Click += async (s, args) =>
+            {
+                bool newState = !SettingsService.Instance.AutoUpdateEnabled;
+                SettingsService.Instance.AutoUpdateEnabled = newState;
+                await SettingsService.SaveAsync();
+                ((ToolStripMenuItem)s!).Checked = newState;
+                ShowBalloonTip(LanguageManager.Current.AppName,
+                    newState ? "Auto-update enabled. App will update automatically." 
+                    : "Auto-update disabled. You'll be notified about updates.", ToolTipIcon.Info);
+                Log($"Auto-update {(newState ? "enabled" : "disabled")}");
+            };
+            menu.Items.Add(autoUpdateItem);
             menu.Items.Add(new ToolStripSeparator());
             var manageAppsItem = new ToolStripMenuItem(LanguageManager.Current.MenuManageApps);
             manageAppsItem.Click += (s, e) => ToggleManageAppsVisibility();
@@ -1058,6 +1080,101 @@ class Program : ApplicationContext
             if (MessageBox.Show(LanguageManager.Current.DialogReloadMessage, LanguageManager.Current.DialogReloadTitle,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) OnReload(null, EventArgs.Empty);
         });
+        
+        // Add Shortcut Management submenu
+        quickActionsMenu.DropDownItems.Add(new ToolStripSeparator());
+        var shortcutMenu = new ToolStripMenuItem("➕ Manage Shortcuts");
+        
+        // Desktop Shortcut
+        var desktopShortcutItem = new ToolStripMenuItem("Desktop Shortcut") 
+        { 
+            Checked = ShortcutManager.IsDesktopShortcutExists() 
+        };
+        desktopShortcutItem.Click += async (_, __) =>
+        {
+            try
+            {
+                if (ShortcutManager.IsDesktopShortcutExists())
+                {
+                    if (MessageBox.Show("Remove desktop shortcut?", LanguageManager.Current.AppName,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        ShortcutManager.RemoveDesktopShortcut();
+                        ShowBalloonTip(LanguageManager.Current.AppName, "Desktop shortcut removed", ToolTipIcon.Info);
+                        
+                        // Update preference
+                        SettingsService.Instance.ShortcutPreferences.DesktopShortcut = false;
+                        await SettingsService.SaveAsync();
+                    }
+                }
+                else
+                {
+                    ShortcutManager.CreateDesktopShortcut();
+                    ShortcutManager.RefreshIconCache();
+                    ShowBalloonTip(LanguageManager.Current.AppName, "Desktop shortcut created", ToolTipIcon.Info);
+                    
+                    // Update preference
+                    SettingsService.Instance.ShortcutPreferences.DesktopShortcut = true;
+                    SettingsService.Instance.ShortcutPreferences.PreferenceSaved = true;
+                    await SettingsService.SaveAsync();
+                }
+                UpdateTrayMenu(); // Refresh to update checkmark
+            }
+            catch (Exception ex)
+            {
+                Log($"Desktop shortcut error: {ex.Message}", "ERROR");
+                MessageBox.Show($"Failed to manage desktop shortcut: {ex.Message}", 
+                    LanguageManager.Current.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        };
+        shortcutMenu.DropDownItems.Add(desktopShortcutItem);
+        
+        // Start Menu Shortcut
+        var startMenuShortcutItem = new ToolStripMenuItem("Start Menu Shortcut") 
+        { 
+            Checked = ShortcutManager.IsStartMenuShortcutExists() 
+        };
+        startMenuShortcutItem.Click += async (_, __) =>
+        {
+            try
+            {
+                if (ShortcutManager.IsStartMenuShortcutExists())
+                {
+                    if (MessageBox.Show("Remove Start Menu shortcut?", LanguageManager.Current.AppName,
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        ShortcutManager.RemoveStartMenuShortcut();
+                        ShowBalloonTip(LanguageManager.Current.AppName, "Start Menu shortcut removed", ToolTipIcon.Info);
+                        
+                        // Update preference
+                        SettingsService.Instance.ShortcutPreferences.StartMenuShortcut = false;
+                        await SettingsService.SaveAsync();
+                    }
+                }
+                else
+                {
+                    ShortcutManager.CreateStartMenuShortcut();
+                    ShortcutManager.RefreshIconCache();
+                    ShowBalloonTip(LanguageManager.Current.AppName, "Start Menu shortcut created", ToolTipIcon.Info);
+                    
+                    // Update preference
+                    SettingsService.Instance.ShortcutPreferences.StartMenuShortcut = true;
+                    SettingsService.Instance.ShortcutPreferences.PreferenceSaved = true;
+                    await SettingsService.SaveAsync();
+                }
+                UpdateTrayMenu(); // Refresh to update checkmark
+            }
+            catch (Exception ex)
+            {
+                Log($"Start Menu shortcut error: {ex.Message}", "ERROR");
+                MessageBox.Show($"Failed to manage Start Menu shortcut: {ex.Message}", 
+                    LanguageManager.Current.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        };
+        shortcutMenu.DropDownItems.Add(startMenuShortcutItem);
+        
+        quickActionsMenu.DropDownItems.Add(shortcutMenu);
+        
         menu.Items.Add(quickActionsMenu);
     }
     private void AddLanguageMenu(ContextMenuStrip menu)

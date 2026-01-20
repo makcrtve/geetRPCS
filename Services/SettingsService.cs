@@ -86,6 +86,16 @@ namespace geetRPCS.Services
             get { lock (_lock) { return _settings.LogLevel; } }
             set { lock (_lock) { _settings.LogLevel = value; } }
         }
+        public bool AutoUpdateEnabled
+        {
+            get { lock (_lock) { return _settings.AutoUpdateEnabled; } }
+            set { lock (_lock) { _settings.AutoUpdateEnabled = value; } }
+        }
+        public ShortcutPreferences ShortcutPreferences
+        {
+            get { lock (_lock) { return _settings.ShortcutPreferences; } }
+            set { lock (_lock) { _settings.ShortcutPreferences = value; } }
+        }
         private static void Load()
         {
             try

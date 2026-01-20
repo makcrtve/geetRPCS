@@ -1,15 +1,14 @@
-<<<<<<< HEAD
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <AssemblyName>geetMaintenance</AssemblyName>
+    <AssemblyName>Updater</AssemblyName>
     <RootNamespace>geetRPCS.Updater</RootNamespace>
     <ApplicationIcon>..\rpicon.ico</ApplicationIcon>
-    <Version>1.3.5</Version>
-    <AssemblyVersion>1.3.5.0</AssemblyVersion>
-    <FileVersion>1.3.5.0</FileVersion>
-    <Copyright>© 2025 makcrtve</Copyright>
+    <Version>1.3.6</Version>
+    <AssemblyVersion>1.3.6.0</AssemblyVersion>
+    <FileVersion>1.3.6.0</FileVersion>
+    <Copyright>© 2026 makcrtve</Copyright>
     <Company>makcrtve</Company>
     <Product>geetRPCS Maintenance Tool</Product>
     <Description>Official maintenance utility for geetRPCS</Description>
@@ -28,35 +27,4 @@
     <Deterministic>true</Deterministic>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
-=======
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <AssemblyName>geetMaintenance</AssemblyName>
-    <RootNamespace>geetRPCS.Updater</RootNamespace>
-    <ApplicationIcon>..\rpicon.ico</ApplicationIcon>
-    <Version>1.3.5</Version>
-    <AssemblyVersion>1.3.5.0</AssemblyVersion>
-    <FileVersion>1.3.5.0</FileVersion>
-    <Copyright>© 2025 makcrtve</Copyright>
-    <Company>makcrtve</Company>
-    <Product>geetRPCS Maintenance Tool</Product>
-    <Description>Official maintenance utility for geetRPCS</Description>
-
-    <SelfContained>true</SelfContained>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <PublishSingleFile>true</PublishSingleFile>
-
-    <PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>partial</TrimMode>
-    <EnableCompressionInSingleFile>false</EnableCompressionInSingleFile>
-    <DebugType>embedded</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <Deterministic>true</Deterministic>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
->>>>>>> d6593fea42cea5d328861805517f388deda10b2f
 </Project>

@@ -63,7 +63,7 @@ function Install-GeetRPCS {
                     return $index - 1
                 }
             }
-            
+
             Write-Host "Invalid choice. Please enter a number between 1 and $($Options.Count) or press Enter for default." -ForegroundColor Red
         }
     }
@@ -75,13 +75,24 @@ function Install-GeetRPCS {
         )
 
         $defaultText = if ($Default) { "Y/n" } else { "y/N" }
-        $response = Read-Host "$Question [$defaultText]"
+        
+        while ($true) {
+            $response = Read-Host "$Question [$defaultText]"
 
-        if ([string]::IsNullOrWhiteSpace($response)) {
-            return $Default
+            if ([string]::IsNullOrWhiteSpace($response)) {
+                return $Default
+            }
+
+            $r = $response.ToLower().Trim()
+            if ($r -eq 'y' -or $r -eq 'yes') {
+                return $true
+            }
+            if ($r -eq 'n' -or $r -eq 'no') {
+                return $false
+            }
+
+            Write-Host "Invalid input. Please enter 'y' or 'n'." -ForegroundColor Red
         }
-
-        return $response.ToLower() -eq 'y' -or $response.ToLower() -eq 'yes'
     }
 
     # ══════════════════════════════════════════════════════════════
@@ -168,6 +179,27 @@ function Install-GeetRPCS {
 
     try {
         # ══════════════════════════════════════════════════════════════
+        # CHECK EXISTING SHORTCUT PREFERENCES
+        # ══════════════════════════════════════════════════════════════
+        $settingsPath = Join-Path $installDir "settings.json"
+        $savedPreferences = $null
+        $hasExistingPreferences = $false
+
+        if (Test-Path $settingsPath) {
+            try {
+                $settings = Get-Content $settingsPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue
+                if ($settings.shortcutPreferences -and $settings.shortcutPreferences.preferenceSaved -eq $true) {
+                    $savedPreferences = $settings.shortcutPreferences
+                    $hasExistingPreferences = $true
+                    Write-Host "Found saved shortcut preferences" -ForegroundColor DarkGray
+                }
+            }
+            catch {
+                # Ignore errors, will use interactive prompts
+            }
+        }
+
+        # ══════════════════════════════════════════════════════════════
         # INTERACTIVE MENU (if not Silent mode)
         # ══════════════════════════════════════════════════════════════
         if (-not $Silent) {
@@ -180,12 +212,20 @@ function Install-GeetRPCS {
                 $Version = if ($versionChoice -eq 0) { "portable" } else { "minimal" }
             }
 
-            if (-not $PSBoundParameters.ContainsKey('DesktopShortcut')) {
-                $DesktopShortcut = Show-YesNo -Question "Create Desktop shortcut?" -Default $true
+            # Use saved preferences if available, otherwise ask
+            if ($hasExistingPreferences) {
+                $DesktopShortcut = $savedPreferences.desktopShortcut
+                $StartMenuShortcut = $savedPreferences.startMenuShortcut
+                Write-Host "  Using saved preferences: Desktop=$DesktopShortcut, StartMenu=$StartMenuShortcut" -ForegroundColor DarkCyan
             }
+            else {
+                if (-not $PSBoundParameters.ContainsKey('DesktopShortcut')) {
+                    $DesktopShortcut = Show-YesNo -Question "Create Desktop shortcut?" -Default $true
+                }
 
-            if (-not $PSBoundParameters.ContainsKey('StartMenuShortcut')) {
-                $StartMenuShortcut = Show-YesNo -Question "Create Start Menu shortcut?" -Default $true
+                if (-not $PSBoundParameters.ContainsKey('StartMenuShortcut')) {
+                    $StartMenuShortcut = Show-YesNo -Question "Create Start Menu shortcut?" -Default $true
+                }
             }
 
             Write-Host ""
@@ -193,6 +233,12 @@ function Install-GeetRPCS {
         else {
             if ([string]::IsNullOrWhiteSpace($Version)) {
                 $Version = "portable"
+            }
+
+            # Use saved preferences in silent mode if available
+            if ($hasExistingPreferences) {
+                $DesktopShortcut = $savedPreferences.desktopShortcut
+                $StartMenuShortcut = $savedPreferences.startMenuShortcut
             }
         }
 
@@ -381,6 +427,49 @@ function Install-GeetRPCS {
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
 
         # ══════════════════════════════════════════════════════════════
+        # SAVE SHORTCUT PREFERENCES TO SETTINGS.JSON
+        # ══════════════════════════════════════════════════════════════
+        $settingsPath = Join-Path $installDir "settings.json"
+        
+        # Load existing settings or create new
+        if (Test-Path $settingsPath) {
+            try {
+                $settings = Get-Content $settingsPath -Raw | ConvertFrom-Json -ErrorAction SilentlyContinue
+                if (-not $settings) {
+                    $settings = @{}
+                }
+            }
+            catch {
+                $settings = @{}
+            }
+        }
+        else {
+            $settings = @{
+                language               = "en"
+                disabledApps           = @()
+                mouseEnergyEnabled     = $true
+                trayAnimationEnabled   = $true
+                telemetryEnabled       = $true
+                updateNotificationMode = "Notification"
+                logLevel               = "INFO"
+                autoUpdateEnabled      = $false
+            }
+        }
+
+        # Update shortcut preferences (only if not using saved preferences)
+        if (-not $hasExistingPreferences) {
+            $settings | Add-Member -MemberType NoteProperty -Name "shortcutPreferences" -Value @{
+                desktopShortcut   = [bool]$DesktopShortcut
+                startMenuShortcut = [bool]$StartMenuShortcut
+                preferenceSaved   = $true
+            } -Force
+            
+            Write-Host "      Saving shortcut preferences..." -ForegroundColor Yellow
+            $settings | ConvertTo-Json -Depth 10 | Set-Content -Path $settingsPath -Force
+            Write-Host "      └─ Preferences saved to settings.json" -ForegroundColor DarkGray
+        }
+
+        # ══════════════════════════════════════════════════════════════
         # [7/7] CREATE SHORTCUTS
         # ══════════════════════════════════════════════════════════════
         Write-Host "[7/7] Creating shortcuts..." -ForegroundColor Yellow
@@ -398,7 +487,7 @@ function Install-GeetRPCS {
             $Shortcut.TargetPath = $exePath
             $Shortcut.WorkingDirectory = $installDir
             $Shortcut.IconLocation = "$exePath,0"
-            $Shortcut.Description = "geetRPCS - PS3 Games Library Manager"
+            $Shortcut.Description = "geetRPCS - Discord Rich Presence Custom Switcher"
             $Shortcut.Save()
 
             $shortcutsCreated += "Desktop"
@@ -422,7 +511,7 @@ function Install-GeetRPCS {
             $Shortcut.TargetPath = $exePath
             $Shortcut.WorkingDirectory = $installDir
             $Shortcut.IconLocation = "$exePath,0"
-            $Shortcut.Description = "geetRPCS - PS3 Games Library Manager"
+            $Shortcut.Description = "geetRPCS - Discord Rich Presence Custom Switcher"
             $Shortcut.Save()
 
             $uninstallShortcutPath = Join-Path $startMenuFolder "Uninstall geetRPCS.lnk"
@@ -489,6 +578,9 @@ function Install-GeetRPCS {
             }
         }
 
+        Write-Host ""
+        Write-Host "  💡 Tip: Enable Auto-Update from the tray menu!" -ForegroundColor Yellow
+        Write-Host "     Right-click tray icon → Settings → Auto-Update" -ForegroundColor DarkGray
         Write-Host ""
         Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir

@@ -38,6 +38,124 @@ namespace geetRPCS.Services
         private static string CURRENT_VERSION => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.0.0";
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string AppsPath = Path.Combine(AppFolder, "apps.json");
+        private static System.Threading.Timer? _autoUpdateTimer;
+        private static bool _isAutoUpdateInProgress = false;
+
+        /// <summary>
+        /// Start background auto-update checker if enabled in settings
+        /// </summary>
+        public static void StartAutoUpdateChecker(int intervalHours = 6)
+        {
+            if (_autoUpdateTimer != null) return; // Already running
+            
+            try
+            {
+                // Check immediately on startup (after 30 seconds delay)
+                var initialDelay = TimeSpan.FromSeconds(30);
+                var interval = TimeSpan.FromHours(intervalHours);
+                
+                _autoUpdateTimer = new System.Threading.Timer(async _ => await AutoUpdateCheck(), null, initialDelay, interval);
+                Log($"Auto-update checker started with {intervalHours}h interval", "INFO");
+            }
+            catch (Exception ex)
+            {
+                Log($"Failed to start auto-update checker: {ex.Message}", "ERROR");
+            }
+        }
+
+        /// <summary>
+        /// Stop background auto-update checker
+        /// </summary>
+        public static void StopAutoUpdateChecker()
+        {
+            try
+            {
+                _autoUpdateTimer?.Dispose();
+                _autoUpdateTimer = null;
+                Log("Auto-update checker stopped", "INFO");
+            }
+            catch (Exception ex)
+            {
+                Log($"Error stopping auto-update checker: {ex.Message}", "ERROR");
+            }
+        }
+
+        /// <summary>
+        /// Background auto-update check - silently downloads and installs updates
+        /// </summary>
+        private static async Task AutoUpdateCheck()
+        {
+            // Skip if auto-update is disabled or already in progress
+            if (!SettingsService.Instance.AutoUpdateEnabled || _isAutoUpdateInProgress)
+                return;
+
+            try
+            {
+                _isAutoUpdateInProgress = true;
+                Log("Running background auto-update check", "INFO");
+
+                var release = await CheckForUpdates(showUpToDateMessage: false);
+                if (release != null)
+                {
+                    Log($"Auto-update: New version {release.TagName} available - starting silent download", "INFO");
+
+                    // Silent download and install
+                    await Task.Run(async () =>
+                    {
+                        try
+                        {
+                            var downloader = new UpdateDownloader();
+
+                            // Download without UI
+                            Log("Auto-update: Downloading update in background...", "INFO");
+                            string? extractedPath = await downloader.PrepareUpdateAsync(release, CancellationToken.None);
+
+                            if (!string.IsNullOrEmpty(extractedPath))
+                            {
+                                Log($"Auto-update: Download complete, launching updater from {extractedPath}", "INFO");
+
+                                // Launch updater silently
+                                if (downloader.LaunchUpdater(extractedPath))
+                                {
+                                    Log("Auto-update: Updater launched successfully, application will restart", "INFO");
+
+                                    // Give updater time to start
+                                    await Task.Delay(1000);
+
+                                    // Exit application to allow update
+                                    Application.Exit();
+                                }
+                                else
+                                {
+                                    Log("Auto-update: Failed to launch updater", "ERROR");
+                                }
+                            }
+                            else
+                            {
+                                Log("Auto-update: Download/extraction failed", "ERROR");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log($"Auto-update: Silent update failed - {ex.Message}", "ERROR");
+                        }
+                    });
+                }
+                else
+                {
+                    Log("Auto-update check: Application is up to date", "DEBUG");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log($"Auto-update check failed: {ex.Message}", "ERROR");
+            }
+            finally
+            {
+                _isAutoUpdateInProgress = false;
+            }
+        }
+
 
         public static async Task<bool> CheckForAppsUpdate(bool silent = true)
         {

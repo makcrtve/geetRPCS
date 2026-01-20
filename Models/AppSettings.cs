@@ -36,6 +36,19 @@ namespace geetRPCS.Models
         public Dictionary<string, AppOverrideConfig> AppOverrides { get; set; } = new Dictionary<string, AppOverrideConfig>(StringComparer.OrdinalIgnoreCase);
         [JsonPropertyName("logLevel")]
         public string LogLevel { get; set; } = "INFO"; // DEBUG, INFO, WARN, ERROR
+        [JsonPropertyName("autoUpdateEnabled")]
+        public bool AutoUpdateEnabled { get; set; } = false;
+        [JsonPropertyName("shortcutPreferences")]
+        public ShortcutPreferences ShortcutPreferences { get; set; } = new ShortcutPreferences();
+    }
+    public class ShortcutPreferences
+    {
+        [JsonPropertyName("desktopShortcut")]
+        public bool DesktopShortcut { get; set; } = true;
+        [JsonPropertyName("startMenuShortcut")]
+        public bool StartMenuShortcut { get; set; } = true;
+        [JsonPropertyName("preferenceSaved")]
+        public bool PreferenceSaved { get; set; } = false;
     }
     public class AppOverrideConfig
     {
