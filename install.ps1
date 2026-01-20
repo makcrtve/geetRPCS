@@ -21,6 +21,14 @@ function Install-GeetRPCS {
     $versionFile = Join-Path $installDir ".version"
 
     # ══════════════════════════════════════════════════════════════
+    # FILES TO PRESERVE DURING UPDATE
+    # ══════════════════════════════════════════════════════════════
+    $preserveFiles = @(
+        "apps.json",
+        "settings.json"
+    )
+
+    # ══════════════════════════════════════════════════════════════
     # HELPER FUNCTION: Show Menu
     # ══════════════════════════════════════════════════════════════
     function Show-Menu {
@@ -74,18 +82,86 @@ function Install-GeetRPCS {
     }
 
     # ══════════════════════════════════════════════════════════════
+    # HELPER FUNCTION: Backup Preserved Files
+    # ══════════════════════════════════════════════════════════════
+    function Backup-PreservedFiles {
+        param (
+            [string]$SourceDir,
+            [string]$BackupDir,
+            [string[]]$Files
+        )
+
+        $backedUp = @()
+
+        if (-not (Test-Path $SourceDir)) {
+            return $backedUp
+        }
+
+        if (-not (Test-Path $BackupDir)) {
+            New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
+        }
+
+        foreach ($file in $Files) {
+            $sourcePath = Join-Path $SourceDir $file
+            if (Test-Path $sourcePath) {
+                $destPath = Join-Path $BackupDir $file
+                Copy-Item -Path $sourcePath -Destination $destPath -Force
+                $backedUp += $file
+                Write-Host "      ├─ 📦 Backed up: $file" -ForegroundColor DarkGray
+            }
+        }
+
+        return $backedUp
+    }
+
+    # ══════════════════════════════════════════════════════════════
+    # HELPER FUNCTION: Restore Preserved Files
+    # ══════════════════════════════════════════════════════════════
+    function Restore-PreservedFiles {
+        param (
+            [string]$BackupDir,
+            [string]$DestDir,
+            [string[]]$Files
+        )
+
+        $restored = @()
+
+        if (-not (Test-Path $BackupDir)) {
+            return $restored
+        }
+
+        foreach ($file in $Files) {
+            $sourcePath = Join-Path $BackupDir $file
+            if (Test-Path $sourcePath) {
+                $destPath = Join-Path $DestDir $file
+                Copy-Item -Path $sourcePath -Destination $destPath -Force
+                $restored += $file
+                Write-Host "      ├─ ✅ Restored: $file" -ForegroundColor DarkGray
+            }
+        }
+
+        # Cleanup backup directory
+        Remove-Item -Path $BackupDir -Recurse -Force -ErrorAction SilentlyContinue
+
+        return $restored
+    }
+
+    # ══════════════════════════════════════════════════════════════
     # HEADER
     # ══════════════════════════════════════════════════════════════
     Clear-Host
     Write-Host ""
-    Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "  ║                                           ║" -ForegroundColor Cyan
-    Write-Host "  ║       geetRPCS Installer / Updater        ║" -ForegroundColor Cyan
-    Write-Host "  ║                                           ║" -ForegroundColor Cyan
-    Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Cyan
+    Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Cyan
+    Write-Host "  ║                                               ║" -ForegroundColor Cyan
+    Write-Host "  ║        geetRPCS Installer / Updater           ║" -ForegroundColor Cyan
+    Write-Host "  ║                                               ║" -ForegroundColor Cyan
+    Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
 
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+    # Backup directory for preserved files
+    $backupDir = Join-Path $env:TEMP "geetRPCS_backup_$(Get-Random)"
 
     try {
         # ══════════════════════════════════════════════════════════════
@@ -118,9 +194,9 @@ function Install-GeetRPCS {
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [1/6] CHECK VERSION
+        # [1/7] CHECK VERSION
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[1/6] Checking latest version from GitHub..." -ForegroundColor Yellow
+        Write-Host "[1/7] Checking latest version from GitHub..." -ForegroundColor Yellow
         $releaseInfo = Invoke-RestMethod -Uri "https://api.github.com/repos/$repo/releases/latest" -ErrorAction Stop
         $latestTag = $releaseInfo.tag_name
 
@@ -159,26 +235,45 @@ function Install-GeetRPCS {
         $tempExtractPath = Join-Path $env:TEMP "geetRPCS_extract_$(Get-Random)"
 
         # ══════════════════════════════════════════════════════════════
-        # [2/6] CLOSE RUNNING INSTANCE
+        # [2/7] CLOSE RUNNING INSTANCE
         # ══════════════════════════════════════════════════════════════
         $process = Get-Process | Where-Object { $_.ProcessName -eq "geetRPCS" }
         if ($process) {
-            Write-Host "[2/6] geetRPCS is running. Closing..." -ForegroundColor Yellow
+            Write-Host "[2/7] geetRPCS is running. Closing..." -ForegroundColor Yellow
             Stop-Process -Name "geetRPCS" -Force
             Start-Sleep -Seconds 2
         }
         else {
-            Write-Host "[2/6] No running instance found" -ForegroundColor DarkGray
+            Write-Host "[2/7] No running instance found" -ForegroundColor DarkGray
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [3/6] DOWNLOAD
+        # [3/7] BACKUP USER FILES (NEW STEP)
         # ══════════════════════════════════════════════════════════════
-        if ($isUpdate) {
-            Write-Host "[3/6] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
+        $backedUpFiles = @()
+        if ($isUpdate -and (Test-Path $installDir)) {
+            Write-Host "[3/7] Backing up user configuration files..." -ForegroundColor Yellow
+            $backedUpFiles = Backup-PreservedFiles -SourceDir $installDir -BackupDir $backupDir -Files $preserveFiles
+
+            if ($backedUpFiles.Count -eq 0) {
+                Write-Host "      └─ No user files to backup" -ForegroundColor DarkGray
+            }
+            else {
+                Write-Host "      └─ Backed up $($backedUpFiles.Count) file(s)" -ForegroundColor DarkGray
+            }
         }
         else {
-            Write-Host "[3/6] Downloading $Version version ($latestTag)..." -ForegroundColor Green
+            Write-Host "[3/7] Fresh installation - no backup needed" -ForegroundColor DarkGray
+        }
+
+        # ══════════════════════════════════════════════════════════════
+        # [4/7] DOWNLOAD
+        # ══════════════════════════════════════════════════════════════
+        if ($isUpdate) {
+            Write-Host "[4/7] Downloading update ($installedVersion → $latestTag)..." -ForegroundColor Green
+        }
+        else {
+            Write-Host "[4/7] Downloading $Version version ($latestTag)..." -ForegroundColor Green
         }
 
         $webClient = New-Object System.Net.WebClient
@@ -219,9 +314,9 @@ function Install-GeetRPCS {
         Write-Host "`n      Download complete!" -ForegroundColor Green
 
         # ══════════════════════════════════════════════════════════════
-        # [4/6] EXTRACT FILES
+        # [5/7] EXTRACT FILES
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[4/6] Extracting files..." -ForegroundColor Yellow
+        Write-Host "[5/7] Extracting files..." -ForegroundColor Yellow
 
         New-Item -ItemType Directory -Path $tempExtractPath -Force | Out-Null
         Expand-Archive -Path $tempPath -DestinationPath $tempExtractPath -Force
@@ -236,15 +331,17 @@ function Install-GeetRPCS {
         }
 
         # ══════════════════════════════════════════════════════════════
-        # [5/6] CLEAN & INSTALL (Full Replace - No Preservation)
+        # [6/7] CLEAN & INSTALL
         # ══════════════════════════════════════════════════════════════
         if (Test-Path $installDir) {
-            Write-Host "[5/6] Removing old installation completely..." -ForegroundColor Yellow
-            Write-Host "      ⚠️  All existing files will be replaced" -ForegroundColor DarkYellow
+            Write-Host "[6/7] Removing old installation..." -ForegroundColor Yellow
+            if ($backedUpFiles.Count -gt 0) {
+                Write-Host "      ℹ️  User config files will be restored after installation" -ForegroundColor DarkCyan
+            }
             Remove-Item -Path $installDir -Recurse -Force -ErrorAction SilentlyContinue
         }
         else {
-            Write-Host "[5/6] Creating installation directory..." -ForegroundColor Yellow
+            Write-Host "[6/7] Creating installation directory..." -ForegroundColor Yellow
         }
 
         New-Item -ItemType Directory -Path $installDir -Force | Out-Null
@@ -262,6 +359,15 @@ function Install-GeetRPCS {
         }
 
         # ══════════════════════════════════════════════════════════════
+        # RESTORE USER FILES
+        # ══════════════════════════════════════════════════════════════
+        if ($backedUpFiles.Count -gt 0) {
+            Write-Host "      Restoring user configuration files..." -ForegroundColor Yellow
+            $restoredFiles = Restore-PreservedFiles -BackupDir $backupDir -DestDir $installDir -Files $backedUpFiles
+            Write-Host "      └─ Restored $($restoredFiles.Count) file(s)" -ForegroundColor DarkGray
+        }
+
+        # ══════════════════════════════════════════════════════════════
         # SAVE VERSION INFO
         # ══════════════════════════════════════════════════════════════
         $versionData = @{
@@ -272,9 +378,9 @@ function Install-GeetRPCS {
         $versionData | ConvertTo-Json | Set-Content -Path $versionFile -Force
 
         # ══════════════════════════════════════════════════════════════
-        # [6/6] CREATE SHORTCUTS
+        # [7/7] CREATE SHORTCUTS
         # ══════════════════════════════════════════════════════════════
-        Write-Host "[6/6] Creating shortcuts..." -ForegroundColor Yellow
+        Write-Host "[7/7] Creating shortcuts..." -ForegroundColor Yellow
 
         $shortcutsCreated = @()
 
@@ -344,43 +450,43 @@ function Install-GeetRPCS {
         # DONE
         # ══════════════════════════════════════════════════════════════
         Write-Host ""
-        Write-Host "  ╔═══════════════════════════════════════════╗" -ForegroundColor Green
+        Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Green
+        Write-Host "  ║                                               ║" -ForegroundColor Green
         if ($isUpdate) {
-            Write-Host "  ║     ✅ Update completed successfully!    ║" -ForegroundColor Green
-            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host "  ║       Update completed successfully!          ║" -ForegroundColor Green
+            Write-Host "  ║                                               ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
-            Write-Host "  $installedVersion → $latestTag ($Version)" -ForegroundColor White
+            Write-Host "  $installedVersion -> $latestTag ($Version)" -ForegroundColor White
         }
         else {
-            Write-Host "  ║  ✅ Installation completed successfully! ║" -ForegroundColor Green
-            Write-Host "  ╚═══════════════════════════════════════════╝" -ForegroundColor Green
+            Write-Host "  ║     Installation completed successfully!      ║" -ForegroundColor Green
+            Write-Host "  ║                                               ║" -ForegroundColor Green
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Green
             Write-Host ""
             Write-Host "  Version: $latestTag ($Version)" -ForegroundColor White
         }
         Write-Host ""
-        Write-Host "  📁 Location: $installDir" -ForegroundColor Cyan
-        Write-Host ""
+        Write-Host "  Location: $installDir" -ForegroundColor Cyan
 
         # ══════════════════════════════════════════════════════════════
-        # APOLOGY MESSAGE
+        # PRESERVED FILES INFO
         # ══════════════════════════════════════════════════════════════
-        Write-Host "  ╔═══════════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   ⚠️  IMPORTANT NOTICE                                        ║" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   We apologize for any inconvenience this may cause.          ║" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   All previous files (including settings.json, apps.json,     ║" -ForegroundColor Magenta
-        Write-Host "  ║   ImageCache, and Languages) have been reset to default.      ║" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   You may need to reconfigure your settings and re-add        ║" -ForegroundColor Magenta
-        Write-Host "  ║   your game library.                                          ║" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ║   Thank you for your understanding! 🙏                        ║" -ForegroundColor Magenta
-        Write-Host "  ║                                                               ║" -ForegroundColor Magenta
-        Write-Host "  ╚═══════════════════════════════════════════════════════════════╝" -ForegroundColor Magenta
-        Write-Host ""
+        if ($isUpdate -and $backedUpFiles.Count -gt 0) {
+            Write-Host ""
+            Write-Host "  ╔═══════════════════════════════════════════════╗" -ForegroundColor Cyan
+            Write-Host "  ║                                               ║" -ForegroundColor Cyan
+            Write-Host "  ║        Your settings have been kept!          ║" -ForegroundColor Cyan
+            Write-Host "  ║                                               ║" -ForegroundColor Cyan
+            Write-Host "  ╚═══════════════════════════════════════════════╝" -ForegroundColor Cyan
+            Write-Host ""
+            Write-Host "  Preserved files:" -ForegroundColor White
+            foreach ($file in $backedUpFiles) {
+                Write-Host "    + $file" -ForegroundColor Green
+            }
+        }
 
+        Write-Host ""
         Write-Host "Opening installation folder..." -ForegroundColor Gray
         explorer.exe $installDir
 
@@ -388,11 +494,15 @@ function Install-GeetRPCS {
     catch {
         Write-Host "`n❌ Installation failed: $($_.Exception.Message)" -ForegroundColor Red
 
+        # Cleanup on error
         if ($tempPath -and (Test-Path $tempPath)) {
             Remove-Item $tempPath -Force -ErrorAction SilentlyContinue
         }
         if ($tempExtractPath -and (Test-Path $tempExtractPath)) {
             Remove-Item $tempExtractPath -Recurse -Force -ErrorAction SilentlyContinue
+        }
+        if ($backupDir -and (Test-Path $backupDir)) {
+            Remove-Item $backupDir -Recurse -Force -ErrorAction SilentlyContinue
         }
     }
 }
