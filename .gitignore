@@ -101,6 +101,8 @@ $RECYCLE.BIN/
 !README.id.md
 !PRIVACY.md
 !RELEASE/*.md
+!CONTRIBUTING.md
+!.github/ISSUE_TEMPLATE/*.md
 
 # =========================== Scripts =========================================
 *.bat
