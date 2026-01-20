@@ -349,7 +349,7 @@ class Program : ApplicationContext
             _hkPrivate = CreateHotkey(Keys.Control | Keys.Alt, Keys.H, () => OnTogglePrivateMode(null, EventArgs.Empty), "Private Mode");
             _hkStats = CreateHotkey(Keys.Control | Keys.Alt, Keys.S, () => ShowTodayStatistics(), "Stats Today");
         }
-        catch (Exception ex) { Log($"Gagal mendaftarkan hotkey: {ex.Message}"); }
+        catch (Exception ex) { Log($"Failed to register hotkey: {ex.Message}"); }
     }
     private GlobalHotkey CreateHotkey(Keys modifiers, Keys key, Action action, string name)
     {
@@ -1219,8 +1219,7 @@ class Program : ApplicationContext
             if (!File.Exists(ConfigPath))
             {
                 var result = MessageBox.Show(
-                    "config.json tidak ditemukan.\n\nBuat file config.json dengan nilai default?\n\n" +
-                    "File ini berguna jika Anda ingin mengubah:\n• Application ID Discord\n• Teks default presence\n• Tombol/buttons",
+                    LanguageManager.Current.DialogConfigNotFound,
                     LanguageManager.Current.AppName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes) CreateDefaultConfigFile();
                 else return;
@@ -1246,12 +1245,12 @@ class Program : ApplicationContext
             };
             File.WriteAllText(ConfigPath, JsonSerializer.Serialize(defaultConfig, options));
             Log("Created default config.json");
-            ShowBalloonTip(LanguageManager.Current.AppName, "config.json berhasil dibuat!", ToolTipIcon.Info);
+            ShowBalloonTip(LanguageManager.Current.AppName, LanguageManager.Current.MsgConfigCreated, ToolTipIcon.Info);
         }
         catch (Exception ex)
         {
             Log($"Failed to create config.json: {ex.Message}");
-            MessageBox.Show($"Gagal membuat config.json:\n{ex.Message}",
+            MessageBox.Show($"{LanguageManager.Current.ErrorCreateConfig}\n{ex.Message}",
                 LanguageManager.Current.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
@@ -1360,7 +1359,7 @@ class Program : ApplicationContext
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Gagal membuka link: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(LanguageManager.Current.ErrorOpenLink + " " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
     #endregion

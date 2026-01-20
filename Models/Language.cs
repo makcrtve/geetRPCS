@@ -119,6 +119,24 @@ namespace geetRPCS.Models
         public string DialogOpenWithNotepad { get; set; }
         [JsonPropertyName("dialog_log_not_created")]
         public string DialogLogNotCreated { get; set; }
+        [JsonPropertyName("dialog_config_not_found")]
+        public string DialogConfigNotFound { get; set; }
+        [JsonPropertyName("msg_config_created")]
+        public string MsgConfigCreated { get; set; }
+        [JsonPropertyName("error_create_config")]
+        public string ErrorCreateConfig { get; set; }
+        [JsonPropertyName("error_open_link")]
+        public string ErrorOpenLink { get; set; }
+        [JsonPropertyName("error_startup_path_empty")]
+        public string ErrorStartupPathEmpty { get; set; }
+        [JsonPropertyName("error_startup_file_not_found")]
+        public string ErrorStartupFileNotFound { get; set; }
+        [JsonPropertyName("error_startup_path_not_absolute")]
+        public string ErrorStartupPathNotAbsolute { get; set; }
+        [JsonPropertyName("error_startup_temp_path")]
+        public string ErrorStartupTempPath { get; set; }
+        [JsonPropertyName("error_startup_failed")]
+        public string ErrorStartupFailed { get; set; }
         [JsonPropertyName("btn_save")]
         public string BtnSave { get; set; }
         [JsonPropertyName("menu_change_app_id")]
@@ -368,6 +386,15 @@ namespace geetRPCS.Models
                 DialogFileNotFound = "File not found!",
                 DialogOpenWithNotepad = "Failed to open with default editor.\n\nOpen with Notepad?",
                 DialogLogNotCreated = "Log file has not been created yet.",
+                DialogConfigNotFound = "config.json not found.\n\nCreate config.json with default values?\n\nThis file is useful if you want to change:\n• Discord Application ID\n• Default presence text\n• Buttons",
+                MsgConfigCreated = "config.json created successfully!",
+                ErrorCreateConfig = "Failed to create config.json:",
+                ErrorOpenLink = "Failed to open link:",
+                ErrorStartupPathEmpty = "Executable path is invalid (empty).",
+                ErrorStartupFileNotFound = "Executable file not found:",
+                ErrorStartupPathNotAbsolute = "Executable path must be an absolute path.",
+                ErrorStartupTempPath = "Cannot enable startup from temporary folder.\nPlease move the application to a permanent location first.",
+                ErrorStartupFailed = "Failed to change startup:",
                 StatsNoDataToday = "No data for today.",
                 StatsNoDataWeek = "No data for this week.",
                 StatsNoDataMonth = "No data for this month.",
@@ -516,6 +543,15 @@ namespace geetRPCS.Models
                 DialogFileNotFound = "File tidak ditemukan!",
                 DialogOpenWithNotepad = "Gagal membuka dengan editor default.\n\nBuka dengan Notepad?",
                 DialogLogNotCreated = "File log belum dibuat.",
+                DialogConfigNotFound = "config.json tidak ditemukan.\n\nBuat file config.json dengan nilai default?\n\nFile ini berguna jika Anda ingin mengubah:\n• Application ID Discord\n• Teks default presence\n• Tombol/buttons",
+                MsgConfigCreated = "config.json berhasil dibuat!",
+                ErrorCreateConfig = "Gagal membuat config.json:",
+                ErrorOpenLink = "Gagal membuka link:",
+                ErrorStartupPathEmpty = "Path executable tidak valid (kosong).",
+                ErrorStartupFileNotFound = "File executable tidak ditemukan:",
+                ErrorStartupPathNotAbsolute = "Path executable harus absolute path.",
+                ErrorStartupTempPath = "Tidak dapat mengaktifkan startup dari folder temporary.\nSilakan pindahkan aplikasi ke lokasi permanent terlebih dahulu.",
+                ErrorStartupFailed = "Gagal mengubah startup:",
                 StatsNoDataToday = "Belum ada data untuk hari ini.",
                 StatsNoDataWeek = "Belum ada data untuk minggu ini.",
                 StatsNoDataMonth = "Belum ada data untuk bulan ini.",

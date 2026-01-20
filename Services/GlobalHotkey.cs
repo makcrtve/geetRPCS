@@ -55,7 +55,7 @@ namespace geetRPCS.Services
             if (RegisterHotKey(_window.Handle, _id, fsModifiers, (int)key))
                 _isRegistered = true;
             else
-                System.Diagnostics.Debug.WriteLine("Gagal mendaftarkan hotkey. Mungkin sudah dipakai.");
+                System.Diagnostics.Debug.WriteLine("Failed to register hotkey. It may already be in use.");
         }
         public void Dispose()
         {

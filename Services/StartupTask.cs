@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using System.Runtime.Versioning;
 using System.Windows.Forms;
+using geetRPCS.Models;
 namespace geetRPCS.Services
 {
     [SupportedOSPlatform("windows")]
@@ -67,7 +68,7 @@ namespace geetRPCS.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Gagal mengubah startup:\n{ex.Message}", "geetRPCS",
+                MessageBox.Show($"{LanguageManager.Current.ErrorStartupFailed}\n{ex.Message}", "geetRPCS",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw; // Re-throw to let caller handle if needed
             }
@@ -82,17 +83,17 @@ namespace geetRPCS.Services
             errorMessage = null;
             if (string.IsNullOrWhiteSpace(path))
             {
-                errorMessage = "Path executable tidak valid (kosong).";
+                errorMessage = LanguageManager.Current.ErrorStartupPathEmpty;
                 return false;
             }
             if (!File.Exists(path))
             {
-                errorMessage = $"File executable tidak ditemukan:\n{path}";
+                errorMessage = $"{LanguageManager.Current.ErrorStartupFileNotFound}\n{path}";
                 return false;
             }
             if (!Path.IsPathRooted(path))
             {
-                errorMessage = "Path executable harus absolute path.";
+                errorMessage = LanguageManager.Current.ErrorStartupPathNotAbsolute;
                 return false;
             }
             string tempPath = Path.GetTempPath();
@@ -100,8 +101,7 @@ namespace geetRPCS.Services
             string normalizedTemp = Path.GetFullPath(tempPath);
             if (normalizedPath.StartsWith(normalizedTemp, StringComparison.OrdinalIgnoreCase))
             {
-                errorMessage = "Tidak dapat mengaktifkan startup dari folder temporary.\n" +
-                              "Silakan pindahkan aplikasi ke lokasi permanent terlebih dahulu.";
+                errorMessage = LanguageManager.Current.ErrorStartupTempPath;
                 return false;
             }
             return true;
