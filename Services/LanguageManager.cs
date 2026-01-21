@@ -140,10 +140,13 @@ namespace geetRPCS.Services
             var languages = new List<LanguageInfo>
             {
                 new LanguageInfo { Code = "en", Name = "English" },
-                new LanguageInfo { Code = "id", Name = "Bahasa Indonesia" },
+                new LanguageInfo { Code = "id", Name = "Indonesian (Bahasa Indonesia)" },
                 new LanguageInfo { Code = "ru", Name = "Russian (Русский)" },
                 new LanguageInfo { Code = "es", Name = "Spanish (Español)" },
-                new LanguageInfo { Code = "de", Name = "German (Deutsch)" }
+                new LanguageInfo { Code = "de", Name = "German (Deutsch)" },
+                new LanguageInfo { Code = "zh-CN", Name = "Chinese (简体中文)" },
+                new LanguageInfo { Code = "cs", Name = "Czech (Čeština)" },
+                new LanguageInfo { Code = "nl", Name = "Dutch (Nederlands)" }
             };
             return languages;
         }
