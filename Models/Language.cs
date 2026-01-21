@@ -325,5 +325,43 @@ namespace geetRPCS.Models
         public string DialogUpToDateTitle { get; set; }
         [JsonPropertyName("window_preview_title")]
         public string WindowPreviewTitle { get; set; }
+        [JsonPropertyName("preview_playing_game")]
+        public string PreviewPlayingGame { get; set; }
+        [JsonPropertyName("preview_live")]
+        public string PreviewLive { get; set; }
+        [JsonPropertyName("preview_double_click_hide")]
+        public string PreviewDoubleClickHide { get; set; }
+        [JsonPropertyName("preview_refresh_assets")]
+        public string PreviewRefreshAssets { get; set; }
+        [JsonPropertyName("preview_clear_cache")]
+        public string PreviewClearCache { get; set; }
+        [JsonPropertyName("preview_always_on_top")]
+        public string PreviewAlwaysOnTop { get; set; }
+        [JsonPropertyName("preview_status_refreshing")]
+        public string PreviewStatusRefreshing { get; set; }
+        [JsonPropertyName("preview_status_cache_cleared")]
+        public string PreviewStatusCacheCleared { get; set; }
+        [JsonPropertyName("preview_status_no_app_id")]
+        public string PreviewStatusNoAppId { get; set; }
+        [JsonPropertyName("preview_status_assets_cached")]
+        public string PreviewStatusAssetsCached { get; set; }
+        [JsonPropertyName("preview_status_fetching")]
+        public string PreviewStatusFetching { get; set; }
+        [JsonPropertyName("preview_status_no_assets")]
+        public string PreviewStatusNoAssets { get; set; }
+        [JsonPropertyName("preview_status_assets_loaded")]
+        public string PreviewStatusAssetsLoaded { get; set; }
+        [JsonPropertyName("preview_status_api_error")]
+        public string PreviewStatusApiError { get; set; }
+        [JsonPropertyName("preview_status_error")]
+        public string PreviewStatusError { get; set; }
+        [JsonPropertyName("preview_header_asset_info")]
+        public string PreviewHeaderAssetInfo { get; set; }
+        [JsonPropertyName("update_dialog_current_version")]
+        public string UpdateDialogCurrentVersion { get; set; }
+        [JsonPropertyName("update_dialog_up_to_date_message")]
+        public string UpdateDialogUpToDateMessage { get; set; }
+        [JsonPropertyName("update_btn_awesome")]
+        public string UpdateBtnAwesome { get; set; }
     }
 }

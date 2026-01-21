@@ -748,12 +748,12 @@ namespace geetRPCS.Services
                 BackColor = Color.FromArgb(32, 34, 37),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
-            AddLabel(versionBox, "📦 Current Version:", new Point(15, 12), new Font("Segoe UI", 9, FontStyle.Bold), Color.FromArgb(185, 187, 190));
+            AddLabel(versionBox, LanguageManager.Current.UpdateDialogCurrentVersion ?? "📦 Current Version:", new Point(15, 12), new Font("Segoe UI", 9, FontStyle.Bold), Color.FromArgb(185, 187, 190));
             AddLabel(versionBox, $"v{CURRENT_VERSION}", new Point(15, 32), new Font("Segoe UI", 13, FontStyle.Bold), Color.FromArgb(87, 242, 135));
             contentPanel.Controls.Add(versionBox);
             var infoLabel = new Label
             {
-                Text = "You have the latest version of geetRPCS installed.\nEnjoy your productivity! 🚀",
+                Text = LanguageManager.Current.UpdateDialogUpToDateMessage ?? "You have the latest version of geetRPCS installed.\nEnjoy your productivity! 🚀",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = Color.FromArgb(185, 187, 190),
                 Location = new Point(20, 90),
@@ -762,7 +762,7 @@ namespace geetRPCS.Services
             };
             contentPanel.Controls.Add(infoLabel);
             dialog.Controls.Add(contentPanel);
-            var okBtn = CreateButton("👍 Awesome!", Color.FromArgb(87, 242, 135), new Size(140, 38));
+            var okBtn = CreateButton(LanguageManager.Current.UpdateBtnAwesome ?? "👍 Awesome!", Color.FromArgb(87, 242, 135), new Size(140, 38));
             okBtn.Click += (s, e) => dialog.DialogResult = DialogResult.OK;
             AddButtonPanel(dialog, okBtn);
             dialog.ShowDialog();

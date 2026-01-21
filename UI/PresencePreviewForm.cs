@@ -124,7 +124,7 @@ namespace geetRPCS.UI
         {
             var headerLabel = new Label
             {
-                Text = "PLAYING A GAME",
+                Text = LanguageManager.Current.PreviewPlayingGame ?? "PLAYING A GAME",
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 ForeColor = DiscordTextMuted,
                 Location = new Point(15, 12),
@@ -133,7 +133,7 @@ namespace geetRPCS.UI
             this.Controls.Add(headerLabel);
             lblStatus = new Label
             {
-                Text = "● Live",
+                Text = LanguageManager.Current.PreviewLive ?? "● Live",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = DiscordGreen,
                 Location = new Point(230, 12),
@@ -265,7 +265,7 @@ namespace geetRPCS.UI
             });
             infoPanel.Controls.Add(new Label
             {
-                Text = "Asset Info",
+                Text = LanguageManager.Current.PreviewHeaderAssetInfo ?? "Asset Info",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
                 ForeColor = DiscordText,
                 Location = new Point(34, 11),
@@ -306,7 +306,7 @@ namespace geetRPCS.UI
         {
             mainPanel.Controls.Add(new Label
             {
-                Text = "💡 Double-click to hide",
+                Text = LanguageManager.Current.PreviewDoubleClickHide ?? "💡 Double-click to hide",
                 Font = new Font("Segoe UI", 8),
                 ForeColor = DiscordTextDark,
                 Location = new Point(12, 305),
@@ -321,10 +321,10 @@ namespace geetRPCS.UI
                 AutoSize = true,
                 Cursor = Cursors.Hand
             };
-            _toolTip.SetToolTip(refreshButton, "Refresh Assets");
+            _toolTip.SetToolTip(refreshButton, LanguageManager.Current.PreviewRefreshAssets ?? "Refresh Assets");
             refreshButton.Click += async (s, e) =>
             {
-                UpdateCdnStatus("🔄 Refreshing...", DiscordYellow);
+                UpdateCdnStatus(LanguageManager.Current.PreviewStatusRefreshing ?? "🔄 Refreshing...", DiscordYellow);
                 _assetsLoaded = false;
                 await LoadAssetsMappingAsync();
                 if (_currentPresence != null)
@@ -343,11 +343,11 @@ namespace geetRPCS.UI
                 AutoSize = true,
                 Cursor = Cursors.Hand
             };
-            _toolTip.SetToolTip(clearCacheButton, "Clear Cache");
+            _toolTip.SetToolTip(clearCacheButton, LanguageManager.Current.PreviewClearCache ?? "Clear Cache");
             clearCacheButton.Click += (s, e) =>
             {
                 ClearAllCache();
-                UpdateCdnStatus("🗑️ Cache cleared!", DiscordGreen);
+                UpdateCdnStatus(LanguageManager.Current.PreviewStatusCacheCleared ?? "🗑️ Cache cleared!", DiscordGreen);
             };
             mainPanel.Controls.Add(clearCacheButton);
             var pinButton = new Label
@@ -359,7 +359,7 @@ namespace geetRPCS.UI
                 AutoSize = true,
                 Cursor = Cursors.Hand
             };
-            _toolTip.SetToolTip(pinButton, "Always on Top");
+            _toolTip.SetToolTip(pinButton, LanguageManager.Current.PreviewAlwaysOnTop ?? "Always on Top");
             pinButton.Click += (s, e) =>
             {
                 this.TopMost = !this.TopMost;
@@ -410,7 +410,7 @@ namespace geetRPCS.UI
         {
             if (string.IsNullOrEmpty(_applicationId))
             {
-                UpdateCdnStatus("❌ No Application ID", DiscordYellow);
+                UpdateCdnStatus(LanguageManager.Current.PreviewStatusNoAppId ?? "❌ No Application ID", DiscordYellow);
                 return;
             }
             if (_isFetchingAssets) return;
@@ -429,7 +429,7 @@ namespace geetRPCS.UI
                         {
                             _assetIdCache = cachedData;
                             _assetsLoaded = true;
-                            UpdateCdnStatus($"✅ {_assetIdCache.Count} assets (cached)", DiscordGreen);
+                            UpdateCdnStatus(string.Format(LanguageManager.Current.PreviewStatusAssetsCached ?? "✅ {0} assets (cached)", _assetIdCache.Count), DiscordGreen);
                             _isFetchingAssets = false;
                             if (_currentPresence != null) await LoadImagesAsync(_currentPresence.Assets);
                             return;
@@ -438,7 +438,7 @@ namespace geetRPCS.UI
                 }
                 catch { }
             }
-            UpdateCdnStatus("📡 Fetching from Discord...", DiscordYellow);
+            UpdateCdnStatus(LanguageManager.Current.PreviewStatusFetching ?? "📡 Fetching from Discord...", DiscordYellow);
             try
             {
                 string apiUrl = $"https://discord.com/api/v10/oauth2/applications/{_applicationId}/assets";
@@ -450,7 +450,7 @@ namespace geetRPCS.UI
                         new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     if (assets == null || assets.Count == 0)
                     {
-                        UpdateCdnStatus("⚠️ No assets found", DiscordYellow);
+                        UpdateCdnStatus(LanguageManager.Current.PreviewStatusNoAssets ?? "⚠️ No assets found", DiscordYellow);
                         _assetsLoaded = true;
                     }
                     else
@@ -472,16 +472,16 @@ namespace geetRPCS.UI
                             await File.WriteAllTextAsync(cacheFile, cacheJson);
                         }
                         catch { }
-                        UpdateCdnStatus($"✅ {validCount} assets loaded", DiscordGreen);
+                        UpdateCdnStatus(string.Format(LanguageManager.Current.PreviewStatusAssetsLoaded ?? "✅ {0} assets loaded", validCount), DiscordGreen);
                     }
                     if (_currentPresence != null) await LoadImagesAsync(_currentPresence.Assets);
                 }
-                else UpdateCdnStatus($"⚠️ API Error: {response.StatusCode}", DiscordYellow);
+                else UpdateCdnStatus(string.Format(LanguageManager.Current.PreviewStatusApiError ?? "⚠️ API Error: {0}", response.StatusCode), DiscordYellow);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error mapping assets: {ex}");
-                UpdateCdnStatus($"❌ Error", DiscordYellow);
+                UpdateCdnStatus(LanguageManager.Current.PreviewStatusError ?? "❌ Error", DiscordYellow);
             }
             finally
             {
