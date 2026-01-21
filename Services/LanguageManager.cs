@@ -152,7 +152,12 @@ namespace geetRPCS.Services
                 new LanguageInfo { Code = "it", Name = "Italian (Italiano)" },
                 new LanguageInfo { Code = "ja", Name = "Japanese (日本語)" },
                 new LanguageInfo { Code = "jv", Name = "Javanese (Basa Jawa)" },
-                new LanguageInfo { Code = "ko", Name = "Korean (한국어)" }
+                new LanguageInfo { Code = "ko", Name = "Korean (한국어)" },
+                new LanguageInfo { Code = "ms", Name = "Malay (Bahasa Melayu)" },
+                new LanguageInfo { Code = "fa", Name = "Persian (فارسی)" },
+                new LanguageInfo { Code = "pt", Name = "Portuguese (Português)" },
+                new LanguageInfo { Code = "su", Name = "Sundanese (Basa Sunda)" },
+                new LanguageInfo { Code = "sv", Name = "Swedish (Svenska)" }
             };
             return languages;
         }
