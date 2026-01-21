@@ -39,7 +39,7 @@
   "msg_app_id_changed": "App-ID erfolgreich geändert!\n\nBitte starten Sie die Anwendung neu, falls der Status nicht aktualisiert wird.",
   "error_save_config": "Fehler beim Speichern der Konfiguration.",
   "link_tutorial": "📖 Anleitung lesen",
-  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md",
   "link_download_assets": "⬇️ Asset-Paket herunterladen (Erforderlich)",
   "btn_save": "Speichern",
   "msg_presence_paused": "Rich Presence pausiert. Discord zeigt keine Aktivität an.",

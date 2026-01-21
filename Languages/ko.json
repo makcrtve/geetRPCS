@@ -39,7 +39,7 @@
   "msg_app_id_changed": "애플리케이션 ID가 성공적으로 변경되었습니다!\n\n상태가 업데이트되지 않으면 애플리케이션을 다시 시작하세요.",
   "error_save_config": "구성을 저장하지 못했습니다.",
   "link_tutorial": "📖 튜토리얼 읽기",
-  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md",
   "link_download_assets": "⬇️ 자산 팩 다운로드 (필수)",
   "btn_save": "저장",
   "msg_presence_paused": "Rich Presence가 일시 중지되었습니다. Discord에 활동이 표시되지 않습니다.",

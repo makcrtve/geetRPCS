@@ -39,7 +39,7 @@
   "msg_app_id_changed": "应用程序 ID 已成功更改！\n\n如果状态没有更新，请重启应用程序。",
   "error_save_config": "保存配置失败。",
   "link_tutorial": "📖 阅读教程",
-  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md",
   "link_download_assets": "⬇️ 下载资源包 (必需)",
   "btn_save": "保存",
   "msg_presence_paused": "Rich Presence 已暂停。Discord 将不会显示任何活动。",

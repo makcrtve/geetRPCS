@@ -133,5 +133,6 @@
   "tray_private": " (Private)",
   "working": "Working...",
   "idling": "Idling...",
-  "ready": "Ready to work"
+  "ready": "Ready to work",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md"
 }

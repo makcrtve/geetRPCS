@@ -39,7 +39,7 @@
   "msg_app_id_changed": "شناسه برنامه با موفقیت تغییر کرد!\n\nلطفاً اگر وضعیت بروز نشد، برنامه را مجدداً راه اندازی کنید.",
   "error_save_config": "ذخیره پیکربندی ناموفق بود.",
   "link_tutorial": "📖 خواندن آموزش",
-  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md",
   "link_download_assets": "⬇️ دانلود بسته دارایی (الزامی)",
   "btn_save": "ذخیره",
   "msg_presence_paused": "Rich Presence متوقف شد. Discord هیچ فعالیتی را نشان نخواهد داد.",

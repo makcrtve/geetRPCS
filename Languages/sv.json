@@ -39,7 +39,7 @@
   "msg_app_id_changed": "Applikations-ID ändrades framgångsrikt!\n\nStarta om applikationen om statusen inte uppdateras.",
   "error_save_config": "Misslyckades att spara konfigurationen.",
   "link_tutorial": "📖 Läs Handledning",
-  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/en/CUSTOM_APP_ID.en.md",
+  "url_tutorial": "https://github.com/makcrtve/geetRPCS/blob/main/docs/CUSTOM_APP_ID.md",
   "link_download_assets": "⬇️ Ladda ner Tillgångspaket (Krävs)",
   "btn_save": "Spara",
   "msg_presence_paused": "Rich Presence pausad. Discord visar ingen aktivitet.",
