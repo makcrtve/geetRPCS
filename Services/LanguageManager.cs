@@ -157,7 +157,11 @@ namespace geetRPCS.Services
                 new LanguageInfo { Code = "fa", Name = "Persian (فارسی)" },
                 new LanguageInfo { Code = "pt", Name = "Portuguese (Português)" },
                 new LanguageInfo { Code = "su", Name = "Sundanese (Basa Sunda)" },
-                new LanguageInfo { Code = "sv", Name = "Swedish (Svenska)" }
+                new LanguageInfo { Code = "sv", Name = "Swedish (Svenska)" },
+                new LanguageInfo { Code = "tl", Name = "Tagalog (Tagalog)" },
+                new LanguageInfo { Code = "th", Name = "Thai (ไทย)" },
+                new LanguageInfo { Code = "tr", Name = "Turkish (Türkçe)" },
+                new LanguageInfo { Code = "vi", Name = "Vietnamese (Tiếng Việt)" }
             };
             return languages;
         }

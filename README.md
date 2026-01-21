@@ -164,7 +164,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Private Mode
 - Statistics Tracking
 - CSV/JSON Export
-- Multi-Language (EN/ID)
+- Multi-Language (20+ Languages)
 - Global Hotkeys
 - Tray Quick Menu
 - Change App ID via Menu
