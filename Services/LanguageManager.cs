@@ -146,7 +146,13 @@ namespace geetRPCS.Services
                 new LanguageInfo { Code = "de", Name = "German (Deutsch)" },
                 new LanguageInfo { Code = "zh-CN", Name = "Chinese (简体中文)" },
                 new LanguageInfo { Code = "cs", Name = "Czech (Čeština)" },
-                new LanguageInfo { Code = "nl", Name = "Dutch (Nederlands)" }
+                new LanguageInfo { Code = "nl", Name = "Dutch (Nederlands)" },
+                new LanguageInfo { Code = "fr", Name = "French (Français)" },
+                new LanguageInfo { Code = "hi", Name = "Hindi (हिन्दी)" },
+                new LanguageInfo { Code = "it", Name = "Italian (Italiano)" },
+                new LanguageInfo { Code = "ja", Name = "Japanese (日本語)" },
+                new LanguageInfo { Code = "jv", Name = "Javanese (Basa Jawa)" },
+                new LanguageInfo { Code = "ko", Name = "Korean (한국어)" }
             };
             return languages;
         }
