@@ -68,12 +68,12 @@ namespace geetRPCS.Services
                             color = isFirstLaunch ? 5763719 : 3447003,
                             fields = new[]
                             {
-                                new { name = "👤 User", value = $"`{username ?? "Unknown"}`", inline = true },
-                                new { name = "🆔 User ID", value = $"`{userId}`", inline = true },
-                                new { name = "💻 Version", value = $"`{APP_VERSION}`", inline = true },
-                                new { name = "🌍 Language", value = $"`{languageCode}`", inline = true },
-                                new { name = "🔢 Launch #", value = $"`{launchCount + 1}`", inline = true },
-                                new { name = "⏱️ Session", value = isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User", inline = true }
+                                new { name = "👤 User", value = $"```{username ?? "Unknown"}```", inline = true },
+                                new { name = "🆔 User ID", value = $"```{userId}```", inline = true },
+                                new { name = "💻 Version", value = $"```{APP_VERSION}```", inline = true },
+                                new { name = "🌍 Language", value = $"```{languageCode}```", inline = true },
+                                new { name = "🔢 Launch #", value = $"```{launchCount + 1}```", inline = true },
+                                new { name = "⏱️ Session", value = $"```{ (isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User") }```", inline = true }
                             },
                             footer = new { text = $"Started at {DateTime.Now:yyyy-MM-dd HH:mm:ss} (Local Time)" },
                             timestamp = DateTime.UtcNow.ToString("o")
@@ -122,10 +122,10 @@ namespace geetRPCS.Services
                             color = 15158332,
                             fields = new[]
                             {
-                                new { name = "👤 User", value = $"`{_cachedUsername ?? "Unknown"}`", inline = true },
-                                new { name = "🆔 User ID", value = $"`{_cachedUserId ?? "Unknown"}`", inline = true },
-                                new { name = "⏱️ Duration", value = $"`{FormatDuration(sessionDuration)}`", inline = true },
-                                new { name = "📱 Apps Used", value = $"`{appsTracked}`", inline = true }
+                                new { name = "👤 User", value = $"```{_cachedUsername ?? "Unknown"}```", inline = true },
+                                new { name = "🆔 User ID", value = $"```{_cachedUserId ?? "Unknown"}```", inline = true },
+                                new { name = "⏱️ Duration", value = $"```{FormatDuration(sessionDuration)}```", inline = true },
+                                new { name = "📱 Apps Used", value = $"```{appsTracked}```", inline = true }
                             },
                             footer = new { text = $"Ended at {DateTime.Now:yyyy-MM-dd HH:mm:ss} (Local Time)" }
                         }
@@ -145,6 +145,61 @@ namespace geetRPCS.Services
             Log($"Telemetry enabled: {enabled}", "INFO");
         }
         public static bool IsEnabled() => SettingsService.Instance.TelemetryEnabled;
+
+        public static string GenerateUserReport(string username, ulong userId)
+        {
+            bool isFirstLaunch = !File.Exists(TelemetryPath);
+            int launchCount = GetLaunchCount();
+            string languageCode = "en";
+            try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch { }
+
+            string sessionStatus = isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User";
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var report = new StringBuilder();
+            report.AppendLine("📊 geetRPCS User Report");
+            report.AppendLine($"👤 User");
+            report.AppendLine(username ?? "Unknown");
+            report.AppendLine($"🆔 User ID");
+            report.AppendLine(userId.ToString());
+            report.AppendLine($"💻 Version");
+            report.AppendLine(APP_VERSION);
+            report.AppendLine($"🌍 Language");
+            report.AppendLine(languageCode);
+            report.AppendLine($"🔢 Launch #");
+            report.AppendLine((launchCount + 1).ToString());
+            report.AppendLine($"⏱️ Session");
+            report.AppendLine(sessionStatus);
+            report.AppendLine($"Started at {timestamp} (Local Time)");
+
+            return report.ToString();
+        }
+
+        public static string GenerateUserReportForDiscord(string username, ulong userId)
+        {
+            bool isFirstLaunch = !File.Exists(TelemetryPath);
+            int launchCount = GetLaunchCount();
+            string languageCode = "en";
+            try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch { }
+
+            string sessionStatus = isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User";
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            var report = new StringBuilder();
+            report.AppendLine("```");
+            report.AppendLine("📊 geetRPCS User Report");
+            report.AppendLine($"👤 User: {username ?? "Unknown"}");
+            report.AppendLine($"💻 Version: {APP_VERSION}");
+            report.AppendLine($"🌍 Language: {languageCode}");
+            report.AppendLine($"🔢 Launch #: {launchCount + 1}");
+            report.AppendLine($"⏱️ Session: {sessionStatus}");
+            report.AppendLine($"Started at {timestamp} (Local Time)");
+            report.AppendLine("```");
+            report.AppendLine($"🆔 **User ID** (click to copy):");
+            report.AppendLine($"```{userId}```");
+
+            return report.ToString();
+        }
         #endregion
 
         // --- Helpers ---
