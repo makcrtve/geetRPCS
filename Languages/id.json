@@ -142,5 +142,8 @@
   "tray_private": " (Privat)",
   "working": "Bekerja...",
   "idling": "Menganggur...",
-  "ready": "Siap bekerja"
+  "ready": "Siap bekerja",
+  "manage_apps_window_title": "Kelola Aplikasi",
+  "dialog_up_to_date_title": "✅ Anda Sudah Terupdate!",
+  "window_preview_title": "Pratinjau Discord Presence"
 }

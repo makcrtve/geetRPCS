@@ -142,5 +142,8 @@
   "tray_private": " (Приватный)",
   "working": "Работаю...",
   "idling": "Бездействую...",
-  "ready": "Готов к работе"
+  "ready": "Готов к работе",
+  "manage_apps_window_title": "Управление приложениями",
+  "dialog_up_to_date_title": "✅ У вас последняя версия!",
+  "window_preview_title": "Предпросмотр Discord Presence"
 }

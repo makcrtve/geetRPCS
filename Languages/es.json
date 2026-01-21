@@ -142,5 +142,8 @@
   "tray_private": " (Privado)",
   "working": "Trabajando...",
   "idling": "Inactivo...",
-  "ready": "Listo para trabajar"
+  "ready": "Listo para trabajar",
+  "manage_apps_window_title": "Gestionar Aplicaciones",
+  "dialog_up_to_date_title": "✅ ¡Estás actualizado!",
+  "window_preview_title": "Vista previa de Discord Presence"
 }

@@ -319,5 +319,11 @@ namespace geetRPCS.Models
         public string MsgTrayAnimationOn { get; set; }
         [JsonPropertyName("msg_tray_animation_off")]
         public string MsgTrayAnimationOff { get; set; }
+        [JsonPropertyName("manage_apps_window_title")]
+        public string WindowManageAppsTitle { get; set; }
+        [JsonPropertyName("dialog_up_to_date_title")]
+        public string DialogUpToDateTitle { get; set; }
+        [JsonPropertyName("window_preview_title")]
+        public string WindowPreviewTitle { get; set; }
     }
 }

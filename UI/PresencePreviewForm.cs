@@ -91,7 +91,7 @@ namespace geetRPCS.UI
         #region ----- UI Setup -----
         private void InitializeComponent()
         {
-            this.Text = "Discord Presence Preview";
+            this.Text = LanguageManager.Current.WindowPreviewTitle ?? "Discord Presence Preview";
             this.Size = new Size(320, 440);
             this.MinimumSize = this.MaximumSize = new Size(320, 440);
             this.FormBorderStyle = FormBorderStyle.FixedSingle;

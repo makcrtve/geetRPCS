@@ -737,8 +737,8 @@ namespace geetRPCS.Services
         }
         private static void ShowUpToDateDialog()
         {
-            using var dialog = CreateBaseDialog("✅ You're Up to Date!", new Size(450, 280));
-            AddHeaderPanel(dialog, "✅", "You're Up to Date!", null!,
+            using var dialog = CreateBaseDialog(LanguageManager.Current.DialogUpToDateTitle ?? "✅ You're Up to Date!", new Size(450, 280));
+            AddHeaderPanel(dialog, "✅", LanguageManager.Current.DialogUpToDateTitle ?? "You're Up to Date!", null!,
                 Color.FromArgb(87, 242, 135), Color.FromArgb(87, 242, 135), Color.FromArgb(67, 181, 129));
             var contentPanel = CreateContentPanel(dialog);
             var versionBox = new Panel

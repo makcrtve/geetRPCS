@@ -63,7 +63,7 @@ namespace geetRPCS.UI
         }
         private void InitializeComponent()
         {
-            this.Text = "Manage Applications";
+            this.Text = LanguageManager.Current.WindowManageAppsTitle ?? "Manage Applications";
             this.Size = new Size(450, 700);
             this.MinimumSize = new Size(400, 500);
             this.BackColor = DiscordBackground;
