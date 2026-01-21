@@ -36,6 +36,7 @@ namespace geetRPCS.Services
             EnsureLanguagesFolder();
             LoadSettings();
         }
+
         private static void EnsureLanguagesFolder()
         {
             try
@@ -45,46 +46,13 @@ namespace geetRPCS.Services
                     Directory.CreateDirectory(LanguagesFolder);
                     Log($"Created folder: {LanguagesFolder}", "INFO");
                 }
-                CreateDefaultLanguageFiles();
             }
             catch (Exception ex)
             {
                 Log($"Failed to create folder: {ex.Message}", "ERROR");
             }
         }
-        private static void CreateDefaultLanguageFiles()
-        {
-            string enPath = Path.Combine(LanguagesFolder, "en.json");
-            if (!File.Exists(enPath))
-            {
-                var english = Language.CreateEnglish();
-                SaveLanguageFile(english, enPath);
-            }
-            string idPath = Path.Combine(LanguagesFolder, "id.json");
-            if (!File.Exists(idPath))
-            {
-                var indonesian = Language.CreateIndonesian();
-                SaveLanguageFile(indonesian, idPath);
-            }
-        }
-        private static void SaveLanguageFile(Language language, string path)
-        {
-            try
-            {
-                var options = new JsonSerializerOptions
-                {
-                    WriteIndented = true,
-                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-                };
-                string json = JsonSerializer.Serialize(language, options);
-                File.WriteAllText(path, json);
-                Log($"Saved language file: {Path.GetFileName(path)}", "INFO");
-            }
-            catch (Exception ex)
-            {
-                Log($"Failed to save language file: {ex.Message}", "ERROR");
-            }
-        }
+
         private static void LoadSettings()
         {
             try
@@ -96,9 +64,10 @@ namespace geetRPCS.Services
             catch (Exception ex)
             {
                 Log($"Failed to load settings: {ex.Message}", "ERROR");
-                _currentLanguage = Language.CreateEnglish();
+                _currentLanguage = LoadLanguage("en"); // Fallback to English
             }
         }
+
         public static async Task SetLanguageAsync(string languageCode)
         {
             try
@@ -118,10 +87,12 @@ namespace geetRPCS.Services
                 Log($"Failed to change language: {ex.Message}", "ERROR");
             }
         }
+
         public static string GetCurrentLanguageCode()
         {
             return _currentLanguageCode;
         }
+
         private static Language LoadLanguage(string languageCode)
         {
             try
@@ -129,22 +100,39 @@ namespace geetRPCS.Services
                 string path = Path.Combine(LanguagesFolder, $"{languageCode}.json");
                 if (!File.Exists(path))
                 {
-                    Log($"Language file not found: {Path.GetFileName(path)} - using English", "WARNING");
-                    return Language.CreateEnglish();
+                    Log($"Language file not found: {Path.GetFileName(path)}", "WARNING");
+
+                    // Fallback to English if the requested language is not English
+                    if (languageCode != "en")
+                    {
+                         Log("Attempting fallback to English...", "INFO");
+                         return LoadLanguage("en");
+                    }
+
+                    return new Language(); // Last resort: empty language
                 }
+
                 string json = File.ReadAllText(path);
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
+
                 var language = JsonSerializer.Deserialize<Language>(json, options);
                 Log($"Loaded language: {languageCode}", "INFO");
-                return language ?? Language.CreateEnglish();
+                return language ?? new Language();
             }
             catch (Exception ex)
             {
                 Log($"Failed to load language {languageCode}: {ex.Message}", "ERROR");
-                return Language.CreateEnglish();
+
+                // Fallback to English if failure wasn't for English
+                if (languageCode != "en")
+                {
+                     return LoadLanguage("en");
+                }
+
+                return new Language();
             }
         }
         public static List<LanguageInfo> GetAvailableLanguages()

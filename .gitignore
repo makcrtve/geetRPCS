@@ -101,6 +101,7 @@ $RECYCLE.BIN/
 !PRIVACY.md
 !RELEASE/*.md
 !CONTRIBUTING.md
+!LOCALIZATION.md
 !.github/ISSUE_TEMPLATE/*.md
 
 # =========================== Scripts =========================================

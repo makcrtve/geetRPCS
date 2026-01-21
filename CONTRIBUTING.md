@@ -40,6 +40,13 @@ Enhancement suggestions are welcome! Please create an issue or start a discussio
 *   **Provide a detailed description** of the suggested enhancement.
 *   **Explain why this enhancement would be useful** to most users.
 
+## Contributing Translations
+
+Want to help translate geetRPCS into your language? We'd love that!
+
+Please check out our [Localization Guide](LOCALIZATION.md) for detailed instructions on how to add a new language.
+
+
 ## Pull Requests
 
 1.  **Create a new branch** for your changes:
