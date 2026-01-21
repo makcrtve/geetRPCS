@@ -164,7 +164,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Private Mode
 - Statistics Tracking
 - CSV/JSON Export
-- Multi-Language (20+ Languages)
+- Multi-Language (23+ Languages)
 - Global Hotkeys
 - Tray Quick Menu
 - Change App ID via Menu
@@ -412,9 +412,9 @@ You can now assign **different Discord App IDs for specific applications** witho
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.6",
+      "LargeImageText": "geetRPCS v1.3.7",
       "SmallImageKey": "verified",
-      "SmallImageText": "geetRPCS Standby"
+      "SmallImageText": "Powered by geetRPCS"
     },
     "Buttons": [
       { "Label": "GitHub", "Url": "https://github.com/makcrtve/geetRPCS" }
@@ -625,5 +625,5 @@ If you see a red warning on VirusTotal or Windows Defender:
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.6 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.7 • Apache 2.0 License • 2026</sub>
 </p>

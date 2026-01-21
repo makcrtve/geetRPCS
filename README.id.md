@@ -164,7 +164,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 - Mode Privat
 - Pelacakan Statistik
 - Ekspor CSV/JSON
-- Multi-Bahasa (EN/ID)
+- Multi-Bahasa (23+ Bahasa)
 - Hotkey Global
 - Menu Cepat Tray
 - Ganti App ID via Menu
@@ -412,9 +412,9 @@ Anda sekarang bisa menetapkan **Discord App ID yang berbeda untuk aplikasi terte
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.6",
+      "LargeImageText": "geetRPCS v1.3.7",
       "SmallImageKey": "verified",
-      "SmallImageText": "geetRPCS Standby"
+      "SmallImageText": "Powered by geetRPCS"
     },
     "Buttons": [
       { "Label": "GitHub", "Url": "https://github.com/makcrtve/geetRPCS" }
@@ -633,5 +633,5 @@ Jika Anda melihat peringatan merah di VirusTotal atau Windows Defender:
 
 <p align="center">
   <sub>Dibuat dengan ❤️ oleh <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.6 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.7 • Apache 2.0 License • 2026</sub>
 </p>
