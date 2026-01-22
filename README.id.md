@@ -18,9 +18,6 @@
   <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat&label=Versi&color=success" alt="Versi"/>
   <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat&label=Unduhan&color=blue" alt="Unduhan"/>
   <img src="https://komarev.com/ghpvc/?username=makcrtve&color=blue&style=flat&label=Views" alt="Visitor Count"/>
-  <a href="https://discord.gg/ScTybDUEpH">
-    <img src="https://img.shields.io/badge/Join_Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"/>
-  </a>
   <br/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/Lachee/discord-rpc-csharp">
@@ -629,8 +626,7 @@ Jika Anda melihat peringatan merah di VirusTotal atau Windows Defender:
 <p align="center">
   <a href="https://github.com/makcrtve/geetRPCS/issues">🐛 Lapor Bug</a> •
   <a href="https://github.com/makcrtve/geetRPCS/discussions">💬 Diskusi</a> •
-  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Rilis</a> •
-  <a href="https://discord.gg/ScTybDUEpH">🎮 Gabung Discord</a>
+  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Rilis</a>
 </p>
 
 ---

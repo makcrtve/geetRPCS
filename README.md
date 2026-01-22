@@ -18,9 +18,6 @@
   <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat&label=Version&color=success" alt="Version"/>
   <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat&label=Downloads&color=blue" alt="Downloads"/>
   <img src="https://komarev.com/ghpvc/?username=makcrtve&color=blue&style=flat&label=Views" alt="Visitor Count"/>
-  <a href="https://discord.gg/ScTybDUEpH">
-    <img src="https://img.shields.io/badge/Join_Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"/>
-  </a>
   <br/>
   <img src="https://img.shields.io/badge/Discord_RPC-5865F2?style=flat&logo=discord&logoColor=white" alt="Discord"/>
   <a href="https://github.com/Lachee/discord-rpc-csharp">
@@ -621,8 +618,7 @@ If you see a red warning on VirusTotal or Windows Defender:
 <p align="center">
   <a href="https://github.com/makcrtve/geetRPCS/issues">🐛 Report Bug</a> •
   <a href="https://github.com/makcrtve/geetRPCS/discussions">💬 Discussions</a> •
-  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Releases</a> •
-  <a href="https://discord.gg/ScTybDUEpH">🎮 Join Discord</a>
+  <a href="https://github.com/makcrtve/geetRPCS/releases">📦 Releases</a>
 </p>
 
 ---
