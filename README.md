@@ -32,9 +32,6 @@
   <img src="https://img.shields.io/github/v/release/makcrtve/geetRPCS?style=flat&label=Version&color=success" alt="Download"/>
   <img src="https://img.shields.io/github/downloads/makcrtve/geetRPCS/total?style=flat&label=Downloads&color=blue" alt="Downloads"/>
   <br/>
-  <a href="https://git.io/streak-stats">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=makcrtve&theme=radical&hide_border=true" alt="GitHub Streak"/>
-  </a>
 </p>
 
 <p align="center">
