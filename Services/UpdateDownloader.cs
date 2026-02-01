@@ -140,9 +140,9 @@ namespace geetRPCS.Services
                 }
 
                 var downloadedFile = new FileInfo(zipPath);
-                if (downloadedFile.Length < asset.Size * 0.95) // Allow 5% tolerance
+                if (downloadedFile.Length != asset.Size)
                 {
-                    OnError?.Invoke($"Downloaded file is incomplete ({downloadedFile.Length} vs {asset.Size} bytes)");
+                    OnError?.Invoke($"Downloaded file size mismatch ({downloadedFile.Length} vs {asset.Size} bytes)");
                     CleanupTempFolder();
                     return null;
                 }
@@ -318,7 +318,7 @@ namespace geetRPCS.Services
         }
 
         /// <summary>
-        /// Extracts a ZIP file to the specified path.
+        /// Extracts a ZIP file to the specified path safely.
         /// </summary>
         private async Task<bool> ExtractZipAsync(string zipPath, string extractPath, CancellationToken ct)
         {
@@ -330,8 +330,40 @@ namespace geetRPCS.Services
                     {
                         Directory.Delete(extractPath, true);
                     }
+                    Directory.CreateDirectory(extractPath);
 
-                    ZipFile.ExtractToDirectory(zipPath, extractPath);
+                    using (ZipArchive archive = ZipFile.OpenRead(zipPath))
+                    {
+                        string fullExtractPath = Path.GetFullPath(extractPath);
+                        if (!fullExtractPath.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal))
+                            fullExtractPath += Path.DirectorySeparatorChar;
+
+                        foreach (ZipArchiveEntry entry in archive.Entries)
+                        {
+                            ct.ThrowIfCancellationRequested();
+
+                            string fullDestPath = Path.GetFullPath(Path.Combine(extractPath, entry.FullName));
+
+                            // Zip Slip protection
+                            if (!fullDestPath.StartsWith(fullExtractPath, StringComparison.OrdinalIgnoreCase))
+                            {
+                                throw new IOException($"Zip slip detected: {entry.FullName}");
+                            }
+
+                            if (string.IsNullOrEmpty(entry.Name)) // Directory
+                            {
+                                Directory.CreateDirectory(fullDestPath);
+                            }
+                            else
+                            {
+                                string? destDir = Path.GetDirectoryName(fullDestPath);
+                                if (!string.IsNullOrEmpty(destDir))
+                                    Directory.CreateDirectory(destDir);
+
+                                entry.ExtractToFile(fullDestPath, overwrite: true);
+                            }
+                        }
+                    }
                 }, ct);
 
                 Log($"Extraction complete: {extractPath}", "INFO");
