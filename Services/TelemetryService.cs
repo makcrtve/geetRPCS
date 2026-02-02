@@ -1,6 +1,6 @@
 /**
  * geetRPCS - Telemetry Service
- * Handles anonymous telemetry reports
+ * Handles anonymous telemetry reports with copy-friendly User ID formatting
  */
 /*
  * Copyright (c) 2026 makcrtve
@@ -13,6 +13,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -49,67 +50,80 @@ namespace geetRPCS.Services
             }
             _cachedUsername = username;
             _cachedUserId = userId.ToString();
+            
             try
             {
                 bool isFirstLaunch = !File.Exists(TelemetryPath);
                 int launchCount = GetLaunchCount();
                 SaveLaunchCount(launchCount + 1);
+                
                 string languageCode = "en";
-                try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch (Exception ex) { Log($"Language detection failed: {ex.Message}", "WARNING"); }
-                Log($"Sending telemetry: User={username}, ID={userId}, Version={APP_VERSION}, Lang={languageCode}", "INFO");
+                try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch { }
+
+                Log($"Sending telemetry: User={username}, ID={userId}, Version={APP_VERSION}", "INFO");
+
                 var payload = new
                 {
-                    content = userId != DEVELOPER_ID ? $"🔔 **New Usage Detected!** <@{DEVELOPER_ID}>" : null,
+                    content = userId != DEVELOPER_ID ? $"🔔 <@{DEVELOPER_ID}>" : null,
                     embeds = new[]
                     {
                         new
                         {
-                            title = "📊 geetRPCS User Report",
+                            title = "📊 geetRPCS Session",
+                            description = $"**{username ?? "Unknown"}**",
                             color = isFirstLaunch ? 5763719 : 3447003,
                             fields = new[]
                             {
-                                new { name = "👤 User", value = $"```{username ?? "Unknown"}```", inline = true },
-                                new { name = "🆔 User ID", value = $"```{userId}```", inline = true },
-                                new { name = "💻 Version", value = $"```{APP_VERSION}```", inline = true },
-                                new { name = "🌍 Language", value = $"```{languageCode}```", inline = true },
-                                new { name = "🔢 Launch #", value = $"```{launchCount + 1}```", inline = true },
-                                new { name = "⏱️ Session", value = $"```{ (isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User") }```", inline = true }
+                                new { 
+                                    name = "🆔 User ID", 
+                                    value = $"`{userId}`", 
+                                    inline = true 
+                                },
+                                new { 
+                                    name = "👤 Username", 
+                                    value = $"`{username ?? "Unknown"}`", 
+                                    inline = true 
+                                },
+                                new { name = "💻 Version", value = $"`{APP_VERSION}`", inline = true },
+                                new { name = "🌍 Language", value = $"`{languageCode}`", inline = true },
+                                new { name = "🔢 Launch", value = $"`#{launchCount + 1}`", inline = true },
+                                new { 
+                                    name = "⏱️ Status", 
+                                    value = isFirstLaunch ? "`🆕 First Launch`" : "`🔄 Returning`", 
+                                    inline = true 
+                                }
                             },
-                            footer = new { text = $"Started at {DateTime.Now:yyyy-MM-dd HH:mm:ss} (Local Time)" },
+                            footer = new { text = $"geetRPCS • {DateTime.Now:yyyy-MM-dd HH:mm:ss}" },
                             timestamp = DateTime.UtcNow.ToString("o")
                         }
                     }
                 };
+
                 var json = JsonSerializer.Serialize(payload);
-                Log($"Payload: {json}", "DEBUG");
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await _httpClient.PostAsync(TELEMETRY_URL, content).ConfigureAwait(false);
-                string responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                
                 if (response.IsSuccessStatusCode)
-                {
-                    Log($"Telemetry sent successfully! Status: {response.StatusCode}", "INFO");
-                }
+                    Log($"Telemetry sent successfully", "INFO");
                 else
-                {
-                    string errorMsg = $"Telemetry failed: {response.StatusCode}";
-                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                        errorMsg += " (Vercel URL mungkin salah atau API belum di-deploy)";
-                    Log($"{errorMsg} - {responseBody}", "ERROR");
-                }
+                    Log($"Telemetry failed: {response.StatusCode}", "ERROR");
             }
-            catch (HttpRequestException ex) { Log($"Telemetry HTTP error: {ex.Message}", "ERROR"); }
-            catch (TaskCanceledException) { Log("Telemetry timeout", "ERROR"); }
-            catch (Exception ex) { Log($"Telemetry error: {ex.Message}\n{ex.StackTrace}", "ERROR"); }
+            catch (Exception ex)
+            {
+                Log($"Telemetry error: {ex.Message}", "ERROR");
+            }
         }
+
         public static async Task ReportShutdownAsync(TimeSpan sessionDuration, int appsTracked)
         {
             if (!_isEnabled || string.IsNullOrEmpty(TELEMETRY_URL)) return;
             if (string.IsNullOrEmpty(_cachedUsername)) return;
-            if (!string.IsNullOrEmpty(_cachedUserId) && ulong.TryParse(_cachedUserId, out ulong userId) && userId == DEVELOPER_ID)
+            if (!string.IsNullOrEmpty(_cachedUserId) && ulong.TryParse(_cachedUserId, out ulong uid) && uid == DEVELOPER_ID)
             {
-                Log($"Shutdown telemetry skipped for developer (User ID: {userId})", "INFO");
+                Log($"Shutdown telemetry skipped for developer", "INFO");
                 return;
             }
+
             try
             {
                 var payload = new
@@ -118,32 +132,38 @@ namespace geetRPCS.Services
                     {
                         new
                         {
-                            title = "👋 geetRPCS Session Ended",
+                            title = "👋 Session End",
+                            description = $"**{_cachedUsername ?? "Unknown"}** • `ID: {_cachedUserId}`",
                             color = 15158332,
                             fields = new[]
                             {
-                                new { name = "👤 User", value = $"```{_cachedUsername ?? "Unknown"}```", inline = true },
-                                new { name = "🆔 User ID", value = $"```{_cachedUserId ?? "Unknown"}```", inline = true },
-                                new { name = "⏱️ Duration", value = $"```{FormatDuration(sessionDuration)}```", inline = true },
-                                new { name = "📱 Apps Used", value = $"```{appsTracked}```", inline = true }
+                                new { name = "⏱️ Duration", value = $"`{FormatDuration(sessionDuration)}`", inline = true },
+                                new { name = "📱 Apps Used", value = $"`{appsTracked}`", inline = true }
                             },
-                            footer = new { text = $"Ended at {DateTime.Now:yyyy-MM-dd HH:mm:ss} (Local Time)" }
+                            footer = new { text = $"geetRPCS • v{APP_VERSION}" },
+                            timestamp = DateTime.UtcNow.ToString("o")
                         }
                     }
                 };
+
                 var json = JsonSerializer.Serialize(payload);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 await _httpClient.PostAsync(TELEMETRY_URL, content).ConfigureAwait(false);
                 Log("Shutdown telemetry sent", "INFO");
             }
-            catch (Exception ex) { Log($"Shutdown telemetry error: {ex.Message}", "ERROR"); }
+            catch (Exception ex)
+            {
+                Log($"Shutdown telemetry error: {ex.Message}", "ERROR");
+            }
         }
+
         public static async Task SetEnabledAsync(bool enabled)
         {
             SettingsService.Instance.TelemetryEnabled = enabled;
             await SettingsService.SaveAsync().ConfigureAwait(false);
             Log($"Telemetry enabled: {enabled}", "INFO");
         }
+
         public static bool IsEnabled() => SettingsService.Instance.TelemetryEnabled;
 
         public static string GenerateUserReport(string username, ulong userId)
@@ -153,24 +173,15 @@ namespace geetRPCS.Services
             string languageCode = "en";
             try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch { }
 
-            string sessionStatus = isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User";
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
             var report = new StringBuilder();
             report.AppendLine("📊 geetRPCS User Report");
-            report.AppendLine($"👤 User");
-            report.AppendLine(username ?? "Unknown");
-            report.AppendLine($"🆔 User ID");
-            report.AppendLine(userId.ToString());
-            report.AppendLine($"💻 Version");
-            report.AppendLine(APP_VERSION);
-            report.AppendLine($"🌍 Language");
-            report.AppendLine(languageCode);
-            report.AppendLine($"🔢 Launch #");
-            report.AppendLine((launchCount + 1).ToString());
-            report.AppendLine($"⏱️ Session");
-            report.AppendLine(sessionStatus);
-            report.AppendLine($"Started at {timestamp} (Local Time)");
+            report.AppendLine($"🆔 User ID: {userId}");
+            report.AppendLine($"👤 Username: {username ?? "Unknown"}");
+            report.AppendLine($"💻 Version: v{APP_VERSION}");
+            report.AppendLine($"🌍 Language: {languageCode}");
+            report.AppendLine($"🔢 Launch Count: #{launchCount + 1}");
+            report.AppendLine($"⏱️ Status: {(isFirstLaunch ? "🆕 First Launch" : "🔄 Returning User")}");
+            report.AppendLine($"🕒 Timestamp: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
 
             return report.ToString();
         }
@@ -182,21 +193,16 @@ namespace geetRPCS.Services
             string languageCode = "en";
             try { languageCode = LanguageManager.GetCurrentLanguageCode() ?? "en"; } catch { }
 
-            string sessionStatus = isFirstLaunch ? "🆕 First Launch!" : "🔄 Returning User";
-            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
             var report = new StringBuilder();
             report.AppendLine("```");
             report.AppendLine("📊 geetRPCS User Report");
+            report.AppendLine($"🆔 User ID: {userId}");
             report.AppendLine($"👤 User: {username ?? "Unknown"}");
-            report.AppendLine($"💻 Version: {APP_VERSION}");
-            report.AppendLine($"🌍 Language: {languageCode}");
-            report.AppendLine($"🔢 Launch #: {launchCount + 1}");
-            report.AppendLine($"⏱️ Session: {sessionStatus}");
-            report.AppendLine($"Started at {timestamp} (Local Time)");
+            report.AppendLine($"💻 v{APP_VERSION} | 🌍 {languageCode} | 🔢 #{launchCount + 1}");
+            report.AppendLine($"⏱️ {(isFirstLaunch ? "🆕 First Launch" : "🔄 Returning")}");
+            report.AppendLine($"🕒 {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             report.AppendLine("```");
-            report.AppendLine($"🆔 **User ID** (click to copy):");
-            report.AppendLine($"```{userId}```");
+            report.AppendLine($"**Copy User ID:**\n`{userId}`");
 
             return report.ToString();
         }
@@ -217,21 +223,23 @@ namespace geetRPCS.Services
             catch (Exception ex) { Log($"Failed to read launch count: {ex.Message}", "WARNING"); }
             return 0;
         }
+
         private static void SaveLaunchCount(int count)
         {
-            try { File.WriteAllText(TelemetryPath, count.ToString()); } catch (Exception ex) { Log($"Failed to save launch count: {ex.Message}", "ERROR"); }
+            try { File.WriteAllText(TelemetryPath, count.ToString()); } 
+            catch (Exception ex) { Log($"Failed to save launch count: {ex.Message}", "ERROR"); }
         }
+
         private static string FormatDuration(TimeSpan time)
         {
             if (time.TotalHours >= 1) return $"{(int)time.TotalHours}h {time.Minutes}m";
             else if (time.TotalMinutes >= 1) return $"{(int)time.TotalMinutes}m {time.Seconds}s";
             else return $"{(int)time.TotalSeconds}s";
         }
+
         private static void Log(string message, string level = "INFO")
         {
-            // Delegate to centralized LogService
             LogService.Log(message, level, "Telemetry");
-            // Also write to telemetry.log for backward compatibility
             try
             {
                 string telemetryLog = Path.Combine(AppFolder, "telemetry.log");
