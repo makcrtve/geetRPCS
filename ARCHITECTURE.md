@@ -1,10 +1,10 @@
 # geetRPCS Architecture Overview
 
-Dokumen ini menjelaskan struktur arsitektur tingkat tinggi dari **geetRPCS** (Discord Rich Presence Custom Switcher). Tujuan dari dokumen ini adalah untuk membantu pengembang memahami bagaimana aplikasi bekerja, bagaimana data mengalir, dan bagaimana komponen-komponen utamanya saling berinteraksi.
+This document describes the high-level architecture of **geetRPCS** (Discord Rich Presence Custom Switcher). Its purpose is to help developers understand how the application works, how data flows, and how its main components interact.
 
 ## High-Level Architecture
 
-geetRPCS beroperasi sebagai aplikasi **System Tray** yang berjalan di background. Inti dari aplikasi ini adalah loop utama di `Program.cs` yang mengorkestrasi deteksi aplikasi, manajemen state, dan komunikasi ke Discord RPC.
+geetRPCS operates as a **System Tray** application running in the background. The core of the application is the main loop in `Program.cs`, which orchestrates application detection, state management, and communication with Discord RPC.
 
 ```mermaid
 graph TD
@@ -50,62 +50,62 @@ graph TD
     Program --> |Send Reports| Telemetry
 ```
 
-## Komponen Utama
+## Key Components
 
 ### 1. Core Controller (`Program.cs`)
 
-File ini adalah "otak" dari aplikasi. Berbeda dengan aplikasi .NET modern yang mungkin menggunakan Dependency Injection container yang kompleks, geetRPCS didesain _straightforward_ dengan `Program.cs` sebagai pusat kendali.
+This file is the "brain" of the application. Unlike modern .NET applications that might use complex Dependency Injection containers, geetRPCS is designed to be _straightforward_, with `Program.cs` acting as the central controller.
 
-- **Tanggung Jawab:**
-  - Menginisialisasi semua service (`DiscordRPC`, `TaskbarWatcher`, dll).
-  - Menangani _Single Instance Mutex_.
-  - Mengelola _State_ global (`currentApp`, `isPaused`, `privateMode`).
-  - Menangani event dari Tray Icon dan Hotkeys.
-  - Melakukan update ke Discord RPC berdasarkan input dari `TaskbarWatcher`.
+- **Responsibilities:**
+  - Initializing all services (`DiscordRPC`, `TaskbarWatcher`, etc.).
+  - Handling the _Single Instance Mutex_.
+  - Managing global _State_ (`currentApp`, `isPaused`, `privateMode`).
+  - Handling events from the Tray Icon and Hotkeys.
+  - Updating Discord RPC based on input from `TaskbarWatcher`.
 
 ### 2. Services
 
-Service-service ini menangani logika spesifik untuk menjaga `Program.cs` tetap bersih (meskipun saat ini `Program.cs` masih melakukan orkestrasi berat).
+These services handle specific logic to keep `Program.cs` clean (although currently, `Program.cs` still performs heavy orchestration).
 
-| Service                    | Deskripsi                                                                                                                                   |
-| :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`TaskbarWatcher`**       | Memantau perubahan window aktif dan event taskbar menggunakan UI Automation / WinAPI hooks. Memberitahu `Program.cs` saat aplikasi berubah. |
-| **`AppConfigManager`**     | Memuat dan me-manage database aplikasi yang didukung dari `apps.json`.                                                                      |
-| **`NarrativeService`**     | ("Witty Service") Menangani rotasi teks status lucu/unik dari `witty.json` agar status tidak monoton.                                       |
-| **`TelemetryService`**     | Mengirimkan data penggunaan anonim (aplikasi yang dideteksi, durasi) untuk analisa pengembangan.                                            |
-| **`UpdateChecker`**        | Memeriksa update aplikasi dan update database (`apps.json`/`witty.json`) dari GitHub.                                                       |
-| **`MouseActivityTracker`** | (Experimental) Menghitung "energi" gerakan mouse untuk fitur status dinamis.                                                                |
+| Service                    | Description                                                                                                                               |
+| :------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| **`TaskbarWatcher`**       | Monitors active window changes and taskbar events using UI Automation / WinAPI hooks. Notifies `Program.cs` when the application changes. |
+| **`AppConfigManager`**     | Loads and manages the database of supported applications from `apps.json`.                                                                |
+| **`NarrativeService`**     | ("Witty Service") Handles the rotation of funny/unique status texts from `witty.json` so the status doesn't become monotonous.            |
+| **`TelemetryService`**     | Sends anonymous usage data (detected applications, duration) for development analysis.                                                    |
+| **`UpdateChecker`**        | Checks for application updates and database updates (`apps.json`/`witty.json`) from GitHub.                                               |
+| **`MouseActivityTracker`** | (Experimental) Calculates mouse movement "energy" for dynamic status features.                                                            |
 
 ### 3. Data Persistence
 
-- **`config.json`**: Konfigurasi dasar RPC (Client ID default) dan teks default saat idle.
-- **`apps.json`**: Database besar mapping Process Name -> Discord App ID & Assets. File ini sering diupdate.
-- **`witty.json`**: Kumpulan kalimat acak untuk status Discord.
-- **`Registry / UserSettings`**: Disimpan via `SettingsService` untuk preferensi user (seperti `AutoStart`, `TrayAnimation`).
-- **`AppStatistics`**: Menyimpan data penggunaan lokal (berapa lama user menggunakan app X) untuk fitur "Today's Stats".
+- **`config.json`**: Basic RPC configuration (default Client ID) and default text when idle.
+- **`apps.json`**: Large database mapping Process Name -> Discord App ID & Assets. This file is updated frequently.
+- **`witty.json`**: Collection of random sentences for Discord status.
+- **`Registry / UserSettings`**: Stored via `SettingsService` for user preferences (such as `AutoStart`, `TrayAnimation`).
+- **`AppStatistics`**: Stores local usage data (how long the user uses app X) for the "Today's Stats" feature.
 
 ### 4. User Interface (UI)
 
-Karena berbasis System Tray, UI-nya minimalis:
+Since it is System Tray-based, the UI is minimalist:
 
-- **`ContextMenu`**: Menu klik kanan pada tray icon (Pause, Manage Apps, dll).
-- **`PresencePreviewForm`**: Form untuk melihat preview realtime tampilan Rich Presence.
-- **`ManageAppsForm`**: Interface untuk mendisable deteksi aplikasi tertentu.
+- **`ContextMenu`**: Right-click menu on the tray icon (Pause, Manage Apps, etc.).
+- **`PresencePreviewForm`**: Form to view real-time preview of the Rich Presence display.
+- **`ManageAppsForm`**: Interface to disable detection of specific applications.
 
-## Alur Data (Data Flow)
+## Data Flow
 
-1. **Deteksi**: `TaskbarWatcher` mendeteksi user berpindah window ke "Visual Studio Code".
-2. **Lookup**: `Program.cs` menerima nama process (`Code.exe`), lalu bertanya ke `AppConfigManager`: "Apakah `Code.exe` ada di database?"
-3. **Penyusunan**:
-   - Jika ada, ambil App ID kustom (jika ada) dan aset gambar.
-   - Ambil teks status dari `NarrativeService` (jika mode Witty aktif).
-   - Format string (ganti `{filename}`, `{project}`) menggunakan helper di `Placeholders`.
-4. **Eksekusi**:
-   - Jika App ID berubah, `DiscordRpcClient` di-restart dengan ID baru.
-   - Panggil `rpc.SetPresence()` dengan data yang sudah disusun.
-   - Trigger animasi tray via `TrayIconAnimator`.
+1. **Detection**: `TaskbarWatcher` detects the user switching windows to "Visual Studio Code".
+2. **Lookup**: `Program.cs` receives the process name (`Code.exe`), then asks `AppConfigManager`: "Is `Code.exe` in the database?"
+3. **Assembly**:
+   - If yes, retrieve custom App ID (if available) and image assets.
+   - Retrieve status text from `NarrativeService` (if Witty mode is active).
+   - Format the string (replace `{filename}`, `{project}`) using helpers in `Placeholders`.
+4. **Execution**:
+   - If the App ID changes, `DiscordRpcClient` is restarted with the new ID.
+   - Call `rpc.SetPresence()` with the assembled data.
+   - Trigger tray animation via `TrayIconAnimator`.
 
-## Struktur Folder Source
+## Source Folder Structure
 
 ```text
 geetRPCS/
