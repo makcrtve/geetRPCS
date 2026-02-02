@@ -11,25 +11,25 @@ graph TD
     User((User))
 
     subgraph Core [Core Application]
-        Program[Program.cs<br/>(Main Loop / Controller)]
-        Stats[AppStatistics<br/>(Usage Tracking)]
+        Program["Program.cs<br/>(Main Loop / Controller)"]
+        Stats["AppStatistics<br/>(Usage Tracking)"]
     end
 
     subgraph Inputs [Input & Detection]
-        Watcher[TaskbarWatcher<br/>(Window Detection)]
-        Input[GlobalHotkey / MouseTracker<br/>(User Input)]
+        Watcher["TaskbarWatcher<br/>(Window Detection)"]
+        Input["GlobalHotkey / MouseTracker<br/>(User Input)"]
     end
 
     subgraph Data [Data & Configuration]
-        ConfigMan[AppConfigManager<br/>(apps.json)]
-        Narrative[NarrativeService<br/>(witty.json)]
-        Settings[SettingsService<br/>(Registry/Config)]
+        ConfigMan["AppConfigManager<br/>(apps.json)"]
+        Narrative["NarrativeService<br/>(witty.json)"]
+        Settings["SettingsService<br/>(Registry/Config)"]
     end
 
     subgraph Output [Outputs]
-        RPC[DiscordRpcClient<br/>(Discord IPC)]
-        Tray[TrayIcon / Animator<br/>(UI Feedback)]
-        Telemetry[TelemetryService<br/>(Analytics)]
+        RPC["DiscordRpcClient<br/>(Discord IPC)"]
+        Tray["TrayIcon / Animator<br/>(UI Feedback)"]
+        Telemetry["TelemetryService<br/>(Analytics)"]
     end
 
     %% Flows
