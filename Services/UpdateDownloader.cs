@@ -430,12 +430,18 @@ namespace geetRPCS.Services
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = updaterPath,
-                    Arguments = $"--source \"{sourcePath}\" --target \"{targetPath}\" --exe \"{exeName}\"",
-                    UseShellExecute = true,
+                    UseShellExecute = false,
                     CreateNoWindow = false
                 };
 
-                Log($"Launching updater: {startInfo.FileName} {startInfo.Arguments}", "INFO");
+                startInfo.ArgumentList.Add("--source");
+                startInfo.ArgumentList.Add(sourcePath);
+                startInfo.ArgumentList.Add("--target");
+                startInfo.ArgumentList.Add(targetPath);
+                startInfo.ArgumentList.Add("--exe");
+                startInfo.ArgumentList.Add(exeName);
+
+                Log($"Launching updater: {startInfo.FileName} with secure arguments", "INFO");
                 Process.Start(startInfo);
                 return true;
             }
