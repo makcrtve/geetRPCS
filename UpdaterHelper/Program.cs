@@ -190,12 +190,13 @@ namespace geetRPCS.Updater
             // Method 1: Via explorer.exe
             try
             {
-                Process.Start(new ProcessStartInfo
+                var psi = new ProcessStartInfo
                 {
                     FileName = "explorer.exe",
-                    Arguments = "\"" + path + "\"",
                     UseShellExecute = false
-                });
+                };
+                psi.ArgumentList.Add(path);
+                Process.Start(psi);
                 return;
             }
             catch { }
