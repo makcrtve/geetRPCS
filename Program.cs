@@ -928,7 +928,12 @@ class Program : ApplicationContext
             Log($"Failed to open {fileName}: {ex.Message}");
             var result = MessageBox.Show(LanguageManager.Current.DialogOpenWithNotepad, LanguageManager.Current.AppName,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes) System.Diagnostics.Process.Start("notepad.exe", filePath);
+            if (result == DialogResult.Yes)
+            {
+                var psi = new System.Diagnostics.ProcessStartInfo("notepad.exe") { UseShellExecute = false };
+                psi.ArgumentList.Add(filePath);
+                System.Diagnostics.Process.Start(psi);
+            }
         }
     }
     private void UpdateTrayMenu()
