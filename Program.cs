@@ -157,8 +157,15 @@ class Program : ApplicationContext
             {
                 while (true)
                 {
-                    await Task.Delay(TimeSpan.FromMinutes(30));
-                    MemoryHelper.TrimMemory();
+                    try
+                    {
+                        await Task.Delay(TimeSpan.FromMinutes(30));
+                        MemoryHelper.TrimMemory();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log($"Memory trim error: {ex.Message}", "ERROR", "MemoryHelper");
+                    }
                 }
             });
             // Periodic apps.json and witty.json update checker
@@ -716,13 +723,7 @@ class Program : ApplicationContext
             {
                 Details = config.Discord!.Details ?? LanguageManager.Current.Idling,
                 State = config.Discord.State ?? LanguageManager.Current.Ready,
-                Assets = new Assets
-                {
-                    LargeImageKey = config.Discord.Assets?.LargeImageKey ?? "",
-                    LargeImageText = config.Discord.Assets?.LargeImageText ?? "",
-                    SmallImageKey = config.Discord.Assets?.SmallImageKey ?? "",
-                    SmallImageText = config.Discord.Assets?.SmallImageText ?? ""
-                }
+                Assets = GetDefaultAssets()
             };
             if (config.Discord.Buttons?.Length > 0)
             {
@@ -795,7 +796,7 @@ class Program : ApplicationContext
                 lastStatsUpdate = DateTime.Now;
             }
             catch (Exception ex) { Log($"Statistics tracking error: {ex.Message}"); }
-            string detailsTemplate = GetCustomDetailsForApp(proc);
+            string detailsTemplate = GetCustomDetailsForApp(proc, appConfig);
             string stateTemplate = GetCustomStateForApp(proc);
             string details = ReplacePlaceholders(detailsTemplate, proc, hWnd);
             string state = ReplacePlaceholders(stateTemplate, proc, hWnd);
@@ -804,13 +805,7 @@ class Program : ApplicationContext
                 string energyState = _mouseTracker.GetEnergyStateText();
                 if (!string.IsNullOrEmpty(energyState)) state = $"{state} | {energyState}";
             }
-            Assets finalAsset = PresenceAssets.ForApp(proc, new Assets
-            {
-                LargeImageKey = config.Discord!.Assets?.LargeImageKey ?? "",
-                LargeImageText = config.Discord.Assets?.LargeImageText ?? "",
-                SmallImageKey = config.Discord.Assets?.SmallImageKey ?? "",
-                SmallImageText = config.Discord.Assets?.SmallImageText ?? ""
-            });
+            Assets finalAsset = PresenceAssets.ForApp(proc, GetDefaultAssets());
             var presence = new RichPresence
             {
                 Details = details,
@@ -818,18 +813,18 @@ class Program : ApplicationContext
                 Assets = finalAsset,
                 Timestamps = new Timestamps { Start = appTimers[proc] }
             };
-            var appButtons = GetButtonsForApp(proc);
+            var appButtons = GetButtonsForApp(appConfig);
             if (appButtons != null && appButtons.Length > 0) presence.Buttons = appButtons;
             rpc?.SetPresence(presence);
             if (previewForm != null && previewForm.Visible) previewForm.UpdatePresence(presence);
         }
         catch (Exception ex) { Log($"OnAppDetected error: {ex.Message}"); }
     }
-    private string GetCustomDetailsForApp(string processName)
+    private string GetCustomDetailsForApp(string processName, AppConfig? appConfig = null)
     {
         if (SettingsService.Instance.AppOverrides.TryGetValue(processName, out var ov) && !string.IsNullOrWhiteSpace(ov.Details))
             return ov.Details;
-        var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
+        var app = appConfig ?? AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
         if (!string.IsNullOrWhiteSpace(app?.CustomDetails)) return app.CustomDetails;
         return config.Discord!.ActiveDetails ?? "";
     }
@@ -839,11 +834,10 @@ class Program : ApplicationContext
             return ov.State;
         return config.Discord!.ActiveState ?? "";
     }
-    private DiscordRPC.Button[]? GetButtonsForApp(string processName)
+    private DiscordRPC.Button[]? GetButtonsForApp(AppConfig? appConfig)
     {
-        var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process?.Equals(processName, StringComparison.OrdinalIgnoreCase) == true);
-        if (app?.Buttons == null || app.Buttons.Count == 0) return null;
-        var validButtons = app.Buttons
+        if (appConfig?.Buttons == null || appConfig.Buttons.Count == 0) return null;
+        var validButtons = appConfig.Buttons
             .Where(b => !string.IsNullOrEmpty(b.Label)
                         && !string.IsNullOrEmpty(b.Url)
                         && IsValidUrl(b.Url)  // NEW: Validate URL
@@ -853,6 +847,13 @@ class Program : ApplicationContext
             .ToArray();
         return validButtons.Length > 0 ? validButtons : null;
     }
+    private Assets GetDefaultAssets() => new Assets
+    {
+        LargeImageKey = config.Discord!.Assets?.LargeImageKey ?? "",
+        LargeImageText = config.Discord.Assets?.LargeImageText ?? "",
+        SmallImageKey = config.Discord.Assets?.SmallImageKey ?? "",
+        SmallImageText = config.Discord.Assets?.SmallImageText ?? ""
+    };
     private bool IsValidUrl(string url)
     {
         if (string.IsNullOrEmpty(url)) return false;
@@ -1269,7 +1270,7 @@ class Program : ApplicationContext
         string tutorialUrl = LanguageManager.Current.UrlTutorial;
         string assetsUrl = "https://github.com/makcrtve/geetRPCS/raw/main/AssetPack.zip";
         string defaultAppId = "1433700335863726183";
-        Form prompt = new Form()
+        using Form prompt = new Form()
         {
             Width = 500,
             Height = 280,

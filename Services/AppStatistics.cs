@@ -27,6 +27,18 @@ namespace geetRPCS.Services
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
         private static readonly string StatsPath = Path.Combine(AppFolder, "statistics.json");
 
+        private static readonly JsonSerializerOptions _readOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new TimeSpanConverter() }
+        };
+
+        private static readonly JsonSerializerOptions _writeOptions = new()
+        {
+            WriteIndented = true,
+            Converters = { new TimeSpanConverter() }
+        };
+
         [JsonPropertyName("appUsage")]
         public Dictionary<string, AppUsageData> AppUsage { get; set; } = new();
         [JsonPropertyName("lastUpdated")]
@@ -44,12 +56,7 @@ namespace geetRPCS.Services
                     return new AppStatistics();
                 }
                 string json = File.ReadAllText(StatsPath);
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true,
-                    Converters = { new TimeSpanConverter() }
-                };
-                var stats = JsonSerializer.Deserialize<AppStatistics>(json, options);
+                var stats = JsonSerializer.Deserialize<AppStatistics>(json, _readOptions);
                 Log($"Loaded {stats.AppUsage.Count} tracked apps", "INFO");
                 return stats ?? new AppStatistics();
             }
@@ -63,12 +70,7 @@ namespace geetRPCS.Services
         public string PrepareJson()
         {
             LastUpdated = DateTime.Now;
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Converters = { new TimeSpanConverter() }
-            };
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this, _writeOptions);
         }
         public static async Task WriteJsonAsync(string json)
         {
@@ -165,12 +167,7 @@ namespace geetRPCS.Services
         }
         public string PrepareExportJSON()
         {
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Converters = { new TimeSpanConverter() }
-            };
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this, _writeOptions);
         }
         public async Task<string> WriteExportAsync(string content, string extension)
         {

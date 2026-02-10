@@ -26,11 +26,8 @@ namespace geetRPCS.Utils
         {
             try
             {
-                for (int i = 0; i < 2; i++)
-                {
-                    GC.Collect(2, GCCollectionMode.Forced, true);
-                    GC.WaitForPendingFinalizers();
-                }
+                GC.Collect(2, GCCollectionMode.Optimized, false);
+                GC.WaitForPendingFinalizers();
                 using (var currentProcess = Process.GetCurrentProcess())
                 {
                     EmptyWorkingSet(currentProcess.Handle);

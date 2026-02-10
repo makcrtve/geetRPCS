@@ -121,7 +121,10 @@ namespace geetRPCS.Services
         {
             try
             {
-                return Process.GetProcessesByName(processName).Length > 0;
+                var processes = Process.GetProcessesByName(processName);
+                bool running = processes.Length > 0;
+                foreach (var p in processes) p.Dispose();
+                return running;
             }
             catch { return false; }
         }

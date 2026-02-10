@@ -45,7 +45,7 @@ namespace geetRPCS.Services
             {
                 if (File.Exists(WittyPath))
                 {
-                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] Loading witty.json from: {WittyPath}");
+                    LogService.Debug($"Loading witty.json from: {WittyPath}", "NarrativeService");
                     string json = File.ReadAllText(WittyPath);
                     var loaded = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json, new JsonSerializerOptions
                     {
@@ -68,30 +68,30 @@ namespace geetRPCS.Services
                                 }
                                 catch
                                 {
-                                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] Skipping entry '{kvp.Key}' - not a valid string array");
+                                    LogService.Debug($"Skipping entry '{kvp.Key}' - not a valid string array", "NarrativeService");
                                 }
                             }
                             else
                             {
-                                System.Diagnostics.Debug.WriteLine($"[NarrativeService] Skipping non-array entry: '{kvp.Key}'");
+                                LogService.Debug($"Skipping non-array entry: '{kvp.Key}'", "NarrativeService");
                             }
                         }
-                        System.Diagnostics.Debug.WriteLine($"[NarrativeService] Loaded {_wittyTexts.Count} process entries from witty.json");
+                        LogService.Debug($"Loaded {_wittyTexts.Count} process entries from witty.json", "NarrativeService");
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine($"[NarrativeService] Failed to deserialize witty.json");
+                        LogService.Debug("Failed to deserialize witty.json", "NarrativeService");
                     }
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] witty.json not found at: {WittyPath}");
+                    LogService.Debug($"witty.json not found at: {WittyPath}", "NarrativeService");
                     _wittyTexts = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
                 }
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[NarrativeService] Error loading witty.json: {ex.Message}");
+                LogService.Debug($"Error loading witty.json: {ex.Message}", "NarrativeService");
                 _wittyTexts = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
             }
         }
@@ -108,20 +108,19 @@ namespace geetRPCS.Services
             if (string.IsNullOrEmpty(processName)) return "";
             lock (_lock)
             {
-                System.Diagnostics.Debug.WriteLine($"[NarrativeService] Looking for witty text for process: '{processName}'");
-                System.Diagnostics.Debug.WriteLine($"[NarrativeService] Dictionary has {_wittyTexts.Count} entries");
+                LogService.Debug($"Looking for witty text for '{processName}' (dict: {_wittyTexts.Count} entries)", "NarrativeService");
                 if (_sessionTexts.TryGetValue(processName, out var entry))
                 {
                     if (DateTime.Now - entry.LastUpdated < _rotationInterval)
                     {
-                        System.Diagnostics.Debug.WriteLine($"[NarrativeService] Returning cached text: '{entry.Text}'");
+                        LogService.Debug($"Returning cached text: '{entry.Text}'", "NarrativeService");
                         return entry.Text;
                     }
                 }
                 string selectedText;
                 if (_wittyTexts.TryGetValue(processName, out var texts) && texts != null && texts.Count > 0)
                 {
-                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] Found {texts.Count} witty texts for '{processName}'");
+                    LogService.Debug($"Found {texts.Count} witty texts for '{processName}'", "NarrativeService");
                     if (texts.Count > 1 && entry != null)
                     {
                          string newText;
@@ -137,15 +136,15 @@ namespace geetRPCS.Services
                     {
                         selectedText = texts[_random.Next(texts.Count)];
                     }
-                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] Selected: '{selectedText}'");
+                    LogService.Debug($"Selected: '{selectedText}'", "NarrativeService");
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine($"[NarrativeService] No witty texts found for '{processName}', checking AppConfig...");
+                    LogService.Debug($"No witty texts found for '{processName}', checking AppConfig...", "NarrativeService");
                     var app = AppConfigManager.Apps.FirstOrDefault(a => a.Process.Equals(processName, StringComparison.OrdinalIgnoreCase));
                     if (app != null && app.WittyTexts != null && app.WittyTexts.Count > 0)
                     {
-                        System.Diagnostics.Debug.WriteLine($"[NarrativeService] Found {app.WittyTexts.Count} texts in AppConfig");
+                        LogService.Debug($"Found {app.WittyTexts.Count} texts in AppConfig", "NarrativeService");
                         if (app.WittyTexts.Count > 1 && entry != null)
                         {
                              string newText;
@@ -164,7 +163,7 @@ namespace geetRPCS.Services
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine($"[NarrativeService] Using fallback text");
+                        LogService.Debug("Using fallback text", "NarrativeService");
                         selectedText = "Working hard... 🔨";
                     }
                 }

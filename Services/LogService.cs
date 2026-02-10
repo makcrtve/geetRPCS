@@ -45,6 +45,8 @@ namespace geetRPCS.Services
         // Configuration
         private const long MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
         private const int MAX_BACKUP_FILES = 3;
+        private const int ROTATION_CHECK_INTERVAL = 100; // Check every N writes
+        private static int _writeCount = 0;
         private static readonly string AppFolder = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
@@ -142,8 +144,9 @@ namespace geetRPCS.Services
                         Initialize();
                     }
 
-                    // Check if rotation needed
-                    RotateIfNeeded();
+                    // Check if rotation needed (throttled)
+                    if (++_writeCount % ROTATION_CHECK_INTERVAL == 0)
+                        RotateIfNeeded();
 
                     string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
                     string levelStr = level.ToString();

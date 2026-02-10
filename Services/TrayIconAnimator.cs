@@ -23,7 +23,7 @@ namespace geetRPCS.Services
     {
         private readonly NotifyIcon _trayIcon;
         private readonly Icon _originalIcon;
-        private readonly string _iconPath;
+        private readonly Bitmap _cachedBitmap;
         private System.Threading.Timer _animationTimer;
         private int _animationFrame;
         private bool _isAnimating;
@@ -34,8 +34,9 @@ namespace geetRPCS.Services
         public TrayIconAnimator(NotifyIcon trayIcon, string iconPath, Control marshalForm, Action<string> logAction = null)
         {
             _trayIcon = trayIcon ?? throw new ArgumentNullException(nameof(trayIcon));
-            _iconPath = iconPath ?? throw new ArgumentNullException(nameof(iconPath));
+            if (iconPath == null) throw new ArgumentNullException(nameof(iconPath));
             _originalIcon = new Icon(iconPath);
+            _cachedBitmap = _originalIcon.ToBitmap();
             _logAction = logAction;
             _marshalForm = marshalForm;
             Log("TrayIconAnimator initialized with Eased Rotation (Leak-Proof)");
@@ -111,7 +112,7 @@ namespace geetRPCS.Services
                 float easedT = t < 0.5f ? 2 * t * t : 1 - (float)Math.Pow(-2 * t + 2, 2) / 2;
                 float brightnessBoost = 4 * t * (1 - t) * 0.45f;
                 float angle = easedT * 360f;
-                Icon animatedIcon = CreateAnimatedIcon(_iconPath, angle, brightnessBoost);
+                Icon animatedIcon = CreateAnimatedIcon(angle, brightnessBoost);
                 if (animatedIcon != null && _trayIcon != null)
                 {
                     if (_marshalForm != null && _marshalForm.InvokeRequired)
@@ -140,12 +141,11 @@ namespace geetRPCS.Services
                 try { DestroyIcon(oldIcon.Handle); oldIcon.Dispose(); } catch { }
             }
         }
-        private Icon CreateAnimatedIcon(string iconPath, float angle, float brightness)
+        private Icon CreateAnimatedIcon(float angle, float brightness)
         {
             try
             {
-                using (Icon originalIcon = new Icon(iconPath))
-                using (Bitmap bmp = originalIcon.ToBitmap())
+                var bmp = _cachedBitmap;
                 {
                     Bitmap animatedBmp = new Bitmap(bmp.Width, bmp.Height);
                     using (Graphics g = Graphics.FromImage(animatedBmp))
@@ -178,6 +178,7 @@ namespace geetRPCS.Services
                     Icon newIcon = Icon.FromHandle(hIcon);
                     Icon clonedIcon = (Icon)newIcon.Clone();
                     DestroyIcon(hIcon);
+                    animatedBmp.Dispose();
                     return clonedIcon;
                 }
             }
@@ -204,6 +205,7 @@ namespace geetRPCS.Services
             Log("Disposing TrayIconAnimator");
             Stop();
             _animationTimer?.Dispose();
+            _cachedBitmap?.Dispose();
             _originalIcon?.Dispose();
         }
     }
