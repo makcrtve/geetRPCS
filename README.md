@@ -84,6 +84,7 @@ irm https://bit.ly/geetrpcs-del | iex
 <summary><b>Advanced Installation Options</b></summary>
 
 #### Silent Install (No Prompts)
+
 ```powershell
 # Portable + All Shortcuts
 irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Silent -DesktopShortcut -StartMenuShortcut
@@ -93,6 +94,7 @@ irm https://bit.ly/geetrpcs | iex; Install-GeetRPCS -Version "minimal" -Silent
 ```
 
 #### Silent Uninstall
+
 ```powershell
 # Clean uninstall (remove everything)
 irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent
@@ -102,6 +104,7 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 ```
 
 #### Manual Download (Zip)
+
 1. Download the latest `.zip` from **[Releases](https://github.com/makcrtve/geetRPCS/releases/latest)**
 2. Extract to your preferred folder
 3. Run `geetRPCS.exe`
@@ -115,24 +118,29 @@ irm https://bit.ly/geetrpcs-del | iex; Uninstall-GeetRPCS -Silent -KeepUserData
 <br>
 
 Requirements:
+
 - **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)**
 - Windows OS
 
 ### 1. Clone the repository
+
 ```powershell
 git clone https://github.com/makcrtve/geetRPCS.git
 cd geetRPCS
 ```
 
 ### 2. Build the project
+
 Open a terminal in the project folder and run:
 
 **Portable (Recommended):**
+
 ```powershell
 dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -p:SelfContained=true --output publish/portable
 ```
 
 **Minimal (Requires .NET Runtime):**
+
 ```powershell
 dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained=false --output publish/minimal
 ```
@@ -150,9 +158,11 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 <td width="25%" valign="top">
 
 **🎯 Core**
+
 - Hybrid Detection
 - Single Instance
-- Ultra Low RAM (5-30MB)
+- Ultra Low RAM (5-20MB)
+- **High-Efficiency Core**
 - **Zero Input Lag**
 - **Sticky Presence**
 - Tray Animation
@@ -164,6 +174,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 <td width="25%" valign="top">
 
 **⚙️ Control**
+
 - Pause Mode
 - Private Mode
 - Statistics Tracking
@@ -178,9 +189,11 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 <td width="25%" valign="top">
 
 **🔧 Utility**
+
 - **Silent Auto-Update (v1.3.6)**
 - **Shortcut Manager (v1.3.6)**
-- Optimized Async I/O
+- **Zero Disk I/O Animations**
+- **Optimized Async I/O**
 - True Hot Reload
 - Quick Config Access
 - Auto Startup
@@ -193,6 +206,7 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 <td width="25%" valign="top">
 
 **🎨 Customization**
+
 - Dynamic Witty Texts
 - Custom Discord Assets
 - Text Placeholders
@@ -211,12 +225,12 @@ dotnet publish -c Release -r win-x64 -p:PublishSingleFile=false -p:SelfContained
 
 The system tray icon now comes alive! When geetRPCS detects an app switch, the icon performs a smooth **360° rotation with brightness pulse** effect.
 
-| Property | Value |
-|:---------|:------|
-| **Effect** | Rotation + Brightness pulse |
-| **Duration** | 800ms (12 frames) |
-| **Easing** | Ease-In-Out Quadratic |
-| **Toggle** | Tray menu → "🎨 Tray Icon Animation" |
+| Property     | Value                                |
+| :----------- | :----------------------------------- |
+| **Effect**   | Rotation + Brightness pulse          |
+| **Duration** | 800ms (12 frames)                    |
+| **Easing**   | Ease-In-Out Quadratic                |
+| **Toggle**   | Tray menu → "🎨 Tray Icon Animation" |
 
 > 💡 This subtle animation provides visual confirmation that geetRPCS detected your app switch!
 
@@ -230,15 +244,16 @@ The system tray icon now comes alive! When geetRPCS detects an app switch, the i
 
 geetRPCS features a **Mouse Energy Detector** - a unique feature that analyzes your mouse activity and displays your current "energy level" on Discord presence.
 
-| Level | Emoji | Condition |
-|:------|:-----:|:----------|
-| **Sleeping** | 💤 | No activity for > 30 seconds |
-| **Relaxing** | ☕ | Low activity (casual scrolling) |
-| **Normal** | 🎯 | Standard activity (regular work) |
-| **Focused** | 🔥 | High activity (intensive editing) |
-| **Rush** | ⚡ | Very high activity (deadline mode!) |
+| Level        | Emoji | Condition                           |
+| :----------- | :---: | :---------------------------------- |
+| **Sleeping** |  💤   | No activity for > 30 seconds        |
+| **Relaxing** |  ☕   | Low activity (casual scrolling)     |
+| **Normal**   |  🎯   | Standard activity (regular work)    |
+| **Focused**  |  🔥   | High activity (intensive editing)   |
+| **Rush**     |  ⚡   | Very high activity (deadline mode!) |
 
 **Example Discord display:**
+
 ```
 Working on FL Studio 2025
 Untitled - FL Studio | 🔥 Focused
@@ -257,6 +272,7 @@ Untitled - FL Studio | 🔥 Focused
 Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humorous texts** that rotate every 60 seconds!
 
 **Features:**
+
 - 🎲 Random selection from curated funny texts
 - 🔄 Auto-rotates every 60 seconds
 - 📝 Fully customizable via `witty.json`
@@ -265,13 +281,14 @@ Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humoro
 
 **Example Texts:**
 
-| App | Witty Texts |
-|:----|:------------|
+| App           | Witty Texts                                                                    |
+| :------------ | :----------------------------------------------------------------------------- |
 | **FL Studio** | "Producing next heater 🔥", "Where is snare? 🥁", "Soundgoodizer on Master 🎚️" |
 
 | **Chrome** | "100 tabs open 🔥", "Researching on YouTube 🎥", "Definitely working... 👀" |
 
 **How to Use:**
+
 1. Edit `witty.json` to add your own texts
 2. Use `{witty_text}` in `customDetails` field
 3. Reload with `Ctrl+Alt+R`
@@ -285,20 +302,20 @@ Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humoro
 <details open>
 <summary><b>50+ Software • 80+ Process Names</b> (click to toggle)</summary>
 
-| Category | Applications |
-|:--------:|----------|
-| 🎵 **Music Production** | FL Studio, Ableton Live, Cubase, REAPER, Pro Tools, Studio One, Reason, Cakewalk by BandLab, Bitwig Studio |
-| 🎤 **Audio Editing** | Adobe Audition, Audacity |
-| 🎬 **Video Editing** | Adobe Premiere Pro, Adobe After Effects, DaVinci Resolve, Wondershare Filmora, Vegas Pro, CapCut |
-| 🧊 **3D Modeling & Animation** | Blender, Autodesk Maya, ZBrush, Substance 3D Painter |
-| 🏛️ **CAD & Architecture** | SketchUp, AutoCAD |
-| 🎨 **Graphic Design & Photo** | Adobe Photoshop, Adobe Illustrator, Adobe Lightroom, GIMP, Inkscape, Affinity Studio, CorelDRAW, Krita, Clip Studio Paint, Aseprite |
-| 💻 **UI/UX Design** | Figma, Canva |
-| 🌐 **Web Browsers** | Brave Browser, Google Chrome, Mozilla Firefox, Zen Browser, Microsoft Edge |
-| 📊 **Office & Productivity** | Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Notion |
-| 💬 **Communication** | Telegram, Slack, WhatsApp, Zoom |
-| 📈 **Data Science & Analysis** | Orange Data Mining |
-| 🔧 **Media Tools** | HandBrake |
+|            Category            | Applications                                                                                                                        |
+| :----------------------------: | ----------------------------------------------------------------------------------------------------------------------------------- |
+|    🎵 **Music Production**     | FL Studio, Ableton Live, Cubase, REAPER, Pro Tools, Studio One, Reason, Cakewalk by BandLab, Bitwig Studio                          |
+|      🎤 **Audio Editing**      | Adobe Audition, Audacity                                                                                                            |
+|      🎬 **Video Editing**      | Adobe Premiere Pro, Adobe After Effects, DaVinci Resolve, Wondershare Filmora, Vegas Pro, CapCut                                    |
+| 🧊 **3D Modeling & Animation** | Blender, Autodesk Maya, ZBrush, Substance 3D Painter                                                                                |
+|   🏛️ **CAD & Architecture**    | SketchUp, AutoCAD                                                                                                                   |
+| 🎨 **Graphic Design & Photo**  | Adobe Photoshop, Adobe Illustrator, Adobe Lightroom, GIMP, Inkscape, Affinity Studio, CorelDRAW, Krita, Clip Studio Paint, Aseprite |
+|      💻 **UI/UX Design**       | Figma, Canva                                                                                                                        |
+|      🌐 **Web Browsers**       | Brave Browser, Google Chrome, Mozilla Firefox, Zen Browser, Microsoft Edge                                                          |
+|  📊 **Office & Productivity**  | Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Notion                                                                       |
+|      💬 **Communication**      | Telegram, Slack, WhatsApp, Zoom                                                                                                     |
+| 📈 **Data Science & Analysis** | Orange Data Mining                                                                                                                  |
+|       🔧 **Media Tools**       | HandBrake                                                                                                                           |
 
 </details>
 
@@ -309,33 +326,35 @@ Instead of boring "Working..." messages, geetRPCS now displays **dynamic, humoro
 ## 🖥️ Usage
 
 ### ⌨️ Global Hotkeys (Shortcuts)
+
 Control geetRPCS directly from your keyboard, even when the app is minimized:
 
-| Shortcut | Function |
-|----------|----------|
+| Shortcut         | Function                   |
+| ---------------- | -------------------------- |
 | `Ctrl + Alt + P` | ⏸️ Pause / Resume Presence |
-| `Ctrl + Alt + V` | 👀 Toggle Preview Window |
-| `Ctrl + Alt + H` | 🔒 Toggle Private Mode |
-| `Ctrl + Alt + R` | 🔄 Reload Config |
-| `Ctrl + Alt + S` | 📊 Show Today's Stats |
+| `Ctrl + Alt + V` | 👀 Toggle Preview Window   |
+| `Ctrl + Alt + H` | 🔒 Toggle Private Mode     |
+| `Ctrl + Alt + R` | 🔄 Reload Config           |
+| `Ctrl + Alt + S` | 📊 Show Today's Stats      |
 
 ### 🖱️ System Tray Menu
+
 **Right-click** the tray icon to access the manual menu:
 
-| Menu | Function |
-|------|----------|
-| ⚡ Quick Actions | **Manager Shortcuts**, access folder, edit config |
-| ⏸️ Pause | Toggle presence on/off |
-| 🔒 Private Mode | Censor window titles |
-| 🖱️ Mouse Energy | Toggle activity detector |
-| 🔄 Auto-Update | **Toggle silent background updates** |
-| 🎨 Tray Animation | Toggle icon animation |
-| 📡 Telemetry | Toggle anonymous usage data |
-| 👀 Preview Window | Live preview Discord presence |
-| 🛠️ Manage Apps | Enable/disable applications |
-| 🔑 Change App ID | Update the default Discord App ID |
-| 📊 Statistics | View & export statistics |
-| 🌐 Language | Change language (EN/ID) |
+| Menu              | Function                                          |
+| ----------------- | ------------------------------------------------- |
+| ⚡ Quick Actions  | **Manager Shortcuts**, access folder, edit config |
+| ⏸️ Pause          | Toggle presence on/off                            |
+| 🔒 Private Mode   | Censor window titles                              |
+| 🖱️ Mouse Energy   | Toggle activity detector                          |
+| 🔄 Auto-Update    | **Toggle silent background updates**              |
+| 🎨 Tray Animation | Toggle icon animation                             |
+| 📡 Telemetry      | Toggle anonymous usage data                       |
+| 👀 Preview Window | Live preview Discord presence                     |
+| 🛠️ Manage Apps    | Enable/disable applications                       |
+| 🔑 Change App ID  | Update the default Discord App ID                 |
+| 📊 Statistics     | View & export statistics                          |
+| 🌐 Language       | Change language (EN/ID)                           |
 
 <details>
 <summary><b>📸 Screenshots</b></summary>
@@ -364,6 +383,7 @@ Control geetRPCS directly from your keyboard, even when the app is minimized:
 geetRPCS works **out of the box**! The application now uses a centralized `settings.json` and internal caches to ensure performance.
 
 **config.json is only needed if you want to:**
+
 - Use your own Discord Application ID
 - Customize presence text
 - Add custom buttons
@@ -376,11 +396,13 @@ geetRPCS works **out of the box**! The application now uses a centralized `setti
 You can now assign **different Discord App IDs for specific applications** without manually changing the config every time.
 
 **How it works:**
+
 1. Add a `"clientId"` field to a specific app in `apps.json`.
 2. When geetRPCS detects that app, it will automatically switch to that specific App ID.
 3. When you switch to another app (without a custom ID), it reverts to the global/default ID.
 
 **Example:**
+
 ```json
 [
   {
@@ -399,6 +421,7 @@ You can now assign **different Discord App IDs for specific applications** witho
 ```
 
 **Benefits:**
+
 - Different Discord Rich Presences for different contexts (Work vs Personal).
 - Use specific app assets/icons per application.
 </details>
@@ -416,7 +439,7 @@ You can now assign **different Discord App IDs for specific applications** witho
     "ActiveState": "{window_title}",
     "Assets": {
       "LargeImageKey": "geetrpcs-logo",
-      "LargeImageText": "geetRPCS v1.3.7",
+      "LargeImageText": "geetRPCS v1.3.8",
       "SmallImageKey": "verified",
       "SmallImageText": "Powered by geetRPCS"
     },
@@ -445,9 +468,7 @@ You can now assign **different Discord App IDs for specific applications** witho
     "smallText": "geetRPCS",
     "customDetails": "Producing on {app_name}",
     "clientId": "OPTIONAL_SPECIFIC_APP_ID",
-    "buttons": [
-      { "label": "My Portfolio", "url": "https://example.com" }
-    ]
+    "buttons": [{ "label": "My Portfolio", "url": "https://example.com" }]
   }
 ]
 ```
@@ -463,13 +484,13 @@ You can now assign **different Discord App IDs for specific applications** witho
 
 geetRPCS validates button URLs automatically:
 
-| URL Format | Status |
-|:-----------|:------:|
-| `https://github.com` | ✅ Valid |
-| `http://example.com` | ✅ Valid |
-| `github.com` | ❌ Skipped (no protocol) |
-| `ftp://files.com` | ❌ Skipped (invalid protocol) |
-| Empty URL | ❌ Skipped |
+| URL Format           |            Status             |
+| :------------------- | :---------------------------: |
+| `https://github.com` |           ✅ Valid            |
+| `http://example.com` |           ✅ Valid            |
+| `github.com`         |   ❌ Skipped (no protocol)    |
+| `ftp://files.com`    | ❌ Skipped (invalid protocol) |
+| Empty URL            |          ❌ Skipped           |
 
 **Button label limit:** Maximum 32 characters
 
@@ -527,6 +548,7 @@ geetRPCS validates button URLs automatically:
 <summary><b>How to manage shortcuts?</b></summary>
 
 New in v1.3.6:
+
 1. Right-click system tray icon -> `⚡ Quick Actions` -> `➕ Manage Shortcuts`
 2. Click `Desktop Shortcut` or `Start Menu Shortcut` to toggle them.
 3. Your preference is saved forever!
@@ -568,11 +590,13 @@ This project is **Open Source**! You can inspect every line of code in this repo
 Because this application uses low-level system hooks (to detect key presses for hotkeys and mouse activity), **some generic Antivirus software might flag it as a False Positive.**
 
 If you see a red warning on VirusTotal or Windows Defender:
+
 1. **It is a False Positive.** The app is safe.
 2. Check the source code yourself if you are unsure.
 3. Whitelist the application in your security software.
 
 **False Positive?** Some AVs might flag it because:
+
 - New executable / not widely distributed
 - Discord RPC API access
 - Registry access (auto-startup)
@@ -601,7 +625,7 @@ If you see a red warning on VirusTotal or Windows Defender:
 - [x] Tray Icon Animation
 - [x] One-command installer/updater
 - [x] Single Instance Enforcement
-- [x] Memory Optimization
+- [x] Memory & CPU Optimization (v1.3.8)
 - [x] Change App ID from Menu
 - [x] Dynamic App ID Switching (Per-App)
 - [x] Auto Apps Database Update
@@ -628,5 +652,5 @@ If you see a red warning on VirusTotal or Windows Defender:
 
 <p align="center">
   <sub>Made with ❤️ by <a href="https://github.com/makcrtve">makcrtve</a></sub><br/>
-  <sub>geetRPCS v1.3.7 • Apache 2.0 License • 2026</sub>
+  <sub>geetRPCS v1.3.8 • Apache 2.0 License • 2026</sub>
 </p>
